@@ -13,9 +13,9 @@
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <!-- 基本属性 url、user、password、driverClass -->
         <property name="username" value="root" />
-        <property name="password" value="root" />
+        <property name="password" value="zsl151103" />
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://192.168.0.200:3306/test?useUnicode=true&characterEncoding=utf8&useSSL=false" />
+        <property name="url" value="jdbc:mysql://localhost:3306/zsl" />
     </bean>
 
     <!-- 配置 sessionFactory -->
@@ -23,8 +23,7 @@
         <property name="dataSource" ref="dataSource" />
         <property name="mapperLocations">
             <list>
-                <value>classpath:com/frame/**/*Mapper.xml</value>
-                <value>classpath:mybatis/**/*Mapper.xml</value>
+                <value>classpath:mappers/*Mapper.xml</value>
             </list>
         </property>
     </bean>
