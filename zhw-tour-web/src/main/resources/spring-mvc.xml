@@ -4,11 +4,11 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
     <!-- 自动将控制器加载到bean -->
-    <context:component-scan base-package="com.frame.controller" />
+    <context:component-scan base-package="com.zhw.controller" />
 
     <!-- 配置视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="WEB-INF/views/" />
+        <property name="prefix" value="/WEB-INF/views/" />
         <property name="suffix" value=".jsp" />
         <!-- 可为空,方便实现自已的依据扩展名来选择视图解释类的逻辑 -->
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
@@ -22,8 +22,7 @@
         <property name="messageConverters">
             <list>
                 <!-- 配置返回字符串编码 -->
-                <bean
-                        class="org.springframework.http.converter.StringHttpMessageConverter">
+                <bean class="org.springframework.http.converter.StringHttpMessageConverter">
                     <property name="supportedMediaTypes">
                         <list>
                             <value>text/html; charset=UTF-8</value>

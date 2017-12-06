@@ -21,6 +21,12 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>ojdbc6</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>11.2</version>
+            <scope>runtime</scope>
+        </dependency>
         <!-- 添加 mybatis 依赖包 -->
         <dependency>
             <groupId>org.mybatis</groupId>
