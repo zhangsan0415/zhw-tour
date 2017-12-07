@@ -11,8 +11,6 @@ public class MyStringUtils {
 
     /**
      * 字符串使用String拼接相当的慢，故有此方法
-     * @param values
-     * @return
      */
     public static String putTogether(String ...values){
         if(values == null || values.length == 0)    return null;
@@ -21,5 +19,9 @@ public class MyStringUtils {
             sb.append(value);
         }
         return sb.toString();
+    }
+
+    public static boolean isEmpty(String value){
+        return value == null || value.length() == 0;
     }
 }
