@@ -6,11 +6,12 @@
 	<groupId>com.zhw</groupId>
 	<artifactId>zhw-tour</artifactId>
 	<version>1.0-SNAPSHOT</version>
-
-	<modules>
+	<packaging>pom</packaging>
+	<!-- <modules>
 		<module>zhw-tour-mapper</module>
 		<module>zhw-tour-service</module>
-	</modules>
+		<module>zhw-tour-web</module>
+	</modules> -->
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -188,6 +189,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
