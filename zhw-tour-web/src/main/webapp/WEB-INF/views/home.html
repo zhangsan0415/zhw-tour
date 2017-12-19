@@ -76,7 +76,7 @@
 								<img src="assets/img/user.png" class="img-circle" alt="Avatar">
 								<span>用户名</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
-								<li><a href="#"><i class="lnr lnr-user"></i> <span>My 修改密码</span></a></li>
+								<li><a href="#"><i class="lnr lnr-user"></i> <span>退出</span></a></li>
 							</ul>
 						</li>
 					</ul>
@@ -114,12 +114,55 @@
 					<ul class="nav">
 						<li><a href="home.html" class="active"><i class="lnr lnr-home"></i> <span>系统首页</span></a></li>
 						<li>
-							<a href="#subManage" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>个人管理</span>
+							<a href="#subManage" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>个人资料</span>
 								<i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subManage" class="collapse ">
 								<ul class="nav">
 									<li><a href="modifyInfo.html" class="">修改资料</a></li>
 									<li><a href="modifPassword.html" class="">修改密码</a></li>
+								</ul>
+							</div>
+						</li>
+
+						<li>
+							<a href="#subMarket" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>市场管理</span>
+								<i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="subMarket" class="collapse ">
+								<ul class="nav">
+									<li><a href="member.html" class="">注册会员</a></li>
+									<!--<li><a href="system.html" class="">系统图</a></li>-->
+									<li><a href="relation.html" class="">关系图</a></li>
+									<li><a href="check.html" class="">查看</a></li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<a href="#subServer" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>服务中心</span>
+								<i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="subServer" class="collapse ">
+								<ul class="nav">
+									<li><a href="activationMember.html" class="">已开通会员</a></li>
+									<li><a href="noActivationMember.html" class="">未开通会员</a></li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<a href="#subEnter" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>旅游报名</span>
+								<i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="subEnter" class="collapse ">
+								<ul class="nav">
+									<li><a href="userTourismInside.html" class="">国内旅游报名</a></li>
+									<li><a href="userTourismOutside.html" class="">出境旅游报名</a></li>
+									<li><a href="checkUser.html" class="">查看报名记录</a></li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<a href="#newsCenter" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>新闻公告</span>
+								<i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="newsCenter" class="collapse ">
+								<ul class="nav">
+									<li><a href="userTourismInside.html" class="">新闻中心</a></li>
 								</ul>
 							</div>
 						</li>
@@ -132,43 +175,33 @@
 									<li><a href="integralDetails.html" class="">积分明细</a></li>
 									<li><a href="integralChange.html" class="">积分互转</a></li>
 									<li><a href="integralRecharge.html" class="">充值积分</a></li>
+									<li><a href="integralApply.html" class="">充值积分</a></li>
 								</ul>
 							</div>
 						</li>
 						<li>
-							<a href="#subMarket" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>市场管理</span>
+							<a href="#adminIntegral" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>积分管理</span>
 								<i class="icon-submenu lnr lnr-chevron-left"></i></a>
-							<div id="subMarket" class="collapse ">
+							<div id="adminIntegral" class="collapse ">
 								<ul class="nav">
-									<li><a href="member.html" class="">会员</a></li>
-									<li><a href="system.html" class="">系统图</a></li>
-									<li><a href="relation.html" class="">关系图</a></li>
-									<li><a href="check.html" class="">查看</a></li>
+									<li><a href="adminIntegralRecharge.html" class="">积分充值</a></li>
+									<li><a href="adminIntegralApply.html" class="">积分提现</a></li>
 								</ul>
 							</div>
 						</li>
 						<li>
-							<a href="#subServer" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>市场管理</span>
+							<a href="#adminMember" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>会员管理</span>
 								<i class="icon-submenu lnr lnr-chevron-left"></i></a>
-							<div id="subServer" class="collapse ">
+							<div id="adminMember" class="collapse ">
 								<ul class="nav">
-									<li><a href="noActivationMember.html" class="">未开通会员</a></li>
-									<li><a href="activationMember.html" class="">已开通会员</a></li>
+									<li><a href="adminRegMember.html" class="">注册会员</a></li>
+									<li><a href="adminOpenMember.html" class="">开通会员</a></li>
 								</ul>
 							</div>
 						</li>
-						<li>
-							<a href="#subEnter" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>市场管理</span>
-								<i class="icon-submenu lnr lnr-chevron-left"></i></a>
-							<div id="subEnter" class="collapse ">
-								<ul class="nav">
-									<li><a href="userTourismInside.html" class="">国内旅游报名</a></li>
-									<li><a href="userTourismOutside.html" class="">出境旅游报名</a></li>
-									<li><a href="checkUser.html" class="">查看报名记录</a></li>
-								</ul>
-							</div>
-						</li>
-						<li>
+						<li><a href="adminTourReg.html" class=" "><i class="lnr lnr-home"></i> <span>旅游报名管理</span></a></li>
+						<li><a href="adminNews.html" class=" "><i class="lnr lnr-home"></i> <span>新闻管理</span></a></li>
+						<!--<li>
 							<a href="#subEmall" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>积分专区</span>
 								<i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subEmall" class="collapse ">
@@ -178,8 +211,8 @@
 									<li><a href="order.html" class="">我的订单</a></li>
 								</ul>
 							</div>
-						</li>
-						<li>
+						</li>-->
+						<!--<li>
 							<a href="#subWords" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>留言管理</span>
 								<i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subWords" class="collapse ">
@@ -189,7 +222,7 @@
 									<li><a href="writeLetter.html" class="">写邮件</a></li>
 								</ul>
 							</div>
-						</li>
+						</li>-->
 					</ul>
 				</nav>
 			</div>
