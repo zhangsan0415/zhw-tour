@@ -33,7 +33,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>springMVC</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>*.do</url-pattern>
     </servlet-mapping>
 
     <!-- 配置 spring 监听器 -->

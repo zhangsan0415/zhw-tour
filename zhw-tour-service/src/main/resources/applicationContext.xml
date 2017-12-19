@@ -9,17 +9,31 @@
     <!-- 自动扫描指定目录，将控制器加载到bean -->
     <context:component-scan base-package="com.zhw" />
 
-    <!-- 配置 druid 数据源 -->
- <!--   <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
-        &lt;!&ndash; 基本属性 url、user、password、driverClass &ndash;&gt;
-        <property name="username" value="root" />
-        <property name="password" value="zsl151103" />
-        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://localhost:3306/zsl" />
-    </bean>-->
 
-    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
-        <!-- 基本属性 url、user、password、driverClass -->
+    <!-- 引入配置文件 -->  
+    <bean id="propertyConfigurer"  
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+        <property name="location" value="classpath:DataSource.properties" />  
+    </bean>  
+	
+    <!-- 配置 druid 数据源 -->
+   <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <!--基本属性 url、user、password、driverClass -->
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="${jdbc.url}" />
+    </bean>
+    
+  <!--    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+        <property name="driverClassName" value="${jdbc.driverClass}" />
+        <property name="url" value="${jdbc.url}" />
+    </bean> -->
+
+  <!--   <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        基本属性 url、user、password、driverClass
         <property name="username" value="bos0301" />
         <property name="password" value="bos0301" />
         <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
@@ -35,10 +49,10 @@
         <property name="testOnReturn" value="false" />
         <property name="poolPreparedStatements" value="true" />
         <property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
-    </bean>
+    </bean> -->
 
     <!-- 配置 sessionFactory -->
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <bean id="sqlSessionFactoryMysql" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="mapperLocations">
             <list>
@@ -49,12 +63,12 @@
 
     <!-- 配置 sqlSessionTemplate 持久化模板 -->
     <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
-        <constructor-arg ref="sqlSessionFactory" />
+        <constructor-arg ref="sqlSessionFactoryMysql" />
     </bean>
 
     <!-- mybatis自动扫描加载SQL映射文件/接口：MapperScannerConfigurer --><!-- basePackage：指定SQL映射文件/接口所在的包(自动扫描)-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryMysql" />
         <property name="basePackage" value="com.zhw.mapper" />
     </bean>
 
@@ -62,22 +76,6 @@
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
     </bean>
-
-    <!-- 配置事物传播行为 -->
-    <tx:advice id="txAdvice" transaction-manager="transactionManager">
-        <tx:attributes>
-            <tx:method name="get*" read-only="true" />
-            <tx:method name="find*" read-only="true" />
-            <tx:method name="select*" read-only="true" />
-            <tx:method name="*" propagation="REQUIRED" />
-        </tx:attributes>
-    </tx:advice>
-
-    <!-- 配置事物切入点 -->
-    <aop:config>
-        <aop:pointcut expression="execution(* com.zhw.service.*.*(..))" id="pointCut" />
-        <aop:advisor advice-ref="txAdvice" pointcut-ref="pointCut" />
-    </aop:config>
 
     <!-- 开始声明式事务（事物注解） -->
     <tx:annotation-driven transaction-manager="transactionManager" />

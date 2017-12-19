@@ -17,7 +17,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>4.3.13.RELEASE</spring.version>
 		<aspectj.version>1.8.10</aspectj.version>
-		<mybatis.version>3.4.5</mybatis.version>
 	</properties>
 
 	<dependencies>
