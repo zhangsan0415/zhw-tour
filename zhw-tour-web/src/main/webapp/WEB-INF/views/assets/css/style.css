@@ -31,3 +31,6 @@ ul.activity-timeline > li > p {
 .line-height-30{
     height: 30px;
 }
+.padding-bottom-10{
+    padding-bottom: 10px !important;
+}
