@@ -1,0 +1,33 @@
+
+/*重写*/
+ul.activity-timeline > li {
+    margin-bottom: 31px;
+}
+ul.activity-timeline > li .timestamp {
+    display: inline;
+}
+ul.activity-timeline > li:after {
+    height: 58px;
+}
+ul.activity-timeline > li > p {
+    padding-top: 9px;
+}
+.form-control{
+    width: 25%;
+}
+
+/*自定义*/
+.sidebar-scroll dl{
+    color: #fff;
+    font-weight: 100;
+    font-size: 15px;
+    padding-left: 12%;
+    padding-top: 4%;
+}
+.sidebar-scroll dl dt{
+    font-weight: 100;
+    line-height: 1.9;
+}
+.line-height-30{
+    height: 30px;
+}
