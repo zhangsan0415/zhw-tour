@@ -6,7 +6,7 @@
 
 <%
 String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/WEB-INF/views/";
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <head>
 	<title>登录</title>
@@ -14,13 +14,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<!-- VENDOR CSS -->
-	<link rel="stylesheet" href="<%=basePath%>assets/css/bootstrap.min.css">
-	<link rel="stylesheet" href="<%=basePath%>assets/vendor/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="<%=basePath%>assets/vendor/linearicons/style.css">
+	<link rel="stylesheet" href="<%=basePath%>static/assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="<%=basePath%>static/assets/vendor/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="<%=basePath%>static/assets/vendor/linearicons/style.css">
 	<!-- MAIN CSS -->
-	<link rel="stylesheet" href="<%=basePath%>assets/css/main.css">
+	<link rel="stylesheet" href="<%=basePath%>static/assets/css/main.css">
 	<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
-	<link rel="stylesheet" href="<%=basePath%>assets/css/demo.css">
+	<link rel="stylesheet" href="<%=basePath%>static/assets/css/demo.css">
 	<!-- GOOGLE FONTS -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 	<!-- ICONS -->
@@ -43,12 +43,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 							<form class="form-auth-small" action="">
 								<div class="form-group">
-									<label for="signin-email" class="control-label sr-only">Email</label>
-									<input type="email" class="form-control" id="signin-email" value="samuel.gold@domain.com" placeholder="Email">
+									<label for="signin-email" class="control-label sr-only">会员编号</label>
+									<input type="email" class="form-control" id="signin-email" value="" placeholder="会员编号">
 								</div>
 								<div class="form-group">
-									<label for="signin-password" class="control-label sr-only">Password</label>
-									<input type="password" class="form-control" id="signin-password" value="thisisthepassword" placeholder="Password">
+									<label for="signin-password" class="control-label sr-only">密码</label>
+									<input type="password" class="form-control" id="signin-password" value="" placeholder="密码">
 								</div>
 								<button type="submit" class="btn btn-primary btn-lg btn-block">登录</button>
 								<div class="bottom">
