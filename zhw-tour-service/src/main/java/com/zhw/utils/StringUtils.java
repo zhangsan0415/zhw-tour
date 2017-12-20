@@ -7,13 +7,12 @@ package com.zhw.utils;
  * @Time 2017/12/6
  * @Note
  */
-public class MyStringUtils {
+public class StringUtils {
 
     /**
      * 字符串使用String拼接相当的慢，故有此方法
      */
     public static String putTogether(String ...values){
-        if(values == null || values.length == 0)    return null;
         StringBuilder sb = new StringBuilder();
         for(String value:values){
             sb.append(value);
@@ -23,5 +22,17 @@ public class MyStringUtils {
 
     public static boolean isEmpty(String value){
         return value == null || value.length() == 0;
+    }
+
+    public static boolean isEmpty(String ...params){
+        for(String param:params){
+            if(isEmpty(param)) return true;
+        }
+        return false;
+    }
+
+    public static boolean isEqual(String value1,String value2){
+        if(isEmpty(value1)) return false;
+        return value1.equals(value2);
     }
 }

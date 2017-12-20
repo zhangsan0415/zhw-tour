@@ -60,7 +60,7 @@ public class BaseResult {
         return new BaseResult(SUCCESS_STATUS);
     }
 
-    public static BaseResult failedInstance(){
-        return new BaseResult(FAILED_STATUS);
+    public static BaseResult failedInstance(String msg){
+        return new BaseResult(FAILED_STATUS).setMsg(msg);
     }
 }
