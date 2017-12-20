@@ -1,5 +1,7 @@
 package com.zhw.service;
 
+import com.zhw.domain.MemberInfo;
+
 public interface LoginService {
 
     /**
@@ -9,7 +11,7 @@ public interface LoginService {
      * @return
      * @throws Exception
      */
-    boolean checkLogin(String username,String password)throws Exception;
+    MemberInfo checkLogin(String hyCode,String password)throws Exception;
 
     /**
      * 验证会员编号是否存在
@@ -17,5 +19,16 @@ public interface LoginService {
      * @return
      * @throws Exception
      */
-    boolean checkMemberCode(String memberCode)throws Exception;
+    boolean isHyExsists(String hyCode)throws Exception;
+    
+    
+    /**
+     * 修改用户(会员)密码
+     * @param memberCode
+     * @param pwd
+     * @return
+     * @throws Exception
+     */
+    boolean changePwd(String hyCode,String pwd) throws Exception;
+    
 }

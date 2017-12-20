@@ -3,6 +3,7 @@ package com.zhw.controller;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import com.zhw.domain.MemberInfo;
 import com.zhw.response.BaseResult;
 import com.zhw.utils.StringUtils;
 import org.slf4j.Logger;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class LoginController {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-
+	
 	@Resource
 	private LoginService loginService;
 	
@@ -37,41 +38,77 @@ public class LoginController {
      */
 	@RequestMapping(value="/doLogin.do",method= RequestMethod.POST)
 	@ResponseBody
-	public BaseResult doLogin(String memberCode, String password, String checkCode, HttpServletRequest request){
-		if(StringUtils.isEmpty(memberCode,password,checkCode)) return BaseResult.failedInstance("存在必要条件为空！");
+	public BaseResult doLogin(String hyCode, String password, String checkCode, HttpServletRequest request){
+		if(StringUtils.isEmpty(hyCode,password,checkCode)) return BaseResult.conditionErrorInstance();
 
 		String valideCode = (String) request.getSession().getAttribute("validate_code");
 		request.getSession().removeAttribute("validate_code");
 		if(!StringUtils.isEqual(valideCode,checkCode)) return BaseResult.failedInstance("验证码错误！");
 
 		try {
-			boolean check = loginService.checkLogin(memberCode,password);
-			if(!check) return BaseResult.failedInstance("密码错误！");
+			MemberInfo check = loginService.checkLogin(hyCode,password);
+			if(check == null) return BaseResult.failedInstance("密码错误！");
+			
+			//设置session信息
+			request.getSession().setAttribute(ControllerUtils.USER_INFO_SESSION_KEY, check);
 			return BaseResult.sucessInstance().setMsg("登录成功！");
 		} catch (Exception e) {
-			logger.error(StringUtils.putTogether("用户",memberCode,"登录失败：",e.getMessage()),e);
-			return BaseResult.failedInstance("系统繁忙，请稍候重试！");
+			logger.error(StringUtils.putTogether("用户",hyCode,"登录失败：",e.getMessage()),e);
+			return BaseResult.exceptionInstance();
 		}
 	}
 
 	/**
-	 * 验证用户名是否存在
+	 * 验证用户（会员编号）名是否存在
 	 * @param memberCode
 	 * @return
      */
 	@RequestMapping("/checkUserName.do")
 	@ResponseBody
-	public BaseResult checkMemberCode(String memberCode){
-		if(StringUtils.isEmpty(memberCode)) return BaseResult.failedInstance("会员编码不能为空！");
+	public BaseResult checkMemberCode(String hyCode){
+		if(StringUtils.isEmpty(hyCode))  return BaseResult.conditionErrorInstance();
 
 		try {
-			boolean check = loginService.checkMemberCode(memberCode);
+			boolean check = loginService.isHyExsists(hyCode);
 			if(!check)	return BaseResult.failedInstance("会员编码不存在！");
-			return
+			return BaseResult.sucessInstance();
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(StringUtils.putTogether("用户",hyCode,"验证失败：",e.getMessage()),e);
+			return BaseResult.exceptionInstance();
 		}
-		return null;
 	}
+	
+	
+	/**
+	 * 修改用户（会员）密码
+	 * @param request
+	 * @param pwd
+	 * @param confirmPwd
+	 * @return
+	 */
+	@RequestMapping(value="/changePwd.do",method=RequestMethod.POST)
+	@ResponseBody
+	public BaseResult changePwd(HttpServletRequest request,String pwd,String confirmPwd) {
+		if(StringUtils.isEmpty(pwd, confirmPwd))	return BaseResult.conditionErrorInstance();
+		
+		MemberInfo userInfo = ControllerUtils.getUserInfo(request);
+		if(userInfo == null)	return BaseResult.failedInstance("用户已登出，请重新登录！");
+		
+		try {
+			boolean isChanged = loginService.changePwd(userInfo.getHyCode(), pwd);
+			if(!isChanged) return BaseResult.failedInstance("修改密码失败，请稍候重试！");
+			return BaseResult.sucessInstance();
+		} catch (Exception e) {
+			logger.error(StringUtils.putTogether("用户",userInfo.getHyCode(),"修改密码失败：",e.getMessage()),e);
+			return BaseResult.exceptionInstance();
+		} 
+	}
+	
+	
+	@RequestMapping(value="/forgetPwd.do")
+	public String forgetPwd() {
+		return "forgetPwd";
+	}
+	
 	
 }

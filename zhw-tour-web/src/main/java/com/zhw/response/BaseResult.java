@@ -63,4 +63,12 @@ public class BaseResult {
     public static BaseResult failedInstance(String msg){
         return new BaseResult(FAILED_STATUS).setMsg(msg);
     }
+    
+    public static BaseResult exceptionInstance() {
+		return failedInstance("系统繁忙，请稍候重试！");
+    }
+    
+    public static BaseResult conditionErrorInstance() {
+    	return BaseResult.failedInstance("存在必要条件为空！");
+    }
 }

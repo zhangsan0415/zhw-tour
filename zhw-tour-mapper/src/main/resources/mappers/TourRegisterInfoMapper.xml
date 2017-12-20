@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhw.mapper.TourRegisterInfoMapper">
-
+	<resultMap type="com.zhw.domain.TourRegisterInfo" id="BaseMap">
+		<id property="hyCode" column="HY_CODE" />
+		<result property="pkId" column="PK_ID" />
+		<result property="bmName" column="BM_NAME" />
+		<result property="bmCardCode" column="BM_CARD_CODE" />
+		<result property="bmSex" column="BM_SEX" />
+		<result property="bmHjAddress" column="BM_HJ_ADDRESS" />
+		<result property="bmCarCode" column="BM_CAR_CODE" />
+		<result property="bmPhone" column="BM_PHONE" />
+		<result property="bmPrice" column="BM_PRICE" />
+		<result property="bmComment" column="BM_COMMENT" />
+	</resultMap>
 
 </mapper>
