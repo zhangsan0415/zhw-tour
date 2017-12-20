@@ -41,14 +41,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<!--<div class="logo text-center"><img src="assets/img/logo-dark.png" alt="Klorofil Logo"></div>-->
 								<p class="lead">欢迎登陆</p>
 							</div>
-							<form class="form-auth-small" action="">
+							<form class="form-auth-small" method="post" action="<%=basePath%>login/doLogin.do" onsubmit="return check()">
 								<div class="form-group">
 									<label for="signin-email" class="control-label sr-only">会员编号</label>
-									<input type="email" class="form-control" id="signin-email" value="" placeholder="会员编号">
+									<input type="text" name="memberCode" class="form-control" id="signin-email" value="" placeholder="会员编号">
 								</div>
 								<div class="form-group">
 									<label for="signin-password" class="control-label sr-only">密码</label>
-									<input type="password" class="form-control" id="signin-password" value="" placeholder="密码">
+									<input type="password" name="password" class="form-control" id="signin-password" value="" placeholder="密码">
 								</div>
 								<button type="submit" class="btn btn-primary btn-lg btn-block">登录</button>
 								<div class="bottom">
