@@ -7,16 +7,16 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<!-- VENDOR CSS -->
-	<link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="assets/vendor/linearicons/style.css">
+	<link rel="stylesheet" href="../../static/assets/css/bootstrap.css">
+<!--	<link rel="stylesheet" href="../../static/assets/vendor/font-awesome/css/font-awesome.min.css">-->
+	<!--<link rel="stylesheet" href="../../static/assets/vendor/linearicons/style.css">-->
 <!--	<link rel="stylesheet" href="assets/vendor/chartist/css/chartist-custom.css">-->
 	<!-- MAIN CSS -->
-	<link rel="stylesheet" href="assets/css/main.css">
+	<link rel="stylesheet" href="../../static/assets/css/main.css">
 	<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
-	<link rel="stylesheet" href="assets/css/demo.css">
+	<link rel="stylesheet" href="../../static/assets/css/demo.css">
 
-	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="../../static/assets/css/style.css">
 	<!-- GOOGLE FONTS -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 	<!-- ICONS -->
@@ -37,44 +37,47 @@
 			</div>
 			<div class="container-fluid">
 				<div class="navbar-btn">
-					<button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
+					<button type="button" class="btn-toggle-fullwidth">
+						<!--<i class="lnr lnr-arrow-left-circle"></i>-->
+						<span class="glyphicon  glyphicon-option-horizontal" aria-hidden="true"></span>
+					</button>
 				</div>
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
 						<li  class="dropdown">
 							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
-								<i class="lnr lnr-question-circle"></i>
+
 								会员
 							</a>
 						</li>
 						<li  class="dropdown">
 							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
-								<i class="lnr lnr-question-circle"></i>
+
 								开通会员
 							</a>
 						</li>
 						<li  class="dropdown">
 							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
-								<i class="lnr lnr-question-circle"></i>
+
 								积分互转
 							</a>
 						</li>
 						<li  class="dropdown">
 							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
-								<i class="lnr lnr-question-circle"></i>
+
 								提现申请
 							</a>
 						</li>
 						<li  class="dropdown">
 							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
-								<i class="lnr lnr-question-circle"></i>
+
 								信息反馈
 							</a>
 						</li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								<img src="assets/img/user.png" class="img-circle" alt="Avatar">
-								<span>用户名</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+								<span>用户名</span> <span class="glyphicon glyphicon-menu-down"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="#"><i class="lnr lnr-user"></i> <span>退出</span></a></li>
 							</ul>
@@ -114,8 +117,8 @@
 					<ul class="nav">
 						<li><a href="home.html" class="active"><i class="lnr lnr-home"></i> <span>系统首页</span></a></li>
 						<li>
-							<a href="#subManage" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>个人资料</span>
-								<i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<a href="#subManage" data-toggle="collapse" class="collapsed"> <span>个人资料</span>
+								 <span class="icon-submenu glyphicon glyphicon-menu-down"></span></a>
 							<div id="subManage" class="collapse ">
 								<ul class="nav">
 									<li><a href="modifyInfo.html" class="">修改资料</a></li>
@@ -126,7 +129,7 @@
 
 						<li>
 							<a href="#subMarket" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>市场管理</span>
-								<i class="icon-submenu lnr lnr-chevron-left"></i></a>
+								<span class="icon-submenu glyphicon glyphicon-menu-down"></span></a>
 							<div id="subMarket" class="collapse ">
 								<ul class="nav">
 									<li><a href="member.html" class="">注册会员</a></li>
@@ -138,17 +141,17 @@
 						</li>
 						<li>
 							<a href="#subServer" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>服务中心</span>
-								<i class="icon-submenu lnr lnr-chevron-left"></i></a>
+								<span class="icon-submenu glyphicon glyphicon-menu-down"></span></a>
 							<div id="subServer" class="collapse ">
 								<ul class="nav">
-									<li><a href="activationMember.html" class="">已开通会员</a></li>
 									<li><a href="noActivationMember.html" class="">未开通会员</a></li>
+									<li><a href="activationMember.html" class="">已开通会员</a></li>
 								</ul>
 							</div>
 						</li>
 						<li>
 							<a href="#subEnter" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>旅游报名</span>
-								<i class="icon-submenu lnr lnr-chevron-left"></i></a>
+								<span class="icon-submenu glyphicon glyphicon-menu-down"></span></a>
 							<div id="subEnter" class="collapse ">
 								<ul class="nav">
 									<li><a href="userTourismInside.html" class="">国内旅游报名</a></li>
@@ -159,7 +162,7 @@
 						</li>
 						<li>
 							<a href="#newsCenter" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>新闻公告</span>
-								<i class="icon-submenu lnr lnr-chevron-left"></i></a>
+								<span class="icon-submenu glyphicon glyphicon-menu-down"></span></a>
 							<div id="newsCenter" class="collapse ">
 								<ul class="nav">
 									<li><a href="userTourismInside.html" class="">新闻中心</a></li>
@@ -168,7 +171,7 @@
 						</li>
 						<li>
 							<a href="#subIntegral" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>积分管理</span>
-								<i class="icon-submenu lnr lnr-chevron-left"></i></a>
+								<span class="icon-submenu glyphicon glyphicon-menu-down"></span></a>
 							<div id="subIntegral" class="collapse ">
 								<ul class="nav">
 									<li><a href="integralSearch.html" class="">积分查询</a></li>
@@ -180,8 +183,8 @@
 							</div>
 						</li>
 						<li>
-							<a href="#adminIntegral" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>积分管理</span>
-								<i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<a href="#adminIntegral" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>积分</span>
+								<span class="icon-submenu glyphicon glyphicon-menu-down"></span></a>
 							<div id="adminIntegral" class="collapse ">
 								<ul class="nav">
 									<li><a href="adminIntegralRecharge.html" class="">积分充值</a></li>
@@ -190,8 +193,8 @@
 							</div>
 						</li>
 						<li>
-							<a href="#adminMember" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>会员管理</span>
-								<i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<a href="#adminMember" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>会员</span>
+								<span class="icon-submenu glyphicon glyphicon-menu-down"></span></a>
 							<div id="adminMember" class="collapse ">
 								<ul class="nav">
 									<li><a href="adminRegMember.html" class="">注册会员</a></li>
@@ -199,8 +202,8 @@
 								</ul>
 							</div>
 						</li>
-						<li><a href="adminTourReg.html" class=" "><i class="lnr lnr-home"></i> <span>旅游报名管理</span></a></li>
-						<li><a href="adminNews.html" class=" "><i class="lnr lnr-home"></i> <span>新闻管理</span></a></li>
+						<li><a href="adminTourReg.html" class=" "><i class="lnr lnr-home"></i> <span>旅游报名</span></a></li>
+						<li><a href="adminNews.html" class=" "><i class="lnr lnr-home"></i> <span>新闻</span></a></li>
 						<!--<li>
 							<a href="#subEmall" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>积分专区</span>
 								<i class="icon-submenu lnr lnr-chevron-left"></i></a>
@@ -240,39 +243,32 @@
 						<ul class="list-unstyled row">
 
 							<li class="col-md-2 col-sm-4 col-xs-6">
-								<a class="often-use-link" href=""><span class="lnr lnr-sun award-icon"></span>
+								<a class="often-use-link" href=""><span class="glyphicon glyphicon-tags award-icon"></span>
 								<span class="cssclass">新闻中心</span></a>
 							</li>
+
 							<li class="col-md-2 col-sm-4 col-xs-6">
-								<a class="often-use-link" href=""><span class="lnr lnr-sun award-icon"></span>
-								<span class="cssclass">收件箱</span></a>
-							</li>
-							<li class="col-md-2 col-sm-4 col-xs-6">
-								<a class="often-use-link" href=""><span class="lnr lnr-sun award-icon"></span>
+								<a class="often-use-link" href=""><span class="glyphicon glyphicon-usd award-icon"></span>
 								<span class="cssclass">提现申请</span></a>
 							</li>
 							<li class="col-md-2 col-sm-4 col-xs-6">
-								<a class="often-use-link" href=""><span class="lnr lnr-sun award-icon"></span>
+								<a class="often-use-link" href=""><span class="glyphicon glyphicon-picture award-icon"></span>
 								<span class="cssclass">关系图</span></a>
 							</li>
 							<li class="col-md-2 col-sm-4 col-xs-6">
-								<a class="often-use-link" href=""><span class="lnr lnr-sun award-icon"></span>
+								<a class="often-use-link" href=""><span class="glyphicon glyphicon-search award-icon"></span>
 								<span class="cssclass">积分查询</span></a>
 							</li>
 							<li class="col-md-2 col-sm-4 col-xs-6">
-								<a class="often-use-link" href=""><span class="lnr lnr-sun award-icon"></span>
+								<a class="often-use-link" href=""><span class="glyphicon glyphicon-retweet award-icon"></span>
 								<span class="cssclass">积分互转</span></a>
 							</li>
 							<li class="col-md-2 col-sm-4 col-xs-6">
-								<a class="often-use-link" href=""><span class="lnr lnr-sun award-icon"></span>
-								<span class="cssclass">充值积分</span></a>
-							</li>
-							<li class="col-md-2 col-sm-4 col-xs-6">
-								<a class="often-use-link" href=""><span class="lnr lnr-sun award-icon"></span>
+								<a class="often-use-link" href=""><span class="glyphicon glyphicon-user award-icon"></span>
 								<span class="cssclass">开通会员</span></a>
 							</li>
 							<li class="col-md-2 col-sm-4 col-xs-6">
-								<a class="often-use-link" href=""><span class="lnr lnr-sun award-icon"></span>
+								<a class="often-use-link" href=""><span class="glyphicon glyphicon-plus award-icon"></span>
 								<span class="cssclass">注册会员</span></a>
 							</li>
 						</ul>
@@ -291,11 +287,11 @@
 							<div class="tab-pane fade in active" id="tab-bottom-left1">
 								<ul class="list-unstyled activity-timeline">
 									<li>
-										<i class="fa fa-comment activity-icon"></i>
+										<span class="glyphicon glyphicon-tag activity-icon"></span>
 										<p><a>【公司公告】</a> <a href="#">【漫游神湖】 一日游</a> <span class="timestamp">【2017-01-21】</span></p>
 									</li>
 									<li>
-										<i class="fa fa-comment activity-icon"></i>
+										<span class="glyphicon glyphicon-tag activity-icon"></span>
 										<p><a>【公司公告】</a> <a href="#">【漫游神湖】 一日游</a> <span class="timestamp">【2017-01-21】</span></p>
 									</li>
 								</ul>
@@ -307,22 +303,15 @@
 		</div>
 		<!-- END MAIN -->
 		<div class="clearfix"></div>
-		<footer>
-			<div class="container-fluid">
-				<p class="copyright">&copy; 2017 会员系统
 
-				</p>
-			</div>
-		</footer>
 	</div>
-	<!-- END WRAPPER -->
-	<!-- Javascript -->
-	<script src="assets/vendor/jquery/jquery.min.js"></script>
-	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 
-
-	<script src="assets/scripts/klorofil-common.js"></script>
+		</div><!-- END WRAPPER -->
+	<!-- Javascript basic -->
+	<script src="../../static/assets/scripts/jquery.min.js"></script>
+	<script src="../../static/assets/scripts/bootstrap.min.js"></script>
+	<script src="../../static/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="../../static/assets/scripts/klorofil-common.js"></script>
 
 </body>
 

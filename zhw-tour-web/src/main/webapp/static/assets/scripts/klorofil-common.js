@@ -13,7 +13,7 @@ $(document).ready(function() {
 			$('body').removeClass('layout-default'); // also remove default behaviour if set
 		}
 
-		$(this).find('.lnr').toggleClass('lnr-arrow-left-circle lnr-arrow-right-circle');
+		$(this).find('.glyphicon').toggleClass('glyphicon glyphicon-option-horizontal  glyphicon glyphicon-option-vertical');
 
 		if($(window).innerWidth() < 1025) {
 			if(!$('body').hasClass('offcanvas-active')) {
