@@ -2,25 +2,48 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="04226f4d-a0a4-4768-a062-91ec5da39e72" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zhw-tour" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/vendor/bootstrapvalidator/css/bootstrapValidator.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/vendor/bootstrapvalidator/js/bootstrapValidator.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-service/src/main/resources/DataSource.properties" afterPath="$PROJECT_DIR$/zhw-tour-service/src/main/resources/DataSource.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-web/src/main/java/com/zhw/controller/LoginController.java" afterPath="$PROJECT_DIR$/zhw-tour-web/src/main/java/com/zhw/controller/LoginController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-service/src/main/java/com/zhw/service/LoginService.java" afterPath="$PROJECT_DIR$/zhw-tour-service/src/main/java/com/zhw/service/LoginService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-service/src/main/java/com/zhw/service/impl/LoginServiceImpl.java" afterPath="$PROJECT_DIR$/zhw-tour-service/src/main/java/com/zhw/service/impl/LoginServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-mapper/src/main/java/com/zhw/domain/MemberBankInfo.java" afterPath="$PROJECT_DIR$/zhw-tour-mapper/src/main/java/com/zhw/domain/MemberBankInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-mapper/src/main/java/com/zhw/mapper/MemberBankInfoMapper.java" afterPath="$PROJECT_DIR$/zhw-tour-mapper/src/main/java/com/zhw/mapper/MemberBankInfoMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-mapper/src/main/java/com/zhw/domain/MemberInfo.java" afterPath="$PROJECT_DIR$/zhw-tour-mapper/src/main/java/com/zhw/domain/MemberInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-mapper/src/main/java/com/zhw/mapper/MemberInfoMapper.java" afterPath="$PROJECT_DIR$/zhw-tour-mapper/src/main/java/com/zhw/mapper/MemberInfoMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-mapper/src/main/java/com/zhw/domain/MemberScoreInfo.java" afterPath="$PROJECT_DIR$/zhw-tour-mapper/src/main/java/com/zhw/domain/MemberScoreInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-mapper/src/main/java/com/zhw/mapper/MemberScoreInfoMapper.java" afterPath="$PROJECT_DIR$/zhw-tour-mapper/src/main/java/com/zhw/mapper/MemberScoreInfoMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-mapper/src/main/java/com/zhw/domain/TourRegisterInfo.java" afterPath="$PROJECT_DIR$/zhw-tour-mapper/src/main/java/com/zhw/domain/TourRegisterInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-mapper/src/main/java/com/zhw/mapper/TourRegisterInfoMapper.java" afterPath="$PROJECT_DIR$/zhw-tour-mapper/src/main/java/com/zhw/mapper/TourRegisterInfoMapper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/img/code.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/scripts/bootstrap.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/scripts/bootstrapValidator.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/scripts/jquery.min.js" />
+      <change type="DELETED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\bootstrap\css\bootstrap-theme.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\bootstrap\css\bootstrap-theme.min.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\bootstrap\css\bootstrap.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\bootstrap\css\bootstrap.min.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\bootstrap\js\bootstrap.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\bootstrap\js\bootstrap.min.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\bootstrap\js\npm.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\bootstrapvalidator\js\bootstrapValidator.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\chartist\css\chartist-custom.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\chartist\css\chartist-custom.css.map" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\chartist\css\chartist.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\chartist\css\chartist.min.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\chartist\js\chartist.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\chartist\js\chartist.min.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\chartist\map\chartist.css.map" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\chartist\map\chartist.min.js.map" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\chartist\scss\chartist.scss" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\jquery.easy-pie-chart\angular.easypiechart.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\jquery.easy-pie-chart\angular.easypiechart.min.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\jquery.easy-pie-chart\easypiechart.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\jquery.easy-pie-chart\easypiechart.min.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\jquery.easy-pie-chart\jquery.easypiechart.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\jquery.easy-pie-chart\jquery.easypiechart.min.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\jquery\jquery.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\jquery\jquery.min.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\jquery\jquery.min.map" afterPath="" />
+      <change type="MOVED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\bootstrap\fonts\glyphicons-halflings-regular.eot" afterPath="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/fonts/glyphicons-halflings-regular.eot" />
+      <change type="MOVED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\bootstrap\fonts\glyphicons-halflings-regular.svg" afterPath="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/fonts/glyphicons-halflings-regular.svg" />
+      <change type="MOVED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\bootstrap\fonts\glyphicons-halflings-regular.ttf" afterPath="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/fonts/glyphicons-halflings-regular.ttf" />
+      <change type="MOVED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\bootstrap\fonts\glyphicons-halflings-regular.woff" afterPath="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/fonts/glyphicons-halflings-regular.woff" />
+      <change type="MOVED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\bootstrap\fonts\glyphicons-halflings-regular.woff2" afterPath="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/fonts/glyphicons-halflings-regular.woff2" />
+      <change type="MOVED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\bootstrapvalidator\css\bootstrapValidator.css" afterPath="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/css/bootstrapValidator.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/css/bootstrap.css" afterPath="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/css/bootstrap.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/css/demo.css" afterPath="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/css/demo.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/WEB-INF/views/login.html" afterPath="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/WEB-INF/views/login.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/WEB-INF/views/login.jsp" afterPath="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/WEB-INF/views/login.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tour.txt" afterPath="$PROJECT_DIR$/tour.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/css/style.css" afterPath="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="zhw-tour.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,11 +64,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="bootstrapValidator.css" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/vendor/bootstrapvalidator/css/bootstrapValidator.css">
+      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zhw-tour-web/src/main/webapp/WEB-INF/views/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="-11.034483">
+              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/zhw-tour-web/src/main/webapp/WEB-INF/views/login.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.37947494">
+              <caret line="105" column="51" selection-start-line="105" selection-start-column="51" selection-end-line="105" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -56,6 +89,17 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/css/demo.css" />
+        <option value="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/WEB-INF/views/ajaxSubmit.html" />
+        <option value="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/css/style.css" />
+        <option value="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/WEB-INF/views/login.html" />
+        <option value="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/WEB-INF/views/login.jsp" />
+      </list>
+    </option>
+  </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" />
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
@@ -64,9 +108,9 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="272" />
-    <option name="y" value="162" />
-    <option name="width" value="1924" />
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="1938" />
     <option name="height" value="1048" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -92,7 +136,7 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -181,6 +225,40 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhw-tour" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhw-tour" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhw-tour-web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -227,15 +305,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="vendor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bootstrapvalidator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
+              <option name="myItemId" value="scripts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -272,50 +342,42 @@
               <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="vendor" />
+              <option name="myItemId" value="zhw-tour" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhw-tour" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="bootstrapvalidator" />
+              <option name="myItemId" value="zhw-tour-web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zhw-tour" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zhw-tour" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zhw-tour-web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -369,7 +431,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -378,13 +440,18 @@
     <property name="JavaScriptPreferStrict" value="false" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../node_ng" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="FullScreen" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\bootstrapvalidator" />
+      <recent name="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\scripts" />
+      <recent name="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\css" />
+      <recent name="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets" />
+      <recent name="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\WEB-INF\views" />
+      <recent name="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-web\src\main\webapp\static\assets\vendor\bootstrap\js" />
     </key>
   </component>
   <component name="RunManager">
@@ -418,10 +485,19 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <pass-parent-envs>true</pass-parent-envs>
+      <envs />
       <method />
     </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="04226f4d-a0a4-4768-a062-91ec5da39e72" name="Default" comment="" />
@@ -432,27 +508,35 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="272" y="162" width="1924" height="1048" extended-state="0" />
-    <editor active="false" />
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2498671" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24116094" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -462,10 +546,114 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/vendor/bootstrapvalidator/css/bootstrapValidator.css">
+    <entry file="file://$PROJECT_DIR$/zhw-tour-web/src/main/webapp/WEB-INF/views/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhw-tour-web/src/main/webapp/WEB-INF/views/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhw-tour-web/src/main/webapp/WEB-INF/views/integralSearch.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.071599044">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/css/demo.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6220096">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.37947">
+          <caret line="350" column="21" selection-start-line="350" selection-start-column="2" selection-end-line="350" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/css/bootstrapValidator.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39215687">
+          <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/scripts/bootstrapValidator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.822376">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7001153">
+          <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/css/bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/css/demo.css.map">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.099378884">
+          <caret line="4" column="29" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="sourcemapFileViewerProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/scripts/bootstrap.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/scripts/jquery.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhw-tour-web/src/main/webapp/WEB-INF/views/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.034483">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhw-tour-web/src/main/webapp/WEB-INF/views/login.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37947494">
+          <caret line="105" column="51" selection-start-line="105" selection-start-column="51" selection-end-line="105" selection-end-column="51" />
           <folding />
         </state>
       </provider>

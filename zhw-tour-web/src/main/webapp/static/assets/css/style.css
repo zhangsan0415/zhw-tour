@@ -12,9 +12,11 @@ ul.activity-timeline > li:after {
 ul.activity-timeline > li > p {
     padding-top: 9px;
 }
+/*
 .form-control{
     width: 25%;
 }
+*/
 
 /*×Ô¶¨Òå*/
 .sidebar-scroll dl{
@@ -33,4 +35,13 @@ ul.activity-timeline > li > p {
 }
 .padding-bottom-10{
     padding-bottom: 10px !important;
+}
+.code-input{
+    width: 77%;
+    display: inline-block;
+}
+.codePng{
+    width: 95px;
+    height: 35px;
+    cursor: pointer;
 }
