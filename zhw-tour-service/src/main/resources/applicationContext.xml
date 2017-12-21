@@ -9,20 +9,13 @@
     <!-- 自动扫描指定目录，将控制器加载到bean -->
     <context:component-scan base-package="com.zhw" />
 
-
-    <!-- 引入配置文件 -->  
-    <bean id="propertyConfigurer"  
-        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
-        <property name="location" value="classpath:DataSource.properties" />  
-    </bean>  
-	
     <!-- 配置 druid 数据源 -->
    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <!--基本属性 url、user、password、driverClass -->
-        <property name="username" value="${jdbc.username}" />
-        <property name="password" value="${jdbc.password}" />
+        <property name="username" value="root" />
+        <property name="password" value="Lvyou2017!" />
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="${jdbc.url}" />
+        <property name="url" value="jdbc:mysql://rm-bp1ridy23skc4cf7rzo.mysql.rds.aliyuncs.com:3306/zhw_tour?useSSL=false" />
     </bean>
     
   <!--    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">

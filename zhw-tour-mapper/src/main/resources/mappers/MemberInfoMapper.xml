@@ -22,6 +22,18 @@
 	</resultMap>
 	
 	<sql id="BaseColumn">
-		PK_ID,FW_CENTER,TJ_MAN,JD_MAN,HY_CODE,ZY_AREA,YJ_PWD,EJ_PWD,SFZ_CARD_CODE,YX_EMAIL,SJ_MOBILE,SJ_MOBILE,JB_LEVEL,ZC_TIME,JH_STATUS,JH_STATUS,KT_TIME,XG_TIME,IF_ADMIN
+		PK_ID,FW_CENTER,TJ_MAN,JD_MAN,HY_CODE,ZY_AREA,YJ_PWD,EJ_PWD,SFZ_CARD_CODE,YX_EMAIL,SJ_MOBILE,JB_LEVEL,ZC_TIME,JH_STATUS,KT_TIME,XG_TIME,IF_ADMIN
 	</sql>
+	
+	<select id="selectForLogin" resultMap="BaseMap">
+		SELECT <include refid="BaseColumn"/> FROM ZHW_MEM WHERE HY_CODE = #{hyCode} AND YJ_PWD = #{yjPwd}
+	</select>
+	
+	<select id="selectCountByHyCode" resultType="Integer">
+		SELECT COUNT(1) FROM ZHW_MEM WHERE HY_CODE = #{hyCode}
+	</select>
+	
+	<update id="updatePwdByHyCode" >
+		UPDATE ZHW_MEM SET YJ_PWD = #{yjPwd} WHERE HY_CODE = #{hyCode}
+	</update>
 </mapper>

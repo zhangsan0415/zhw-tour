@@ -35,4 +35,9 @@ public class StringUtils {
         if(isEmpty(value1)) return false;
         return value1.equals(value2);
     }
+    
+    public static boolean isEqualIgnoreCase(String value1,String value2) {
+    	if(isEmpty(value1,value2)) return false;
+    	return value1.toUpperCase().equals(value2.toUpperCase());
+    }
 }
