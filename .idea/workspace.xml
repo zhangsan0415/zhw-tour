@@ -2,33 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="04226f4d-a0a4-4768-a062-91ec5da39e72" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zhw-tour-web/src/main/java/com/zhw/controller/ControllerUtils.java" />
-      <change type="DELETED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\.idea\.name" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\.idea\jsLibraryMappings.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\.idea\misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\.idea\modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\.idea\vcs.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\.idea\zhw-tour.iml" afterPath="" />
-      <change type="MOVED" beforePath="C:\Users\Yan\nodeProject\zhw-tour\zhw-tour-service\src\main\java\com\zhw\utils\MyStringUtils.java" afterPath="$PROJECT_DIR$/zhw-tour-service/src/main/java/com/zhw/utils/StringUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-web/src/main/java/com/zhw/response/BaseResult.java" afterPath="$PROJECT_DIR$/zhw-tour-web/src/main/java/com/zhw/response/BaseResult.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-web/src/main/java/com/zhw/controller/LoginController.java" afterPath="$PROJECT_DIR$/zhw-tour-web/src/main/java/com/zhw/controller/LoginController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-service/src/main/java/com/zhw/service/LoginService.java" afterPath="$PROJECT_DIR$/zhw-tour-service/src/main/java/com/zhw/service/LoginService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-service/src/main/java/com/zhw/service/impl/LoginServiceImpl.java" afterPath="$PROJECT_DIR$/zhw-tour-service/src/main/java/com/zhw/service/impl/LoginServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-mapper/src/main/java/com/zhw/domain/MemberBankInfo.java" afterPath="$PROJECT_DIR$/zhw-tour-mapper/src/main/java/com/zhw/domain/MemberBankInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-mapper/src/main/java/com/zhw/mapper/MemberBankInfoMapper.java" afterPath="$PROJECT_DIR$/zhw-tour-mapper/src/main/java/com/zhw/mapper/MemberBankInfoMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-mapper/src/main/resources/mappers/MemberBankInfoMapper.xml" afterPath="$PROJECT_DIR$/zhw-tour-mapper/src/main/resources/mappers/MemberBankInfoMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-mapper/src/main/java/com/zhw/domain/MemberInfo.java" afterPath="$PROJECT_DIR$/zhw-tour-mapper/src/main/java/com/zhw/domain/MemberInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-mapper/src/main/java/com/zhw/mapper/MemberInfoMapper.java" afterPath="$PROJECT_DIR$/zhw-tour-mapper/src/main/java/com/zhw/mapper/MemberInfoMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-mapper/src/main/resources/mappers/MemberInfoMapper.xml" afterPath="$PROJECT_DIR$/zhw-tour-mapper/src/main/resources/mappers/MemberInfoMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-mapper/src/main/java/com/zhw/domain/MemberScoreInfo.java" afterPath="$PROJECT_DIR$/zhw-tour-mapper/src/main/java/com/zhw/domain/MemberScoreInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-mapper/src/main/java/com/zhw/mapper/MemberScoreInfoMapper.java" afterPath="$PROJECT_DIR$/zhw-tour-mapper/src/main/java/com/zhw/mapper/MemberScoreInfoMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-mapper/src/main/resources/mappers/MemberScoreInfoMapper.xml" afterPath="$PROJECT_DIR$/zhw-tour-mapper/src/main/resources/mappers/MemberScoreInfoMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-mapper/src/main/java/com/zhw/domain/TourRegisterInfo.java" afterPath="$PROJECT_DIR$/zhw-tour-mapper/src/main/java/com/zhw/domain/TourRegisterInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-mapper/src/main/java/com/zhw/mapper/TourRegisterInfoMapper.java" afterPath="$PROJECT_DIR$/zhw-tour-mapper/src/main/java/com/zhw/mapper/TourRegisterInfoMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-mapper/src/main/resources/mappers/TourRegisterInfoMapper.xml" afterPath="$PROJECT_DIR$/zhw-tour-mapper/src/main/resources/mappers/TourRegisterInfoMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/WEB-INF/views/login.jsp" afterPath="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/WEB-INF/views/login.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/css/style.css" afterPath="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/css/style.css" />
     </list>
     <ignored path="zhw-tour.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -52,18 +26,28 @@
       <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/zhw-tour-web/src/main/webapp/WEB-INF/views/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.034483">
-              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state vertical-scroll-proportion="-21.310345">
+              <caret line="43" column="34" selection-start-line="43" selection-start-column="34" selection-end-line="43" selection-end-column="34" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.jsp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.7231834">
+              <caret line="40" column="17" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/zhw-tour-web/src/main/webapp/WEB-INF/views/login.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.21479714">
-              <caret line="9" column="2" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
+            <state vertical-scroll-proportion="-23.448277">
+              <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -79,9 +63,9 @@
       <list>
         <option value="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/css/demo.css" />
         <option value="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/WEB-INF/views/ajaxSubmit.html" />
-        <option value="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/css/style.css" />
         <option value="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/WEB-INF/views/login.html" />
         <option value="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/WEB-INF/views/login.jsp" />
+        <option value="$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/css/style.css" />
       </list>
     </option>
   </component>
@@ -362,6 +346,44 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="fonts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhw-tour" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhw-tour" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zhw-tour-web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -584,14 +606,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7001153">
-          <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/css/bootstrap.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -627,18 +641,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zhw-tour-web/src/main/webapp/WEB-INF/views/login.html">
+    <entry file="file://$PROJECT_DIR$/zhw-tour-web/src/main/webapp/WEB-INF/views/login.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.034483">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state vertical-scroll-proportion="-23.448277">
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zhw-tour-web/src/main/webapp/WEB-INF/views/login.jsp">
+    <entry file="file://$PROJECT_DIR$/zhw-tour-web/src/main/webapp/WEB-INF/views/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21479714">
-          <caret line="9" column="2" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
+        <state vertical-scroll-proportion="-21.310345">
+          <caret line="43" column="34" selection-start-line="43" selection-start-column="34" selection-end-line="43" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhw-tour-web/src/main/webapp/static/assets/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7231834">
+          <caret line="40" column="17" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
           <folding />
         </state>
       </provider>
