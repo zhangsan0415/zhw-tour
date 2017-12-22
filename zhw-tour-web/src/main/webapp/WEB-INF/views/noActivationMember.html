@@ -214,7 +214,7 @@
         <div class="main-content">
 
             <!--lock start-->
-            <div class="panel col-md-push-4  col-md-4">
+            <div   class="panel col-md-push-4  col-md-4 display-none">
                 <form action="">
                     <div class="panel-heading">
                         <h3 class="panel-title">    二级密码：</h3>
@@ -233,18 +233,20 @@
 
             <!--lock end-->
 
-            <div style="display: none;"  class="panel panel-headline demo-icons">
+            <div  class="panel panel-headline demo-icons">
                 <div class="panel-heading">
                     <h3 class="panel-title">报名记录</h3>
                 </div>
                 <div class="panel-body">
                     <form action="" class="form-inline">
+
                         会员编号：
                         <input type="text" class="form-control"/>
                         <button class="btn btn-info">查询</button>
                     </form>
-                    <table class="table table-striped">
-                        <thead>
+                    <div class="text-primary"><span class="glyphicon glyphicon-yen"></span>保单积分：100.00</div>
+                    <table id="list" class="table table-striped">
+                      <!--  <thead>
                         <tr>
                             <td style="width:6%;">ID</td>
                             <td style="width:12%;">会员编号</td>
@@ -270,8 +272,11 @@
                                 <td>1</td>
 
                             </tr>
-                        </tbdoy>
+                        </tbdoy>-->
                     </table>
+                    <button class="btn btn-primary">全选</button>
+                    <button class="btn btn-primary">开通会员</button>
+                    <button class="btn btn-danger">删除会员</button>
                     <p class="text-center">总条数: <span>2</span> 当前页:<span> 1/1 </span>
                         <a href="">快进</a>
                         <a href="">尾页</a>
@@ -292,9 +297,38 @@
 <!-- Javascript basic -->
 <script src="../../static/assets/scripts/jquery.min.js"></script>
 <script src="../../static/assets/scripts/bootstrap.min.js"></script>
+<script src="../../static/assets/scripts/jquery.jqGrid.src.js"></script>
 <script src="../../static/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <script src="../../static/assets/scripts/klorofil-common.js"></script>
 
 </body>
 
 </html>
+<script>
+    $("#list").jqGrid(
+            {
+                url : "www.baidu.com",
+                datatype : "json",
+                colNames : [ 'ID', '会员编号', '行程路线', '报名时间', '确认时间','查看游客明细', '总人数' ,'总费用','状态'],
+                colModel : [
+                    {name : 'id',index : 'id',width : 80},
+                    {name : '会员编号',index : 'invdate',width : 90},
+                    {name : '行程路线',index : 'name',width : 100},
+                    {name : '报名时间',index : 'amount',width : 80,align : "right"},
+                    {name : '确认时间',index : 'tax',width : 80,align : "right"},
+                    {name : '查看游客明细',index : 'total',width : 100,align : "right"},
+                    {name : '总人数',index : 'note',  width : 150,sortable : false},
+                    {name : '总费用',index : 'invdate',width : 90},
+                    {name : '状态',index : 'invdate',width : 90}
+                ],
+                rowNum : 10,
+                rowList : [ 10, 20, 30 ],
+                pager : '#pager9',
+                sortname : 'id',
+                recordpos : 'left',
+                viewrecords : true,
+                sortorder : "desc",
+                multiselect : true,
+                caption : "Multi Select Example"
+            });
+</script>

@@ -12,13 +12,14 @@ ul.activity-timeline > li:after {
 ul.activity-timeline > li > p {
     padding-top: 9px;
 }
-/*
-.form-control{
-    width: 25%;
+label{
+    font-weight: normal;
 }
-*/
 
 /*×Ô¶¨Òå*/
+.display-none{
+    display:  none;
+}
 .sidebar-scroll dl{
     color: #fff;
     font-weight: 100;
