@@ -25,9 +25,9 @@
 
 
 	<link rel="stylesheet" href="<%=basePath%>static/assets/css/bootstrapValidator.css"/>
-		<script type="text/javascript" src="<%=basePath%>static/assets/scripts/jquery.min.js"></script>
-		<script type="text/javascript" src="<%=basePath%>static/assets/scripts/bootstrap.min.js"></script>
-		<script type="text/javascript" src="<%=basePath%>static/assets/scripts/bootstrapValidator.js"></script>
+	<script type="text/javascript" src="<%=basePath%>static/assets/scripts/jquery.min.js"></script>
+	<script type="text/javascript" src="<%=basePath%>static/assets/scripts/bootstrap.min.js"></script>
+	<script type="text/javascript" src="<%=basePath%>static/assets/scripts/bootstrapValidator.js"></script>
 	</head>
 	<body>
 
