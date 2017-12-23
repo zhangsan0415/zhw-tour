@@ -33,6 +33,10 @@ public class MemberScoreInfo {
 	private int pdOverArea;//碰对后剩余区域，0为左区，1为右区
 	
 	private String gxTime;//更新时间
+	
+	//用于显示使用的字段
+	private String hyLevelName;
+	
 
 	public String getHyCode() {
 		return hyCode;
@@ -136,6 +140,14 @@ public class MemberScoreInfo {
 
 	public void setGxTime(String gxTime) {
 		this.gxTime = gxTime;
+	}
+
+	public String getHyLevelName() {
+		return hyLevelName;
+	}
+
+	public void setHyLevelName(String hyLevelName) {
+		this.hyLevelName = hyLevelName;
 	}
 	
 }
