@@ -26,4 +26,11 @@ public enum ZYAreaEnum {
 		}
 		return null;
 	}
+	
+	public static boolean checkTypeCodeOk(int typeCode) {
+		for(ZYAreaEnum obj:values()) {
+			if(obj.typeCode == typeCode)	return true;
+		}
+		return false;
+	}
 }

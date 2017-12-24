@@ -21,7 +21,7 @@ public class MemberBankInfo {
 	
 	private String khCity;//开户城市
 	
-	private String khSfCardCode;//开户身份证号码
+	private String sfzCardCode;//开户身份证号码
 	
 	private String cjTime;//创建时间
 	
@@ -85,14 +85,6 @@ public class MemberBankInfo {
 		this.khCity = khCity;
 	}
 
-	public String getKhSfCardCode() {
-		return khSfCardCode;
-	}
-
-	public void setKhSfCardCode(String khSfCardCode) {
-		this.khSfCardCode = khSfCardCode;
-	}
-
 	public String getCjTime() {
 		return cjTime;
 	}
@@ -115,6 +107,14 @@ public class MemberBankInfo {
 
 	public void setIfDisabled(int ifDisabled) {
 		this.ifDisabled = ifDisabled;
+	}
+
+	public String getSfzCardCode() {
+		return sfzCardCode;
+	}
+
+	public void setSfzCardCode(String sfzCardCode) {
+		this.sfzCardCode = sfzCardCode;
 	}
 	
 }

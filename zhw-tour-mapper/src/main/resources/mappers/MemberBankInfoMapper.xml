@@ -9,7 +9,7 @@
 		<result property="khName" column="KH_NAME" />
 		<result property="khProvince" column="KH_PROVINCE" />
 		<result property="khCity" column="KH_CITY" />
-		<result property="khSfCardCode" column="KH_SF_CARD_CODE" />
+		<result property="sfzCardCode" column="KH_SF_CARD_CODE" />
 		<result property="cjTime" column="CJ_TIME" />
 		<result property="xgTime" column="XG_TIME" />
 		<result property="ifDisabled" column="IF_DISABLED" />

@@ -252,7 +252,7 @@
 							</li>
 							</c:if>
 							<li class="col-md-2 col-sm-4 col-xs-6">
-								<a class="often-use-link" href=""><span class="glyphicon glyphicon-plus award-icon"></span>
+								<a class="often-use-link" href="<%=basePath%>home/toSignIn.do"><span class="glyphicon glyphicon-plus award-icon"></span>
 								<span class="cssclass">注册会员</span></a>
 							</li>
 						</ul>

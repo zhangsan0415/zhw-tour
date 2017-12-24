@@ -13,7 +13,7 @@
 		<result property="sfzCardCode" column="SFZ_CARD_CODE" />
 		<result property="yxEmail" column="YX_EMAIL" />
 		<result property="sjMobile" column="SJ_MOBILE" />
-		<result property="jbLevel" column="JB_LEVEL" />
+		<result property="hyLevel" column="JB_LEVEL" />
 		<result property="zcTime" column="ZC_TIME" />
 		<result property="jhStatus" column="JH_STATUS" />
 		<result property="ktTime" column="KT_TIME" />

@@ -29,7 +29,7 @@ public class MemberInfo {
 	
 	private String sjMobile;//手机号
 	
-	private int jbLevel;//申请级别，1为普通会员，2为金卡代理，3为钻石代理
+	private int hyLevel;//申请级别，1为普通会员，2为金卡代理，3为钻石代理
 	
 	private String zcTime;//注册时间
 	
@@ -129,14 +129,6 @@ public class MemberInfo {
 		this.sjMobile = sjMobile;
 	}
 
-	public int getJbLevel() {
-		return jbLevel;
-	}
-
-	public void setJbLevel(int jbLevel) {
-		this.jbLevel = jbLevel;
-	}
-
 	public String getZcTime() {
 		return zcTime;
 	}
@@ -175,6 +167,14 @@ public class MemberInfo {
 
 	public void setIfAdmin(int ifAdmin) {
 		this.ifAdmin = ifAdmin;
+	}
+
+	public int getHyLevel() {
+		return hyLevel;
+	}
+
+	public void setHyLevel(int hyLevel) {
+		this.hyLevel = hyLevel;
 	}
 	
 	

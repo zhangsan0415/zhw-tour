@@ -37,6 +37,9 @@ public class MemberScoreInfo {
 	//用于显示使用的字段
 	private String hyLevelName;
 	
+	//用于计算碰撞积分
+	private String tjMan;
+	
 
 	public String getHyCode() {
 		return hyCode;
@@ -148,6 +151,14 @@ public class MemberScoreInfo {
 
 	public void setHyLevelName(String hyLevelName) {
 		this.hyLevelName = hyLevelName;
+	}
+
+	public String getTjMan() {
+		return tjMan;
+	}
+
+	public void setTjMan(String tjMan) {
+		this.tjMan = tjMan;
 	}
 	
 }

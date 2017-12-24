@@ -14,4 +14,7 @@ public interface MemberInfoMapper {
 	
 	//修改指定会员密码为指定密码
 	int updatePwdByHyCode(@Param("hyCode")String hyCode,@Param("yjPwd")String yjPwd);
+	
+	//插入新的会员信息
+	int inserNewHyInfo(MemberInfo obj);
 }
