@@ -1,6 +1,7 @@
 package com.zhw.service;
 
 import com.zhw.domain.MemberInfo;
+import com.zhw.domain.MemberScoreInfo;
 
 public interface LoginService {
 
@@ -30,5 +31,14 @@ public interface LoginService {
      * @throws Exception
      */
     boolean changePwd(String hyCode,String pwd) throws Exception;
+    
+    
+    /**
+     * 通过会员编码获其会员积分信息
+     * @param hyCode
+     * @return
+     * @throws Exception
+     */
+    MemberScoreInfo getScoreInfoByHyCode(String hyCode)throws Exception;
     
 }

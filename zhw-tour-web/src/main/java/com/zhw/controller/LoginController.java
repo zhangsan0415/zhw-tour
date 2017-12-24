@@ -62,7 +62,7 @@ public class LoginController {
 			if(check == null) return BaseResult.failedInstance("密码错误！");
 			
 			//设置session信息
-			request.getSession().setAttribute(ControllerUtils.USER_INFO_SESSION_KEY, check);
+			ControllerUtils.setUserInfo(request, check);
 			return BaseResult.sucessInstance().setMsg("登录成功！");
 		} catch (Exception e) {
 			logger.error(StringUtils.putTogether("用户",hyCode,"登录失败：",e.getMessage()),e);
@@ -75,7 +75,7 @@ public class LoginController {
 	 * @param memberCode
 	 * @return
      */
-	@RequestMapping("/checkUserName.do")
+	@RequestMapping("/checkHyCode.do")
 	@ResponseBody
 	public BaseResult checkMemberCode(String hyCode){
 		if(StringUtils.isEmpty(hyCode))  return BaseResult.conditionErrorInstance();
@@ -90,6 +90,26 @@ public class LoginController {
 		}
 	}
 	
+	
+	/**
+	 * 进入home页面
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/toHome.do")
+	public String toHomePage(HttpServletRequest request) throws Exception {
+		MemberInfo info = ControllerUtils.getUserInfo(request);
+		if(info == null)	return "login";
+		ControllerUtils.setScoreInfo(request, loginService.getScoreInfoByHyCode(info.getHyCode()));
+		return "home";
+	}
+	
+	@RequestMapping(value="/logout.do")
+	public String logout(HttpServletRequest request) {
+		ControllerUtils.removeUserInfo(request);
+		return "login";
+	}
 	
 	/**
 	 * 修改用户（会员）密码
@@ -114,12 +134,6 @@ public class LoginController {
 			logger.error(StringUtils.putTogether("用户",userInfo.getHyCode(),"修改密码失败：",e.getMessage()),e);
 			return BaseResult.exceptionInstance();
 		} 
-	}
-	
-	
-	@RequestMapping(value="/forgetPwd.do")
-	public String forgetPwd() {
-		return "forgetPwd";
 	}
 	
 	

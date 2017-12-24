@@ -3,7 +3,7 @@
 <mapper namespace="com.zhw.mapper.MemberScoreInfoMapper">
 	<resultMap type="com.zhw.domain.MemberScoreInfo" id="BaseMap">
 		<id property="hyCode" column="HY_CODE" />
-		<result property="tjCount" column="FW_CENTER" />
+		<result property="tjCount" column="TJ_COUNT" />
 		<result property="hyLevel" column="HY_LEVEL" />
 		<result property="ifAdmin" column="IF_ADMIN" />
 		<result property="ljTotalScore" column="LJ_TOTAL_SCORE" />
@@ -16,4 +16,12 @@
 		<result property="pdOverArea" column="PD_OVER_AREA" />
 		<result property="gxTime" column="GX_TIME" />
 	</resultMap>
+	
+	<sql id="BaseColumn">
+		HY_CODE,TJ_COUNT,HY_LEVEL,IF_ADMIN,LJ_TOTAL_SCORE,JJ_SCORE,XJ_SCORE,LY_SCORE,GW_SCORE,BD_SCORE,PD_BALANCE,PD_OVER_AREA,GX_TIME
+	</sql>
+	
+	<select id="selectScoreInfoByCode" resultMap="BaseMap" parameterType="java.lang.String">
+		SELECT <include refid="BaseColumn"/> FROM ZHW_MEM_SCORE WHERE HY_CODE=#{hyCode}
+	</select>
 </mapper>

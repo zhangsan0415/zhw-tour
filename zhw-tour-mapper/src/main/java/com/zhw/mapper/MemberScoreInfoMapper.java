@@ -1,5 +1,7 @@
 package com.zhw.mapper;
 
-public interface MemberScoreInfoMapper {
+import com.zhw.domain.MemberScoreInfo;
 
+public interface MemberScoreInfoMapper {
+	MemberScoreInfo selectScoreInfoByCode(String hyCode);
 }
