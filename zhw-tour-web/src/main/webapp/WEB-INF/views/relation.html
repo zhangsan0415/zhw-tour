@@ -213,29 +213,11 @@
 
         <div class="main-content">
 
-            <!--lock start-->
-            <div   class="panel col-md-push-4  col-md-4 display-none">
-                <form action="">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">    二级密码：</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="input-group">
-                            <input type="text" class="form-control"/>
-                            <span class="input-group-btn">
-                               <button class="btn btn-primary">确认</button>
-                            </span>
 
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-            <!--lock end-->
 
             <div  class="panel panel-headline demo-icons">
                 <div class="panel-heading">
-                    <h3 class="panel-title">报名记录</h3>
+                    <h3 class="panel-title">关系图</h3>
                 </div>
                 <div class="panel-body">
                     <form action="" class="form-inline">
@@ -244,43 +226,16 @@
                         <input type="text" class="form-control"/>
                         <button class="btn btn-info">查询</button>
                     </form>
-                    <h4 class="text-primary"><span class="glyphicon glyphicon-yen"></span>保单积分：100.00</h4>
-                    <table id="list" class="table table-striped">
-                      <!--  <thead>
-                        <tr>
-                            <td style="width:6%;">ID</td>
-                            <td style="width:12%;">会员编号</td>
-                            <td style="width:19%;">行程路线</td>
-                            <td style="width:7%;">报名时间</td>
-                            <td style="width:10%;">确认时间</td>
-                            <td style="width:13%;">查看游客明细</td>
-                            <td style="width:15%;">总人数</td>
-                            <td style="width:5%;">总费用</td>
-                            <td style="width:10%;">状态</td>
-                        </tr>
-                        </thead>
-                        <tbdoy>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td><a>查看游客明细</a></td>
-                                <td>1</td>
-                                <td>666</td>
-                                <td>1</td>
+                    <table id="tree" class="table table-striped">
 
-                            </tr>
-                        </tbdoy>-->
                     </table>
-                    <button class="btn btn-primary">全选</button>
-                    <button class="btn btn-primary">开通会员</button>
-                    <button class="btn btn-danger">删除会员</button>
-                    <p class="text-center">总条数: <span>2</span> 当前页:<span> 1/1 </span>
-                        <a href="">快进</a>
-                        <a href="">尾页</a>
-                    </p>
+                    <h5 class="text-danger">代理商（1000） 金卡代理商（5000） 钻石代理商（8000）</h5>
+                    <h6 >
+                        说明：
+                        <span class="glyphicon glyphicon-yen text-primary"></span>服务中心
+                        <span class="glyphicon glyphicon-yen text-warning"></span>已开通
+                        <span class="glyphicon glyphicon-yen text-danger"></span>未开通
+                    </h6>
                 </div>
 
             </div>
@@ -305,30 +260,25 @@
 
 </html>
 <script>
-    $("#list").jqGrid(
-            {
-                url : "www.baidu.com",
-                datatype : "json",
-                colNames : [ 'ID', '会员编号', '行程路线', '报名时间', '确认时间','查看游客明细', '总人数' ,'总费用','状态'],
-                colModel : [
-                    {name : 'id',index : 'id',width : 80},
-                    {name : '会员编号',index : 'invdate',width : 90},
-                    {name : '行程路线',index : 'name',width : 100},
-                    {name : '报名时间',index : 'amount',width : 80,align : "right"},
-                    {name : '确认时间',index : 'tax',width : 80,align : "right"},
-                    {name : '查看游客明细',index : 'total',width : 100,align : "right"},
-                    {name : '总人数',index : 'note',  width : 150,sortable : false},
-                    {name : '总费用',index : 'invdate',width : 90},
-                    {name : '状态',index : 'invdate',width : 90}
-                ],
-                rowNum : 10,
-                rowList : [ 10, 20, 30 ],
-                pager : '#pager9',
-                sortname : 'id',
-                recordpos : 'left',
-                viewrecords : true,
-                sortorder : "desc",
-                multiselect : true,
+    $("#tree").jqGrid({
+        url: "",
+        treedatatype: "xml",
+        mtype: "POST",
+        colNames:["id","Account","Acc Num", "Debit", "Credit","Balance"],
+        colModel:[
+            {name:'id',index:'id', width:1,hidden:true,key:true, editable:true},
+            {name:'name',index:'name', width:180, editable:true},
+            {name:'num',index:'acc_num', width:80, align:"center",editable:true},
+            {name:'debit',index:'debit', width:80, align:"right",editable:true},
+            {name:'credit',index:'credit', width:80,align:"right",editable:true},
+            {name:'balance',index:'balance', width:80,align:"right",editable:true}
+        ],
+        height:'auto',
+        pager : "#paddtree",
+        treeGrid: true,
+        ExpandColumn : 'name',
+        editurl:'server.php?q=dummy',
 
-            });
+    });
+    $("#tree").jqGrid('navGrid',"#paddtree");
 </script>
