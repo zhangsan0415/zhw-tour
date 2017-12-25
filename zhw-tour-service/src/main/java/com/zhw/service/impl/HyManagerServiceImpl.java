@@ -19,7 +19,6 @@ import com.zhw.pojo.HyInfoPo;
 import com.zhw.pojo.JJScorePercentPo;
 import com.zhw.response.BaseResult;
 import com.zhw.service.HyManagerService;
-import com.zhw.type.HyLevelScoreEnum;
 import com.zhw.type.IfAdminEnum;
 import com.zhw.type.IfDisabledEnum;
 import com.zhw.type.JHStatusEnum;
@@ -77,8 +76,15 @@ public class HyManagerServiceImpl implements HyManagerService {
 		return this.saveHyInfo(userInfo,bankInfo,scoreInfo,currentDate);
 	}
 	
+	//判断新添加会员编码是否存在
+	private boolean isExist(String hyCode) {
+		return infoMapper.selectCountByHyCode(hyCode)>0;
+	}
+	
 	@Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
 	public BaseResult saveHyInfo(MemberInfo userInfo,MemberBankInfo bankInfo,MemberScoreInfo scoreInfo,String currentDate)throws Exception{
+		//判断是否已存在会员编号，如果存在，保存失败
+		if(this.isExist(userInfo.getHyCode()))	return BaseResult.failedInstance("会员编号已存在，请重新输入！");
 		
 		//插入会员表、会员银行信息表、积分表
 		int userResult = infoMapper.insertNewHyInfo(userInfo);
@@ -144,10 +150,6 @@ public class HyManagerServiceImpl implements HyManagerService {
 			if( scoreInfoMapper.updateScoreInfo(threeScoreInfo)==0){
 				throw new Exception(StringUtils.putTogether("更新数据库异常：",userInfo.getHyCode()));
 			}
-
-			int twoResult 	= scoreInfoMapper.updateScoreInfo(twoScoreInfo);
-			int threeResult = scoreInfoMapper.updateScoreInfo(threeScoreInfo);
-			
 		}
 		return BaseResult.sucessInstance().setMsg("注册会员成功！");
 	}

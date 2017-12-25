@@ -14,4 +14,12 @@
 		<result property="xgTime" column="XG_TIME" />
 		<result property="ifDisabled" column="IF_DISABLED" />
 	</resultMap>
+	
+	<sql id="AddColumn">HY_CODE,KH_BANK_NAME,KH_CARD_CODE,KH_NAME,KH_PROVINCE,KH_CITY,KH_SF_CARD_CODE,CJ_TIME,XG_TIME,IF_DISABLED</sql>
+	<sql id="BaseColumn">PK_ID,<include refid="AddColumn"/></sql>
+	
+	<insert id="insertNewBankInfo" parameterType="com.zhw.domain.MemberBankInfo">
+		INSERT INTO ZHW_MEM_BANK(<include refid="AddColumn"/>) VALUES(#{hyCode},#{khBankName},#{khCardCode},#{khName},#{khProvince}
+			,#{khCity},#{sfzCardCode},#{cjTime},#{xgTime},#{ifDisabled,jdbcType=INTEGER})
+	</insert>
 </mapper>

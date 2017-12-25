@@ -21,21 +21,23 @@
 		<result property="ifAdmin" column="IF_ADMIN" />
 	</resultMap>
 	
+	<sql id="AddColumn">FW_CENTER,TJ_MAN,JD_MAN,HY_CODE,ZY_AREA,YJ_PWD,EJ_PWD,SFZ_CARD_CODE,YX_EMAIL,SJ_MOBILE,JB_LEVEL,ZC_TIME,JH_STATUS,KT_TIME,XG_TIME,IF_ADMIN</sql>
 	<sql id="BaseColumn">
-		PK_ID,FW_CENTER,TJ_MAN,JD_MAN,HY_CODE,ZY_AREA,YJ_PWD,EJ_PWD,SFZ_CARD_CODE,YX_EMAIL,SJ_MOBILE,JB_LEVEL,ZC_TIME,JH_STATUS,KT_TIME,XG_TIME,IF_ADMIN
+		PK_ID,<include refid="AddColumn"/>
 	</sql>
 
-	<sql id="AddColumn">FW_CENTER,TJ_MAN,JD_MAN,HY_CODE,ZY_AREA,YJ_PWD,EJ_PWD,SFZ_CARD_CODE,YX_EMAIL,SJ_MOBILE,JB_LEVEL,ZC_TIME,JH_STATUS,KT_TIME,XG_TIME,IF_ADMIN</sql>
-	
 	<select id="selectForLogin" resultMap="BaseMap">
-		SELECT <include refid="BaseColumn"/> FROM ZHW_MEM WHERE HY_CODE = #{hyCode} AND YJ_PWD = #{yjPwd}
+		SELECT <include refid="BaseColumn"/> FROM ZHW_MEM WHERE HY_CODE = #{hyCode} AND YJ_PWD = #{yjPwd} and JH_STATUS = 0
 	</select>
 	
 	<select id="selectCountByHyCode" resultType="Integer">
 		SELECT COUNT(1) FROM ZHW_MEM WHERE HY_CODE = #{hyCode}
 	</select>
 	
-	<update id="updatePwdByHyCode" >
-		UPDATE ZHW_MEM SET YJ_PWD = #{yjPwd} WHERE HY_CODE = #{hyCode}
-	</update>
+	<insert id="insertNewHyInfo" parameterType="com.zhw.domain.MemberInfo">
+		INSERT INTO ZHW_MEM(<include refid="AddColumn"/>) VALUES(#{fwCenter},#{tjMan},#{jdMan},#{hyCode},#{zyArea,jdbcType=INTEGER}
+			,#{yjPwd},#{ejPwd},#{sfzCardCode},#{yxEmail},#{sjMobile},#{hyLevel,jdbcType=INTEGER},#{zcTime},#{jhStatus,jdbcType=INTEGER}
+			,#{ktTime},#{xgTime},#{ifAdmin,jdbcType=INTEGER})
+	</insert>
+	
 </mapper>

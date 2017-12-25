@@ -111,32 +111,7 @@ public class LoginController {
 		return "login";
 	}
 	
-	/**
-	 * 修改用户（会员）密码
-	 * @param request
-	 * @param pwd
-	 * @param confirmPwd
-	 * @return
-	 */
-	@RequestMapping(value="/changePwd.do",method=RequestMethod.POST)
-	@ResponseBody
-	public BaseResult changePwd(HttpServletRequest request,String pwd,String confirmPwd) {
-		if(StringUtils.isEmpty(pwd, confirmPwd))	return BaseResult.conditionErrorInstance();
-		
-		MemberInfo userInfo = ControllerUtils.getUserInfo(request);
-		if(userInfo == null)	return BaseResult.failedInstance("用户已登出，请重新登录！");
-		
-		try {
-			boolean isChanged = loginService.changePwd(userInfo.getHyCode(), pwd);
-			if(!isChanged) return BaseResult.failedInstance("修改密码失败，请稍候重试！");
-			return BaseResult.sucessInstance();
-		} catch (Exception e) {
-			logger.error(StringUtils.putTogether("用户",userInfo.getHyCode(),"修改密码失败：",e.getMessage()),e);
-			return BaseResult.exceptionInstance();
-		} 
-	}
-	
-	
+	//生成四位随机验证码
 	@RequestMapping(value="/createCheckCode.do")
 	public void createCheckCode(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		

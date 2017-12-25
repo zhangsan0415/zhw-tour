@@ -24,16 +24,6 @@ public interface LoginService {
     
     
     /**
-     * 修改用户(会员)密码
-     * @param memberCode
-     * @param pwd
-     * @return
-     * @throws Exception
-     */
-    boolean changePwd(String hyCode,String pwd) throws Exception;
-    
-    
-    /**
      * 通过会员编码获其会员积分信息
      * @param hyCode
      * @return

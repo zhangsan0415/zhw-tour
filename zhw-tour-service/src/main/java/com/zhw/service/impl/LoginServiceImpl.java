@@ -31,11 +31,6 @@ public class LoginServiceImpl implements LoginService{
 	}
 
 	@Override
-	public boolean changePwd(String hyCode, String pwd) throws Exception {
-		return userInfoMapper.updatePwdByHyCode(hyCode, pwd) > 0;
-	}
-
-	@Override
 	public MemberScoreInfo getScoreInfoByHyCode(String hyCode) throws Exception {
 		MemberScoreInfo obj = scoreInfoMapper.selectScoreInfoByCode(hyCode);
 		obj.setHyLevelName(HyLevelEnum.getNameByCode(obj.getHyLevel()));
