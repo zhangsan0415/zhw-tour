@@ -15,6 +15,7 @@
 		<result property="pdBalance" column="PD_BALANCE" />
 		<result property="pdOverArea" column="PD_OVER_AREA" />
 		<result property="gxTime" column="GX_TIME" />
+		<result property="tjMan" column="TJ_MAN" />
 	</resultMap>
 	
 	<sql id="BaseColumn">
@@ -22,6 +23,60 @@
 	</sql>
 	
 	<select id="selectScoreInfoByCode" resultMap="BaseMap" parameterType="java.lang.String">
-		SELECT <include refid="BaseColumn"/> FROM ZHW_MEM_SCORE WHERE HY_CODE=#{hyCode}
+		SELECT * FROM ZHW_MEM_SCORE WHERE HY_CODE=#{hyCode}
 	</select>
+
+	<select id="selectTjScoreInfoByTjCode" resultMap="BaseMap" parameterType="java.lang.String">
+		SELECT a.*,b.TJ_MAN FROM ZHW_MEM_SCORE a JOIN ZH_MEM b ON a.HY_CODE = b.HY_CODE WHERE b.TJ_MAN=#{tjCode}
+	</select>
+
+	<insert id="insertNewScoreInfo" parameterType="com.zhw.domain.MemberScoreInfo">
+		INSERT INTO ZHW_MEM_SCORE(<include refid="BaseColumn"/>)
+		VALUES (#{hyCode},#{tjCount,jdbcType=INTEGER},#{hyLevel,jdbcType=INTEGER},#{ifAdmin,jdbcType=INTEGER},#{ljTotalScore,jdbcType=DECIMAL},#{jjScore,jdbcType=DECIMAL}
+		,#{xjScore,jdbcType=DECIMAL},#{lyScore,jdbcType=DECIMAL},#{gwScore,jdbcType=DECIMAL},#{bdScore,jdbcType=DECIMAL},#{pdBalance,jdbcType=DECIMAL}
+		,#{pdOverArea,jdbcType=INTEGER},#{gxTime,jdbcType=VARCHAR})
+	</insert>
+
+	<update id="updateScoreInfo" parameterType="com.zhw.domain.MemberScoreInfo">
+		UPDATE ZHW_MEM_SCORE
+		<set>
+			<if test="tjCount!=null">
+				TJ_COUNT=#{tjCount,jdbcType=INTEGER},
+			</if>
+			<if test="hyLevel!=null">
+				HY_LEVEL=#{hyLevel,jdbcType=INTEGER},
+			</if>
+			<if test="ifAdmin!=null">
+				IF_ADMIN=#{ifAdmin,jdbcType=INTEGER},
+			</if>
+			<if test="ljTotalScore!=null">
+				LJ_TOTAL_SCORE=#{ljTotalScore,jdbcType=DECIMAL},
+			</if>
+			<if test="jjScore!=null">,
+				JJ_SCORE=#{jjScore,jdbcType=DECIMAL},
+			</if><if test="xjScore!=null">
+				XJ_SCORE=#{xjScore,jdbcType=DECIMAL},
+			</if>
+			<if test="lyScore!=null">
+				LY_SCORE=#{lyScore,jdbcType=DECIMAL},
+			</if>
+			<if test="gwScore!=null">
+				GW_SCORE=#{gwScore,jdbcType=DECIMAL},
+			</if>
+			<if test="bdScore!=null">
+				BD_SCORE=#{bdScore,jdbcType=DECIMAL},
+			</if>
+
+			<if test="pdBalance!=null">
+				PD_BALANCE=#{pdBalance,jdbcType=DECIMAL},
+			</if>
+			<if test="pdOverArea!=null">
+				PD_OVER_AREA=#{pdOverArea,jdbcType=INTEGER},
+			</if>
+			<if test="gxTime!=null">
+				GX_TIME=#{gxTime,jdbcType=VARCHAR},
+			</if>
+		</set>
+		WHERE HY_CODE=#{hyCode}
+	</update>
 </mapper>

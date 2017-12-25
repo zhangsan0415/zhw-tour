@@ -16,5 +16,5 @@ public interface MemberInfoMapper {
 	int updatePwdByHyCode(@Param("hyCode")String hyCode,@Param("yjPwd")String yjPwd);
 	
 	//插入新的会员信息
-	int inserNewHyInfo(MemberInfo obj);
+	int insertNewHyInfo(MemberInfo obj);
 }

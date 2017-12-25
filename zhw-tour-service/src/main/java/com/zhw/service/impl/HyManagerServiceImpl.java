@@ -64,7 +64,7 @@ public class HyManagerServiceImpl implements HyManagerService {
 		scoreInfo.setHyLevel(infoPo.getHyLevel());
 		scoreInfo.setTjCount(0);
 		scoreInfo.setIfAdmin(IfAdminEnum.N_ADMIN.getTypeCode());
-		scoreInfo.setLjTotalScore(HyLevelScoreEnum.getValueByCode(infoPo.getHyLevel()));
+		scoreInfo.setLjTotalScore(BigDecimal.ZERO);
 		scoreInfo.setJjScore(BigDecimal.ZERO);
 		scoreInfo.setXjScore(BigDecimal.ZERO);
 		scoreInfo.setLyScore(BigDecimal.ZERO);
@@ -81,7 +81,7 @@ public class HyManagerServiceImpl implements HyManagerService {
 	public BaseResult saveHyInfo(MemberInfo userInfo,MemberBankInfo bankInfo,MemberScoreInfo scoreInfo,String currentDate)throws Exception{
 		
 		//插入会员表、会员银行信息表、积分表
-		int userResult = infoMapper.inserNewHyInfo(userInfo);
+		int userResult = infoMapper.insertNewHyInfo(userInfo);
 		int bankResult = bankInfoMapper.insertNewBankInfo(bankInfo);
 		int scoreResult = scoreInfoMapper.insertNewScoreInfo(scoreInfo);
 		
@@ -112,26 +112,42 @@ public class HyManagerServiceImpl implements HyManagerService {
 			
 			BigDecimal hitJjScore = (bdScore.compareTo(pdBalance)>0?pdBalance:bdScore).multiply(JJScorePercentPo.HIT_AREA_PERCENT);//发生碰撞的积分
 			this.addJJScore(tjManScoreInfo, hitJjScore);//给直接推荐人添加碰撞奖金积分
-			
+
+			if(scoreInfoMapper.updateScoreInfo(tjManScoreInfo)==0){
+				throw new Exception(StringUtils.putTogether("更新数据库异常：",userInfo.getHyCode()));
+			}
+
 			//给一级上级添加碰撞奖金积分
 			MemberScoreInfo oneScoreInfo = scoreInfoMapper.selectTjScoreInfoByTjCode(tjManScoreInfo.getTjMan());
+			if(oneScoreInfo == null)	BaseResult.sucessInstance().setMsg("注册会员成功！");
+
 			this.addJJScore(oneScoreInfo, hitJjScore.multiply(JJScorePercentPo.HIT_ONE_PERCENT));
-			
+			if( scoreInfoMapper.updateScoreInfo(oneScoreInfo)==0){
+				throw new Exception(StringUtils.putTogether("更新数据库异常：",userInfo.getHyCode()));
+			}
+
 			//给再上线级添加碰撞奖金积分
 			MemberScoreInfo twoScoreInfo = scoreInfoMapper.selectTjScoreInfoByTjCode(oneScoreInfo.getTjMan());
+			if(twoScoreInfo == null)	BaseResult.sucessInstance().setMsg("注册会员成功！");
+
+
 			this.addJJScore(twoScoreInfo, hitJjScore.multiply(JJScorePercentPo.HIT_TWO_PERCENT));
-			
+			if( scoreInfoMapper.updateScoreInfo(twoScoreInfo)==0){
+				throw new Exception(StringUtils.putTogether("更新数据库异常：",userInfo.getHyCode()));
+			}
+
 			//给再再上线级添加碰撞奖金积分
 			MemberScoreInfo threeScoreInfo = scoreInfoMapper.selectTjScoreInfoByTjCode(twoScoreInfo.getTjMan());
+			if(threeScoreInfo == null)	BaseResult.sucessInstance().setMsg("注册会员成功！");
+
 			this.addJJScore(threeScoreInfo, hitJjScore.multiply(JJScorePercentPo.HIT_THREE_PERCENT));
-			
-			int tjResult 	= scoreInfoMapper.updateScoreInfo(tjManScoreInfo);
-			int oneResult 	= scoreInfoMapper.updateScoreInfo(oneScoreInfo);
+			if( scoreInfoMapper.updateScoreInfo(threeScoreInfo)==0){
+				throw new Exception(StringUtils.putTogether("更新数据库异常：",userInfo.getHyCode()));
+			}
+
 			int twoResult 	= scoreInfoMapper.updateScoreInfo(twoScoreInfo);
 			int threeResult = scoreInfoMapper.updateScoreInfo(threeScoreInfo);
 			
-			if(tjResult == 0 || oneResult == 0 || twoResult == 0 || threeResult == 0)
-				throw new Exception(StringUtils.putTogether("更新数据库异常：",userInfo.getHyCode()));
 		}
 		return BaseResult.sucessInstance().setMsg("注册会员成功！");
 	}
@@ -141,8 +157,7 @@ public class HyManagerServiceImpl implements HyManagerService {
 		scoreInfo.setJjScore(scoreInfo.getJjScore().add(jjScore));
 		scoreInfo.setLjTotalScore(scoreInfo.getLjTotalScore().add(jjScore));
 	}
-	
-	
+
 	//检查 是否发生碰撞
 	private boolean checkHitHappen(MemberScoreInfo scoreInfo,int newZyArea) {
 		if(BigDecimal.ZERO.compareTo(scoreInfo.getPdBalance()) == 0)	return false;
