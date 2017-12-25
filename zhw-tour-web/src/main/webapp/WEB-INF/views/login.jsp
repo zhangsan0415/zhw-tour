@@ -42,7 +42,7 @@
 								<!--<div class="logo text-center"><img src="assets/img/logo-dark.png" alt="Klorofil Logo"></div>-->
 								<p class="lead">欢迎登陆</p>
 							</div>
-							<form id="login_form" class="form-auth-small" method="post" action="">
+							<form id="login_form" class="form-auth-small" method="post" action="#">
 								<div class="form-group">
 									<label for="signin-email" class="control-label sr-only">会员编号</label>
 									<input type="text" name="hyCode" class="form-control" id="hy_code" value="" placeholder="会员编号" onblur="checkUserCode(this)"/>
