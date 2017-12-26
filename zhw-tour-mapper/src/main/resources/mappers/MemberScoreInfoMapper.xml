@@ -23,11 +23,11 @@
 	</sql>
 	
 	<select id="selectScoreInfoByCode" resultMap="BaseMap" parameterType="java.lang.String">
-		SELECT * FROM ZHW_MEM_SCORE WHERE HY_CODE=#{hyCode}
+		SELECT a.*,b.TJ_MAN FROM ZHW_MEM_SCORE a JOIN ZHW_MEM b ON a.HY_CODE = b.HY_CODE WHERE a.HY_CODE=#{hyCode}
 	</select>
 
 	<select id="selectTjScoreInfoByTjCode" resultMap="BaseMap" parameterType="java.lang.String">
-		SELECT a.*,b.TJ_MAN FROM ZHW_MEM_SCORE a JOIN ZH_MEM b ON a.HY_CODE = b.HY_CODE WHERE b.TJ_MAN=#{tjCode}
+		SELECT a.*,b.TJ_MAN FROM ZHW_MEM_SCORE a JOIN ZHW_MEM b ON a.HY_CODE = b.HY_CODE WHERE b.TJ_MAN=#{tjCode}
 	</select>
 
 	<insert id="insertNewScoreInfo" parameterType="com.zhw.domain.MemberScoreInfo">
