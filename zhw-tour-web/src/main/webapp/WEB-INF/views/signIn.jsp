@@ -10,24 +10,24 @@
 			</div>
 
 
-			<form id="defaultForm" method="post" class="form-horizontal"
+			<form id="add_hy_form" method="post" class="form-horizontal"
 				action="">
 				<div class="form-group">
 					<label class="col-lg-3 control-label text-danger">所属服务中心：</label>
 					<div class="col-lg-2">
-						<input type="text" class="form-control" name="username" />
+						<input type="text" class="form-control" name="username"  readonly="readonly"/>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-3 control-label text-danger">推荐人：</label>
 					<div class="col-lg-2">
-						<input type="text" class="form-control" name="username" />
+						<input type="text" class="form-control" name="username"  readonly="readonly" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-3 control-label text-danger">接点人：</label>
 					<div class="col-lg-2">
-						<input type="text" class="form-control" name="username" />
+						<input type="text" class="form-control" name="username"  readonly="readonly" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -39,7 +39,7 @@
 				<div class="form-group">
 					<label class="col-lg-3 control-label">所在区域：</label>
 					<div class="col-lg-2">
-						<select name="" id="" class="form-control">
+						<select name="" class="form-control">
 							<option value="0">左区</option>
 							<option value="1">右区</option>
 						</select>

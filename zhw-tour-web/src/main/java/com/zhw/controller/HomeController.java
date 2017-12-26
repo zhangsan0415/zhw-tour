@@ -1,14 +1,19 @@
 package com.zhw.controller;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import com.zhw.service.HomeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/home")
 public class HomeController {
-	
+
+	@Resource
+	private HomeService homeService;
+
 	//跳转修改资料页面
 	@RequestMapping(value="/toModifyHyInfo.do")
 	public String toHyInfo() {
@@ -24,7 +29,12 @@ public class HomeController {
 	
 	//跳转注册会员页面
 	@RequestMapping(value="/toSignIn.do")
-	public String toSignIn() {
+	public String toSignIn(HttpServletRequest request) {
+		//向前台推送接点人信息
+		request.setAttribute("tjMan",homeService.getJDManHyCode(ControllerUtils.getUserInfo(request).getHyCode()));
+		//向前台输出支持的银行卡列表
+
+
 		return "signIn";
 	}
 	
