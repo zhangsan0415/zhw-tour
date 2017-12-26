@@ -12,29 +12,29 @@
 				<ul class="list-unstyled row">
 
 					<li class="col-md-2 col-sm-4 col-xs-6"><a
-						class="often-use-link" href=""><span
+						class="often-use-link" href="<%=basePath%>home/toNewsCenter.do"><span
 							class="glyphicon glyphicon-tags award-icon"></span> <span
 							class="cssclass">新闻中心</span></a></li>
 
 					<li class="col-md-2 col-sm-4 col-xs-6"><a
-						class="often-use-link" href=""><span
+						class="often-use-link" href="<%=basePath%>home/toScoreWithdraw.do"><span
 							class="glyphicon glyphicon-usd award-icon"></span> <span
 							class="cssclass">提现申请</span></a></li>
 					<li class="col-md-2 col-sm-4 col-xs-6"><a
-						class="often-use-link" href=""><span
+						class="often-use-link" href="<%=basePath%>home/toRelation.do"><span
 							class="glyphicon glyphicon-picture award-icon"></span> <span
 							class="cssclass">关系图</span></a></li>
 					<li class="col-md-2 col-sm-4 col-xs-6"><a
-						class="often-use-link" href=""><span
+						class="often-use-link" href="<%=basePath%>home/toScoreList.do"><span
 							class="glyphicon glyphicon-search award-icon"></span> <span
 							class="cssclass">积分查询</span></a></li>
 					<li class="col-md-2 col-sm-4 col-xs-6"><a
-						class="often-use-link" href=""><span
+						class="often-use-link" href="<%=basePath%>home/toScoreTransfer.do"><span
 							class="glyphicon glyphicon-retweet award-icon"></span> <span
 							class="cssclass">积分互转</span></a></li>
 					<c:if test="${sessionScope.scoreInfo.ifAdmin==0}">
 						<li class="col-md-2 col-sm-4 col-xs-6"><a
-							class="often-use-link" href=""><span
+							class="often-use-link" href="<%=basePath%>home/toActiveHyAdmin.do"><span
 								class="glyphicon glyphicon-user award-icon"></span> <span
 								class="cssclass">开通会员</span></a></li>
 					</c:if>
