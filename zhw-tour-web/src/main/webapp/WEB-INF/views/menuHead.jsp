@@ -59,26 +59,22 @@
 							</a>
 						</li>
 						<li  class="dropdown">
-							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
-
+							<a href="<%=basePath%>home/toActiveHyAdmin.do" class="dropdown-toggle icon-menu" data-toggle="dropdown">
 								开通会员
 							</a>
 						</li>
 						<li  class="dropdown">
-							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
-
+							<a href="<%=basePath%>home/toScoreTransfer.do" class="dropdown-toggle icon-menu" data-toggle="dropdown">
 								积分互转
 							</a>
 						</li>
 						<li  class="dropdown">
-							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
-
+							<a href="<%=basePath%>home/toScoreWithdraw.do" class="dropdown-toggle icon-menu" data-toggle="dropdown">
 								提现申请
 							</a>
 						</li>
 						<li  class="dropdown">
 							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
-
 								信息反馈
 							</a>
 						</li>
@@ -205,8 +201,8 @@
 									<span class="icon-submenu glyphicon glyphicon-menu-down"></span></a>
 								<div id="adminMember" class="collapse ">
 									<ul class="nav">
-										<li><a href="<%=basePath%>home/toSignInAdmin.do" class="">注册会员</a></li>
 										<li><a href="<%=basePath%>home/toActiveHyAdmin.do" class="">开通会员</a></li>
+										<li><a href="<%=basePath%>home/toSignInAdmin.do" class="">开通报单中心</a></li>
 									</ul>
 								</div>
 							</li>
