@@ -13,7 +13,7 @@
 			<form id="add_hy_form" method="post" class="form-horizontal"
 				action="">
 				<div class="form-group">
-					<label class="col-lg-3 control-label text-danger">所属服务中心：</label>
+					<label class="col-lg-3 control-label text-danger">所属报单中心：</label>
 					<div class="col-lg-2">
 						<input type="text" class="form-control" name="username"  readonly="readonly"/>
 					</div>
