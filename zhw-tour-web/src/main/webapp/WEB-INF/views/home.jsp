@@ -87,7 +87,7 @@
 						</li>
 					</ul>
 				</div>
-			</div>
+			</div> 0
 		</nav>
 		<!-- END NAVBAR -->
 		<!-- LEFT SIDEBAR -->
@@ -128,8 +128,8 @@
 									<li><a href="<%=basePath%>home/toModifyPwd.do" class="">修改密码</a></li>
 								</ul>
 							</div>
-						</li>
-
+					   	</li>
+555ty
 						<li>
 							<a href="#subMarket" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>市场管理</span>
 								<span class="icon-submenu glyphicon glyphicon-menu-down"></span></a>
