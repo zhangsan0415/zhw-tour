@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhw.mapper.MemberScoreInfoMapper">
+	<resultMap type="com.zhw.domain.MemberScoreInfo" id="BaseMap">
+		<id property="hyCode" column="HY_CODE" />
+		<result property="tjCount" column="TJ_COUNT" />
+		<result property="hyLevel" column="HY_LEVEL" />
+		<result property="ifAdmin" column="IF_ADMIN" />
+		<result property="ljTotalScore" column="LJ_TOTAL_SCORE" />
+		<result property="jjScore" column="JJ_SCORE" />
+		<result property="xjScore" column="XJ_SCORE" />
+		<result property="lyScore" column="LY_SCORE" />
+		<result property="gwScore" column="GW_SCORE" />
+		<result property="bdScore" column="BD_SCORE" />
+		<result property="pdBalance" column="PD_BALANCE" />
+		<result property="pdOverArea" column="PD_OVER_AREA" />
+		<result property="gxTime" column="GX_TIME" />
+		<result property="tjMan" column="TJ_MAN" />
+	</resultMap>
+	
+	<sql id="BaseColumn">
+		HY_CODE,TJ_COUNT,HY_LEVEL,IF_ADMIN,LJ_TOTAL_SCORE,JJ_SCORE,XJ_SCORE,LY_SCORE,GW_SCORE,BD_SCORE,PD_BALANCE,PD_OVER_AREA,GX_TIME
+	</sql>
+	
+	<select id="selectScoreInfoByCode" resultMap="BaseMap" parameterType="java.lang.String">
+		SELECT a.*,b.TJ_MAN FROM ZHW_MEM_SCORE a JOIN ZHW_MEM b ON a.HY_CODE = b.HY_CODE WHERE a.HY_CODE=#{hyCode}
+	</select>
+
+	<select id="selectTjScoreInfoByTjCode" resultMap="BaseMap" parameterType="java.lang.String">
+		SELECT a.*,b.TJ_MAN FROM ZHW_MEM_SCORE a JOIN ZHW_MEM b ON a.HY_CODE = b.HY_CODE WHERE b.TJ_MAN=#{tjCode}
+	</select>
+
+	<insert id="insertNewScoreInfo" parameterType="com.zhw.domain.MemberScoreInfo">
+		INSERT INTO ZHW_MEM_SCORE(<include refid="BaseColumn"/>)
+		VALUES (#{hyCode},#{tjCount,jdbcType=INTEGER},#{hyLevel,jdbcType=INTEGER},#{ifAdmin,jdbcType=INTEGER},#{ljTotalScore,jdbcType=DECIMAL},#{jjScore,jdbcType=DECIMAL}
+		,#{xjScore,jdbcType=DECIMAL},#{lyScore,jdbcType=DECIMAL},#{gwScore,jdbcType=DECIMAL},#{bdScore,jdbcType=DECIMAL},#{pdBalance,jdbcType=DECIMAL}
+		,#{pdOverArea,jdbcType=INTEGER},#{gxTime,jdbcType=VARCHAR})
+	</insert>
+
+	<update id="updateScoreInfo" parameterType="com.zhw.domain.MemberScoreInfo">
+		UPDATE ZHW_MEM_SCORE
+		<set>
+			<if test="tjCount!=null">
+				TJ_COUNT=#{tjCount,jdbcType=INTEGER},
+			</if>
+			<if test="hyLevel!=null">
+				HY_LEVEL=#{hyLevel,jdbcType=INTEGER},
+			</if>
+			<if test="ifAdmin!=null">
+				IF_ADMIN=#{ifAdmin,jdbcType=INTEGER},
+			</if>
+			<if test="ljTotalScore!=null">
+				LJ_TOTAL_SCORE=#{ljTotalScore,jdbcType=DECIMAL},
+			</if>
+			<if test="jjScore!=null">,
+				JJ_SCORE=#{jjScore,jdbcType=DECIMAL},
+			</if><if test="xjScore!=null">
+				XJ_SCORE=#{xjScore,jdbcType=DECIMAL},
+			</if>
+			<if test="lyScore!=null">
+				LY_SCORE=#{lyScore,jdbcType=DECIMAL},
+			</if>
+			<if test="gwScore!=null">
+				GW_SCORE=#{gwScore,jdbcType=DECIMAL},
+			</if>
+			<if test="bdScore!=null">
+				BD_SCORE=#{bdScore,jdbcType=DECIMAL},
+			</if>
+
+			<if test="pdBalance!=null">
+				PD_BALANCE=#{pdBalance,jdbcType=DECIMAL},
+			</if>
+			<if test="pdOverArea!=null">
+				PD_OVER_AREA=#{pdOverArea,jdbcType=INTEGER},
+			</if>
+			<if test="gxTime!=null">
+				GX_TIME=#{gxTime,jdbcType=VARCHAR},
+			</if>
+		</set>
+		WHERE HY_CODE=#{hyCode}
+	</update>
+</mapper>

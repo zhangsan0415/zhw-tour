@@ -1,0 +1,48 @@
+
+/*重写*/
+ul.activity-timeline > li {
+    margin-bottom: 31px;
+}
+ul.activity-timeline > li .timestamp {
+    display: inline;
+}
+ul.activity-timeline > li:after {
+    height: 58px;
+}
+ul.activity-timeline > li > p {
+    padding-top: 9px;
+}
+label{
+    font-weight: normal;
+}
+
+/*自定义*/
+.display-none{
+    display:  none;
+}
+.sidebar-scroll dl{
+    color: #fff;
+    font-weight: 100;
+    font-size: 15px;
+    padding-left: 12%;
+    padding-top: 4%;
+}
+.sidebar-scroll dl dt{
+    font-weight: 100;
+    line-height: 1.9;
+}
+.line-height-30{
+    height: 30px;
+}
+.padding-bottom-10{
+    padding-bottom: 10px !important;
+}
+.code-input{
+    width: 73%;
+    display: inline-block;
+}
+.codePng{
+    width: 26%;
+    height: 35px;
+    cursor: pointer;
+}
