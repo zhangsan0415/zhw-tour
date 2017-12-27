@@ -2,3 +2,8 @@
 <%@include file="menuHead.jsp" %>
 
 <%@include file="menuBottom.jsp" %>
+<script>
+$("#subEnter").prev().addClass('active');/*一级  */
+$("#subEnter").addClass("in");
+$("#toOuterTourEntry").addClass('active');/* 二级 */
+</script>

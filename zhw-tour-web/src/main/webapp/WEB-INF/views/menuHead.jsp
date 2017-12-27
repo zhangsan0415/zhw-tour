@@ -119,14 +119,14 @@
 				</dl>
 				<nav>
 					<ul class="nav">
-						<li><a href="<%=basePath%>login/toHome.do" class="active"><i class="lnr lnr-home"></i> <span>系统首页</span></a></li>
+						<li id='toHome'><a href="<%=basePath%>login/toHome.do" class=""><i class="lnr lnr-home"></i> <span>系统首页</span></a></li>
 						<li>
-							<a href="#subManage" data-toggle="collapse" class="collapsed"> <span>个人信息管理</span>
+							<a href="#subManage" data-toggle="collapse" class="collapsed "> <span>个人信息管理</span>
 								 <span class="icon-submenu glyphicon glyphicon-menu-down"></span></a>
 							<div id="subManage" class="collapse ">
 								<ul class="nav">
-									<li><a href="<%=basePath%>home/toModifyHyInfo.do" class="">修改资料</a></li>
-									<li><a href="<%=basePath%>home/toModifyPwd.do" class="">修改密码</a></li>
+									<li><a id='toModifyHyInfo' href="<%=basePath%>home/toModifyHyInfo.do" class="">修改资料</a></li>
+									<li ><a id='toModifyPwd' href="<%=basePath%>home/toModifyPwd.do" class="">修改密码</a></li>
 								</ul>
 							</div>
 						</li>
@@ -136,9 +136,9 @@
 								<span class="icon-submenu glyphicon glyphicon-menu-down"></span></a>
 							<div id="subMarket" class="collapse ">
 								<ul class="nav">
-									<li><a href="<%=basePath%>home/toSignIn.do" class="">注册会员</a></li>
-									<li><a href="<%=basePath%>home/toRelation.do" class="">关系图</a></li>
-									<li><a href="<%=basePath%>home/toView.do" class="">查看</a></li>
+									<li><a id='toSignIn' href="<%=basePath%>home/toSignIn.do" class="">注册会员</a></li>
+									<li><a id='toRelation' href="<%=basePath%>home/toRelation.do" class="">关系图</a></li>
+									<li><a id='toView' href="<%=basePath%>home/toView.do" class="">查看</a></li>
 								</ul>
 							</div>
 						</li>
@@ -147,8 +147,8 @@
 								<span class="icon-submenu glyphicon glyphicon-menu-down"></span></a>
 							<div id="subServer" class="collapse ">
 								<ul class="nav">
-									<li><a href="<%=basePath%>home/toUnActiveHyList.do" class="">未开通会员</a></li>
-									<li><a href="<%=basePath%>home/toActiveHyList.do" class="">已开通会员</a></li>
+									<li><a id='toUnActiveHyList' href="<%=basePath%>home/toUnActiveHyList.do" class="">未开通会员</a></li>
+									<li><a id='toActiveHyList' href="<%=basePath%>home/toActiveHyList.do" class="">已开通会员</a></li>
 								</ul>
 							</div>
 						</li>
@@ -157,9 +157,9 @@
 								<span class="icon-submenu glyphicon glyphicon-menu-down"></span></a>
 							<div id="subEnter" class="collapse ">
 								<ul class="nav">
-									<li><a href="<%=basePath%>home/toInnerTourEntry.do" class="">国内旅游报名</a></li>
-									<li><a href="<%=basePath%>home/toOuterTourEntry.do" class="">出境旅游报名</a></li>
-									<li><a href="<%=basePath%>home/toViewTourRecord.do" class="">查看报名记录</a></li>
+									<li><a id='toInnerTourEntry' href="<%=basePath%>home/toInnerTourEntry.do" class="">国内旅游报名</a></li>
+									<li><a id='toOuterTourEntry' href="<%=basePath%>home/toOuterTourEntry.do" class="">出境旅游报名</a></li>
+									<li><a id='toViewTourRecord' href="<%=basePath%>home/toViewTourRecord.do" class="">查看报名记录</a></li>
 								</ul>
 							</div>
 						</li>
@@ -168,7 +168,7 @@
 								<span class="icon-submenu glyphicon glyphicon-menu-down"></span></a>
 							<div id="newsCenter" class="collapse ">
 								<ul class="nav">
-									<li><a href="<%=basePath%>home/toNewsCenter.do" class="">新闻中心</a></li>
+									<li><a id='toNewsCenter' href="<%=basePath%>home/toNewsCenter.do" class="">新闻中心</a></li>
 								</ul>
 							</div>
 						</li>
@@ -177,11 +177,11 @@
 								<span class="icon-submenu glyphicon glyphicon-menu-down"></span></a>
 							<div id="subIntegral" class="collapse ">
 								<ul class="nav">
-									<li><a href="<%=basePath%>home/toScoreList.do" class="">积分查询</a></li>
-									<li><a href="<%=basePath%>home/toScoreDetail.do" class="">积分明细</a></li>
-									<li><a href="<%=basePath%>home/toScoreTransfer.do" class="">积分互转</a></li>
-									<li><a href="<%=basePath%>home/toScoreRecharge.do" class="">充值积分</a></li>
-									<li><a href="<%=basePath%>home/toScoreWithdraw.do" class="">积分提现</a></li>
+									<li><a id='toScoreList' href="<%=basePath%>home/toScoreList.do" class="">积分查询</a></li>
+									<li><a id='toScoreDetail' href="<%=basePath%>home/toScoreDetail.do" class="">积分明细</a></li>
+									<li><a id='toScoreTransfer' href="<%=basePath%>home/toScoreTransfer.do" class="">积分互转</a></li>
+									<li><a id='toScoreRecharge' href="<%=basePath%>home/toScoreRecharge.do" class="">充值积分</a></li>
+									<li><a id='toScoreWithdraw' href="<%=basePath%>home/toScoreWithdraw.do" class="">积分提现</a></li>
 								</ul>
 							</div>
 						</li>
@@ -191,8 +191,8 @@
 									<span class="icon-submenu glyphicon glyphicon-menu-down"></span></a>
 								<div id="adminIntegral" class="collapse ">
 									<ul class="nav">
-										<li><a href="<%=basePath%>home/toScoreRechargeAdmin.do" class="">积分充值</a></li>
-										<li><a href="<%=basePath%>home/toScoreWithdrawAdmin.do" class="">积分提现</a></li>
+										<li><a id='toScoreRechargeAdmin' href="<%=basePath%>home/toScoreRechargeAdmin.do" class="">积分充值</a></li>
+										<li><a id='toScoreWithdrawAdmin' href="<%=basePath%>home/toScoreWithdrawAdmin.do" class="">积分提现</a></li>
 									</ul>
 								</div>
 							</li>
@@ -201,13 +201,13 @@
 									<span class="icon-submenu glyphicon glyphicon-menu-down"></span></a>
 								<div id="adminMember" class="collapse ">
 									<ul class="nav">
-										<li><a href="<%=basePath%>home/toActiveHyAdmin.do" class="">开通会员</a></li>
-										<li><a href="<%=basePath%>home/toSignInAdmin.do" class="">开通报单中心</a></li>
+										<li><a id='toActiveHyAdmin' href="<%=basePath%>home/toActiveHyAdmin.do" class="">开通会员</a></li>
+										<li><a id='toSignInAdmin' href="<%=basePath%>home/toSignInAdmin.do" class="">开通报单中心</a></li>
 									</ul>
 								</div>
 							</li>
-							<li><a href="<%=basePath%>home/tourEntryAdmin.do" class=" "><i class="lnr lnr-home"></i> <span>旅游报名</span></a></li>
-							<li><a href="<%=basePath%>home/toNewsCenterAdmin.do" class=" "><i class="lnr lnr-home"></i> <span>新闻</span></a></li>
+							<li><a id='tourEntryAdmin' href="<%=basePath%>home/tourEntryAdmin.do" class=" "><i class="lnr lnr-home"></i> <span>旅游报名</span></a></li>
+							<li><a id='toNewsCenterAdmin' href="<%=basePath%>home/toNewsCenterAdmin.do" class=" "><i class="lnr lnr-home"></i> <span>新闻</span></a></li>
 						</c:if>
 					</ul>
 				</nav>

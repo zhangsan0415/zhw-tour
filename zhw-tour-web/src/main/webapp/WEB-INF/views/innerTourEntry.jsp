@@ -62,3 +62,8 @@
 
 </div>
 <%@include file="menuBottom.jsp" %>
+<script>
+$("#subEnter").prev().addClass('active');/*一级  */
+$("#subEnter").addClass("in");
+$("#toInnerTourEntry").addClass('active');/* 二级 */
+</script>

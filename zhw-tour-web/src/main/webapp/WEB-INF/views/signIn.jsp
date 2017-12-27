@@ -157,4 +157,7 @@
 function registerHyCode(){
 	
 }
+$("#subMarket").prev().addClass('active');/*一级  */
+$("#subMarket").addClass("in");
+$("#toSignIn").addClass('active');/* 二级 */
 </script>

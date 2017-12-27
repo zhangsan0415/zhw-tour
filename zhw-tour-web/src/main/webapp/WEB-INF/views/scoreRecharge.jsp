@@ -2,3 +2,8 @@
 <%@include file="menuHead.jsp" %>
 
 <%@include file="menuBottom.jsp" %>
+<script>
+$("#subIntegral").prev().addClass('active');/*一级  */
+$("#subIntegral").addClass("in");
+$("#toScoreRecharge").addClass('active');/* 二级 */
+</script>
