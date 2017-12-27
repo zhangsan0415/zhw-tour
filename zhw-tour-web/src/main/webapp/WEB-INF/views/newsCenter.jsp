@@ -62,3 +62,8 @@
 
 </div>
 <%@include file="menuBottom.jsp" %>
+<script>
+$("#newsCenter").prev().addClass('active');/*一级  */
+$("#newsCenter").addClass("in");
+$("#toNewsCenter").addClass('active');/* 二级 */
+</script>

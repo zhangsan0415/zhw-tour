@@ -39,3 +39,8 @@
 </div>
 <!-- END WRAPPER -->
 <%@include file="menuBottom.jsp"%>
+<script>
+$("#subManage").prev().addClass('active');/*一级  */
+$("#subManage").addClass("in");
+$("#toModifyHyInfo").addClass('active');/* 二级 */
+</script>

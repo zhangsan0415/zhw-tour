@@ -2,3 +2,6 @@
 <%@include file="menuHead.jsp" %>
 
 <%@include file="menuBottom.jsp" %>
+<script>
+$("#tourEntryAdmin").addClass("in");
+</script>

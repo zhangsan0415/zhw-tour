@@ -2,3 +2,8 @@
 <%@include file="menuHead.jsp" %>
 
 <%@include file="menuBottom.jsp" %>
+<script>
+$("#subManage").prev().addClass('active');/*一级  */
+$("#subManage").addClass("in");
+$("#toModifyPwd").addClass('active');/* 二级 */
+</script>
