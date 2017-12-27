@@ -19,9 +19,10 @@
 		<result property="ktTime" column="KT_TIME" />
 		<result property="xgTime" column="XG_TIME" />
 		<result property="ifAdmin" column="IF_ADMIN" />
+		<result property="ifBdCenter" column="if_bd_center" />
 	</resultMap>
 	
-	<sql id="AddColumn">FW_CENTER,TJ_MAN,JD_MAN,HY_CODE,ZY_AREA,YJ_PWD,EJ_PWD,SFZ_CARD_CODE,YX_EMAIL,SJ_MOBILE,JB_LEVEL,ZC_TIME,JH_STATUS,KT_TIME,XG_TIME,IF_ADMIN</sql>
+	<sql id="AddColumn">FW_CENTER,TJ_MAN,JD_MAN,HY_CODE,ZY_AREA,YJ_PWD,EJ_PWD,SFZ_CARD_CODE,YX_EMAIL,SJ_MOBILE,JB_LEVEL,ZC_TIME,JH_STATUS,KT_TIME,XG_TIME,IF_ADMIN,if_bd_center</sql>
 	<sql id="BaseColumn">
 		PK_ID,<include refid="AddColumn"/>
 	</sql>
@@ -37,7 +38,7 @@
 	<insert id="insertNewHyInfo" parameterType="com.zhw.domain.MemberInfo">
 		INSERT INTO ZHW_MEM(<include refid="AddColumn"/>) VALUES(#{fwCenter},#{tjMan},#{jdMan},#{hyCode},#{zyArea,jdbcType=INTEGER}
 			,#{yjPwd},#{ejPwd},#{sfzCardCode},#{yxEmail},#{sjMobile},#{hyLevel,jdbcType=INTEGER},#{zcTime},#{jhStatus,jdbcType=INTEGER}
-			,#{ktTime},#{xgTime},#{ifAdmin,jdbcType=INTEGER})
+			,#{ktTime},#{xgTime},#{ifAdmin,jdbcType=INTEGER},#{ifBdCenter,jdbcType=INTEGER})
 	</insert>
 	
 </mapper>

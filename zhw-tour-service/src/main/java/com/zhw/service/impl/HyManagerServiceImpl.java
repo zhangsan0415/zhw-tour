@@ -20,6 +20,7 @@ import com.zhw.pojo.JJScorePercentPo;
 import com.zhw.response.BaseResult;
 import com.zhw.service.HyManagerService;
 import com.zhw.type.IfAdminEnum;
+import com.zhw.type.IfBdCenterEnum;
 import com.zhw.type.IfDisabledEnum;
 import com.zhw.type.JHStatusEnum;
 import com.zhw.type.ZYAreaEnum;
@@ -49,6 +50,7 @@ public class HyManagerServiceImpl implements HyManagerService {
 		userInfo.setXgTime(currentDate);
 		userInfo.setJhStatus(JHStatusEnum.UNACTIVED.getTypeCode());
 		userInfo.setIfAdmin(IfAdminEnum.N_ADMIN.getTypeCode());
+		userInfo.setIfBdCenter(IfBdCenterEnum.N_BD_CENTER.getTypeCode());
 		
 		//会员对应很行信息
 		MemberBankInfo bankInfo = new MemberBankInfo();
