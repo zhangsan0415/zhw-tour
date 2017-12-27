@@ -1,5 +1,7 @@
 package com.zhw.service;
 
+import com.zhw.domain.MemberBankInfo;
+
 /**
  * 功能描述：
  *
@@ -7,7 +9,9 @@ package com.zhw.service;
  * @Time 2017/12/26
  * @Note
  */
+
 public interface HomeService {
 
     String getJDManHyCode(String hyCode);
+    MemberBankInfo queryBankInfo(String hyCode);
 }

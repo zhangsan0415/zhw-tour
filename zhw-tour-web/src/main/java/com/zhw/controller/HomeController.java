@@ -16,7 +16,9 @@ public class HomeController {
 
 	//跳转修改资料页面
 	@RequestMapping(value="/toModifyHyInfo.do")
-	public String toHyInfo() {
+	public String toHyInfo(HttpServletRequest request) {
+		//查询一下银行卡数据
+		request.setAttribute("MemberBankInfo",homeService.queryBankInfo(ControllerUtils.getUserInfo(request).getHyCode()) );
 		return "modifyHyInfo";
 	}
 	

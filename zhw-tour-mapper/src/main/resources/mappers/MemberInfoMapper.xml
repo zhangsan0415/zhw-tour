@@ -39,5 +39,22 @@
 			,#{yjPwd},#{ejPwd},#{sfzCardCode},#{yxEmail},#{sjMobile},#{hyLevel,jdbcType=INTEGER},#{zcTime},#{jhStatus,jdbcType=INTEGER}
 			,#{ktTime},#{xgTime},#{ifAdmin,jdbcType=INTEGER})
 	</insert>
+	<update id="modifyPwd" parameterType="String">
+	update  ZHW_MEM 
+	set 
+	YJ_PWD = #{yjPwd},
+	EJ_PWD = #{ejPwd},
+	XG_TIME = sysdate()
+	where HY_CODE = #{hyCode} and JH_STATUS = 0
 	
+	</update>
+	<update id="modifyInfo" parameterType="String">
+	update  ZHW_MEM 
+	set 
+	YX_EMAIL = #{yxEmail},
+	SJ_MOBILE = #{sjMobile},
+	SFZ_CARD_CODE = #{sfzCardCode},
+	XG_TIME = sysdate()
+	where HY_CODE = #{hyCode} and JH_STATUS = 0
+	</update>
 </mapper>

@@ -14,4 +14,10 @@ public interface MemberInfoMapper {
 	
 	//插入新的会员信息
 	int insertNewHyInfo(MemberInfo obj);
+	
+	//修改密码
+	int modifyPwd(@Param("hyCode")String hyCode,@Param("yjPwd")String yjPwd,@Param("ejPwd")String ejPwd);
+
+	//修改资料(手机号和邮箱)
+	int modifyInfo(@Param("hyCode")String hyCode,@Param("sjMobile")String phone,@Param("yxEmail")String email,@Param("sfzCardCode")String sfzCardCode);
 }
