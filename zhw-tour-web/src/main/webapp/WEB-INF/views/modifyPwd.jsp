@@ -14,29 +14,29 @@
 				<h3 class="lead">修改密码</h3>
 			</div>
 			<form id="defaultForm" method="post" class="form-horizontal" 
-				action="">
+				action="#">
 				<div class="form-group">
 					<label class="col-lg-3 control-label text-danger">一级密码：</label>
 					<div class="col-lg-2">
-						<input type="text" class="form-control" id="firstpwd" value=""/>
+						<input type="password" class="form-control" id="firstpwd" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-3 control-label text-danger">确认一级密码：</label>
 					<div class="col-lg-2">
-						<input type="text" class="form-control" id=confirmfirstpwd value="" />
+						<input type="password" class="form-control" id="confirmfirstpwd" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-3 control-label text-danger">二级密码：</label>
 					<div class="col-lg-2">
-						<input type="text" class="form-control" id="secondpwd" value="" />
+						<input type="password" class="form-control" id="secondpwd"  />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-3 control-label text-danger">确认二级密码：</label>
 					<div class="col-lg-2">
-						<input type="text" class="form-control" name="confirmsecondpwd" value=""/>
+						<input type="password" class="form-control" id="confirmsecondpwd" />
 					</div>
 				</div>
 				<div class="form-group" style="margin-left: 30%">
@@ -48,29 +48,33 @@
 </div>
 </body>
 <script type="text/javascript">
-debugger;
+
 //修改密码逻辑
 function onSave(){
-	var first = $("#firstpwd").val();
+
+	var first = $("#firstpwd").val();//一级密码
 	var confirmFirst = $("#confirmfirstpwd").val();
 	var second = $("#secondpwd").val();
 	var confirmSecond = $("#confirmsecondpwd").val();
 	var hyCode="${sessionScope.scoreInfo.hyCode}";
 	
-	if(first == confirmFirst && second==confirmSecond){
+
 		//验证通过
 		var url = "<%=basePath%>person/doModifyPwd.do";
 		var params = {"yjPwd":first,"confimYjPwd":confirmFirst,"ejPwd":second,"confirmEjPwd":confirmSecond,"hyCode":hyCode};
 		$.post(url,params,function(result){
 			var obj = JSON.parse(result);
-			if(obj.status != 0){ alert(obj.msg == null ? "系统繁忙，请稍候重试！":obj.msg);  	return;}
-			
-			 return alert(obj.msg);
+			if(obj.status != 0){
+				alert(obj.msg == null ? "系统繁忙，请稍候重试！":obj.msg);  	return;
+			}else{
+				 alert("修改成功！");
+				 //清空表单
+				 document.getElementById("defaultForm").reset();
+			}
+			 
 		});
 		
-	}else{
-		return alert("");
-	}
+	
 }
 
 $("#subMarket").prev().addClass('active');/*一级  */

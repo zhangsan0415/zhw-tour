@@ -16,27 +16,19 @@
 			</div>
 			<form id="defaultForm" method="post" class="form-horizontal" 
 				action="#">
-				<!-- <div class="form-group">
-					<label for="exampleInputEmail1">您所填写的手机号（如手机号码有误请与管理员联系）</label> <input
-						type="text" class="form-control" id="exampleInputEmail1"
-						value="15615677981" disabled="disabled">
-				</div>
-				<div class="form-group">
-					<label for="exampleInputPassword1" style="display: block">验证码</label>
-					<input type="text" class="form-control" id="exampleInputPassword1"
-						style="width: 15%; display: inline-block" placeholder="验证码">
-
-					<button type="button" class="btn btn-default">发送验证码</button>
-				</div> -->
-				<!-- <legend></legend> -->
 				<div class="form-group" >
 					<label class="col-lg-3 control-label">开户银行：</label>
 					<div class="col-lg-2">
-						<select name="select" id="card-name" class="form-control" >
+					<!-- 	<select name="select" id="card-name" class="form-control" >
 							<option value="">农业银行</option>
 							<option value="">工商银行</option>
 							<option value="">建设银行</option>
 							<option value="">中国银行</option>
+						</select> -->
+							<select name="khBankName" id="card-name" class="form-control">
+							<c:forEach var="item" items="${requestScope.bankList}">
+								<option value="${item.typeCode} }">${item.typeName}</option>
+							</c:forEach>
 						</select>
 					</div>
 				</div>

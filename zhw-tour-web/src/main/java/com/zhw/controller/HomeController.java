@@ -21,6 +21,8 @@ public class HomeController {
 	public String toHyInfo(HttpServletRequest request) {
 		//查询一下银行卡数据
 		request.setAttribute("MemberBankInfo",homeService.queryBankInfo(ControllerUtils.getUserInfo(request).getHyCode()) );
+		//向前台输出支持的银行卡列表
+		request.setAttribute("bankList", BankEnum.values());
 		return "modifyHyInfo";
 	}
 	

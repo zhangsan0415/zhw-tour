@@ -63,19 +63,19 @@ public class PersonInfoController {
 	 */
 	@RequestMapping(value="/doModifyPwd.do",method= RequestMethod.POST)
 	@ResponseBody
-	public BaseResult modifyPwd(String hyCode,String yiPwd,String confirmYjPwd,String ejPwd,String confirmEjPwd,HttpServletRequest request){
+	public BaseResult modifyPwd(String hyCode,String yjPwd,String confimYjPwd,String ejPwd,String confirmEjPwd,HttpServletRequest request){
 		try {
-			if(StringUtils.isEmpty(yiPwd,confirmYjPwd,ejPwd,confirmEjPwd))return BaseResult.conditionErrorInstance();
-			if(!yiPwd.equals(confirmYjPwd))return BaseResult.failedInstance("一级密码不一致，请重新输入！");
+			if(StringUtils.isEmpty(hyCode,yjPwd,confimYjPwd,ejPwd,confirmEjPwd))return BaseResult.conditionErrorInstance();
+			if(!yjPwd.equals(confimYjPwd))return BaseResult.failedInstance("一级密码不一致，请重新输入！");
 			if(!ejPwd.equals(confirmEjPwd))return BaseResult.failedInstance("二级密码不一致，请重新输入！");
-			int num =  personService.modifyPwd(hyCode,yiPwd,ejPwd);
+			int num =  personService.modifyPwd(hyCode,yjPwd,ejPwd);
 			if(num>0){
 				//设置session信息
 				MemberInfo memberInfo = ControllerUtils.getUserInfo(request);
-				memberInfo.setYjPwd(yiPwd);
+				memberInfo.setYjPwd(yjPwd);
 				memberInfo.setEjPwd(ejPwd);
 				ControllerUtils.setUserInfo(request, memberInfo);
-				return BaseResult.sucessInstance().setMsg("修改成功！");
+				return BaseResult.sucessInstance();
 			}else{return BaseResult.exceptionInstance();}
 		} catch (Exception e) {
 			logger.error("用户"+hyCode+"更新密码失败"+e);
