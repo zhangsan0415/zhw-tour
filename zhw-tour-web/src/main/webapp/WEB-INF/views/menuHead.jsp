@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -137,13 +138,14 @@
 							<div id="subMarket" class="collapse ">
 								<ul class="nav">
 									<li><a id='toSignIn' href="<%=basePath%>home/toSignIn.do" class="">注册会员</a></li>
+									<li><a id='toSystem' href="<%=basePath%>home/toSystem.do" class="">系统图</a></li>
 									<li><a id='toRelation' href="<%=basePath%>home/toRelation.do" class="">关系图</a></li>
 									<li><a id='toView' href="<%=basePath%>home/toView.do" class="">查看</a></li>
 								</ul>
 							</div>
 						</li>
 						<li>
-							<a href="#subServer" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>服务中心</span>
+							<a href="#subServer" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>报单中心</span>
 								<span class="icon-submenu glyphicon glyphicon-menu-down"></span></a>
 							<div id="subServer" class="collapse ">
 								<ul class="nav">
@@ -173,41 +175,41 @@
 							</div>
 						</li>
 						<li>
-							<a href="#subIntegral" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>积分管理</span>
+							<a href="#subIntegral" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>积分</span>
 								<span class="icon-submenu glyphicon glyphicon-menu-down"></span></a>
 							<div id="subIntegral" class="collapse ">
 								<ul class="nav">
 									<li><a id='toScoreList' href="<%=basePath%>home/toScoreList.do" class="">积分查询</a></li>
 									<li><a id='toScoreDetail' href="<%=basePath%>home/toScoreDetail.do" class="">积分明细</a></li>
 									<li><a id='toScoreTransfer' href="<%=basePath%>home/toScoreTransfer.do" class="">积分互转</a></li>
-									<li><a id='toScoreRecharge' href="<%=basePath%>home/toScoreRecharge.do" class="">充值积分</a></li>
+									<li><a id='toScoreRecharge' href="<%=basePath%>home/toScoreRecharge.do" class="">积分充值</a></li>
 									<li><a id='toScoreWithdraw' href="<%=basePath%>home/toScoreWithdraw.do" class="">积分提现</a></li>
 								</ul>
 							</div>
 						</li>
 						<c:if test="${sessionScope.scoreInfo.ifAdmin==0}">
 							<li>
-								<a href="#adminIntegral" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>积分</span>
+								<a href="#adminIntegral" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>积分管理</span>
 									<span class="icon-submenu glyphicon glyphicon-menu-down"></span></a>
 								<div id="adminIntegral" class="collapse ">
 									<ul class="nav">
-										<li><a id='toScoreRechargeAdmin' href="<%=basePath%>home/toScoreRechargeAdmin.do" class="">积分充值</a></li>
-										<li><a id='toScoreWithdrawAdmin' href="<%=basePath%>home/toScoreWithdrawAdmin.do" class="">积分提现</a></li>
+										<li><a id='toScoreRechargeAdmin' href="<%=basePath%>home/toScoreRechargeAdmin.do" class="">积分充值审核</a></li>
+										<li><a id='toScoreWithdrawAdmin' href="<%=basePath%>home/toScoreWithdrawAdmin.do" class="">积分提现审核</a></li>
 									</ul>
 								</div>
 							</li>
 							<li>
-								<a href="#adminMember" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>会员</span>
+								<a href="#adminMember" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>会员管理</span>
 									<span class="icon-submenu glyphicon glyphicon-menu-down"></span></a>
 								<div id="adminMember" class="collapse ">
 									<ul class="nav">
-										<li><a id='toActiveHyAdmin' href="<%=basePath%>home/toActiveHyAdmin.do" class="">开通会员</a></li>
+										<li><a id='toActiveHyAdmin' href="<%=basePath%>home/toActiveHyAdmin.do" class="">开通会员审核</a></li>
 										<li><a id='toSignInAdmin' href="<%=basePath%>home/toSignInAdmin.do" class="">开通报单中心</a></li>
 									</ul>
 								</div>
 							</li>
-							<li><a id='tourEntryAdmin' href="<%=basePath%>home/tourEntryAdmin.do" class=" "><i class="lnr lnr-home"></i> <span>旅游报名</span></a></li>
-							<li><a id='toNewsCenterAdmin' href="<%=basePath%>home/toNewsCenterAdmin.do" class=" "><i class="lnr lnr-home"></i> <span>新闻</span></a></li>
+							<li><a id='tourEntryAdmin' href="<%=basePath%>home/tourEntryAdmin.do" class=" "><i class="lnr lnr-home"></i> <span>旅游报名管理</span></a></li>
+							<li><a id='toNewsCenterAdmin' href="<%=basePath%>home/toNewsCenterAdmin.do" class=" "><i class="lnr lnr-home"></i> <span>新闻编辑</span></a></li>
 						</c:if>
 					</ul>
 				</nav>

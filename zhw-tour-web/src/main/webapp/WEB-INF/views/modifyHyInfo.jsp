@@ -10,8 +10,9 @@
 			</div>
 			<form class="panel-body">
 				<div class="form-group">
-					<label for="exampleInputEmail1">您所填写的手机号（如手机号码有误请与管理员联系）</label> <input
-						type="text" class="form-control" id="exampleInputEmail1"
+					<label for="exampleInputEmail1">您所填写的手机号（如手机号码有误请与管理员联系）</label> 
+					<input 
+						type="text" class="form-control" id="exampleInputEmail1" 
 						value="15615677981" disabled="disabled">
 				</div>
 				<div class="form-group">

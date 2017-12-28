@@ -152,7 +152,7 @@
 	<!-- END MAIN -->
 	<div class="clearfix"></div>
 
-</div>
+
 <%@include file="menuBottom.jsp" %>
 <script>
 $("#subMarket").prev().addClass('active');/*一级  */
