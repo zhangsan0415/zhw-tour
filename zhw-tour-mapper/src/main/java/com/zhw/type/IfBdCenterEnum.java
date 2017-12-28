@@ -27,7 +27,6 @@ public enum IfBdCenterEnum {
 		}
 		return null;
 	}
-	
 	public static boolean checkTypeCode(int typeCode) {
 		for(IfBdCenterEnum obj:values()) {
 			if(obj.typeCode == typeCode)	return true;

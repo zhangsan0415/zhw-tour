@@ -57,13 +57,17 @@ public class HomeController {
 	
 	//跳转到未开通会员页面
 	@RequestMapping(value="/toUnActiveHyList.do")
-	public String toUnActiveHyList(HttpServletRequest request,int type) {
+	public String toUnActiveHyList(HttpServletRequest request) {
+		//未开通会员信息
+		request.setAttribute("noOpenHyList",homeService.queryInfo() );
 		return "unActiveHyList";
 	}
 	
 	//跳转到已开通会员页面
 	@RequestMapping(value="/toActiveHyList.do")
-	public String toActiveHyList() {
+	public String toActiveHyList(HttpServletRequest request) {
+		//查询已开通会员
+		request.setAttribute("openHyList", homeService.queryOpenInfo());
 		return "activeHyList";
 	}
 	

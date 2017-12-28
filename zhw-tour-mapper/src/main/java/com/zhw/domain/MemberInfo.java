@@ -1,5 +1,7 @@
 package com.zhw.domain;
 
+import java.math.BigDecimal;
+
 /**
  * 会员信息表ZHW_MEM
  * @author zsl
@@ -42,6 +44,11 @@ public class MemberInfo {
 	private int ifAdmin;// 是否为管理员，是的都为管理员，0为是，1 为否
 	
 	private int ifBdCenter;//是否为报单中心，0为是，1为否
+	
+	private BigDecimal money;//投资金额，用于显示
+	
+	private String flag;//报单中心（是，否）
+	
 
 	public int getPkId() {
 		return pkId;
@@ -185,6 +192,22 @@ public class MemberInfo {
 
 	public void setIfBdCenter(int ifBdCenter) {
 		this.ifBdCenter = ifBdCenter;
+	}
+
+	public BigDecimal getMoney() {
+		return money;
+	}
+
+	public void setMoney(BigDecimal money) {
+		this.money = money;
+	}
+
+	public String getFlag() {
+		return flag;
+	}
+
+	public void setFlag(String flag) {
+		this.flag = flag;
 	}
 	
 	

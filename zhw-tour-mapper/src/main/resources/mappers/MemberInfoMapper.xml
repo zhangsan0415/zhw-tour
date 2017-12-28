@@ -58,4 +58,12 @@
 	XG_TIME = sysdate()
 	where HY_CODE = #{hyCode} and JH_STATUS = 0
 	</update>
+	
+	<select id="queryMemberInfo" resultMap="BaseMap">
+		SELECT <include refid="BaseColumn"/> FROM ZHW_MEM WHERE  JH_STATUS = 0
+	</select>
+	
+	<select id="queryInfo" resultMap="BaseMap">
+		SELECT <include refid="BaseColumn"/> FROM ZHW_MEM WHERE  JH_STATUS = 1
+	</select>
 </mapper>
