@@ -53,7 +53,7 @@
                             <td style="width:10%;">状态</td>
                         </tr>
                         </thead>
-                        <tbdoy>
+                        <tbody>
                             <tr>
                                 <td>1</td>
                                 <td>1</td>
@@ -66,7 +66,7 @@
                                 <td>1</td>
 
                             </tr>
-                        </tbdoy>-->
+                        </tobody>-->
 				</table>
 				<button class="btn btn-primary">全选</button>
 				<button class="btn btn-primary">开通会员</button>
@@ -87,3 +87,8 @@
 
 </div>
 <%@include file="menuBottom.jsp"%>
+<script>
+$("#subServer").prev().addClass('active');/*一级  */
+$("#subServer").addClass("in");
+$("#toUnActiveHyList").addClass('active');/* 二级 */
+</script>

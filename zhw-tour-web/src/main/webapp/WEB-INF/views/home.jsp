@@ -78,4 +78,7 @@
 </div>
 <%@include file="menuBottom.jsp"%>
 
+<script>
+$("#toHome").addClass("in");
+</script>
 

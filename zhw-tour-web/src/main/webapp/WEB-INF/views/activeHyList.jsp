@@ -81,3 +81,8 @@
 </div>
 <!-- END WRAPPER -->
 <%@include file="menuBottom.jsp" %>
+<script>
+$("#subServer").prev().addClass('active');/*一级  */
+$("#subServer").addClass("in");
+$("#toActiveHyList").addClass('active');/* 二级 */
+</script>

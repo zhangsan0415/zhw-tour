@@ -39,7 +39,9 @@ public class MemberInfo {
 	
 	private String xgTime;//修改时间
 	
-	private int ifAdmin;// 是否报单中心，是的都为管理员，0为是，1 为否
+	private int ifAdmin;// 是否为管理员，是的都为管理员，0为是，1 为否
+	
+	private int ifBdCenter;//是否为报单中心，0为是，1为否
 
 	public int getPkId() {
 		return pkId;
@@ -175,6 +177,14 @@ public class MemberInfo {
 
 	public void setHyLevel(int hyLevel) {
 		this.hyLevel = hyLevel;
+	}
+
+	public int getIfBdCenter() {
+		return ifBdCenter;
+	}
+
+	public void setIfBdCenter(int ifBdCenter) {
+		this.ifBdCenter = ifBdCenter;
 	}
 	
 	

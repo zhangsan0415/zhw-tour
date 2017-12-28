@@ -4,6 +4,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import com.zhw.service.HomeService;
+import com.zhw.type.BankEnum;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -35,8 +37,7 @@ public class HomeController {
 		//向前台推送接点人信息
 		request.setAttribute("tjMan",homeService.getJDManHyCode(ControllerUtils.getUserInfo(request).getHyCode()));
 		//向前台输出支持的银行卡列表
-
-
+		request.setAttribute("bankList", BankEnum.values());
 		return "signIn";
 	}
 	

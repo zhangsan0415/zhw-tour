@@ -99,3 +99,9 @@
 	</footer>
 </div>
 <%@include file="menuBottom.jsp" %>
+
+<script>
+$("#subIntegral").prev().addClass('active');/*一级  */
+$("#subIntegral").addClass("in");
+$("#toScoreTransfer").addClass('active');/* 二级 */
+</script>

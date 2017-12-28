@@ -102,5 +102,5 @@
 <script>
 $("#subIntegral").prev().addClass('active');/*一级  */
 $("#subIntegral").addClass("in");
-$("#toScoreWithdraw").addClass('active');/* 二级 */
+$("#toScoreWithdrawAdmin").addClass('active');/* 二级 */
 </script>

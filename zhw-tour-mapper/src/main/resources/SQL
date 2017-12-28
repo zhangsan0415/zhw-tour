@@ -20,7 +20,8 @@ CREATE TABLE IF NOT EXISTS `zhw_tour`.`ZHW_MEM` (
   UNIQUE INDEX `PK_ID_UNIQUE` (`PK_ID` ASC),
   UNIQUE INDEX `HY_CODE_UNIQUE` (`HY_CODE` ASC))
 ENGINE = InnoDB
-COMMENT = '会员信息表，存储会员信息'
+COMMENT = '会员信息表，存储会员信息';
+alter table zhw_mem add if_bd_center INT not Null COMMENT '是否为报单中心，0为是，1为否';
 
 
 CREATE TABLE IF NOT EXISTS `zhw_tour`.`ZHW_MEM_BANK` (

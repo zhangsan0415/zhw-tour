@@ -139,7 +139,17 @@ function isEmpty(str){
 	if(str == null || str == '') return true;
 	return false;
 }
+
+
+$("#subMarket").prev().addClass('active');/*一级  */
+$("#subMarket").addClass("in");
+$("#toSignIn").addClass('active');/* 二级 */
 </script>
 </html>
 <!-- END WRAPPER -->
+
+
+		
 <%@include file="menuBottom.jsp"%>
+
+

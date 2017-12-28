@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="menuHead.jsp" %>
 
@@ -39,7 +40,7 @@
 					</div>
 				</div>
 				<div class="form-group" style="margin-left: 30%">
-				<button type="submit" class="btn btn-primary" onclick="onSave()">保存</button>
+				<button type="button" class="btn btn-primary" onclick="onSave()">保存</button>
 				</div>
 			</form>
 		</div>
@@ -71,6 +72,14 @@ function onSave(){
 		return alert("");
 	}
 }
+
+$("#subMarket").prev().addClass('active');/*一级  */
+$("#subMarket").addClass("in");
+$("#toSignIn").addClass('active');/* 二级 */
 </script>
 </html>
 <%@include file="menuBottom.jsp" %>
+
+
+
+

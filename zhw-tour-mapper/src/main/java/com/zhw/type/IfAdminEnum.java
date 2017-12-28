@@ -1,7 +1,7 @@
 package com.zhw.type;
 
 /**
- * 是否报单中心
+ * 是否为管理员
  * @author zsl
  *
  */
