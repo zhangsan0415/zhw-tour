@@ -3,6 +3,7 @@ package com.zhw.controller;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import com.zhw.component.AreaComponent;
 import com.zhw.service.HomeService;
 import com.zhw.type.BankEnum;
 
@@ -15,6 +16,9 @@ public class HomeController {
 
 	@Resource
 	private HomeService homeService;
+	
+	@Resource
+	private AreaComponent areaComponent;
 
 	//跳转修改资料页面
 	@RequestMapping(value="/toModifyHyInfo.do")
@@ -40,6 +44,9 @@ public class HomeController {
 		request.setAttribute("tjMan",homeService.getJDManHyCode(ControllerUtils.getUserInfo(request).getHyCode()));
 		//向前台输出支持的银行卡列表
 		request.setAttribute("bankList", BankEnum.values());
+		
+		//向前台输出省份信息
+		request.setAttribute("provinces", areaComponent.getProvinces());
 		return "signIn";
 	}
 	

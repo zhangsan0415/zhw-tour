@@ -94,8 +94,13 @@
 				<div class="form-group">
 					<label class="col-lg-3 control-label">开户省市：</label>
 					<div class="col-lg-2">
-						<input type="text" name="khProvince" class="form-control" placeholder="省"
-							data-stripe="exp-month" />
+						<select name="khProvince" id="" class="form-control">
+							<c:forEach var="item" items="${requestScope.provinces}">
+								<option value="${item.pkId} }">${item.areaName}</option>
+							</c:forEach>
+						</select>
+						<!-- <input type="text" name="khProvince" class="form-control" placeholder="省"
+							data-stripe="exp-month" /> -->
 					</div>
 					<div class="col-lg-2">
 						<input type="text" name="khCity" class="form-control" placeholder="市"
