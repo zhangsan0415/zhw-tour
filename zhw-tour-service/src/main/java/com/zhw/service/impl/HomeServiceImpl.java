@@ -35,7 +35,7 @@ public class HomeServiceImpl implements HomeService {
 	
     @Override
     public String getJDManHyCode(String hyCode) {
-        return null;
+        return memberInfoMapper.selectJdManCode(hyCode);
     }
 
 	@Override
@@ -45,37 +45,18 @@ public class HomeServiceImpl implements HomeService {
 	}
 
 	@Override
-	public List<MemberInfo> queryOpenInfo() {
+	public List<MemberInfo> queryHyInfoByStatus(String hyCode,int jhStatus) {
 	
-		List<MemberInfo> list = memberInfoMapper.queryMemberInfo();
-		if(list.size()==0){
-			return null;
-		}else{
-			for (int i = 0; i < list.size(); i++) {
-				//设置投资金额
-				list.get(i).setMoney(HyLevelScoreEnum.getValueByCode(list.get(i).getHyLevel()));
-				//设置是否开通
-				list.get(i).setFlag(JHStatusEnum.getNameByCode(list.get(i).getJhStatus()));
-			}
-			return list;
-		}
+		List<MemberInfo> list = memberInfoMapper.selectMemberInfoByStatus(hyCode,jhStatus);
+		if(list ==null || list.size()==0)	return null;
+		this.setMoneyAndFlag(list);
+		return list;
 	}
 
-	@Override
-	public List<MemberInfo> queryInfo() {
-		// TODO Auto-generated method stub
-		List<MemberInfo> list = memberInfoMapper.queryInfo();
-		if(list.size()==0){
-			return null;
-		}else{
-			for (int i = 0; i < list.size(); i++) {
-				//设置投资金额
-				list.get(i).setMoney(HyLevelScoreEnum.getValueByCode(list.get(i).getHyLevel()));
-				//设置是否开通
-				list.get(i).setFlag(JHStatusEnum.getNameByCode(list.get(i).getJhStatus()));
-			}
-			return list;
-		}
-		
+	private void setMoneyAndFlag(List<MemberInfo> list){
+		list.forEach(obj->{
+			obj.setMoney(HyLevelScoreEnum.getValueByCode(obj.getHyLevel()));
+			obj.setFlag(JHStatusEnum.getNameByCode(obj.getJhStatus()));
+		});
 	}
 }

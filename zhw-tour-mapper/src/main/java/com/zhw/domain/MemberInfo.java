@@ -44,7 +44,10 @@ public class MemberInfo {
 	private int ifAdmin;// 是否为管理员，是的都为管理员，0为是，1 为否
 	
 	private int ifBdCenter;//是否为报单中心，0为是，1为否
-	
+
+	/**
+	 * 如下为用于显示的字段
+	 */
 	private BigDecimal money;//投资金额，用于显示
 	
 	private String flag;//报单中心（是，否）

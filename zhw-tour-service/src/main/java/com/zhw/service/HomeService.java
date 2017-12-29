@@ -23,14 +23,8 @@ public interface HomeService {
      */
     MemberBankInfo queryBankInfo(String hyCode);
     /**
-     * 查询开通会员信息
+     * 根据状态查询会员信息
      * @return
      */
-    List<MemberInfo> queryOpenInfo();
-    /**
-     * 
-     * 查询未开通会员信息
-     * @return
-     */
-    List<MemberInfo> queryInfo();
+    List<MemberInfo> queryHyInfoByStatus(String hyCode,int jhStatus);
 }

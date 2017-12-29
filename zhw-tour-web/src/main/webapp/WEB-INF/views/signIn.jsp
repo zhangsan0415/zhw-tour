@@ -72,7 +72,7 @@
 				<div class="form-group">
 					<label class="col-lg-3 control-label">开户银行：</label>
 					<div class="col-lg-2">
-						<select name="khBankName" id="" class="form-control">
+						<select name="khBankName" class="form-control">
 							<c:forEach var="item" items="${requestScope.bankList}">
 								<option value="${item.typeCode} }">${item.typeName}</option>
 							</c:forEach>
@@ -94,7 +94,7 @@
 				<div class="form-group">
 					<label class="col-lg-3 control-label">开户省市：</label>
 					<div class="col-lg-2">
-						<select name="khProvince" id="" class="form-control">
+						<select name="khProvince" class="form-control">
 							<c:forEach var="item" items="${requestScope.provinces}">
 								<option value="${item.pkId} }">${item.areaName}</option>
 							</c:forEach>
@@ -103,8 +103,13 @@
 							data-stripe="exp-month" /> -->
 					</div>
 					<div class="col-lg-2">
-						<input type="text" name="khCity" class="form-control" placeholder="市"
-							data-stripe="exp-year" />
+						<select name="khCity" class="form-control">
+							<c:forEach var="item" items="${requestScope.cities}">
+								<option value="${item.pkId} }">${item.areaName}</option>
+							</c:forEach>
+						</select>
+						<%--<input type="text" name="khCity" class="form-control" placeholder="市"
+							data-stripe="exp-year" />--%>
 					</div>
 				</div>
 				<!--  <legend></legend> -->

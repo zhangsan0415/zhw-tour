@@ -4,11 +4,15 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import com.zhw.component.AreaComponent;
+import com.zhw.domain.Area;
 import com.zhw.service.HomeService;
 import com.zhw.type.BankEnum;
 
+import com.zhw.type.JHStatusEnum;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/home")
@@ -46,7 +50,9 @@ public class HomeController {
 		request.setAttribute("bankList", BankEnum.values());
 		
 		//向前台输出省份信息
-		request.setAttribute("provinces", areaComponent.getProvinces());
+		List<Area> areas = areaComponent.getProvinces();
+		request.setAttribute("provinces",areas );
+		request.setAttribute("cities",areaComponent.getCities(areas.get(0).getPkId()));
 		return "signIn";
 	}
 	
@@ -66,7 +72,9 @@ public class HomeController {
 	@RequestMapping(value="/toUnActiveHyList.do")
 	public String toUnActiveHyList(HttpServletRequest request) {
 		//未开通会员信息
-		request.setAttribute("noOpenHyList",homeService.queryInfo() );
+		String hyCode = ControllerUtils.getUserInfo(request).getHyCode();
+		int jhStatus = JHStatusEnum.ACTIVED.getTypeCode();
+		request.setAttribute("noOpenHyList",homeService.queryHyInfoByStatus(hyCode,jhStatus) );
 		return "unActiveHyList";
 	}
 	
@@ -74,7 +82,10 @@ public class HomeController {
 	@RequestMapping(value="/toActiveHyList.do")
 	public String toActiveHyList(HttpServletRequest request) {
 		//查询已开通会员
-		request.setAttribute("openHyList", homeService.queryOpenInfo());
+		String hyCode = ControllerUtils.getUserInfo(request).getHyCode();
+		int jhStatus = JHStatusEnum.UNACTIVED.getTypeCode();
+
+		request.setAttribute("openHyList", homeService.queryHyInfoByStatus(hyCode,jhStatus));
 		return "activeHyList";
 	}
 	

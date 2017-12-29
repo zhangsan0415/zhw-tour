@@ -23,11 +23,11 @@ public interface MemberInfoMapper {
 	//修改资料(手机号和邮箱)
 	int modifyInfo(@Param("hyCode")String hyCode,@Param("sjMobile")String phone,@Param("yxEmail")String email,@Param("sfzCardCode")String sfzCardCode);
 
-	//根据开通会员信息
-	List<MemberInfo> queryMemberInfo();
+	//根据开通状态查询会员信息
+	List<MemberInfo> selectMemberInfoByStatus(@Param("hyCode")String hyCode,@Param("jhStatus")int jhStatus);
 
-	//查询未开通会员信息
-	List<MemberInfo> queryInfo();
+	//查询接点人工号
+	String selectJdManCode(String hyCode);
 
 
 }

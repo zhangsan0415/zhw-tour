@@ -59,11 +59,11 @@
 	where HY_CODE = #{hyCode} and JH_STATUS = 0
 	</update>
 	
-	<select id="queryMemberInfo" resultMap="BaseMap">
-		SELECT <include refid="BaseColumn"/> FROM ZHW_MEM WHERE  JH_STATUS = 0
+	<select id="selectMemberInfoByStatus" parameterType="java.lang.Integer" resultMap="BaseMap">
+		SELECT <include refid="BaseColumn"/> FROM ZHW_MEM WHERE  JH_STATUS = #{jhStatus,jdbcType=INTEGER} and HY_CODE=#{hyCode}
 	</select>
-	
-	<select id="queryInfo" resultMap="BaseMap">
-		SELECT <include refid="BaseColumn"/> FROM ZHW_MEM WHERE  JH_STATUS = 1
+
+	<select id="selectJdManCode" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT HY_CODE FROM ZHW_MEM WHERE (HY_CODE=${hyCode} or TJ_MAN=#{hyCode}) and JH_STATUS = 0 ORDER BY KT_TIME DESC  LIMIT 1
 	</select>
 </mapper>
