@@ -33,6 +33,10 @@ public enum IfBdCenterEnum {
 		}
 		return false;
 	}
+
+	public static boolean isBdCenter(int typeCode){
+		return Y_BD_CENTER.getTypeCode() == typeCode;
+	}
 }
 
 

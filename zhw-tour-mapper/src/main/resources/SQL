@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS `zhw_tour`.`ZHW_MEM` (
 ENGINE = InnoDB
 COMMENT = '会员信息表，存储会员信息';
 alter table zhw_mem add if_bd_center INT not Null COMMENT '是否为报单中心，0为是，1为否';
+alter table zhw_mem add KT_MAN VARCHAR(32) not Null COMMENT '开通人（可是将要开通，也可以是已开通）';
 
 
 CREATE TABLE IF NOT EXISTS `zhw_tour`.`ZHW_MEM_BANK` (
