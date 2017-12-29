@@ -22,4 +22,22 @@
 		INSERT INTO ZHW_MEM_BANK(<include refid="AddColumn"/>) VALUES(#{hyCode},#{khBankName},#{khCardCode},#{khName},#{khProvince}
 			,#{khCity},#{sfzCardCode},#{cjTime},#{xgTime},#{ifDisabled,jdbcType=INTEGER})
 	</insert>
+	
+	<update id="modifyBankInfo" parameterType="com.zhw.domain.MemberBankInfo">
+	
+	update  ZHW_MEM_BANK
+	set 
+	KH_BANK_NAME = #{khBankName},
+	KH_CARD_CODE = #{khCardCode},
+	KH_NAME = #{khName},
+	KH_PROVINCE = #{khProvince},
+	KH_CITY = #{khCity},
+	KH_SF_CARD_CODE = #{sfzCardCode},
+	XG_TIME = sysdate()
+	where  HY_CODE = #{hyCode} and IF_DISABLED = 0
+	</update>
+	
+	<select id="queryBankInfo" resultMap="BaseMap">
+		SELECT <include refid="BaseColumn"/> from ZHW_MEM_BANK where  HY_CODE = #{hyCode} and IF_DISABLED = 0
+	</select>
 </mapper>

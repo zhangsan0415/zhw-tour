@@ -1,5 +1,7 @@
 package com.zhw.domain;
 
+import java.math.BigDecimal;
+
 /**
  * 会员信息表ZHW_MEM
  * @author zsl
@@ -39,7 +41,21 @@ public class MemberInfo {
 	
 	private String xgTime;//修改时间
 	
-	private int ifAdmin;// 是否报单中心，是的都为管理员，0为是，1 为否
+	private int ifAdmin;// 是否为管理员，是的都为管理员，0为是，1 为否
+	
+	private int ifBdCenter;//是否为报单中心，0为是，1为否
+
+	private String ktMan;//开通人
+
+	/**
+	 * 如下为用于显示的字段
+	 */
+	private BigDecimal money;//投资金额，用于显示
+	
+	private String flag;//报单中心（是，否）
+
+	private String levelName;//会员级别
+	
 
 	public int getPkId() {
 		return pkId;
@@ -176,7 +192,46 @@ public class MemberInfo {
 	public void setHyLevel(int hyLevel) {
 		this.hyLevel = hyLevel;
 	}
-	
-	
+
+	public int getIfBdCenter() {
+		return ifBdCenter;
+	}
+
+	public void setIfBdCenter(int ifBdCenter) {
+		this.ifBdCenter = ifBdCenter;
+	}
+
+	public BigDecimal getMoney() {
+		return money;
+	}
+
+	public void setMoney(BigDecimal money) {
+		this.money = money;
+	}
+
+	public String getFlag() {
+		return flag;
+	}
+
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
+
+
+	public String getLevelName() {
+		return levelName;
+	}
+
+	public void setLevelName(String levelName) {
+		this.levelName = levelName;
+	}
+
+	public String getKtMan() {
+		return ktMan;
+	}
+
+	public void setKtMan(String ktMan) {
+		this.ktMan = ktMan;
+	}
 	
 }

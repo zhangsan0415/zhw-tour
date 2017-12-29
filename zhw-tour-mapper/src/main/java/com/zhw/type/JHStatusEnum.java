@@ -1,7 +1,7 @@
 package com.zhw.type;
 
 public enum JHStatusEnum {
-	ACTIVED(0,"是"),UNACTIVED(1,"否");
+	ACTIVED(0,"已开通"),UNACTIVED(1,"未开通");
 	
 	private int typeCode;
 	private String typeName;
@@ -31,5 +31,9 @@ public enum JHStatusEnum {
 			if(obj.typeCode == typeCode)	return true;
 		}
 		return false;
+	}
+
+	public static boolean isActived(int typeCode){
+		return ACTIVED.getTypeCode() == typeCode;
 	}
 }

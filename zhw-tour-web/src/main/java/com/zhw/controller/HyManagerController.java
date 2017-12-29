@@ -34,7 +34,7 @@ public class HyManagerController {
 		if(check.isFailed())	return check;
 		
 		try {
-			return managerService.addHy(infoPo);
+			return managerService.addHy(infoPo,ControllerUtils.getUserInfo(request));
 		}catch(Exception e) {
 			logger.error(StringUtils.putTogether("添加会员失败：",infoPo.getHyCode(),":",e.getMessage()),e);
 			return BaseResult.exceptionInstance();

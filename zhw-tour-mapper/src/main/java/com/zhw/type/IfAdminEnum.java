@@ -1,7 +1,7 @@
 package com.zhw.type;
 
 /**
- * 是否报单中心
+ * 是否为管理员
  * @author zsl
  *
  */
@@ -25,5 +25,9 @@ public enum IfAdminEnum   {
 			if(obj.typeCode == code) 	return obj.typeName;
 		}
 		return null;
+	}
+
+	public static boolean isAdmin(int typeCode){
+		return Y_ADMIN.getTypeCode() == typeCode;
 	}
 }

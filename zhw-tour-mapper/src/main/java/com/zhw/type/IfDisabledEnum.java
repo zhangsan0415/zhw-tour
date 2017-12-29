@@ -32,5 +32,9 @@ public enum IfDisabledEnum {
 		}
 		return false;
 	}
+
+	public static boolean isDisabled(int typeCode){
+		return DISABLED.getTypeCode() == typeCode;
+	}
 	
 }

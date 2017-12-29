@@ -19,9 +19,11 @@
 		<result property="ktTime" column="KT_TIME" />
 		<result property="xgTime" column="XG_TIME" />
 		<result property="ifAdmin" column="IF_ADMIN" />
+		<result property="ifBdCenter" column="if_bd_center" />
+		<result property="ktMan" column="KT_MAN" />
 	</resultMap>
 	
-	<sql id="AddColumn">FW_CENTER,TJ_MAN,JD_MAN,HY_CODE,ZY_AREA,YJ_PWD,EJ_PWD,SFZ_CARD_CODE,YX_EMAIL,SJ_MOBILE,JB_LEVEL,ZC_TIME,JH_STATUS,KT_TIME,XG_TIME,IF_ADMIN</sql>
+	<sql id="AddColumn">FW_CENTER,TJ_MAN,JD_MAN,HY_CODE,ZY_AREA,YJ_PWD,EJ_PWD,SFZ_CARD_CODE,YX_EMAIL,SJ_MOBILE,JB_LEVEL,ZC_TIME,JH_STATUS,KT_TIME,XG_TIME,IF_ADMIN,if_bd_center,KT_MAN</sql>
 	<sql id="BaseColumn">
 		PK_ID,<include refid="AddColumn"/>
 	</sql>
@@ -37,7 +39,36 @@
 	<insert id="insertNewHyInfo" parameterType="com.zhw.domain.MemberInfo">
 		INSERT INTO ZHW_MEM(<include refid="AddColumn"/>) VALUES(#{fwCenter},#{tjMan},#{jdMan},#{hyCode},#{zyArea,jdbcType=INTEGER}
 			,#{yjPwd},#{ejPwd},#{sfzCardCode},#{yxEmail},#{sjMobile},#{hyLevel,jdbcType=INTEGER},#{zcTime},#{jhStatus,jdbcType=INTEGER}
-			,#{ktTime},#{xgTime},#{ifAdmin,jdbcType=INTEGER})
+			,#{ktTime},#{xgTime},#{ifAdmin,jdbcType=INTEGER},#{ifBdCenter,jdbcType=INTEGER},#{ktMan})
 	</insert>
+	<update id="modifyPwd" parameterType="String">
+	update  ZHW_MEM 
+	set 
+	YJ_PWD = #{yjPwd},
+	EJ_PWD = #{ejPwd},
+	XG_TIME = sysdate()
+	where HY_CODE = #{hyCode} and JH_STATUS = 0
 	
+	</update>
+	<update id="modifyInfo" parameterType="String">
+	update  ZHW_MEM 
+	set 
+	YX_EMAIL = #{yxEmail},
+	SJ_MOBILE = #{sjMobile},
+	SFZ_CARD_CODE = #{sfzCardCode},
+	XG_TIME = sysdate()
+	where HY_CODE = #{hyCode} and JH_STATUS = 0
+	</update>
+	
+	<select id="selectMemberInfoByStatus" resultMap="BaseMap">
+		SELECT <include refid="BaseColumn"/> FROM ZHW_MEM WHERE  JH_STATUS = #{jhStatus,jdbcType=INTEGER} and HY_CODE=#{hyCode} 
+	</select>
+
+	<select id="selectJdManCode" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT HY_CODE FROM ZHW_MEM WHERE (HY_CODE=${hyCode} or TJ_MAN=#{hyCode}) and JH_STATUS = 0 ORDER BY KT_TIME DESC  LIMIT 1
+	</select>
+	
+	<select id="selectMemberInfoBytjMan" parameterType="java.lang.String" resultMap="BaseMap">
+		SELECT <include refid="BaseColumn"/> FROM ZHW_MEM WHERE  JH_STATUS = 0 and TJ_MAN=#{tjMan} 
+	</select>
 </mapper>

@@ -28,18 +28,19 @@
 						</tr>
 					</thead>
 					<tbody>
-					<tr>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td><a>查看游客明细</a></td>
-						<td>1</td>
-						<td>666</td>
-						<td>1</td>
-
-					</tr>
+					  <c:forEach items="${tourList}" var="item" >
+								<tr>
+								    <td style="text-align:center;">${item.bmName}</td>
+								    <td style="text-align:center;">${item.bmName}</td>
+								    <td style="text-align:center;">${item.bmName}</td>
+								    <td style="text-align:center;">${item.bmName}</td>
+								    <td style="text-align:center;">${item.bmName}</td>
+								    <td style="text-align:center;">${item.bmName}</td>
+								      <td style="text-align:center;">${item.bmName}</td>
+								    <td style="text-align:center;">${item.bmName}</td>
+								    <td style="text-align:center;">${item.bmName}</td>
+								</tr>
+							</c:forEach>
 					</tbody>
 				</table>
 				<p class="text-center">

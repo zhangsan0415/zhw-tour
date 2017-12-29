@@ -1,62 +1,75 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="menuHead.jsp" %>
-<div class='main'>
-<div class='main-content'>
-		<%@include file="erPwd.jsp" %>
-		<div class='panel display-none' id='panel2'>
+<!-- MAIN -->
+<div class="main">
+	<!-- MAIN CONTENT -->
+
+		<!--lock end-->
+
+		<div class="panel panel-headline demo-icons">
 			<div class="panel-heading">
-                    <h3 class="panel-title">查看</h3>
-            </div>
-			<div class="panel-body">
-			    <form action="" class="form-inline mb20">
-				会员编号：<input type="text" class="form-control" />   
-				<button class='btn btn-primary'>查询</button>
-				</form>
-		 		 <table id="list2" ></table> 
-		 		  <div id="pager2"></div>
+				<h3 class="panel-title">已开通会员</h3>
 			</div>
-		
+			<div class="panel-body">
+				<form action="" class="form-inline">
+
+					会员编号： <input type="text" class="form-control" id="hyCode"/>
+					<button type="button" class="btn btn-info" onclick="query()">查询</button>
+				</form>
+			
+				<table id="list" class="table table-striped">
+				
+					 <thead>
+                        <tr>
+                         
+                            <td style="text-align:center;">会员编号</td>
+                            <td style="text-align:center;">联系电话</td>
+                            <td style="text-align:center;">注册时间</td>
+                            <td style="text-align:center;">开通时间</td>
+                            <td style="text-align:center;">投资金额</td>
+                            <td style="text-align:center;">会员级别</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                           <c:forEach items="${tjManList}" var="item" >
+								<tr>
+								    <td style="text-align:center;">${item.hyCode}</td>
+								    <td style="text-align:center;">${item.sjMobile}</td>
+								    <td style="text-align:center;">${item.zcTime}</td>
+								    <td style="text-align:center;">${item.ktTime}</td>
+								    <td style="text-align:center;">${item.money}</td>
+								    <td style="text-align:center;">${item.levelName}</td>
+								</tr>
+							</c:forEach>
+                       </tbody>
+				</table>
+				<p class="text-center">
+					总条数: <span>2</span> 当前页:<span> 1/1 </span> <a href="">快进</a> <a
+						href="">尾页</a>
+				</p>
+			</div>
 		</div>
-		 
-	</div>	
-</div>		
-<%@include file="menuBottom.jsp" %>
-<script src='<%=basePath%>static/assets/scripts/jquery.jqGrid.src.js'></script>
-<script src='<%=basePath%>static/assets/scripts/grid.locale-cn.js'></script>
+	</div>
+	<!-- END MAIN -->
+	<div class="clearfix"></div>
+
+<%@include file="menuBottom.jsp"%>
 <script>
-$("#subMarket").prev().addClass('active');/*一级  */
-$("#subMarket").addClass("in");
-$("#toView").addClass('active');/* 二级 */
-
-function pageInit(){
-	//创建jqGrid组件
-	jQuery("#list2").jqGrid(
-			{
-				url : 'http://127.0.0.1:8089/api/returnJson',//组件创建完成之后请求数据的url
-				datatype : "json",//请求数据返回的类型。可选json,xml,txt
-				colNames : [ '会员编号', '联系电话', ' 注册时间', '开通时间', '注册金额','会员级别' ],//jqGrid的列显示名字
-				colModel : [ //jqGrid每一列的配置信息。包括名字，索引，宽度,对齐方式.....
-				             {name : 'id',index : 'id'}, 
-				             {name : 'invdate',index : 'invdate' }, 
-				             {name : 'name',index : 'name ' }, 
-				             {name : 'amount',index : 'amount' }, 
-				             {name : 'tax',index : 'tax' }, 
-				             {name : 'total',index : 'total' }
-				            
-				           ],
-				rowNum : 20,//一页显示多少条
-				rowList : [ 10, 20, 30 ],//可供用户选择一页显示多少条
-				pager : '#pager2',//表格页脚的占位符(一般是div)的id
-				 
-			
-				mtype : "get",//向后台请求数据的ajax的类型。可选post,get
-				viewrecords : true,
-				autowidth:true
-			
-			});
-	/*创建jqGrid的操作按钮容器*/
-	/*可以控制界面上增删改查的按钮是否显示*/
-	jQuery("#list2").jqGrid('navGrid', '#pager2', {edit : false,add : false,del : false,search:false,refresh:false});
-}
-
+<%--  var hyCode = $("#hyCode").val();
+var url = "<%=basePath%>hyManager/doModifyPwd.do";
+var params ={"hyCode":hyCode};
+$.post(url,params,function(result){
+	var obj = JSON.parse(result);
+	if(obj.status != 0){
+		alert(obj.msg == null ? "系统繁忙，请稍候重试！":obj.msg);  	return;
+	}else{
+	
+		 //清空数据
+		 document.getElementById("hyCode").reset();
+	}
+	 
+}); --%>
+$("#subServer").prev().addClass('active');/*一级  */
+$("#subServer").addClass("in");
+$("#toUnActiveHyList").addClass('active');/* 二级 */
 </script>

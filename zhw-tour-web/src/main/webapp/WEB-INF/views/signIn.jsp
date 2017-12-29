@@ -9,37 +9,35 @@
 				<h3 class="panel-title">会员</h3>
 			</div>
 
-
-			<form id="add_hy_form" method="post" class="form-horizontal"
-				action="">
+			<form id="add_hy_form" role="form" action="#" class="form-horizontal" action="#">
 				<div class="form-group">
 					<label class="col-lg-3 control-label text-danger">所属报单中心：</label>
 					<div class="col-lg-2">
-						<input type="text" class="form-control" name="username"  readonly="readonly"/>
+						<input type="text" class="form-control" name="fwCenter" value="${sessionScope.userInfo.hyCode}"  readonly="readonly"/>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-3 control-label text-danger">推荐人：</label>
 					<div class="col-lg-2">
-						<input type="text" class="form-control" name="username"  readonly="readonly" />
+						<input type="text" class="form-control" name="tjMan" value="${sessionScope.userInfo.hyCode}"  readonly="readonly"/>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-3 control-label text-danger">接点人：</label>
 					<div class="col-lg-2">
-						<input type="text" class="form-control" name="username"  readonly="readonly" />
+						<input type="text" class="form-control" name="jdMan" value="${requestScope.tjMan}"  readonly="readonly" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-3 control-label text-danger">会员编号：</label>
 					<div class="col-lg-2">
-						<input type="text" class="form-control" name="username" />
+						<input type="text" class="form-control" name="hyCode" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-3 control-label">所在区域：</label>
 					<div class="col-lg-2">
-						<select name="" class="form-control">
+						<select name="zyArea" class="form-control">
 							<option value="0">左区</option>
 							<option value="1">右区</option>
 						</select>
@@ -49,90 +47,99 @@
 				<div class="form-group">
 					<label class="col-lg-3 control-label text-danger">一级密码：</label>
 					<div class="col-lg-2">
-						<input type="text" class="form-control" name="username" />
+						<input type="text" name="yjPwd" class="form-control" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-3 control-label text-danger">确认一级密码：</label>
 					<div class="col-lg-2">
-						<input type="text" class="form-control" name="username" />
+						<input type="text" class="form-control" name="confimYjPwd" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-3 control-label text-danger">二级密码：</label>
 					<div class="col-lg-2">
-						<input type="text" class="form-control" name="username" />
+						<input type="text" class="form-control" name="ejPwd" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-3 control-label text-danger">确认二级密码：</label>
 					<div class="col-lg-2">
-						<input type="text" class="form-control" name="username" />
+						<input type="text" class="form-control" name="confirmEjPwd" />
 					</div>
 				</div>
 				<!-- <legend></legend> -->
 				<div class="form-group">
 					<label class="col-lg-3 control-label">开户银行：</label>
 					<div class="col-lg-2">
-						<select name="" id="" class="form-control">
-							<option value="">农业银行</option>
-							<option value="">工商银行</option>
-							<option value="">建设银行</option>
-							<option value="">中国银行</option>
+						<select name="khBankName" class="form-control">
+							<c:forEach var="item" items="${requestScope.bankList}">
+								<option value="${item.typeCode} }">${item.typeName}</option>
+							</c:forEach>
 						</select>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-3 control-label">银行卡号：</label>
 					<div class="col-lg-2">
-						<input type="text" class="form-control" name="username" />
+						<input type="text" class="form-control" name="khCardCode" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-3 control-label">开户姓名：</label>
 					<div class="col-lg-2">
-						<input type="text" class="form-control" name="username" />
+						<input type="text" class="form-control" name="khName" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-3 control-label">开户省市：</label>
 					<div class="col-lg-2">
-						<input type="text" class="form-control" placeholder="省"
-							data-stripe="exp-month" />
+						<select name="khProvince" class="form-control">
+							<c:forEach var="item" items="${requestScope.provinces}">
+								<option value="${item.pkId} }">${item.areaName}</option>
+							</c:forEach>
+						</select>
+						<!-- <input type="text" name="khProvince" class="form-control" placeholder="省"
+							data-stripe="exp-month" /> -->
 					</div>
 					<div class="col-lg-2">
-						<input type="text" class="form-control" placeholder="市"
-							data-stripe="exp-year" />
+						<select name="khCity" class="form-control">
+							<c:forEach var="item" items="${requestScope.cities}">
+								<option value="${item.pkId} }">${item.areaName}</option>
+							</c:forEach>
+						</select>
+						<%--<input type="text" name="khCity" class="form-control" placeholder="市"
+							data-stripe="exp-year" />--%>
 					</div>
 				</div>
 				<!--  <legend></legend> -->
 				<div class="form-group">
 					<label class="col-lg-3 control-label">身份证号：</label>
 					<div class="col-lg-2">
-						<input type="text" class="form-control" name="username" />
+						<input type="text" class="form-control" name="sfzCardCode" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-3 control-label">E-Mail：</label>
 					<div class="col-lg-2">
-						<input type="text" class="form-control" name="username" />
+						<input type="text" class="form-control" name="yxEmail" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-3 control-label">手机号码：</label>
 					<div class="col-lg-2">
-						<input type="text" class="form-control" name="username" />
+						<input type="text" class="form-control" name="sjMobile" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-3 control-label">申请级别：</label>
 					<div class="col-lg-5">
 						<div class="radio">
-							<label> <input type="radio" name="gender" value="1" />
+							<label> <input type="radio" name="hyLevel" value="1" />
 								1000元
-							</label> <label> <input type="radio" name="gender" value="2" />
+							</label> <label> <input type="radio" name="hyLevel" value="2" />
 								5000元
-							</label> <label> <input type="radio" name="gender" value="3" />
+							</label> <label> <input type="radio" name="hyLevel" value="3" />
 								8000元
 							</label>
 						</div>
@@ -140,8 +147,9 @@
 				</div>
 				<div class="form-group">
 					<label class="col-lg-4 control-label">
-						<button class="btn btn-primary">注册</button> <input type="reset"
-						class="btn btn-primary" value="重置" />
+						<input type="button" class="btn btn-primary" onclick="registerHyCode()" value="注册" data-toggle="popover"/>
+						<!-- <button id="hy_mem_register" >注册</button>  -->
+						<input type="reset" class="btn btn-primary" value="重置" />
 					</label>
 				</div>
 
@@ -154,7 +162,11 @@
 
 
 <%@include file="menuBottom.jsp" %>
-<script>
+
+<script type="text/javascript">
+function registerHyCode(){
+	
+}
 $("#subMarket").prev().addClass('active');/*一级  */
 $("#subMarket").addClass("in");
 $("#toSignIn").addClass('active');/* 二级 */

@@ -20,6 +20,7 @@ import com.zhw.pojo.JJScorePercentPo;
 import com.zhw.response.BaseResult;
 import com.zhw.service.HyManagerService;
 import com.zhw.type.IfAdminEnum;
+import com.zhw.type.IfBdCenterEnum;
 import com.zhw.type.IfDisabledEnum;
 import com.zhw.type.JHStatusEnum;
 import com.zhw.type.ZYAreaEnum;
@@ -39,7 +40,7 @@ public class HyManagerServiceImpl implements HyManagerService {
 	private MemberScoreInfoMapper scoreInfoMapper;
 
 	@Override
-	public BaseResult addHy(HyInfoPo infoPo) throws Exception {
+	public BaseResult addHy(HyInfoPo infoPo,MemberInfo sessionUser) throws Exception {
 		String currentDate = DateUtils.formatCurrentDate();
 		
 		//会员信息
@@ -49,6 +50,11 @@ public class HyManagerServiceImpl implements HyManagerService {
 		userInfo.setXgTime(currentDate);
 		userInfo.setJhStatus(JHStatusEnum.UNACTIVED.getTypeCode());
 		userInfo.setIfAdmin(IfAdminEnum.N_ADMIN.getTypeCode());
+		userInfo.setIfBdCenter(IfBdCenterEnum.N_BD_CENTER.getTypeCode());
+
+		//给注册用户添加开通人
+		if(IfBdCenterEnum.isBdCenter(sessionUser.getIfBdCenter()))	userInfo.setKtMan(sessionUser.getHyCode());
+		else userInfo.setKtMan(sessionUser.getKtMan());
 		
 		//会员对应很行信息
 		MemberBankInfo bankInfo = new MemberBankInfo();

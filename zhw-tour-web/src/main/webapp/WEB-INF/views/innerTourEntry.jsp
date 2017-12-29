@@ -16,7 +16,7 @@
 						<option value="">海南5天4晚</option>
 					</select> 出团日： <input type="text" class="form-control" />
 				</form>
-				<table class="table table-striped">
+				<table class="table table-striped" id="tab">
 					<thead>
 						<tr>
 							<th style="width: 6%;">序号</th>
@@ -48,8 +48,28 @@
 					</tr>
 					</tbody>
 				</table>
-				<button class="btn btn-info">添加一个乘客</button>
-				<button class="btn btn-info">保存</button>
+				<table id ="tab2" style="display:none">
+					<tbody>
+					<tr>
+						<td>1</td>
+						<td><input type="text" class="form-control" /></td>
+						<td><input type="text" class="form-control" /></td>
+						<td><select name="" class="form-control">
+								<option value="">男</option>
+								<option value="">女</option>
+						</select></td>
+						<td><input type="text" class="form-control" /></td>
+						<td><input type="text" class="form-control" /></td>
+						<td><input type="text" class="form-control" /></td>
+						<td>666</td>
+						<td><input type="text" class="form-control" /></td>
+
+					</tr>
+					</tbody>
+				
+				</table>
+				<button class="btn btn-info" onclick="addPerson()">添加一个乘客</button>
+				<button class="btn btn-info" onclick="onSave()">保存</button>
 			</div>
 
 		</div>
@@ -63,6 +83,25 @@
 </div>
 <%@include file="menuBottom.jsp" %>
 <script>
+//添加乘客
+function addPerson(){
+	debugger;
+	  //获取要插入行的表格 
+	  var $tr=$("#"+tab+" tr").eq(row);
+	  var table = document.getElementById("tab");
+	 table.de
+	  var cloneTab = document.getElementById("tab2");
+	  table.firstChild.appendChild(cloneTab.firstChild.cloneNode(true));
+	  var v = table.firstChild.childNodes;
+	  var len = v.length;
+	  for (var i = 2; i < len; i++) {
+		  v[i].childNodes[0].firstChild.id=i;//给第一个单元格id赋值 
+	}
+}
+//保存
+function onSave(){
+	
+}
 $("#subEnter").prev().addClass('active');/*一级  */
 $("#subEnter").addClass("in");
 $("#toInnerTourEntry").addClass('active');/* 二级 */
