@@ -64,7 +64,7 @@
 
 <%@include file="menuBottom.jsp"%>
 <script>
-<%-- var hyCode = $("#hyCode").val();
+ var hyCode = $("#hyCode").val();
 
 var url = "<%=basePath%>person/doModifyPwd.do";
 var params ={"hyCode":hyCode};
@@ -78,7 +78,7 @@ $.post(url,params,function(result){
 		 document.getElementById("hyCode").reset();
 	}
 	 
-}); --%>
+}); 
 $("#subServer").prev().addClass('active');/*一级  */
 $("#subServer").addClass("in");
 $("#toUnActiveHyList").addClass('active');/* 二级 */

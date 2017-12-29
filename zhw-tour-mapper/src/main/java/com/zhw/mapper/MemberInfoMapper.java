@@ -28,6 +28,6 @@ public interface MemberInfoMapper {
 
 	//查询接点人工号
 	String selectJdManCode(String hyCode);
-
-
+	//查询推荐的人的信息
+	List<MemberInfo> selectMemberInfoBytjMan(String tjMan);
 }

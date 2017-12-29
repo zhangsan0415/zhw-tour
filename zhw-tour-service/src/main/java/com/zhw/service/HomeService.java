@@ -27,4 +27,12 @@ public interface HomeService {
      * @return
      */
     List<MemberInfo> queryHyInfoByStatus(String hyCode,int jhStatus);
+    
+    /**
+     * 根据推荐人查询推荐的人的信息
+     * @param tjMan
+     * @return
+     */
+    
+    List<MemberInfo> queryMemberInfoBytjMan(String tjMan);
 }

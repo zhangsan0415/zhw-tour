@@ -55,9 +55,9 @@
 
 <%@include file="menuBottom.jsp"%>
 <script>
-<%-- var hyCode = $("#hyCode").val();
+<%--  var hyCode = $("#hyCode").val();
 
-var url = "<%=basePath%>person/doModifyPwd.do";
+var url = "<%=basePath%>hyManager/doModifyPwd.do";
 var params ={"hyCode":hyCode};
 $.post(url,params,function(result){
 	var obj = JSON.parse(result);

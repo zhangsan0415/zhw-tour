@@ -33,5 +33,9 @@ public enum HyLevelEnum {
 		}
 		return false;
 	}
+
+	public static boolean isCanBeBdCenter(int typeCode){
+		return PROXY_HY.getLevelCode() != typeCode;
+	}
 	
 }

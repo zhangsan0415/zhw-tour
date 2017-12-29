@@ -32,4 +32,8 @@ public enum JHStatusEnum {
 		}
 		return false;
 	}
+
+	public static boolean isActived(int typeCode){
+		return ACTIVED.getTypeCode() == typeCode;
+	}
 }

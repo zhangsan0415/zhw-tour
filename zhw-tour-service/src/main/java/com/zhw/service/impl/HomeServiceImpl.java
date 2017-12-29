@@ -12,6 +12,7 @@ import com.zhw.domain.MemberInfo;
 import com.zhw.mapper.MemberBankInfoMapper;
 import com.zhw.mapper.MemberInfoMapper;
 import com.zhw.service.HomeService;
+import com.zhw.type.HyLevelEnum;
 import com.zhw.type.HyLevelScoreEnum;
 import com.zhw.type.IfBdCenterEnum;
 import com.zhw.type.JHStatusEnum;
@@ -57,6 +58,16 @@ public class HomeServiceImpl implements HomeService {
 		list.forEach(obj->{
 			obj.setMoney(HyLevelScoreEnum.getValueByCode(obj.getHyLevel()));
 			obj.setFlag(JHStatusEnum.getNameByCode(obj.getJhStatus()));
+			obj.setLevelName(HyLevelEnum.getNameByCode(obj.getHyLevel()));
 		});
+	}
+
+	@Override
+	public List<MemberInfo> queryMemberInfoBytjMan(String tjMan) {
+		// TODO Auto-generated method stub
+		List<MemberInfo> list = memberInfoMapper.selectMemberInfoBytjMan(tjMan);
+		if(list ==null || list.size()==0)	return null;
+		this.setMoneyAndFlag(list);
+		return list;
 	}
 }

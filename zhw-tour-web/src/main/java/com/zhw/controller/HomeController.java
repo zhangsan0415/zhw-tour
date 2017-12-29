@@ -64,7 +64,9 @@ public class HomeController {
 	
 	//跳转到查看页面
 	@RequestMapping(value="/toView.do")
-	public String toView() {
+	public String toView(HttpServletRequest request) {
+		String tjMan = ControllerUtils.getUserInfo(request).getHyCode();
+		request.setAttribute("tjManList",homeService.queryMemberInfoBytjMan(tjMan));
 		return "view";
 	}
 	
@@ -73,8 +75,8 @@ public class HomeController {
 	public String toUnActiveHyList(HttpServletRequest request) {
 		//未开通会员信息
 		String hyCode = ControllerUtils.getUserInfo(request).getHyCode();
-		int jhStatus = JHStatusEnum.ACTIVED.getTypeCode();
-		request.setAttribute("noOpenHyList",homeService.queryHyInfoByStatus(hyCode,jhStatus) );
+		int jhStatus = JHStatusEnum.UNACTIVED.getTypeCode();
+		request.setAttribute("noOpenHyList",homeService.queryHyInfoByStatus(hyCode,jhStatus));
 		return "unActiveHyList";
 	}
 	
@@ -83,8 +85,7 @@ public class HomeController {
 	public String toActiveHyList(HttpServletRequest request) {
 		//查询已开通会员
 		String hyCode = ControllerUtils.getUserInfo(request).getHyCode();
-		int jhStatus = JHStatusEnum.UNACTIVED.getTypeCode();
-
+		int jhStatus = JHStatusEnum.ACTIVED.getTypeCode();
 		request.setAttribute("openHyList", homeService.queryHyInfoByStatus(hyCode,jhStatus));
 		return "activeHyList";
 	}

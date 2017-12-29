@@ -26,4 +26,8 @@ public enum IfAdminEnum   {
 		}
 		return null;
 	}
+
+	public static boolean isAdmin(int typeCode){
+		return Y_ADMIN.getTypeCode() == typeCode;
+	}
 }
