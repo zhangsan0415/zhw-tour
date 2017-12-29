@@ -87,7 +87,9 @@
 function addPerson(){
 	debugger;
 	  //获取要插入行的表格 
+	  var $tr=$("#"+tab+" tr").eq(row);
 	  var table = document.getElementById("tab");
+	 table.de
 	  var cloneTab = document.getElementById("tab2");
 	  table.firstChild.appendChild(cloneTab.firstChild.cloneNode(true));
 	  var v = table.firstChild.childNodes;

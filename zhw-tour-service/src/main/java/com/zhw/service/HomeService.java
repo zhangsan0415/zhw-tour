@@ -4,6 +4,9 @@ import java.util.List;
 
 import com.zhw.domain.MemberBankInfo;
 import com.zhw.domain.MemberInfo;
+import com.zhw.domain.MemberScoreInfo;
+import com.zhw.domain.MemberScoreInfoDetail;
+import com.zhw.domain.TourRegisterInfo;
 
 /**
  * 功能描述：
@@ -35,4 +38,16 @@ public interface HomeService {
      */
     
     List<MemberInfo> queryMemberInfoBytjMan(String tjMan);
+    
+    /**
+     * 默认查询登录人的报名记录
+     * @return
+     */
+    List<TourRegisterInfo> queryTourInfo(String hyCode);
+    /**
+     * 根据登录人会员编号查询积分明细
+     * @param hyCode
+     * @return
+     */
+    List<MemberScoreInfoDetail> queryScoreList(String hyCode);
 }

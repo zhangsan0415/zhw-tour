@@ -53,9 +53,10 @@ public class MemberInfo {
 	private BigDecimal money;//投资金额，用于显示
 	
 	private String flag;//报单中心（是，否）
-	
+
 	private String levelName;//会员级别
 	
+
 	public int getPkId() {
 		return pkId;
 	}
@@ -216,6 +217,7 @@ public class MemberInfo {
 		this.flag = flag;
 	}
 
+
 	public String getLevelName() {
 		return levelName;
 	}
@@ -231,7 +233,5 @@ public class MemberInfo {
 	public void setKtMan(String ktMan) {
 		this.ktMan = ktMan;
 	}
-	
-	
 	
 }

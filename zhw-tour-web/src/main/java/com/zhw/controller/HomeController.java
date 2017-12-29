@@ -104,7 +104,9 @@ public class HomeController {
 	
 	//跳转查看旅游报名记录页面
 	@RequestMapping(value="/toViewTourRecord.do")
-	public String toViewTourRecord() {
+	public String toViewTourRecord(HttpServletRequest request) {
+		String hyCode = ControllerUtils.getUserInfo(request).getHyCode();
+		request.setAttribute("tourList", homeService.queryTourInfo(hyCode));
 		return "viewTourRecord";
 	}
 	
@@ -122,7 +124,9 @@ public class HomeController {
 	
 	//跳转到积分明细页面
 	@RequestMapping(value="/toScoreDetail.do")
-	public String toScoreDetail() {
+	public String toScoreDetail(HttpServletRequest request) {
+		String hyCode = ControllerUtils.getScoreInfo(request).getHyCode();
+		request.setAttribute("scoreList", homeService.queryScoreList(hyCode));
 		return "scoreDetail";
 	}
 	
