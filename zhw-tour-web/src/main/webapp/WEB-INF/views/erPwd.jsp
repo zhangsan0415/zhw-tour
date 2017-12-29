@@ -10,7 +10,7 @@
 				</div>
 			</div>
 </div> 
-<script>
+<script> 
 $("#checkErPwd").bind('click',function (){
 	$("#panel1").hide();
 	$("#panel2").show();
