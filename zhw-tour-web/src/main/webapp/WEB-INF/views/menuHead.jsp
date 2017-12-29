@@ -21,6 +21,9 @@
 	<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
 	<link rel="stylesheet" href="<%=basePath%>static/assets/css/demo.css">
 
+	<link rel="stylesheet" href="<%=basePath%>static/assets/css/ui.jqgrid.css">
+	<link rel="stylesheet" href="<%=basePath%>static/assets/css/jquery-ui-1.8.16.custom.css">
+
 	<link rel="stylesheet" href="<%=basePath%>static/assets/css/style.css">
 	<!-- GOOGLE FONTS -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
@@ -32,6 +35,7 @@
 	<script src="<%=basePath%>static/assets/scripts/bootstrap.min.js"></script>
 	<script src="<%=basePath%>static/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 	<script src="<%=basePath%>static/assets/scripts/klorofil-common.js"></script>
+	
 </head>
 
 <body>
