@@ -1,5 +1,5 @@
 
-/*��д*/
+/*rewrite*/
 ul.activity-timeline > li {
     margin-bottom: 31px;
 }
@@ -16,7 +16,7 @@ label{
     font-weight: normal;
 }
 
-/*�Զ���*/
+/*my defined*/
 .display-none{
     display:  none;
 }
