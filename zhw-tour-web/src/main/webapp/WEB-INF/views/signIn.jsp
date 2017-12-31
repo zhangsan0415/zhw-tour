@@ -164,6 +164,48 @@
 <%@include file="menuBottom.jsp" %>
 
 <script type="text/javascript">
+
+$('#defaultForm').bootstrapValidator({
+	message: '填写不正确',
+	feedbackIcons: {
+		valid: 'glyphicon glyphicon-ok',
+		invalid: 'glyphicon glyphicon-remove',
+		validating: 'glyphicon glyphicon-refresh'
+	},
+	fields: {
+	memberCode: {
+		message: '无效会员编号',
+		validators: {
+			notEmpty: {
+				message: '会员编号不能为空'
+			},
+		<%--stringLength: {--%>
+			<%--min: 6,--%>
+			<%--max: 30,--%>
+			<%--message: '用户名长度在6-30之间'--%>
+			<%--}--%>
+		}
+		},
+		password: {
+			validators: {
+			notEmpty: {
+				message: '密码不能为空'
+				}
+			}
+		},
+		code:{
+			validators:{
+				notEmpty:{
+					messsage:'验证码不能为空'
+				}
+			}
+		}
+	}
+});
+
+
+
+
 /* 点击注册按钮 */
 function registerHyCode(btn){
 	var url = "<%=basePath%>hyManager/addHy.do";
