@@ -18,13 +18,6 @@
         <property name="url" value="jdbc:mysql://rm-bp1ridy23skc4cf7rzo.mysql.rds.aliyuncs.com:3306/zhw_tour?useSSL=false" />
     </bean>
     
-  <!--    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
-        <property name="username" value="${jdbc.username}" />
-        <property name="password" value="${jdbc.password}" />
-        <property name="driverClassName" value="${jdbc.driverClass}" />
-        <property name="url" value="${jdbc.url}" />
-    </bean> -->
-
   <!--   <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         基本属性 url、user、password、driverClass
         <property name="username" value="bos0301" />

@@ -1,5 +1,7 @@
 package com.zhw.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.zhw.component.AreaComponent;
+import com.zhw.domain.Area;
 import com.zhw.pojo.HyInfoPo;
 import com.zhw.response.BaseResult;
 import com.zhw.service.HyManagerService;
@@ -26,14 +30,30 @@ public class HyManagerController {
 	@Resource
 	private HyManagerService managerService;
 	
+	@Resource
+	private AreaComponent component;
+	
+	@RequestMapping(value="/getCities.do",method=RequestMethod.POST)
+	@ResponseBody
+	public BaseResult getCities(String provinceId) {
+		try {
+			if(StringUtils.isEmpty(provinceId))	return BaseResult.failedInstance("省编码不能为空！");
+			List<Area> dataList = component.getCities(provinceId);
+			if(dataList == null || dataList.size() == 0)	return BaseResult.failedInstance("错误的省编码");
+			return BaseResult.sucessInstance().setObj(dataList);
+		}catch(Exception e) {
+			logger.error(StringUtils.putTogether("获取城市列表失败，省ID：",provinceId,",异常信息：",e.getMessage()),e);
+			return BaseResult.exceptionInstance();
+		}
+	}
+	
 	//添加会员
 	@RequestMapping(value="/addHy.do",method=RequestMethod.POST)
 	@ResponseBody
 	public BaseResult addHy(HyInfoPo infoPo,HttpServletRequest request) {
-		BaseResult check = this.checkHyInfoPo(infoPo);
-		if(check.isFailed())	return check;
-		
 		try {
+			BaseResult check = this.checkHyInfoPo(infoPo);
+			if(check.isFailed())	return check;
 			return managerService.addHy(infoPo,ControllerUtils.getUserInfo(request));
 		}catch(Exception e) {
 			logger.error(StringUtils.putTogether("添加会员失败：",infoPo.getHyCode(),":",e.getMessage()),e);
