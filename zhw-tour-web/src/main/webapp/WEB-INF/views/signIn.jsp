@@ -47,25 +47,25 @@
 				<div class="form-group">
 					<label class="col-lg-3 control-label text-danger">一级密码：</label>
 					<div class="col-lg-2">
-						<input type="text" name="yjPwd" class="form-control" />
+						<input type="password" name="yjPwd" class="form-control" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-3 control-label text-danger">确认一级密码：</label>
 					<div class="col-lg-2">
-						<input type="text" class="form-control" name="confimYjPwd" />
+						<input type="password" class="form-control" name="confimYjPwd" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-3 control-label text-danger">二级密码：</label>
 					<div class="col-lg-2">
-						<input type="text" class="form-control" name="ejPwd" />
+						<input type="password" class="form-control" name="ejPwd" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-3 control-label text-danger">确认二级密码：</label>
 					<div class="col-lg-2">
-						<input type="text" class="form-control" name="confirmEjPwd" />
+						<input type="password" class="form-control" name="confirmEjPwd" />
 					</div>
 				</div>
 				<!-- <legend></legend> -->
@@ -74,7 +74,7 @@
 					<div class="col-lg-2">
 						<select name="khBankName" class="form-control">
 							<c:forEach var="item" items="${requestScope.bankList}">
-								<option value="${item.typeCode} }">${item.typeName}</option>
+								<option value="${item.typeCode}">${item.typeName}</option>
 							</c:forEach>
 						</select>
 					</div>
@@ -94,18 +94,18 @@
 				<div class="form-group">
 					<label class="col-lg-3 control-label">开户省市：</label>
 					<div class="col-lg-2">
-						<select name="khProvince" class="form-control">
+						<select name="khProvince" class="form-control" onchange="getCities(this)">
 							<c:forEach var="item" items="${requestScope.provinces}">
-								<option value="${item.pkId} }">${item.areaName}</option>
+								<option value="${item.pkId}">${item.areaName}</option>
 							</c:forEach>
 						</select>
 						<!-- <input type="text" name="khProvince" class="form-control" placeholder="省"
 							data-stripe="exp-month" /> -->
 					</div>
 					<div class="col-lg-2">
-						<select name="khCity" class="form-control">
+						<select id="sign_in_cities" name="khCity" class="form-control">
 							<c:forEach var="item" items="${requestScope.cities}">
-								<option value="${item.pkId} }">${item.areaName}</option>
+								<option value="${item.pkId}">${item.areaName}</option>
 							</c:forEach>
 						</select>
 						<%--<input type="text" name="khCity" class="form-control" placeholder="市"
@@ -147,7 +147,7 @@
 				</div>
 				<div class="form-group">
 					<label class="col-lg-4 control-label">
-						<input type="button" class="btn btn-primary" onclick="registerHyCode()" value="注册" data-toggle="popover"/>
+						<input type="button" class="btn btn-primary" onclick="registerHyCode(this)" value="注册" data-toggle="popover"/>
 						<!-- <button id="hy_mem_register" >注册</button>  -->
 						<input type="reset" class="btn btn-primary" value="重置" />
 					</label>
@@ -159,14 +159,40 @@
 	</div>
 	<!-- END MAIN -->
 	<div class="clearfix"></div>
-
+</div>
 
 <%@include file="menuBottom.jsp" %>
 
 <script type="text/javascript">
-function registerHyCode(){
+/* 点击注册按钮 */
+function registerHyCode(btn){
+	var url = "<%=basePath%>hyManager/addHy.do";
+	var params = $("#add_hy_form").serialize();
+	$.post(url,params,function(data){
+		var obj = JSON.parse(result);
+		$(btn).alert(obj.msg)
+	});
+	
+	
 	
 }
+/* 获取城市列表 */
+function getCities(obj){
+	var citySelector =  $("#sign_in_cities");
+	$("option",citySelector).remove(); //清空原有的选项 
+	var url = "<%=basePath%>hyManager/getCities.do";
+	var params = {"provinceId":obj.value};
+	$.post(url,params,function(result){
+		var obj = JSON.parse(result);
+		if(obj.status != 0)	return;
+		$.each(obj.obj,function(index,item){
+			var option = "<option value='" + item['pkId'] + "'>" + item['areaName'] + "</option>";
+			citySelector.append(option);
+		});
+		
+	});
+}
+
 $("#subMarket").prev().addClass('active');/*一级  */
 $("#subMarket").addClass("in");
 $("#toSignIn").addClass('active');/* 二级 */

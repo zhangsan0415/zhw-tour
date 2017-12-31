@@ -65,7 +65,7 @@
 	</select>
 
 	<select id="selectJdManCode" parameterType="java.lang.String" resultType="java.lang.String">
-		SELECT HY_CODE FROM ZHW_MEM WHERE (HY_CODE=${hyCode} or TJ_MAN=#{hyCode}) and JH_STATUS = 0 ORDER BY KT_TIME DESC  LIMIT 1
+		SELECT HY_CODE FROM ZHW_MEM WHERE TJ_MAN=#{hyCode} and JH_STATUS = 0 ORDER BY KT_TIME DESC  LIMIT 1
 	</select>
 	
 	<select id="selectMemberInfoBytjMan" parameterType="java.lang.String" resultMap="BaseMap">

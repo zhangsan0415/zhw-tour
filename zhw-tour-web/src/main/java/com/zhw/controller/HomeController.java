@@ -125,8 +125,8 @@ public class HomeController {
 	//跳转到积分明细页面
 	@RequestMapping(value="/toScoreDetail.do")
 	public String toScoreDetail(HttpServletRequest request) {
-		String hyCode = ControllerUtils.getScoreInfo(request).getHyCode();
-		request.setAttribute("scoreList", homeService.queryScoreList(hyCode));
+//		String hyCode = ControllerUtils.getScoreInfo(request).getHyCode();
+//		request.setAttribute("scoreList", homeService.queryScoreList(hyCode));
 		return "scoreDetail";
 	}
 	
