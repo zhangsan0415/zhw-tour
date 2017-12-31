@@ -9,18 +9,14 @@ import org.springframework.stereotype.Service;
 
 import com.zhw.domain.MemberBankInfo;
 import com.zhw.domain.MemberInfo;
-import com.zhw.domain.MemberScoreInfo;
-import com.zhw.domain.MemberScoreInfoDetail;
 import com.zhw.domain.TourRegisterInfo;
 import com.zhw.mapper.MemberBankInfoMapper;
 import com.zhw.mapper.MemberInfoMapper;
-import com.zhw.mapper.MemberScoreInfoDetailMapper;
 import com.zhw.mapper.MemberScoreInfoMapper;
 import com.zhw.mapper.TourRegisterInfoMapper;
 import com.zhw.service.HomeService;
 import com.zhw.type.HyLevelEnum;
 import com.zhw.type.HyLevelScoreEnum;
-import com.zhw.type.IfBdCenterEnum;
 import com.zhw.type.JHStatusEnum;
 import com.zhw.utils.StringUtils;
 
@@ -46,12 +42,13 @@ public class HomeServiceImpl implements HomeService {
 	@Resource
 	private MemberScoreInfoMapper scoreMapper;
 	
-	@Resource
+//	@Resource
 	//private MemberScoreInfoDetailMapper scoreInfoMapper;
 	
     @Override
     public String getJDManHyCode(String hyCode) {
-        return memberInfoMapper.selectJdManCode(hyCode);
+    	String jdMan = memberInfoMapper.selectJdManCode(hyCode);
+        return StringUtils.isEmpty(jdMan)?hyCode:jdMan;
     }
 
 	@Override
@@ -92,9 +89,9 @@ public class HomeServiceImpl implements HomeService {
 		return tourMapper.queryTourInfo(hyCode);
 	}
 
-	@Override
+/*	@Override
 	public List<MemberScoreInfoDetail> queryScoreList(String hyCode) {
 		// TODO Auto-generated method stub
 		return scoreInfoMapper.queryScoreInfoByHyCode(hyCode);
-	}
+	}*/
 }
