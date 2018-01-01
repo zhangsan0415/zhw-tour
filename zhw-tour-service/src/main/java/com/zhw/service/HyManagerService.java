@@ -7,4 +7,6 @@ import com.zhw.response.BaseResult;
 public interface HyManagerService {
 	
 	BaseResult addHy(HyInfoPo infoPo,MemberInfo userInfo)throws Exception;
+	
+	BaseResult ktHy(String hyCode,String ktMan)throws Exception;
 }

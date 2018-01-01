@@ -212,11 +212,10 @@ function registerHyCode(btn){
 	var params = $("#add_hy_form").serialize();
 	$.post(url,params,function(data){
 		var obj = JSON.parse(data);
-		$(btn).alert(obj.msg)
+		Ewin.alert({message: obj.msg}).on(function(){
+						
+		});; 
 	});
-	
-	
-	
 }
 /* 获取城市列表 */
 function getCities(obj){

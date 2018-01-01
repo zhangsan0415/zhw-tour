@@ -33,6 +33,19 @@ public class HyManagerController {
 	@Resource
 	private AreaComponent component;
 	
+	@RequestMapping(value="/ktHy.do",method=RequestMethod.POST)
+	@ResponseBody
+	public BaseResult ktHy(String hyCode,HttpServletRequest request) {
+		try {
+			if(StringUtils.isEmpty(hyCode))	return BaseResult.failedInstance("会员编码为空！");
+			return managerService.ktHy(hyCode,ControllerUtils.getUserInfo(request).getHyCode());
+		}catch(Exception e) {
+			logger.error(StringUtils.putTogether("开通会异常，会员编号：",hyCode,",异常信息：",e.getMessage()),e);
+			return BaseResult.exceptionInstance();
+		}
+	};
+	
+	//获取省对应的城市
 	@RequestMapping(value="/getCities.do",method=RequestMethod.POST)
 	@ResponseBody
 	public BaseResult getCities(String provinceId) {

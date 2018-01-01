@@ -60,7 +60,7 @@ public class HomeServiceImpl implements HomeService {
 	@Override
 	public List<MemberInfo> queryHyInfoByStatus(String hyCode,int jhStatus) {
 	
-		List<MemberInfo> list = memberInfoMapper.selectMemberInfoByStatus(hyCode,jhStatus);
+		List<MemberInfo> list = memberInfoMapper.selectMemberInfoByTjManAndStatus(hyCode,jhStatus);
 		if(list ==null || list.size()==0)	return null;
 		this.setMoneyAndFlag(list);
 		return list;
