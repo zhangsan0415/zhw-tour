@@ -31,10 +31,13 @@
 	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
 	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
 	
+	<link rel="stylesheet" href="<%=basePath%>static/assets/css/bootstrapValidator.css"/>
+	
 	<script src="<%=basePath%>static/assets/scripts/jquery.min.js"></script>
 	<script src="<%=basePath%>static/assets/scripts/bootstrap.min.js"></script>
 	<script src="<%=basePath%>static/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 	<script src="<%=basePath%>static/assets/scripts/klorofil-common.js"></script>
+	<script type="text/javascript" src="<%=basePath%>static/assets/scripts/bootstrapValidator.js"></script>
 	
 </head>
 

@@ -47,14 +47,17 @@
 									<label for="signin-email" class="control-label sr-only">会员编号</label>
 									<input type="text" name="hyCode" class="form-control" id="hy_code" value="" placeholder="会员编号" onblur="checkUserCode(this)"/>
 								</div>
+								
 								<div class="form-group">
 									<label for="signin-password" class="control-label sr-only">密码</label>
 									<input type="password" name="password" class="form-control" id="signin-password" value="" placeholder="密码">
 								</div>
-								<div class="form-group">
+								 
+								<div class="form-group ">
 									<label for="signin-password" class="control-label sr-only">验证码</label>
 									<input type="text" name="checkCode" class="form-control code-input" id="signin-code" value="" placeholder="验证码">
-									<img src="<%=basePath%>login/createCheckCode.do?t=Math.random()" alt="" class="codePng" alt="验证码" title="点击刷新" onclick="imageRefresh(this)"/>
+									
+					<img src="<%=basePath%>login/createCheckCode.do?t=Math.random()" alt="" class="codePng" alt="验证码" title="点击刷新" onclick="imageRefresh(this)"/>			
 								</div>
 								<button type="button" onclick="doLogin()" class="btn btn-primary btn-lg btn-block">登录</button>
 								<div class="bottom">
@@ -120,7 +123,7 @@
 	}
 	
 	$(document).ready(function() {
-		$('#defaultForm').bootstrapValidator({
+		$('#login_form').bootstrapValidator({
 			message: '填写不正确',
 			feedbackIcons: {
 				valid: 'glyphicon glyphicon-ok',
@@ -128,19 +131,15 @@
 				validating: 'glyphicon glyphicon-refresh'
 			},
 			fields: {
-			memberCode: {
-				message: '无效会员编号',
-				validators: {
-					notEmpty: {
-						message: '会员编号不能为空'
-					},
-				<%--stringLength: {--%>
-					<%--min: 6,--%>
-					<%--max: 30,--%>
-					<%--message: '用户名长度在6-30之间'--%>
-					<%--}--%>
-				}
+				hyCode:{
+					message:'登录名',
+					validators:{
+						notEmpty:{
+							message:'登录名不能为空'
+						}
+					}
 				},
+		
 				password: {
 					validators: {
 					notEmpty: {
@@ -148,7 +147,7 @@
 						}
 					}
 				},
-				code:{
+				checkCode:{
 					validators:{
 						notEmpty:{
 							messsage:'验证码不能为空'

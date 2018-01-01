@@ -79,7 +79,23 @@ public class HyManagerServiceImpl implements HyManagerService {
 		scoreInfo.setPdOverArea(ZYAreaEnum.LEFT_AREA.getTypeCode());
 		scoreInfo.setGxTime(currentDate);
 		
-		return this.saveHyInfo(userInfo,bankInfo,scoreInfo,currentDate);
+		return this.registerHyInfo(userInfo,bankInfo,scoreInfo);
+	}
+	
+	@Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
+	public BaseResult registerHyInfo(MemberInfo userInfo,MemberBankInfo bankInfo,MemberScoreInfo scoreInfo) throws Exception{
+		//判断是否已存在会员编号，如果存在，保存失败
+		if(this.isExist(userInfo.getHyCode()))	return BaseResult.failedInstance("会员编号已存在，请重新输入！");
+		
+		//插入会员表、会员银行信息表、积分表
+		int userResult = infoMapper.insertNewHyInfo(userInfo);
+		int bankResult = bankInfoMapper.insertNewBankInfo(bankInfo);
+		int scoreResult = scoreInfoMapper.insertNewScoreInfo(scoreInfo);
+				
+		if(userResult == 0 || bankResult == 0 || scoreResult == 0) throw new Exception(StringUtils.putTogether("更新数据库异常：",userInfo.getHyCode()));
+		
+		return BaseResult.sucessInstance().setMsg("注册会员成功！");
+		
 	}
 	
 	//判断新添加会员编码是否存在
@@ -89,16 +105,6 @@ public class HyManagerServiceImpl implements HyManagerService {
 	
 	@Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
 	public BaseResult saveHyInfo(MemberInfo userInfo,MemberBankInfo bankInfo,MemberScoreInfo scoreInfo,String currentDate)throws Exception{
-		//判断是否已存在会员编号，如果存在，保存失败
-		if(this.isExist(userInfo.getHyCode()))	return BaseResult.failedInstance("会员编号已存在，请重新输入！");
-		
-		//插入会员表、会员银行信息表、积分表
-		int userResult = infoMapper.insertNewHyInfo(userInfo);
-		int bankResult = bankInfoMapper.insertNewBankInfo(bankInfo);
-		int scoreResult = scoreInfoMapper.insertNewScoreInfo(scoreInfo);
-		
-		if(userResult == 0 || bankResult == 0 || scoreResult == 0) throw new Exception(StringUtils.putTogether("更新数据库异常：",userInfo.getHyCode()));
-		
 		//获取推荐人积分
 		MemberScoreInfo tjManScoreInfo = scoreInfoMapper.selectTjScoreInfoByTjCode(userInfo.getTjMan());
 		tjManScoreInfo.setTjCount(tjManScoreInfo.getTjCount()+1);
