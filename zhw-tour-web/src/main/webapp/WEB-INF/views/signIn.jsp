@@ -211,7 +211,7 @@ function registerHyCode(btn){
 	var url = "<%=basePath%>hyManager/addHy.do";
 	var params = $("#add_hy_form").serialize();
 	$.post(url,params,function(data){
-		var obj = JSON.parse(result);
+		var obj = JSON.parse(data);
 		$(btn).alert(obj.msg)
 	});
 	

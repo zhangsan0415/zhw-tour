@@ -28,6 +28,8 @@
 	<script type="text/javascript" src="<%=basePath%>static/assets/scripts/jquery.min.js"></script>
 	<script type="text/javascript" src="<%=basePath%>static/assets/scripts/bootstrap.min.js"></script>
 	<script type="text/javascript" src="<%=basePath%>static/assets/scripts/bootstrapValidator.js"></script>
+	
+	<script src="<%=basePath%>static/assets/scripts/commonUtils.js"></script>
 	</head>
 	<body>
 
@@ -45,7 +47,7 @@
 							<form id="login_form" class="form-auth-small" method="post" action="#">
 								<div class="form-group">
 									<label for="signin-email" class="control-label sr-only">会员编号</label>
-									<input type="text" name="hyCode" class="form-control" id="hy_code" value="" placeholder="会员编号" onblur="checkUserCode(this)"/>
+									<input type="text" name="hyCode" class="form-control" id="hy_code" placeholder="会员编号" onblur="checkUserCode(this)"/>
 								</div>
 								
 								<div class="form-group">
@@ -80,6 +82,32 @@
 	</div>
 	<!-- END WRAPPER -->
 
+
+	<!-- system modal start -->
+	<div id="zhw-tour-alert" class="modal">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+					</button>
+					<h5 class="modal-title">
+						<i class="fa fa-exclamation-circle"></i> [Title]
+					</h5>
+				</div>
+				<div class="modal-body small">
+					<p>[Message]</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary zhw-ok"
+						data-dismiss="modal">[BtnOk]</button>
+					<button type="button" class="btn btn-default zhw-cancel"
+						data-dismiss="modal">[BtnCancel]</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- system modal end -->
 </body>
 
 <script type="text/javascript">
@@ -95,8 +123,10 @@
 		var params = {"hyCode":hyCode,"password":pwd,"checkCode":checkCode};
 		$.post(url,params,function(result){
 			var obj = JSON.parse(result);
-			if(obj.status != 0){ alert(obj.msg == null ? "系统繁忙，请稍候重试！":obj.msg);  	return;}
-			
+			if(obj.status != 0){ 
+				Ewin.alert({msg: obj.msg == null ? "系统繁忙，请稍候重试！":obj.msg}); 
+				return;
+			}
 			$(location).attr('href', '<%=basePath%>login/toHome.do');
 		});
 	}
@@ -108,7 +138,8 @@
 		var url="<%=basePath%>login/checkHyCode.do";
 		$.post(url,{"hyCode":value},function(result){
 			var obj = JSON.parse(result);
-			if(obj.status != 0) alert(obj.msg == null ? "系统繁忙，请稍候重试！":obj.msg);
+			if(obj.status != 0) 
+				Ewin.alert({message: obj.msg == null ? "系统繁忙，请稍候重试！":obj.msg}); 
 		});
 	}
 	
@@ -161,3 +192,4 @@
 
 
 </html>
+

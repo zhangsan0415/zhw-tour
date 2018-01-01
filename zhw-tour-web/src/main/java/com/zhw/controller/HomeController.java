@@ -75,8 +75,7 @@ public class HomeController {
 	public String toUnActiveHyList(HttpServletRequest request) {
 		//未开通会员信息
 		String hyCode = ControllerUtils.getUserInfo(request).getHyCode();
-		int jhStatus = JHStatusEnum.UNACTIVED.getTypeCode();
-		request.setAttribute("noOpenHyList",homeService.queryHyInfoByStatus(hyCode,jhStatus));
+		request.setAttribute("noOpenHyList",homeService.queryHyInfoByStatus(hyCode,JHStatusEnum.UNACTIVED.getTypeCode()));
 		return "unActiveHyList";
 	}
 	
