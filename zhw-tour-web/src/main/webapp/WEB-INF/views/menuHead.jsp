@@ -39,7 +39,7 @@
 	<script src="<%=basePath%>static/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 	<script src="<%=basePath%>static/assets/scripts/klorofil-common.js"></script>
 	<script type="text/javascript" src="<%=basePath%>static/assets/scripts/bootstrapValidator.js"></script>
-	<script src="<%=basePath%>static/assets/scripts/paginator.js"></script> 
+	<script src="<%=basePath%>static/assets/scripts/paginator.js"></script>
 </head>
 
 <body>

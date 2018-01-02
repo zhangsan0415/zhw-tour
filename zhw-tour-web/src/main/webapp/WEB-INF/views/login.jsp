@@ -129,7 +129,7 @@
 				valid: 'glyphicon glyphicon-ok',
 				invalid: 'glyphicon glyphicon-remove',
 				validating: 'glyphicon glyphicon-refresh'
-			}, 
+			},
 			fields: {
 				hyCode:{
 					message:'登录名',
