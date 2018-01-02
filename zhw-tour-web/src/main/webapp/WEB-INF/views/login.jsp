@@ -196,6 +196,9 @@
 			}
 		});
 	 });
+	
+	 Ewin.confirm({ message: "确认要删除选择的数据吗？" }).on(function (e) { if (!e) {
+		  return; } });
 </script>
 
 
