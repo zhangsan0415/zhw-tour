@@ -45,7 +45,7 @@
 							<form id="login_form" class="form-auth-small" method="post" action="#">
 								<div class="form-group">
 									<label for="signin-email" class="control-label sr-only">会员编号</label>
-									<input type="text" name="hyCode" class="form-control" id="hy_code" value="" placeholder="会员编号" onblur="checkUserCode(this)"/>
+									<input type="text" name="hyCode" class="form-control" id="hy_code" value="" placeholder="会员编号" /><!-- onblur="checkUserCode(this)" -->
 								</div>
 								
 								<div class="form-group">
@@ -136,7 +136,13 @@
 					validators:{
 						notEmpty:{
 							message:'登录名不能为空'
-						}
+						},
+						 remote: {
+		                        type: 'POST',
+		                        url: "<%=basePath%>login/checkHyCode.do",
+		                        delay:1000,
+		                        message: "会员编码不存在！"
+		                    },
 					}
 				},
 		

@@ -6009,14 +6009,18 @@ if (typeof jQuery === 'undefined') {
                     data: data
                 });
                 xhr.then(function(response) {
-                    response.valid = response.valid === true || response.valid === 'true';
+                	 console.log(response)
+                   // response.valid = response.valid === true || response.valid === 'true';
+                	 response.sucess = response.sucess === true || response.sucess === 'true';
                     dfd.resolve($field, 'remote', response);
+                    console.log(dfd)
+                    
                 });
 
                 dfd.fail(function() {
                     xhr.abort();
                 });
-
+               
                 return dfd;
             }
             
