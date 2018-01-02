@@ -211,12 +211,11 @@ function registerHyCode(btn){
 	var url = "<%=basePath%>hyManager/addHy.do";
 	var params = $("#add_hy_form").serialize();
 	$.post(url,params,function(data){
-		var obj = JSON.parse(result);
-		$(btn).alert(obj.msg)
+		var obj = JSON.parse(data);
+		Ewin.alert({message: obj.msg}).on(function(){
+						
+		});; 
 	});
-	
-	
-	
 }
 /* 获取城市列表 */
 function getCities(obj){
