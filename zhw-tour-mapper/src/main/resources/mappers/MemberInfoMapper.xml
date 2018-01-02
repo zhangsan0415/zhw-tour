@@ -60,7 +60,7 @@
 	where HY_CODE = #{hyCode} and JH_STATUS = 0
 	</update>
 	
-	<select id="selectMemberInfoByTjManAndStatus" resultMap="BaseMap">
+	<select id="selectMemberInfoByKtManAndStatus" resultMap="BaseMap">
 		SELECT <include refid="BaseColumn"/> FROM ZHW_MEM WHERE  JH_STATUS = #{jhStatus,jdbcType=INTEGER} and KT_MAN=#{hyCode} 
 	</select>
 

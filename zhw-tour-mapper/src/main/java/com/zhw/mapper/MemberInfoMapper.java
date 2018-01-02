@@ -24,7 +24,7 @@ public interface MemberInfoMapper {
 	int modifyInfo(@Param("hyCode")String hyCode,@Param("sjMobile")String phone,@Param("yxEmail")String email,@Param("sfzCardCode")String sfzCardCode);
 
 	//根据开通状态查询会员信息
-	List<MemberInfo> selectMemberInfoByTjManAndStatus(@Param("hyCode")String hyCode,@Param("jhStatus")int jhStatus);
+	List<MemberInfo> selectMemberInfoByKtManAndStatus(@Param("hyCode")String hyCode,@Param("jhStatus")int jhStatus);
 
 	//查询接点人工号
 	String selectJdManCode(String hyCode);
@@ -34,4 +34,7 @@ public interface MemberInfoMapper {
 	
 	//根据会员编码查询会员信息
 	MemberInfo selectHyInfoByCode(String hyCode);
+
+	//修改是否报单中心状态为已修改
+	int updateIfBdCenter(String hyCode);
 }

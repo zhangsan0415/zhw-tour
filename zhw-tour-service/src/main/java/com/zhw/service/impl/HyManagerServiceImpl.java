@@ -105,7 +105,7 @@ public class HyManagerServiceImpl implements HyManagerService {
 		MemberInfo hyInfo = infoMapper.selectHyInfoByCode(hyCode);
 		if(hyInfo == null)	return BaseResult.failedInstance("会员不存在！");
 		
-		if(JHStatusEnum.isActived(hyInfo.getJhStatus()))	return BaseResult.failedInstance("已激活的会员不能再次激活！");
+		if(JHStatusEnum.isActived(hyInfo.getJhStatus()))	return BaseResult.failedInstance("已开通的会员不能再次开通！");
 		
 		String currentDate = DateUtils.formatCurrentDate();
 		BigDecimal bdScore = HyLevelScoreEnum.getValueByCode(hyInfo.getHyLevel());
@@ -176,8 +176,23 @@ public class HyManagerServiceImpl implements HyManagerService {
 		}
 		return BaseResult.sucessInstance().setMsg("注册会员成功！");
 	}
-	
-	
+
+	@Override
+	public BaseResult ktBdCenter(String hyCode) throws Exception {
+		MemberInfo hyInfo = infoMapper.selectHyInfoByCode(hyCode);
+
+		if(hyInfo == null)	return BaseResult.failedInstance("会员不存在！");
+		if(!JHStatusEnum.isActived(hyInfo.getJhStatus()))	return BaseResult.failedInstance("未开通的会员不能开通报单中心！");
+
+		String currentTime = DateUtils.formatCurrentDate();
+		hyInfo.setIfBdCenter(IfBdCenterEnum.Y_BD_CENTER.getTypeCode());
+		hyInfo.setXgTime(currentTime);
+
+//		int result = infoMapper
+		return null;
+	}
+
+
 	//判断新添加会员编码是否存在
 	private boolean isExist(String hyCode) {
 		return infoMapper.selectCountByHyCode(hyCode)>0;
