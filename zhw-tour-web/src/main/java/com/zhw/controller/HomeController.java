@@ -6,9 +6,11 @@ import javax.servlet.http.HttpServletRequest;
 import com.zhw.component.AreaComponent;
 import com.zhw.domain.Area;
 import com.zhw.service.HomeService;
+import com.zhw.service.ScoreService;
 import com.zhw.type.BankEnum;
-
 import com.zhw.type.JHStatusEnum;
+import com.zhw.type.ZZTypeEnum;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,6 +25,9 @@ public class HomeController {
 	
 	@Resource
 	private AreaComponent areaComponent;
+	
+	@Resource
+	private ScoreService scoreService;
 
 	//跳转修改资料页面
 	@RequestMapping(value="/toModifyHyInfo.do")
@@ -124,14 +129,18 @@ public class HomeController {
 	//跳转到积分明细页面
 	@RequestMapping(value="/toScoreDetail.do")
 	public String toScoreDetail(HttpServletRequest request) {
-//		String hyCode = ControllerUtils.getScoreInfo(request).getHyCode();
-//		request.setAttribute("scoreList", homeService.queryScoreList(hyCode));
+		String hyCode = ControllerUtils.getScoreInfo(request).getHyCode();
+		request.setAttribute("scoreList", homeService.queryScoreList(hyCode));
 		return "scoreDetail";
 	}
 	
 	//跳转到积分互转页面
 	@RequestMapping(value="/toScoreTransfer.do")
-	public String toScoreTransfer() {
+	public String toScoreTransfer(HttpServletRequest request) {
+		//向前台输出支持的转换关系
+		request.setAttribute("zzTypeList", ZZTypeEnum.values());
+		String hyCode = ControllerUtils.getUserInfo(request).getHyCode();
+		request.setAttribute("zzList", scoreService.queryInfo(hyCode));
 		return "scoreTransfer";
 	}
 	

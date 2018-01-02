@@ -17,7 +17,7 @@ public class MemberInfo {
 	
 	private String jdMan;//接点人
 	
-	private String hyCode;//会员编号
+	private String hyCode;//会员编号（贷方会员编号）
 	
 	private int zyArea; //所属区域，左区或者右区，0为左区，1为右区
 	
@@ -46,7 +46,7 @@ public class MemberInfo {
 	private int ifBdCenter;//是否为报单中心，0为是，1为否
 
 	private String ktMan;//开通人
-
+	
 	/**
 	 * 如下为用于显示的字段
 	 */

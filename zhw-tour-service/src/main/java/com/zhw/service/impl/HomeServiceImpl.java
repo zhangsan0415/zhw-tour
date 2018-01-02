@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
 
 import com.zhw.domain.MemberBankInfo;
 import com.zhw.domain.MemberInfo;
+import com.zhw.domain.MemberScoreInfoDetail;
 import com.zhw.domain.TourRegisterInfo;
 import com.zhw.mapper.MemberBankInfoMapper;
 import com.zhw.mapper.MemberInfoMapper;
+import com.zhw.mapper.MemberScoreInfoDetailMapper;
 import com.zhw.mapper.MemberScoreInfoMapper;
 import com.zhw.mapper.TourRegisterInfoMapper;
 import com.zhw.service.HomeService;
@@ -42,8 +44,8 @@ public class HomeServiceImpl implements HomeService {
 	@Resource
 	private MemberScoreInfoMapper scoreMapper;
 	
-//	@Resource
-	//private MemberScoreInfoDetailMapper scoreInfoMapper;
+	@Resource
+	private MemberScoreInfoDetailMapper scoreInfoMapper;
 	
     @Override
     public String getJDManHyCode(String hyCode) {
@@ -88,9 +90,9 @@ public class HomeServiceImpl implements HomeService {
 		return tourMapper.queryTourInfo(hyCode);
 	}
 
-/*	@Override
+	@Override
 	public List<MemberScoreInfoDetail> queryScoreList(String hyCode) {
 		// TODO Auto-generated method stub
 		return scoreInfoMapper.queryScoreInfoByHyCode(hyCode);
-	}*/
+	}
 }

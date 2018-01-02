@@ -1,5 +1,7 @@
 package com.zhw.mapper;
 
+import java.util.List;
+
 import com.zhw.domain.MemberScoreInfo;
 
 public interface MemberScoreInfoMapper {
@@ -14,4 +16,6 @@ public interface MemberScoreInfoMapper {
 	
 	//更新会员积分信息
 	int updateScoreInfo(MemberScoreInfo scoreInfo);
+	//查询积分互转记录
+	List<MemberScoreInfo> queryInfoByHycode(String hycode);
 }

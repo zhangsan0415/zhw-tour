@@ -21,9 +21,12 @@
 		<result property="ifAdmin" column="IF_ADMIN" />
 		<result property="ifBdCenter" column="if_bd_center" />
 		<result property="ktMan" column="KT_MAN" />
+		
+		
 	</resultMap>
 	
-	<sql id="AddColumn">FW_CENTER,TJ_MAN,JD_MAN,HY_CODE,ZY_AREA,YJ_PWD,EJ_PWD,SFZ_CARD_CODE,YX_EMAIL,SJ_MOBILE,JB_LEVEL,ZC_TIME,JH_STATUS,KT_TIME,XG_TIME,IF_ADMIN,if_bd_center,KT_MAN</sql>
+	<sql id="AddColumn">FW_CENTER,TJ_MAN,JD_MAN,HY_CODE,ZY_AREA,YJ_PWD,EJ_PWD,SFZ_CARD_CODE,YX_EMAIL,SJ_MOBILE,JB_LEVEL,ZC_TIME,JH_STATUS,KT_TIME,XG_TIME,IF_ADMIN,
+	if_bd_center,KT_MAN</sql>
 	<sql id="BaseColumn">
 		PK_ID,<include refid="AddColumn"/>
 	</sql>
