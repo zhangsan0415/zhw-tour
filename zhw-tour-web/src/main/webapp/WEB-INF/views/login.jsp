@@ -141,7 +141,7 @@
 		                        type: 'POST',
 		                        url: "<%=basePath%>login/checkHyCode.do",
 		                        delay:1000,
-		                        message: "会员编码不存在！"
+		                        message: "会员编码不存在！ "
 		                    },
 					}
 				},
