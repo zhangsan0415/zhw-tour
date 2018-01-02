@@ -33,12 +33,13 @@
 	
 	<link rel="stylesheet" href="<%=basePath%>static/assets/css/bootstrapValidator.css"/>
 	
-	<script src="<%=basePath%>static/assets/scripts/jquery.min.js"></script>
+	<%-- <script src="<%=basePath%>static/assets/scripts/jquery.min.js"></script> --%>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 	<script src="<%=basePath%>static/assets/scripts/bootstrap.min.js"></script>
 	<script src="<%=basePath%>static/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 	<script src="<%=basePath%>static/assets/scripts/klorofil-common.js"></script>
 	<script type="text/javascript" src="<%=basePath%>static/assets/scripts/bootstrapValidator.js"></script>
-	
+	<script src="<%=basePath%>static/assets/scripts/paginator.js"></script>
 </head>
 
 <body>

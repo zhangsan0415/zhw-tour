@@ -61,7 +61,7 @@
 <script>
 $("#toNewsCenterAdmin").addClass("in");
 /* cover */
-$("#add").bind('click',function (){
+$("#add").bind('click',function (){ 
 	 $('.cover').show();
 	 $('.panel-cover').show();
 })
