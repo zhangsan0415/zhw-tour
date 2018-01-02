@@ -17,7 +17,7 @@ public class BaseResult {
 
     private Object obj;
 
-    private BaseResult(int status){
+    BaseResult(int status){
         this.status = status;
     }
 

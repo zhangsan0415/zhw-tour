@@ -82,34 +82,6 @@
 			</div>
 		</div>
 	</div>
-	<!-- END WRAPPER -->
-
-
-	<!-- system modal start -->
-	<div id="zhw-tour-alert" class="modal">
-		<div class="modal-dialog modal-sm">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">
-						<span aria-hidden="true">×</span><span class="sr-only">Close</span>
-					</button>
-					<h5 class="modal-title">
-						<i class="fa fa-exclamation-circle"></i> [Title]
-					</h5>
-				</div>
-				<div class="modal-body small">
-					<p>[Message]</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary zhw-ok"
-						data-dismiss="modal">[BtnOk]</button>
-					<button type="button" class="btn btn-default zhw-cancel"
-						data-dismiss="modal">[BtnCancel]</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- system modal end -->
 </body>
 
 <script type="text/javascript">
@@ -197,8 +169,8 @@
 		});
 	 });
 	
-	 Ewin.confirm({ message: "确认要删除选择的数据吗？" }).on(function (e) { if (!e) {
-		  return; } });
+	/*  Ewin.confirm({ message: "确认要删除选择的数据吗？" }).on(function (e) { if (!e) {
+		  return; } });  */
 </script>
 
 

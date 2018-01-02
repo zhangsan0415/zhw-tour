@@ -70,14 +70,10 @@ var url = "<%=basePath%>person/doModifyPwd.do";
 var params ={"hyCode":hyCode};
 $.post(url,params,function(result){
 	var obj = JSON.parse(result);
-	if(obj.status != 0){
+	if(obj.status != 0)
 		alert(obj.msg == null ? "系统繁忙，请稍候重试！":obj.msg);  	return;
-	}else{
-	
-		 //清空数据
-		 document.getElementById("hyCode").reset();
-	}
-	 
+	//清空数据
+	document.getElementById("hyCode").reset();
 }); 
 $("#subServer").prev().addClass('active');/*一级  */
 $("#subServer").addClass("in");

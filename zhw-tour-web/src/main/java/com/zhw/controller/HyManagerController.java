@@ -33,6 +33,15 @@ public class HyManagerController {
 	@Resource
 	private AreaComponent component;
 
+	@RequestMapping(value="/getActivedList.do",method=RequestMethod.POST)
+	@ResponseBody
+	public BaseResult getActivedList(String hyCode) {
+		try {}catch(Exception e) {
+			
+		}
+		return null;
+	}
+	
 	@RequestMapping(value="/ktBdCenter.do",method=RequestMethod.POST)
 	@ResponseBody
 	public BaseResult ktBdCenter(String hyCode){
