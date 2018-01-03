@@ -51,13 +51,12 @@ public class LoginController {
 	@RequestMapping(value="/doLogin.do",method= RequestMethod.POST)
 	@ResponseBody
 	public BaseResult doLogin(String hyCode, String password, String checkCode, HttpServletRequest request){
-		if(StringUtils.isEmpty(hyCode,password,checkCode)) return BaseResult.conditionErrorInstance();
-
-		String valideCode = (String) request.getSession().getAttribute(CHECK_CODE_KEY);
-		request.getSession().removeAttribute(CHECK_CODE_KEY);
-		if(!StringUtils.isEqualIgnoreCase(valideCode,checkCode)) return BaseResult.failedInstance("验证码错误！");
-
 		try {
+			if(StringUtils.isEmpty(hyCode,password,checkCode)) return BaseResult.conditionErrorInstance();
+
+			String valideCode = (String) request.getSession().getAttribute(CHECK_CODE_KEY);
+			request.getSession().removeAttribute(CHECK_CODE_KEY);
+			if(!StringUtils.isEqualIgnoreCase(valideCode,checkCode)) return BaseResult.failedInstance("验证码错误！");
 			MemberInfo check = loginService.checkLogin(hyCode,password);
 			if(check == null) return BaseResult.failedInstance("密码错误！");
 			

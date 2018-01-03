@@ -204,7 +204,7 @@
 						 
 						 table.html(tHead+tBody);
 						 
-						 var totalPages = data.totalPages; //获取总页数
+						 var totalPages = data.totalPages==0?1:data.totalPages; //获取总页数
 						 var currentPage = data.currentPage; //得到currentPage
 						 var pageSize = data.pageSize; //每页显示多少条
 						 

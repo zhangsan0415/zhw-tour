@@ -96,7 +96,7 @@
 		var url = "<%=basePath%>login/doLogin.do";
 		var params = {"hyCode":hyCode,"password":pwd,"checkCode":checkCode};
 		$.post(url,params,function(result){
-			var obj = JSON.parse(result);
+			var obj = JSON.parse(result); 
 			if(obj.status != 0){ 
 				Ewin.alert({msg: obj.msg == null ? "系统繁忙，请稍候重试！":obj.msg}); 
 				return;
@@ -110,8 +110,8 @@
 		var value = input.value;
 		if(isEmpty(value))	return;
 		var url="<%=basePath%>login/checkHyCode.do";
-		$.post(url,{"hyCode":value},function(result){
-			var obj = JSON.parse(result);
+		$.post(url,{"hyCode":value.trim()},function(result){
+			var obj = JSON.parse(result); 
 			if(obj.status != 0) 
 				Ewin.alert({message: obj.msg == null ? "系统繁忙，请稍候重试！":obj.msg}); 
 		});
