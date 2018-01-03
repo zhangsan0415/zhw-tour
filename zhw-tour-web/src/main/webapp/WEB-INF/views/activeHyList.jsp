@@ -3,9 +3,7 @@
 <!-- MAIN -->
 <div class="main">
 	<!-- MAIN CONTENT -->
-
 		<!--lock end-->
-
 		<div class="panel panel-headline demo-icons">
 			<div class="panel-heading">
 				<h3 class="panel-title">已开通会员</h3>
