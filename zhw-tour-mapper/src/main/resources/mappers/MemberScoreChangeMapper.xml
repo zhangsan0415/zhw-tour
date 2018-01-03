@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhw.mapper.MemberScoreChangeMapper">
+	<resultMap type="com.zhw.domain.MemberScoreChangeInfo" id="BaseMap">
+		<id property="pkId" column="PK_ID" />
+		
+		<result property="hyCode" column="HY_CODE" />
+		<result property="dfCode" column="DF_CODE" />
+		<result property="zzType" column="ZZ_TYPE" />
+		<result property="zzMoney" column="ZZ_MONEY" />
+		<result property="zzTime" column="ZZ_TIME" />
+		<result property="zzStatus" column="ZZ_STATUS" />
+		<result property="txStatus" column="TX_STATUS" />
+		<result property="khCardCode" column="KH_CARD_CODE" />
+	</resultMap>
+	
+	<sql id="BaseColumn">
+		PK_ID,HY_CODE,DF_CODE,ZZ_TYPE,ZZ_MONEY,ZZ_TIME,ZZ_STATUS,TX_STATUS
+	</sql>
+	<!-- 积分互转记录/积分提现记录 -->
+	<select id="queryInfoByHycode" resultMap="BaseMap">
+	select a.*,b.KH_CARD_CODE from ZHW_SCORE_CHANGE a JOIN ZHW_MEM_BANK b ON a.HY_CODE = b.HY_CODE where a.HY_CODE=#{hyCode} or a.DF_CODE=#{hyCode} and a.ZZ_STATUS=#{zzStatus}
+	</select>
+	<insert id="insertScoreInfo" parameterType="com.zhw.domain.MemberScoreChangeInfo">
+		INSERT INTO ZHW_SCORE_CHANGE(<include refid="BaseColumn"/>)
+		VALUES (#{pkId},#{hyCode,jdbcType=VARCHAR},#{dfCode,jdbcType=VARCHAR},#{zzType,jdbcType=VARCHAR},#{zzMoney,jdbcType=DECIMAL},sysdate()
+		,#{zzStatus,jdbcType=INTEGER},#{txStatus,jdbcType=VARCHAR})
+	</insert>
+</mapper>

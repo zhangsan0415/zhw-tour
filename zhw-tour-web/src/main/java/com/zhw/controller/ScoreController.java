@@ -10,7 +10,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.zhw.domain.MemberInfo;
+import com.zhw.domain.MemberScoreChangeInfo;
 import com.zhw.domain.MemberScoreInfo;
 import com.zhw.response.BaseResult;
 import com.zhw.service.ScoreService;
@@ -38,27 +41,31 @@ public class ScoreController {
 	 * @return
 	 */
 	@RequestMapping(value="/zzScore.do",method= RequestMethod.POST)
-	public BaseResult traferScore(String dfCode,String type,BigDecimal money,HttpServletRequest request){
+	@ResponseBody
+	public BaseResult traferScore(String zzType,String dfCode,BigDecimal zzMoney,HttpServletRequest request){
 		try {
-			String hyCode = ControllerUtils.getUserInfo(request).getHyCode();//当前登录人为贷方
+//			String hyCode = ControllerUtils.getUserInfo(request).getHyCode();//当前登录人为借方
 			//验证参数
-			BaseResult result =checkParams(dfCode,type,money);
+			BaseResult result =checkParams(dfCode,zzType,zzMoney);
 			if (result.isFailed()) {
 				return BaseResult.conditionErrorInstance();
 			}
 			MemberScoreInfo info = ControllerUtils.getScoreInfo(request);
-			info.setDfCode(dfCode);
-			info.setZzType(type);
-			info.setZzMoney(money);
-			MemberScoreInfo scoreInfo =scoreService.zzScore(info);
-			if(scoreInfo == null) return BaseResult.exceptionInstance();
-			//成功后，设置seesion信息
-//			info.setBdScore(scoreInfo.getBdScore());
-//			info.setXjScore(scoreInfo.getXjScore());
-//			info.setGwScore(scoreInfo.getGwScore());
-//			info.setJjScore(scoreInfo.getJjScore());
-//			info.setLyScore(scoreInfo.getLyScore());
-			ControllerUtils.setScoreInfo(request, scoreInfo);
+			MemberScoreChangeInfo scoreInfo = new MemberScoreChangeInfo();
+			if(!dfCode.equals("")&&dfCode!=null)
+			{
+				scoreInfo.setDfCode(dfCode);
+			}else{
+				scoreInfo.setDfCode(info.getHyCode());//积分之间的互转，贷方直接是当前登录人
+			}
+			scoreInfo.setZzType(zzType);
+			scoreInfo.setZzMoney(zzMoney);
+			scoreInfo.setHyCode(info.getHyCode());
+			scoreInfo.setZzStatus(1);//操作状态，积分互转
+			MemberScoreInfo scoreInfos =scoreService.zzScore(info,scoreInfo);
+			if(scoreInfos == null) return BaseResult.exceptionInstance();
+			//成功后，设置session信息
+			ControllerUtils.setScoreInfo(request, scoreInfos);
 			return BaseResult.sucessInstance().setMsg("操作成功！") ;
 		} catch (Exception e) {
 			logger.error("积分互转失败"+e);
@@ -66,6 +73,41 @@ public class ScoreController {
 		}
 		
 	}
+	
+/*
+	 * 积分提现
+	 * @param type 提现类型
+	 * @param money 提现金额
+	 * @return
+	 */
+	@RequestMapping(value="/withdrawScore",method= RequestMethod.POST)
+	@ResponseBody
+	public BaseResult withdrawScore(String type,BigDecimal money,HttpServletRequest request){
+		try {
+			if(StringUtils.isEmpty(type)|| money == null)return BaseResult.conditionErrorInstance();
+			MemberScoreInfo info = ControllerUtils.getScoreInfo(request);
+			MemberScoreChangeInfo scoreInfo = new MemberScoreChangeInfo();
+			scoreInfo.setZzType(type);
+			scoreInfo.setZzMoney(money);
+			scoreInfo.setHyCode(info.getHyCode());
+			scoreInfo.setZzStatus(0);
+			MemberScoreInfo scoreInfos;
+	
+			scoreInfos = scoreService.withdrawScore(info,scoreInfo);
+			if(scoreInfos == null) return BaseResult.exceptionInstance();
+			//成功后，设置seesion信息
+			ControllerUtils.setScoreInfo(request, scoreInfos);
+			return BaseResult.sucessInstance().setMsg("操作成功！") ;
+		} catch (Exception e) {
+			logger.error("积分提现失败"+e);
+			return BaseResult.exceptionInstance();
+		}
+		
+	
+	}
+	
+	
+	
 	private BaseResult checkParams(String dfCode, String type, BigDecimal money) {
 		if(!StringUtils.isEmpty(type)){
 			if("1010".equals(type)){

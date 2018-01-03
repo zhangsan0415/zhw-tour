@@ -1,8 +1,8 @@
 package com.zhw.service;
 
-import java.math.BigDecimal;
 import java.util.List;
 
+import com.zhw.domain.MemberScoreChangeInfo;
 import com.zhw.domain.MemberScoreInfo;
 
 public interface ScoreService {
@@ -12,7 +12,7 @@ public interface ScoreService {
 	 * @param hyCode
 	 * @return
 	 */
-	List<MemberScoreInfo> queryInfo(String hyCode);
+	List<MemberScoreChangeInfo> queryInfo(String hyCode,int status);
 	
 	/**
 	 * 确认转账（积分互转）
@@ -22,5 +22,14 @@ public interface ScoreService {
 	 * @param money 金额
 	 * @return
 	 */
-	MemberScoreInfo zzScore(MemberScoreInfo info)throws Exception;
+	MemberScoreInfo zzScore(MemberScoreInfo info,MemberScoreChangeInfo scoreInfo)throws Exception;
+	
+	/**
+	 * 积分提现
+	 * @param info 积分明细实体类
+	 * @param scoreInfo 积分日志实体类
+	 * @return
+	 * @throws Exception
+	 */
+	MemberScoreInfo withdrawScore(MemberScoreInfo info,MemberScoreChangeInfo scoreInfo)throws Exception;
 }

@@ -8,41 +8,44 @@
 		<div class="container-fluid panel">
 			<div class="profile-info ">
 				<h4 class="heading">积分互转</h4>
-				<div class="row">
-					<div class="col-md-2 text-right line-height-30">奖金积分 ：</div>
-					<div class="col-md-10 text-left line-height-30">${sessionScope.scoreInfo.jjScore}</div>
-					<div class="col-md-2 text-right line-height-30">报单积分 ：</div>
-					<div class="col-md-10 text-left line-height-30">${sessionScope.scoreInfo.bdScore}</div>
-					<div class="col-md-2 text-right line-height-30">购物积分 ：</div>
-					<div class="col-md-10 text-left line-height-30">${sessionScope.scoreInfo.gwScore}</div>
-<!-- 					<div class="col-md-2 text-right line-height-30">旅游积分 ：</div>
-					<div class="col-md-10 text-left line-height-30">2451.6</div> -->
-					<div class="col-md-2 text-right line-height-30">现金积分 ：</div>
-					<div class="col-md-10 text-left line-height-30">${sessionScope.scoreInfo.xjScore}</div>
-					<div class="col-md-2 text-right line-height-30">转换类型 ：</div>
-					<div class="col-md-10 text-left line-height-30">
-						<select name="khBankName" class="form-control" id="tranfer_id"  style="width: 20%" onchange="hideHycode()">
-							<c:forEach var="item" items="${requestScope.zzTypeList}">
-								<option value="${item.typeCode}">${item.typeName}</option>
-							</c:forEach>
-						</select>
-					</div>
+				<form id="defaultForm" method="post" class="form-horizontal" 
+				action="#">
+					<div class="row">
+						<div class="col-md-2 text-right line-height-30">奖金积分 ：</div>
+						<div class="col-md-10 text-left line-height-30">${sessionScope.scoreInfo.jjScore}</div>
+						<div class="col-md-2 text-right line-height-30">报单积分 ：</div>
+						<div class="col-md-10 text-left line-height-30">${sessionScope.scoreInfo.bdScore}</div>
+						<div class="col-md-2 text-right line-height-30">购物积分 ：</div>
+						<div class="col-md-10 text-left line-height-30">${sessionScope.scoreInfo.gwScore}</div>
+				        <div class="col-md-2 text-right line-height-30">旅游积分 ：</div>
+						<div class="col-md-10 text-left line-height-30">${sessionScope.scoreInfo.lyScore}</div>
+						<div class="col-md-2 text-right line-height-30">现金积分 ：</div>
+						<div class="col-md-10 text-left line-height-30">${sessionScope.scoreInfo.xjScore}</div>
+						<div class="col-md-2 text-right line-height-30">转换类型 ：</div>
+						<div class="col-md-10 text-left line-height-30">
+							<select name="khBankName" class="form-control" id="tranfer_id"  style="width: 20%" onchange="hideHycode()">
+								<c:forEach var="item" items="${requestScope.zzTypeList}">
+									<option value="${item.typeCode}">${item.typeName}</option>
+								</c:forEach>
+							</select>
+						</div>
+						
+						<div class="col-md-2 text-right line-height-30" id="d1">会员编号 ：</div>
+						<div class="col-md-10 text-left line-height-30" id="d2">
+							<input type="text" class="form-control input-sm" id="hycode" style="width:20% "/>
+						</div>
 					
-					<div class="col-md-2 text-right line-height-30" id="d1">会员编号 ：</div>
-					<div class="col-md-10 text-left line-height-30" id="d2">
-						<input type="text" class="form-control input-sm" id="hycode" style="width:20% "/>
+						<div class="col-md-2 text-right line-height-30" >金额 ：</div>
+						<div class="col-md-10 text-left line-height-30" >
+							<input type="text" class="form-control input-sm" id="money" style="width: 20%"/>
+						</div>
 					</div>
-				
-					<div class="col-md-2 text-right line-height-30" >金额 ：</div>
-					<div class="col-md-10 text-left line-height-30" >
-						<input type="text" class="form-control input-sm" id="money" style="width: 20%"/>
-					</div>
-				</div>
-				<div style="margin-top: 20px">
-					<input type="button" value="确认转账"  style="margin-left: 20%;margin-top: 10px " onclick="transfer()"/>
+				</form>
+				<div class="col-md-3 text-right margin-top-30  padding-bottom-10">
+						<input type="button" value="确认转账" class="btn btn-primary"  onclick="transfer()"/>
 				</div>
 			</div>
-
+<form id="form1" method="post" class="form-horizontal" >
 			<div class="row">
 				<div class="col-md-12">
 					<table class="table table-striped">
@@ -58,11 +61,11 @@
 						<tbody>
 						<c:forEach items="${zzList}" var="item" >
 								<tr>
-								    <td style="text-align:center;">${item.hyCode}</td>
-								    <td style="text-align:center;">${item.dfCode}</td>
-								    <td style="text-align:center;">${item.zzTime}</td>
-								    <td style="text-align:center;">${item.zzMoney}</td>
-								    <td style="text-align:center;">${item.zzType}</td>
+								    <td>${item.hyCode}</td>
+								    <td>${item.dfCode}</td>
+								    <td >${item.zzTime}</td>
+								    <td >${item.zzMoney}</td>
+								    <td >${item.zzType}</td>
 								  
 								</tr>
 							</c:forEach>
@@ -70,6 +73,8 @@
 					</table>
 				</div>
 			</div>
+</form>
+
 		</div>
 
 	</div>
@@ -110,9 +115,7 @@ function transfer(){
 	var params = {"zzType":type,"dfCode":dfCode,"zzMoney":money};
 	$.post(url,params,function(data){
 		var obj = JSON.parse(data);
-	//	if(obj.status == '0'){}
 		Ewin.alert({message: obj.msg}).on(function(){
-						
 		});
 	});
 }

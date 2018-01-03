@@ -8,7 +8,7 @@ import java.math.BigDecimal;
  *
  */
 public class MemberScoreInfo {
-	private String hyCode;//会员编号(借方)
+	private String hyCode;//会员编号
 	
 	private int tjCount;//推荐人数
 	
@@ -33,25 +33,7 @@ public class MemberScoreInfo {
 	private int pdOverArea;//碰对后剩余区域，0为左区，1为右区
 	
 	private String gxTime;//更新时间
-	/**
-	 * 积分互转字段（4个）
-	 */
-	private String zzType;//转账类型
-
-	private String zzTime;//互转时间
 	
-	private String dfCode;//贷方会员编号
-	
-	private BigDecimal zzMoney;//金额
-	
-
-	public BigDecimal getZzMoney() {
-		return zzMoney;
-	}
-
-	public void setZzMoney(BigDecimal zzMoney) {
-		this.zzMoney = zzMoney;
-	}
 
 	//用于显示使用的字段
 	private String hyLevelName;
@@ -179,28 +161,5 @@ public class MemberScoreInfo {
 	public void setTjMan(String tjMan) {
 		this.tjMan = tjMan;
 	}
-	public String getZzType() {
-		return zzType;
-	}
-
-	public void setZzType(String zzType) {
-		this.zzType = zzType;
-	}
-
-	public String getZzTime() {
-		return zzTime;
-	}
-
-	public void setZzTime(String zzTime) {
-		this.zzTime = zzTime;
-	}
-
-	public String getDfCode() {
-		return dfCode;
-	}
-
-	public void setDfCode(String dfCode) {
-		this.dfCode = dfCode;
-	}
-
+	
 }
