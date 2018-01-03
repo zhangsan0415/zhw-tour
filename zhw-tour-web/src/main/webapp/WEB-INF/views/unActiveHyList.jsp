@@ -12,10 +12,8 @@
 			</div>
 			<div class="panel-body">
 				<form action="" class="form-inline">
-
 					会员编号： <input type="text" class="form-control" id="hyCode"/>
 					<button type="button" class="btn btn-info" onclick="query()">查询</button>
-					
 				</form>
 			<%-- 	<div class="form-group">
 					<label class="col-lg-3 control-label">报单积分：100</label>
@@ -64,17 +62,14 @@
 
 <%@include file="menuBottom.jsp"%>
 <script>
- var hyCode = $("#hyCode").val();
+/* 初始化显示分页 */
+var pageUrl = '<%=basePath%>hyManager/getActivedList.do';
+var tableHead = ['会员编号','联系电话','注册时间','开通时间','投资金额','状态'];
+var dataIndex = ['hyCode','sjMobile','zcTime','ktTime','money','flag'];
+var params = {hyCode:$("#hy_Code").val().trim()};
+var options = {tableId:'actived_hy_list',clientPageId:'pageLimit',url:pageUrl,tableHead:tableHead,dataIndex:dataIndex,params:params};
+ZHW_Page.paging(options);
 
-var url = "<%=basePath%>person/doModifyPwd.do";
-var params ={"hyCode":hyCode};
-$.post(url,params,function(result){
-	var obj = JSON.parse(result);
-	if(obj.status != 0)
-		alert(obj.msg == null ? "系统繁忙，请稍候重试！":obj.msg);  	return;
-	//清空数据
-	document.getElementById("hyCode").reset();
-}); 
 $("#subServer").prev().addClass('active');/*一级  */
 $("#subServer").addClass("in");
 $("#toUnActiveHyList").addClass('active');/* 二级 */
