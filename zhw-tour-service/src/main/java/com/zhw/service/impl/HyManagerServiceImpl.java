@@ -220,7 +220,7 @@ public class HyManagerServiceImpl implements HyManagerService {
 		int totalCount = infoMapper.selectCountForActivedOrNot(hyCode, jhStatus,currentUser);
 		if(totalCount == 0)	return PageResult.getOkInstance();
 		
-		int start = PageResult.getStartNumber(currentPage);
+		int start =  PageResult.getStartNumber(currentPage);
 //		List<MemberInfo> dataList  = infoMapper.selectPageQQ();
 		List<MemberInfo> dataList = infoMapper.selectActivedOrNotPageList(hyCode, jhStatus, start, PageResult.pageSize,currentUser);
 		this.setMoneyAndFlag(dataList);

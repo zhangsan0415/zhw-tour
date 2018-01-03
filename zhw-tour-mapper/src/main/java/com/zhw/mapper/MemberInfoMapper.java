@@ -46,6 +46,7 @@ public interface MemberInfoMapper {
 			,@Param("jhStatus")int jhStatus,@Param("start")int start,@Param("pageSize")int pageSize,@Param("currentUser")String currentUser);
 	
 	
+	
 	/**888888888888888888888888分页测试的两个方法******************************/
 	int selectCount();
 	List<MemberInfo> selectPageQQ();

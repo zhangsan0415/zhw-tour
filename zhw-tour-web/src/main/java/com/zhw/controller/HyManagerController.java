@@ -38,7 +38,7 @@ public class HyManagerController {
 	@ResponseBody
 	public BaseResult getActivedList(String hyCode,int currentPage,HttpServletRequest request) {
 		try {
-			String currentUser = ControllerUtils.getUserInfo(request).getHyCode();
+			String currentUser  =  ControllerUtils.getUserInfo(request).getHyCode();
 			return managerService.getActivedOrNotListPage(hyCode, JHStatusEnum.ACTIVED.getTypeCode(), currentPage,currentUser);
 		}catch(Exception e) {
 			logger.error(StringUtils.putTogether("分页获取已激活会员列表失败，当前会员编号：",hyCode,",异常信息：",e.getMessage()),e);

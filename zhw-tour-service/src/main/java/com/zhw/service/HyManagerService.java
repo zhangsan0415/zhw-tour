@@ -13,5 +13,6 @@ public interface HyManagerService {
 
 	BaseResult ktBdCenter(String hyCode)throws Exception;
 	
+	
 	PageResult getActivedOrNotListPage(String hyCode,int jhStatus,int currentPage,String currentUser )throws Exception;
 }
