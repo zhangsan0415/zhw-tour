@@ -1,13 +1,14 @@
 package com.zhw.response;
 
+import java.util.List;
+
 public class PageResult extends BaseResult{
 	
-	private final int pageSize = 20;
+	public static final int pageSize = 20;
 	
 	private int currentPage;
 	
 	private int totalPages;
-	
 	
 	private PageResult(int status) {
 		super(status);
@@ -19,8 +20,9 @@ public class PageResult extends BaseResult{
 	}
 
 
-	public void setCurrentPage(int currentPage) {
+	public PageResult setCurrentPage(int currentPage) {
 		this.currentPage = currentPage;
+		return this;
 	}
 
 
@@ -29,8 +31,9 @@ public class PageResult extends BaseResult{
 	}
 
 
-	public void setTotalPages(int totalPages) {
+	public PageResult setTotalPages(int totalPages) {
 		this.totalPages = totalPages;
+		return this;
 	}
 
 
@@ -38,5 +41,24 @@ public class PageResult extends BaseResult{
 		return pageSize;
 	}
 	
+	public static int getStartNumber(int currentPage) {
+		return (currentPage - 1)*pageSize;
+	}
+
+	public static int getEndNumber(int currentPage) {
+		return currentPage*pageSize;
+	}
+	
+	public static int evaluteTotalPages(int totalCount ) {
+		return totalCount%pageSize == 0? totalCount/pageSize:(totalCount/pageSize+1);
+	}
+	
+	public static PageResult getOkInstance() {
+		return new PageResult(SUCCESS_STATUS);
+	}
+	
+	public static <T> PageResult getPageInstance(List<T> list,int currentPage,int totalCount) {
+		return ((PageResult)getOkInstance().setObj(list)).setCurrentPage(currentPage).setTotalPages(evaluteTotalPages(totalCount));
+	}
 
 }

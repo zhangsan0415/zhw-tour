@@ -78,4 +78,25 @@
 	<select id="selectHyInfoByCode" parameterType="java.lang.String" resultMap="BaseMap">
 		SELECT <include refid="BaseColumn"/> FROM ZHW_MEM WHERE HY_CODE=#{hyCode} LIMIT 1
 	</select>
+	
+	<select id="selectCountForActivedOrNot" resultType="java.lang.Integer">
+		SELECT count(1) FROM ZHW_MEM WHERE  JH_STATUS = #{jhStatus,jdbcType=INTEGER} and KT_MAN=#{currentUser}
+		<if test="#{hyCode != null and hyCode != ''}">
+			and HY_CODE = #{hyCode}
+		</if>
+	</select>
+	
+	<select id="selectActivedOrNotPageList" resultMap="BaseMap">
+		SELECT <include refid="BaseColumn"/> FROM ZHW_MEM WHERE  JH_STATUS = #{jhStatus,jdbcType=INTEGER} and KT_MAN=#{currentUser} and limit #{start},#{pageSize}
+		<if test="#{hyCode != null and hyCode != ''}">
+			and HY_CODE = #{hyCode}
+		</if>
+	</select>
+	
+	<select id="selectCount" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM ZHW_MEM
+	</select>
+	<select id="selectPageQQ" resultMap="BaseMap">
+		SELECT * FROM ZHW_MEM
+	</select>
 </mapper>

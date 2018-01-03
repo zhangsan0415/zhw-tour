@@ -37,4 +37,17 @@ public interface MemberInfoMapper {
 
 	//修改是否报单中心状态为已修改
 	int updateIfBdCenter(String hyCode);
+	
+	//分页查询是否激活会员列表的总条数
+	int selectCountForActivedOrNot(@Param("hyCode")String hyCode,@Param("jhStatus")int jhStatus,@Param("currentUser")String currentUser);
+	
+	//分页查询已激活或者未激活的会员列表
+	List<MemberInfo> selectActivedOrNotPageList(@Param("hyCode")String hyCode
+			,@Param("jhStatus")int jhStatus,@Param("start")int start,@Param("pageSize")int pageSize,@Param("currentUser")String currentUser);
+	
+	
+	/**888888888888888888888888分页测试的两个方法******************************/
+	int selectCount();
+	List<MemberInfo> selectPageQQ();
+	/**888888888888888888888888分页测试的两个方法******************************/
 }

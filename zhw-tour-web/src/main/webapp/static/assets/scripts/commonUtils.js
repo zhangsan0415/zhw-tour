@@ -182,21 +182,24 @@
 						 Ewin.alert("系统繁忙，请稍候重试！");
 					 },
 					 success:function(data){
-						 var dataObj = JSON.parse(data);
+//						 var dataObj = JSON.parse(data);
+						 var dataObj = data;
 						 if(dataObj.status != 0){
 							 Ewin.alert("系统繁忙，请稍候重试！");
 							 return;
 						 }
 						 
 						 var tBody = "<tbody>";
-						 $.each(dataObj.obj,function(index,element){
-							 var str = "<tr>";
-							 $.each(dataIndex,function(i,property){
-								 str = str + "<td style='text-align:center;'>" + element[property]+"</td>";
+						 if(dataObj.obj != null){
+							 $.each(dataObj.obj,function(index,element){
+								 var str = "<tr>";
+								 $.each(dataIndex,function(i,property){
+									 str = str + "<td style='text-align:center;'>" + element[property] == null? '':element[property] +"</td>";
+								 });
+								 str = str + "</tr>";
+								 tBody = tBody + str;
 							 });
-							 str = str + "</tr>";
-							 tBody = tBody + str;
-						 });
+						 }
 						 tBody = tBody + "</tbody>";
 						 
 						 table.html(tHead+tBody);
@@ -233,21 +236,25 @@
 												 Ewin.alert("系统繁忙，请稍候重试！");
 											 },
 								             success:function (data) {
-									            	 var dataObj = JSON.parse(data);
+//									            	 var dataObj = JSON.parse(data);
+													 var dataObj = data;
+
 													 if(dataObj.status != 0){
 														 Ewin.alert("系统繁忙，请稍候重试！");
 														 return;
 													 }
 													 
 													 var tBody = "<tbody>";
-													 $.each(dataObj.obj,function(index,element){
-														 var str = "<tr>";
-														 $.each(dataIndex,function(i,property){
-															 str = str + "<td style='text-align:center;'>" + element[property]+"</td>";
+													 if(dataObj.obj != null ){
+														 $.each(dataObj.obj,function(index,element){
+															 var str = "<tr>";
+															 $.each(dataIndex,function(i,property){
+																 str = str + "<td style='text-align:center;'>" + element[property] == null? '':element[property]+"</td>";
+															 });
+															 str = str + "</tr>";
+															 tBody = tBody + str;
 														 });
-														 str = str + "</tr>";
-														 tBody = tBody + str;
-													 });
+													 }
 													 tBody = tBody + "</tbody>";
 													 table.html(tHead+tBody);
 								             }

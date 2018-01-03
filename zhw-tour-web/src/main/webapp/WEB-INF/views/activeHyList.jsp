@@ -61,10 +61,10 @@ $("#subServer").prev().addClass('active');/*一级  */
 $("#subServer").addClass("in");
 $("#toUnActiveHyList").addClass('active');/* 二级 */
 /* 初始化显示分页 */
-var pageUrl = '<%=basePath%>login/doLogin.do';
+var pageUrl = '<%=basePath%>hyManager/getActivedList.do';
 var tableHead = ['会员编号','联系电话','注册时间','开通时间','投资金额','状态'];
 var dataIndex = ['hyCode','sjMobile','zcTime','ktTime','money','flag'];
-var params = {hyCode:$("#hy_Code").val()};
+var params = {hyCode:$("#hy_Code").val().trim()};
 var options = {tableId:'actived_hy_list',clientPageId:'pageLimit',url:pageUrl,tableHead:tableHead,dataIndex:dataIndex,params:params};
 ZHW_Page.paging(options);
 
