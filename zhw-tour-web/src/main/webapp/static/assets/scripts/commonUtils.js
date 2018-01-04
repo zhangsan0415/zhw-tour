@@ -154,6 +154,41 @@
 	 
 	 //封装Ajax bootstrapPaginator分页
 	 window.ZHW_Page = function(){
+		 var getTBody = function(arr,dataIndex){
+			 var tBody = "<tbody>";
+			 if(arr){
+				 for(var i = 0; i<arr.length; i++){
+					 var str = "<tr>";
+					 var element = arr[i];
+					 for(var j=0;j<dataIndex.length;j++){
+						 var property = dataIndex[j];
+						 if(!jQuery.isArray(property)){//不是操作直接赋值 
+							 var tdValue = element[property];
+							 if(tdValue){
+								 str = str + "<td style='text-align:center;'>" + tdValue +"</td>";
+							 }else{
+								 str = str +"<td style='text-align:center;'></td>";
+							 }
+						 }else{//是操作做特殊处理
+							 str = str + "<td style='text-align:center;'>";
+							 for(var k = 0;k<property.length;k++){
+								 var btnText = property[k].text;
+								 var btnFunc = property[k].func;
+								 var paramIndex = property[k].index;
+								 str = str + "<button class='btn btn-info' onclick='"+btnFunc(arr[i][dataIndex[paramIndex]])+"'>"
+								 	+btnText+"</button>";
+							 }
+							 str = str + "</td>";
+						 }
+					 }
+					 str = str + "</tr>";
+					 tBody = tBody + str;
+				 }
+			 }
+			 tBody = tBody + "</tbody>";
+			 return tBody;
+		 };
+		 
 		 return {
 			 paging:function(options){
 				 var tableId = options.tableId;
@@ -189,26 +224,7 @@
 							 return;
 						 }
 						 
-						 var tBody = "<tbody>";
-						 var arr = dataObj.obj;
-						 if(arr){
-							 for(var i = 0; i<arr.length; i++){
-								 var str = "<tr>";
-								 var element = arr[i];
-								 for(var j=0;j<dataIndex.length;j++){
-									 var property = dataIndex[j];
-									 var tdValue = element[property];
-									 if(tdValue){
-										 str = str + "<td style='text-align:center;'>" + tdValue +"</td>";
-									 }else{
-										 str = str +"<td style='text-align:center;'></td>";
-									 }
-								 }
-								 str = str + "</tr>";
-								 tBody = tBody + str;
-							 }
-						 }
-						 tBody = tBody + "</tbody>";
+						 var tBody = getTBody(dataObj.obj,dataIndex);
 						 table.html(tHead+tBody);
 						 
 						 var totalPages = data.totalPages; //获取总页数
