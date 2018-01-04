@@ -19,11 +19,16 @@
 	</sql>
 	<!-- 积分互转记录/积分提现记录 -->
 	<select id="queryInfoByHycode" resultMap="BaseMap">
-	select a.*,b.KH_CARD_CODE from ZHW_SCORE_CHANGE a JOIN ZHW_MEM_BANK b ON a.HY_CODE = b.HY_CODE where a.HY_CODE=#{hyCode} or a.DF_CODE=#{hyCode} and a.ZZ_STATUS=#{zzStatus}
+	select a.*,b.KH_CARD_CODE from ZHW_SCORE_CHANGE a JOIN ZHW_MEM_BANK b ON a.HY_CODE = b.HY_CODE
+	 where( a.HY_CODE=#{hyCode} or a.DF_CODE=#{hyCode}) and a.ZZ_STATUS=#{zzStatus}
+	 limit #{start},#{pageSize}
 	</select>
 	<insert id="insertScoreInfo" parameterType="com.zhw.domain.MemberScoreChangeInfo">
 		INSERT INTO ZHW_SCORE_CHANGE(<include refid="BaseColumn"/>)
 		VALUES (#{pkId},#{hyCode,jdbcType=VARCHAR},#{dfCode,jdbcType=VARCHAR},#{zzType,jdbcType=VARCHAR},#{zzMoney,jdbcType=DECIMAL},sysdate()
 		,#{zzStatus,jdbcType=INTEGER},#{txStatus,jdbcType=VARCHAR})
 	</insert>
+	
+	<select id="selectCount" resultType="Integer">
+	SELECT COUNT(1) from ZHW_SCORE_CHANGE where ( HY_CODE=#{hyCode} or DF_CODE=#{hyCode}) and ZZ_STATUS=#{zzStatus}</select>
 </mapper>

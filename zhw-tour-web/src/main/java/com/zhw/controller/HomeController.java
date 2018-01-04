@@ -136,9 +136,9 @@ public class HomeController {
 	public String toScoreTransfer(HttpServletRequest request) {
 		//向前台输出支持的转换关系
 		request.setAttribute("zzTypeList", ZZTypeEnum.values());
-		String hyCode = ControllerUtils.getUserInfo(request).getHyCode();
-		int status = JHStatusEnum.UNACTIVED.getTypeCode();
-		request.setAttribute("zzList", scoreService.queryInfo(hyCode,status));
+//		String hyCode = ControllerUtils.getUserInfo(request).getHyCode();
+//		int status = JHStatusEnum.UNACTIVED.getTypeCode();
+//		request.setAttribute("zzList", scoreService.queryInfo(hyCode,status));
 		return "scoreTransfer";
 	}
 	
@@ -151,9 +151,9 @@ public class HomeController {
 	//跳转到积分提现页面
 	@RequestMapping(value="/toScoreWithdraw.do")
 	public String toScoreWithdraw(HttpServletRequest request) {
-		String hyCode = ControllerUtils.getUserInfo(request).getHyCode();
-		int status = JHStatusEnum.ACTIVED.getTypeCode();
-		request.setAttribute("txList", scoreService.queryInfo(hyCode,status));
+		//String hyCode = ControllerUtils.getUserInfo(request).getHyCode();
+		//int status = JHStatusEnum.ACTIVED.getTypeCode();
+		//request.setAttribute("txList", scoreService.queryInfo(hyCode,status));
 		return "scoreWithdraw";
 	}
 	

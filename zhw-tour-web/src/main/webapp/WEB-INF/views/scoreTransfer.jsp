@@ -32,7 +32,7 @@
 						
 						<div class="col-md-2 text-right line-height-30" id="d1">会员编号 ：</div>
 						<div class="col-md-10 text-left line-height-30" id="d2">
-							<input type="text" class="form-control input-sm" id="hycode" style="width:20% "/>
+							<input type="text" class="form-control input-sm" id="hycode" style="width:20% " value=""/>
 						</div>
 					
 						<div class="col-md-2 text-right line-height-30" >金额 ：</div>
@@ -45,35 +45,16 @@
 						<input type="button" value="确认转账" class="btn btn-primary"  onclick="transfer()"/>
 				</div>
 			</div>
-<form id="form1" method="post" class="form-horizontal" >
+		<form id="form1" method="post" class="form-horizontal" >
 			<div class="row">
 				<div class="col-md-12">
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th>借方会员编号</th>
-								<th>贷方会员编号</th>
-								<th>时间</th>
-								<th>交易额</th>
-								<th>类型</th>
-							</tr>
-						</thead>
-						<tbody>
-						<c:forEach items="${zzList}" var="item" >
-								<tr>
-								    <td>${item.hyCode}</td>
-								    <td>${item.dfCode}</td>
-								    <td >${item.zzTime}</td>
-								    <td >${item.zzMoney}</td>
-								    <td >${item.zzType}</td>
-								  
-								</tr>
-							</c:forEach>
-						</tbody>
+					<table class="table table-striped" id="score_list">
+
 					</table>
+					<div id="example" style="text-align: center"> <ul id="pageLimit"></ul> </div>
 				</div>
 			</div>
-</form>
+		</form>
 
 		</div>
 
@@ -109,16 +90,35 @@ function hideHycode(){
 //确认转账
 function transfer(){
 	var type = $("#tranfer_id").val();
-	var dfCode = $("#hycode").val();
+	var dfCode="";
+	if(type=='1010'){
+		 dfCode = $("#hycode").val();
+	}
 	var money = $("#money").val();
 	var url = "<%=basePath%>score/zzScore.do";
 	var params = {"zzType":type,"dfCode":dfCode,"zzMoney":money};
 	$.post(url,params,function(data){
 		var obj = JSON.parse(data);
 		Ewin.alert({message: obj.msg}).on(function(){
+			if(obj.status==0){
+				document.getElementById("defaultForm").reset();
+			}
 		});
 	});
 }
+
+/* 初始化显示分页 */
+function queryPage(){
+	var pageUrl = '<%=basePath%>score/getChangeScore.do';
+	var tableHead = ['借方会员编号','贷方会员编号','交易额','时间','类型'];
+	var dataIndex = ['hyCode','dfCode','zzMoney','zzTime','zzType'];
+	var hyCode = "${sessionScope.scoreInfo.hyCode}";
+	var params ={"hyCode":hyCode}
+	var options = {tableId:'score_list',clientPageId:'pageLimit',url:pageUrl,tableHead:tableHead,dataIndex:dataIndex,params:params};
+	ZHW_Page.paging(options);
+}
+
+queryPage();
 
 $("#subIntegral").prev().addClass('active');/*一级  */
 $("#subIntegral").addClass("in");

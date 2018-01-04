@@ -17,6 +17,7 @@ import com.zhw.domain.MemberScoreChangeInfo;
 import com.zhw.domain.MemberScoreInfo;
 import com.zhw.response.BaseResult;
 import com.zhw.service.ScoreService;
+import com.zhw.type.JHStatusEnum;
 import com.zhw.utils.StringUtils;
 
 /**
@@ -63,7 +64,10 @@ public class ScoreController {
 			scoreInfo.setHyCode(info.getHyCode());
 			scoreInfo.setZzStatus(1);//操作状态，积分互转
 			MemberScoreInfo scoreInfos =scoreService.zzScore(info,scoreInfo);
-			if(scoreInfos == null) return BaseResult.exceptionInstance();
+			if(scoreInfos.getType()!=null&&!scoreInfos.getType().equals("")){
+				if(scoreInfos.getType().equals("0")) return BaseResult.failedInstance("互转金额有误，请重新填写！");
+				if (scoreInfos.getType().equals("1")) return BaseResult.failedInstance("互转会员不存在，请重新填写！");
+			}
 			//成功后，设置session信息
 			ControllerUtils.setScoreInfo(request, scoreInfos);
 			return BaseResult.sucessInstance().setMsg("操作成功！") ;
@@ -82,19 +86,23 @@ public class ScoreController {
 	 */
 	@RequestMapping(value="/withdrawScore",method= RequestMethod.POST)
 	@ResponseBody
-	public BaseResult withdrawScore(String type,BigDecimal money,HttpServletRequest request){
+	public BaseResult withdrawScore(String zzType,BigDecimal zzMoney,HttpServletRequest request){
 		try {
-			if(StringUtils.isEmpty(type)|| money == null)return BaseResult.conditionErrorInstance();
+			if(StringUtils.isEmpty(zzType)|| zzMoney == null)return BaseResult.conditionErrorInstance();
+			//验证提现金额是100的倍数
+			if (zzMoney.divideAndRemainder(new BigDecimal(100))[1].compareTo(new BigDecimal(0))!=0) {
+				return BaseResult.failedInstance("提取金额必须是100的倍数！");
+			}
 			MemberScoreInfo info = ControllerUtils.getScoreInfo(request);
 			MemberScoreChangeInfo scoreInfo = new MemberScoreChangeInfo();
-			scoreInfo.setZzType(type);
-			scoreInfo.setZzMoney(money);
+			scoreInfo.setZzType(zzType);
+			scoreInfo.setZzMoney(zzMoney);
 			scoreInfo.setHyCode(info.getHyCode());
 			scoreInfo.setZzStatus(0);
-			MemberScoreInfo scoreInfos;
-	
-			scoreInfos = scoreService.withdrawScore(info,scoreInfo);
-			if(scoreInfos == null) return BaseResult.exceptionInstance();
+			MemberScoreInfo scoreInfos = scoreService.withdrawScore(info,scoreInfo);
+			if(scoreInfos.getType()!=null&&!scoreInfos.getType().equals("")){
+				if(scoreInfos.getType().equals("0")) return BaseResult.failedInstance("提现金额有误，请重新填写！");
+			}
 			//成功后，设置seesion信息
 			ControllerUtils.setScoreInfo(request, scoreInfos);
 			return BaseResult.sucessInstance().setMsg("操作成功！") ;
@@ -105,9 +113,35 @@ public class ScoreController {
 		
 	
 	}
+	//积分提现记录
+	@RequestMapping(value="/getScoreWithdraw.do")
+	@ResponseBody
+	public BaseResult toScoreWithdraw(int currentPage,HttpServletRequest request) {
+		try {
+			String hyCode = ControllerUtils.getUserInfo(request).getHyCode();
+			int status = JHStatusEnum.ACTIVED.getTypeCode();
+			return scoreService.queryInfo(hyCode,status,currentPage);
+		} catch (Exception e) {
+			logger.error(StringUtils.putTogether("分页获取积分提现记录列表失败，当前会员编号：",ControllerUtils.getUserInfo(request).getHyCode(),",异常信息：",e.getMessage()),e);
+			return BaseResult.exceptionInstance();
+		}
+		
+	}
 	
-	
-	
+	//积分互换记录
+	@RequestMapping(value="/getChangeScore.do")
+	@ResponseBody
+	public BaseResult changeScore(int currentPage,HttpServletRequest request) {
+		try {
+			String hyCode = ControllerUtils.getUserInfo(request).getHyCode();
+			int status = JHStatusEnum.UNACTIVED.getTypeCode();
+			return scoreService.queryInfo(hyCode,status,currentPage);
+		} catch (Exception e) {
+			logger.error(StringUtils.putTogether("分页获取积分提现记录列表失败，当前会员编号：",ControllerUtils.getUserInfo(request).getHyCode(),",异常信息：",e.getMessage()),e);
+			return BaseResult.exceptionInstance();
+		}
+		
+	}
 	private BaseResult checkParams(String dfCode, String type, BigDecimal money) {
 		if(!StringUtils.isEmpty(type)){
 			if("1010".equals(type)){

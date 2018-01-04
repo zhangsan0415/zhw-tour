@@ -4,7 +4,8 @@ import com.zhw.utils.StringUtils;
 
 public enum IfWithdrawEnum {
 
-    CONFIRM("0","已确认"),UNCONFIRM("1","未确认");
+	TQ_JJ_SCORE("1016","提取奖金积分"),TQ_LY_SCORE("1017","提取旅游积分"),
+    CONFIRM("0","未确认"),UNCONFIRM("1","已确认");
 	private String typeCode;
 
     private String typeName;
