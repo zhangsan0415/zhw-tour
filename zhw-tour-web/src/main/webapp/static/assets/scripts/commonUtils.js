@@ -190,21 +190,28 @@
 						 }
 						 
 						 var tBody = "<tbody>";
-						 if(dataObj.obj != null){
-							 $.each(dataObj.obj,function(index,element){
+						 var arr = dataObj.obj;
+						 if(arr){
+							 for(var i = 0; i<arr.length; i++){
 								 var str = "<tr>";
-								 $.each(dataIndex,function(i,property){
-									 str = str + "<td style='text-align:center;'>" + element[property] == null? '':element[property] +"</td>";
-								 });
+								 var element = arr[i];
+								 for(var j=0;j<dataIndex.length;j++){
+									 var property = dataIndex[j];
+									 var tdValue = element[property];
+									 if(tdValue){
+										 str = str + "<td style='text-align:center;'>" + tdValue +"</td>";
+									 }else{
+										 str = str +"<td style='text-align:center;'></td>";
+									 }
+								 }
 								 str = str + "</tr>";
 								 tBody = tBody + str;
-							 });
+							 }
 						 }
 						 tBody = tBody + "</tbody>";
-						 
 						 table.html(tHead+tBody);
 						 
-						 var totalPages = data.totalPages==0?1:data.totalPages; //获取总页数
+						 var totalPages = data.totalPages; //获取总页数
 						 var currentPage = data.currentPage; //得到currentPage
 						 var pageSize = data.pageSize; //每页显示多少条
 						 
@@ -245,15 +252,23 @@
 													 }
 													 
 													 var tBody = "<tbody>";
-													 if(dataObj.obj != null ){
-														 $.each(dataObj.obj,function(index,element){
+													 var arr = dataObj.obj;
+													 if(arr){
+														 for(var i = 0; i<arr.length; i++){
 															 var str = "<tr>";
-															 $.each(dataIndex,function(i,property){
-																 str = str + "<td style='text-align:center;'>" + element[property] == null? '':element[property]+"</td>";
-															 });
+															 var element = arr[i];
+															 for(var j=0;j<dataIndex.length;j++){
+																 var property = dataIndex[j];
+																 var tdValue = element[property];
+																 if(tdValue){
+																	 str = str + "<td style='text-align:center;'>" + tdValue +"</td>";
+																 }else{
+																	 str = str +"<td style='text-align:center;'></td>";
+																 }
+															 }
 															 str = str + "</tr>";
 															 tBody = tBody + str;
-														 });
+														 }
 													 }
 													 tBody = tBody + "</tbody>";
 													 table.html(tHead+tBody);

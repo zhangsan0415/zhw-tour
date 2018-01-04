@@ -35,7 +35,7 @@
 		INSERT INTO ZHW_MEM_SCORE(<include refid="BaseColumn"/>)
 		VALUES (#{hyCode},#{tjCount,jdbcType=INTEGER},#{hyLevel,jdbcType=INTEGER},#{ifAdmin,jdbcType=INTEGER},#{ljTotalScore,jdbcType=DECIMAL},#{jjScore,jdbcType=DECIMAL}
 		,#{xjScore,jdbcType=DECIMAL},#{lyScore,jdbcType=DECIMAL},#{gwScore,jdbcType=DECIMAL},#{bdScore,jdbcType=DECIMAL},#{pdBalance,jdbcType=DECIMAL}
-		,#{pdOverArea,jdbcType=INTEGER},#{gxTime,jdbcType=VARCHAR}
+		,#{pdOverArea,jdbcType=INTEGER},#{gxTime,jdbcType=VARCHAR})
 	</insert>
 
 	<update id="updateScoreInfo" parameterType="com.zhw.domain.MemberScoreInfo">

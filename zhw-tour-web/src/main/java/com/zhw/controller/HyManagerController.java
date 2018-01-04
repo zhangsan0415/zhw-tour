@@ -16,7 +16,6 @@ import com.zhw.component.AreaComponent;
 import com.zhw.domain.Area;
 import com.zhw.pojo.HyInfoPo;
 import com.zhw.response.BaseResult;
-import com.zhw.response.PageResult;
 import com.zhw.service.HyManagerService;
 import com.zhw.type.HyLevelEnum;
 import com.zhw.type.JHStatusEnum;
@@ -37,25 +36,25 @@ public class HyManagerController {
 	
 	@RequestMapping(value="/getUnActivedList.do",method=RequestMethod.POST)
 	@ResponseBody
-	public PageResult getUnActivedList(String hyCode,int currentPage,HttpServletRequest request) {
+	public BaseResult getUnActivedList(String hyCode,int currentPage,HttpServletRequest request) {
 		try {
 			String currentUser  =  ControllerUtils.getUserInfo(request).getHyCode();
 			return managerService.getActivedOrNotListPage(hyCode, JHStatusEnum.UNACTIVED.getTypeCode(), currentPage,currentUser);
 		}catch(Exception e) {
 			logger.error(StringUtils.putTogether("分页获取已激活会员列表失败，当前会员编号：",ControllerUtils.getUserInfo(request).getHyCode(),",异常信息：",e.getMessage()),e);
-			return (PageResult)BaseResult.exceptionInstance();
+			return BaseResult.exceptionInstance();
 		}
 	}
 
 	@RequestMapping(value="/getActivedList.do",method=RequestMethod.POST)
 	@ResponseBody
-	public PageResult getActivedList(String hyCode,int currentPage,HttpServletRequest request) {
+	public BaseResult getActivedList(String hyCode,int currentPage,HttpServletRequest request) {
 		try {
 			String currentUser  =  ControllerUtils.getUserInfo(request).getHyCode();
 			return managerService.getActivedOrNotListPage(hyCode, JHStatusEnum.ACTIVED.getTypeCode(), currentPage,currentUser);
 		}catch(Exception e) {
 			logger.error(StringUtils.putTogether("分页获取已激活会员列表失败，当前会员编号：",ControllerUtils.getUserInfo(request).getHyCode(),",异常信息：",e.getMessage()),e);
-			return (PageResult)BaseResult.exceptionInstance();
+			return BaseResult.exceptionInstance();
 		}
 	}
 	
