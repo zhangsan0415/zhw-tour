@@ -7,9 +7,9 @@ import com.zhw.domain.MemberScoreInfo;
 
 public class ControllerUtils {
 
-	private static final String USER_INFO_SESSION_KEY = "userInfo";
+	public static final String USER_INFO_SESSION_KEY = "userInfo";
 	
-	private static final String USER_SCORE_SESSION_KEY = "scoreInfo";
+	public static final String USER_SCORE_SESSION_KEY = "scoreInfo";
 	
 	public static MemberInfo getUserInfo(HttpServletRequest request) {
 		return (MemberInfo)request.getSession().getAttribute(USER_INFO_SESSION_KEY);
