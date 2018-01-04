@@ -5,9 +5,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.zhw.component.AreaComponent;
 import com.zhw.domain.Area;
+import com.zhw.domain.MemberInfo;
 import com.zhw.service.HomeService;
 import com.zhw.service.ScoreService;
 import com.zhw.type.BankEnum;
+import com.zhw.type.IfBdCenterEnum;
 import com.zhw.type.JHStatusEnum;
 import com.zhw.type.ZZTypeEnum;
 
@@ -49,8 +51,17 @@ public class HomeController {
 	//跳转注册会员页面
 	@RequestMapping(value="/toSignIn.do")
 	public String toSignIn(HttpServletRequest request) {
+		
+		MemberInfo info = ControllerUtils.getUserInfo(request);
+		//计算所属报单中心，如果当前登录人为报单中心，则为当前登录人，如果不是，取当前登录人的开通人
+		if(IfBdCenterEnum.isBdCenter(info.getIfBdCenter()))
+			request.setAttribute("ownedBdCenter", info.getHyCode());
+		else
+			request.setAttribute("ownedBdCenter", info.getKtMan());
+		
 		//向前台推送接点人信息
-		request.setAttribute("tjMan",homeService.getJDManHyCode(ControllerUtils.getUserInfo(request).getHyCode()));
+		request.setAttribute("tjMan",homeService.getJDManHyCode(info.getHyCode()));
+		
 		//向前台输出支持的银行卡列表
 		request.setAttribute("bankList", BankEnum.values());
 		

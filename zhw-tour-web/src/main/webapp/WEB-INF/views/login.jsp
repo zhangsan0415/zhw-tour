@@ -94,7 +94,7 @@
 		if(isEmpty(hyCode)||isEmpty(pwd)||isEmpty(checkCode)) return;
 		
 		var url = "<%=basePath%>login/doLogin.do";
-		var params = {"hyCode":hyCode,"password":pwd,"checkCode":checkCode};
+		var params = {"hyCode":hyCode.trim(),"password":pwd.trim(),"checkCode":checkCode.trim()};
 		$.post(url,params,function(result){
 			var obj = JSON.parse(result); 
 			if(obj.status != 0){ 

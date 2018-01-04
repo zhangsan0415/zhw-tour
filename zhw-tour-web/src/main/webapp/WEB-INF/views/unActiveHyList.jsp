@@ -30,20 +30,33 @@
 <script>
 
 /* 初始化显示分页 */
-var ktHy = function(hyCode){
-		if(hyCode)
-			alert('开通成功！');
-	};
-	var delHy = function(hyCode){
-		if(hyCode)
-			alert('删除成功！');
-	};
-function queryPage(){
+
+function ktHy(hyCode) {
+	var url = '<%=basePath%>hyManager/ktHyAction.do';
+	var params = {hyCode:hyCode};
+	$.post(url,params,function(result){
+		var obj = JSON.parse(result); 
+		Ewin.alert({message: obj.msg}).on(function(){
+			if(obj.status == 0)	queryPage();
+		});
+	});
+};
+function delHy(hyCode) {
+	var url = '<%=basePath%>hyManager/delHyAction.do';
+	var params = {hyCode:hyCode};
+	$.post(url,params,function(result){
+		var obj = JSON.parse(result); 
+		Ewin.alert({message: obj.msg}).on(function(){
+			if(obj.status == 0)	queryPage();
+		});
+	});
+};
+function queryPage() {
 	var pageUrl = '<%=basePath%>hyManager/getUnActivedList.do';
-	var tableHead = ['会员编号','联系电话','注册时间','开通时间','投资金额','状态','操作'];
+	var tableHead = ['会员编号','联系电话','注册时间','投资金额','状态','操作'];
 	
-	var op_arr = [{text:"开通",func:ktHy,index:1},{text:"删除",func:delHy,index:1}];
-	var dataIndex = ['hyCode','sjMobile','zcTime','ktTime','money','flag',op_arr];
+	var op_arr = [{text:"开通",func:"ktHy",index:"hyCode"},{text:"删除",func:"delHy",index:"hyCode"}];
+	var dataIndex = ['hyCode','sjMobile','zcTime','money','flag',op_arr];
 	var params = {hyCode:$("#hy_Code").val().trim()};
 	var options = {tableId:'unactived_hy_list',clientPageId:'pageLimit',url:pageUrl,tableHead:tableHead,dataIndex:dataIndex,params:params};
 	ZHW_Page.paging(options);

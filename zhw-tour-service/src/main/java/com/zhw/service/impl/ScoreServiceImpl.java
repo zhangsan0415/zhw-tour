@@ -151,7 +151,7 @@ public class ScoreServiceImpl implements ScoreService {
 		}
 		//插入积分日志
 		changeMapper.insertScoreInfo(scoreInfo);
-		return scoreInfoMapper.selectScoreInfoByhyCode(info.getHyCode());
+		return scoreInfoMapper.selectScoreInfoByCode(info.getHyCode());
 	}
 
 
@@ -181,7 +181,7 @@ public class ScoreServiceImpl implements ScoreService {
 		}
 		//插入积分日志
 		changeMapper.insertScoreInfo(scoreInfo);
-		return scoreInfoMapper.selectScoreInfoByhyCode(info.getHyCode());
+		return scoreInfoMapper.selectScoreInfoByCode(info.getHyCode());
 	}
 
 	

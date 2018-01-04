@@ -45,10 +45,10 @@ public interface MemberInfoMapper {
 	List<MemberInfo> selectActivedOrNotPageList(@Param("hyCode")String hyCode
 			,@Param("jhStatus")int jhStatus,@Param("start")int start,@Param("pageSize")int pageSize,@Param("currentUser")String currentUser);
 	
+	//更新会员的激活状态,开通会员时使用
+	int updateJhStatus(@Param("hyCode")String hyCode,@Param("ktTime")String ktTime,@Param("jhStatus")int jhStatus);
 	
+	//删除会员时使用
+	int deleteHyByCode(String hyCode);
 	
-	/**888888888888888888888888分页测试的两个方法******************************/
-	int selectCount();
-	List<MemberInfo> selectPageQQ();
-	/**888888888888888888888888分页测试的两个方法******************************/
 }

@@ -111,10 +111,14 @@ public class HyManagerServiceImpl implements HyManagerService {
 		if(JHStatusEnum.isActived(hyInfo.getJhStatus()))	return BaseResult.failedInstance("已开通的会员不能再次开通！");
 		
 		String currentDate = DateUtils.formatCurrentDate();
+
+		int ktResult = infoMapper.updateJhStatus(hyCode,currentDate,JHStatusEnum.ACTIVED.getTypeCode());
+		if(ktResult == 0)	return BaseResult.exceptionInstance();
+		
 		BigDecimal bdScore = HyLevelScoreEnum.getValueByCode(hyInfo.getHyLevel());
 		
 		//给直推10%的奖励
-		MemberScoreInfo tjManScoreInfo = scoreInfoMapper.selectTjScoreInfoByTjCode(hyInfo.getTjMan());
+		MemberScoreInfo tjManScoreInfo = scoreInfoMapper.selectScoreInfoByCode(hyInfo.getTjMan());
 		tjManScoreInfo.setTjCount(tjManScoreInfo.getTjCount()+1);
 		tjManScoreInfo.setGxTime(currentDate);
 		this.addJJScore(tjManScoreInfo, bdScore.multiply(JJScorePercentPo.DIRECT_TJ_PERCENT));
@@ -148,7 +152,7 @@ public class HyManagerServiceImpl implements HyManagerService {
 			}
 
 			// 给一级上级添加碰撞奖金积分
-			MemberScoreInfo oneScoreInfo = scoreInfoMapper.selectTjScoreInfoByTjCode(tjManScoreInfo.getTjMan());
+			MemberScoreInfo oneScoreInfo = scoreInfoMapper.selectScoreInfoByCode(tjManScoreInfo.getTjMan());
 			if (oneScoreInfo == null)
 				BaseResult.sucessInstance().setMsg("注册会员成功！");
 
@@ -158,7 +162,7 @@ public class HyManagerServiceImpl implements HyManagerService {
 			}
 
 			// 给再上线级添加碰撞奖金积分
-			MemberScoreInfo twoScoreInfo = scoreInfoMapper.selectTjScoreInfoByTjCode(oneScoreInfo.getTjMan());
+			MemberScoreInfo twoScoreInfo = scoreInfoMapper.selectScoreInfoByCode(oneScoreInfo.getTjMan());
 			if (twoScoreInfo == null)
 				BaseResult.sucessInstance().setMsg("注册会员成功！");
 
@@ -168,7 +172,7 @@ public class HyManagerServiceImpl implements HyManagerService {
 			}
 
 			// 给再再上线级添加碰撞奖金积分
-			MemberScoreInfo threeScoreInfo = scoreInfoMapper.selectTjScoreInfoByTjCode(twoScoreInfo.getTjMan());
+			MemberScoreInfo threeScoreInfo = scoreInfoMapper.selectScoreInfoByCode(twoScoreInfo.getTjMan());
 			if (threeScoreInfo == null)
 				BaseResult.sucessInstance().setMsg("注册会员成功！");
 
@@ -179,6 +183,16 @@ public class HyManagerServiceImpl implements HyManagerService {
 		}
 		return BaseResult.sucessInstance().setMsg("注册会员成功！");
 	}
+	
+	@Override
+	public BaseResult delHy(String hyCode) throws Exception {
+		MemberInfo info = infoMapper.selectHyInfoByCode(hyCode);
+		if(info == null)	return BaseResult.failedInstance("会员不存！");
+		if(JHStatusEnum.isActived(info.getJhStatus())) return BaseResult.failedInstance("已开通的会员不能删除！");
+		return infoMapper.deleteHyByCode(hyCode) == 0
+				?BaseResult.exceptionInstance():BaseResult.sucessInstance().setMsg("删除会员成功");
+	}
+
 
 	@Override
 	public BaseResult ktBdCenter(String hyCode) throws Exception {
@@ -235,6 +249,7 @@ public class HyManagerServiceImpl implements HyManagerService {
 			obj.setLevelName(HyLevelEnum.getNameByCode(obj.getHyLevel()));
 		});
 	}
+
 
 
 }
