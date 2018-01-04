@@ -117,12 +117,12 @@ public class HomeController {
 		return "newsCenter";
 	}
 	
-	//跳转到积分查询页面
-	@RequestMapping(value="/toScoreList.to")
-	public String toScoreSearch() {
-		return "scoreSearch";
-	}
-	
+//	//跳转到积分查询页面（暂时去掉）
+//	@RequestMapping(value="/toScoreList.to")
+//	public String toScoreSearch() {
+//		return "scoreSearch";
+//	}
+//	
 	//跳转到积分明细页面
 	@RequestMapping(value="/toScoreDetail.do")
 	public String toScoreDetail(HttpServletRequest request) {
