@@ -28,11 +28,9 @@
 
 <%@include file="menuBottom.jsp"%>
 <script>
+
 /* 初始化显示分页 */
-function queryPage(){
-	var pageUrl = '<%=basePath%>hyManager/getUnActivedList.do';
-	var tableHead = ['会员编号','联系电话','注册时间','开通时间','投资金额','状态','操作'];
-	var ktHy = function(hyCode){
+var ktHy = function(hyCode){
 		if(hyCode)
 			alert('开通成功！');
 	};
@@ -40,6 +38,10 @@ function queryPage(){
 		if(hyCode)
 			alert('删除成功！');
 	};
+function queryPage(){
+	var pageUrl = '<%=basePath%>hyManager/getUnActivedList.do';
+	var tableHead = ['会员编号','联系电话','注册时间','开通时间','投资金额','状态','操作'];
+	
 	var op_arr = [{text:"开通",func:ktHy,index:1},{text:"删除",func:delHy,index:1}];
 	var dataIndex = ['hyCode','sjMobile','zcTime','ktTime','money','flag',op_arr];
 	var params = {hyCode:$("#hy_Code").val().trim()};
