@@ -46,6 +46,11 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+    
+    <!--一个用户只能在一个主机登录 -->  
+    <listener>  
+        <listener-class>com.zhw.listener.LoginListener</listener-class>  
+    </listener>  
 
     <!-- 配置欢迎页 -->
     <welcome-file-list>

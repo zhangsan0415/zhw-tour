@@ -34,6 +34,7 @@ public class MemberScoreInfo {
 	
 	private String gxTime;//更新时间
 	
+
 	//用于显示使用的字段
 	private String hyLevelName;
 	

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.zhw.domain.MemberBankInfo;
 import com.zhw.domain.MemberInfo;
+import com.zhw.domain.MemberScoreInfoDetail;
 import com.zhw.domain.TourRegisterInfo;
 
 /**
@@ -47,5 +48,5 @@ public interface HomeService {
      * @param hyCode
      * @return
      */
-//    List<MemberScoreInfoDetail> queryScoreList(String hyCode);
+   List<MemberScoreInfoDetail> queryScoreList(String hyCode);
 }

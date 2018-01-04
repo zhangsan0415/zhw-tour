@@ -16,6 +16,7 @@
 		<result property="pdOverArea" column="PD_OVER_AREA" />
 		<result property="gxTime" column="GX_TIME" />
 		<result property="tjMan" column="TJ_MAN" />
+	
 	</resultMap>
 	
 	<sql id="BaseColumn">
@@ -52,9 +53,10 @@
 			<if test="ljTotalScore!=null">
 				LJ_TOTAL_SCORE=#{ljTotalScore,jdbcType=DECIMAL},
 			</if>
-			<if test="jjScore!=null">,
+			<if test="jjScore!=null">
 				JJ_SCORE=#{jjScore,jdbcType=DECIMAL},
-			</if><if test="xjScore!=null">
+			</if>
+			<if test="xjScore!=null">
 				XJ_SCORE=#{xjScore,jdbcType=DECIMAL},
 			</if>
 			<if test="lyScore!=null">
@@ -74,9 +76,12 @@
 				PD_OVER_AREA=#{pdOverArea,jdbcType=INTEGER},
 			</if>
 			<if test="gxTime!=null">
-				GX_TIME=#{gxTime,jdbcType=VARCHAR},
+				GX_TIME=#{gxTime,jdbcType=VARCHAR}
 			</if>
 		</set>
 		WHERE HY_CODE=#{hyCode}
 	</update>
+	<select id="selectScoreInfoByhyCode" resultMap="BaseMap" parameterType="java.lang.String">
+		SELECT <include refid="BaseColumn"/> FROM ZHW_MEM_SCORE  WHERE HY_CODE=#{hyCode}
+	</select>
 </mapper>

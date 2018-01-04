@@ -1,6 +1,7 @@
 package com.zhw.service.impl;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -18,7 +19,9 @@ import com.zhw.mapper.MemberScoreInfoMapper;
 import com.zhw.pojo.HyInfoPo;
 import com.zhw.pojo.JJScorePercentPo;
 import com.zhw.response.BaseResult;
+import com.zhw.response.PageResult;
 import com.zhw.service.HyManagerService;
+import com.zhw.type.HyLevelEnum;
 import com.zhw.type.HyLevelScoreEnum;
 import com.zhw.type.IfAdminEnum;
 import com.zhw.type.IfBdCenterEnum;
@@ -209,6 +212,28 @@ public class HyManagerServiceImpl implements HyManagerService {
 		if(BigDecimal.ZERO.compareTo(scoreInfo.getPdBalance()) == 0)	return false;
 		if(scoreInfo.getPdOverArea() == newZyArea)		return false;
 		return true;
+	}
+
+	@Override
+	public PageResult getActivedOrNotListPage(String hyCode, int jhStatus, int currentPage,String currentUser) throws Exception {
+//		int totalCount = infoMapper.selectCount();
+		int totalCount = infoMapper.selectCountForActivedOrNot(hyCode, jhStatus,currentUser);
+		if(totalCount == 0)	return PageResult.getOkInstance();
+		
+		int start =  PageResult.getStartNumber(currentPage);
+//		List<MemberInfo> dataList  = infoMapper.selectPageQQ();
+		List<MemberInfo> dataList = infoMapper.selectActivedOrNotPageList(hyCode, jhStatus, start, PageResult.pageSize,currentUser);
+		this.setMoneyAndFlag(dataList);
+		
+		return PageResult.getPageInstance(dataList, currentPage, totalCount);
+	}
+	
+	private void setMoneyAndFlag(List<MemberInfo> list){
+		list.forEach(obj->{
+			obj.setMoney(HyLevelScoreEnum.getValueByCode(obj.getHyLevel()));
+			obj.setFlag(JHStatusEnum.getNameByCode(obj.getJhStatus()));
+			obj.setLevelName(HyLevelEnum.getNameByCode(obj.getHyLevel()));
+		});
 	}
 
 

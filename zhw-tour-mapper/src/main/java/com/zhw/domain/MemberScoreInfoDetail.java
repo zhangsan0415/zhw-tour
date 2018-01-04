@@ -1,22 +1,25 @@
 package com.zhw.domain;
 
+import java.math.BigDecimal;
+
 public class MemberScoreInfoDetail {
 
 	private int pkId;
 	
 	private String hyCode;//会员编码
 	
-	private int scScore;//市场积分
+	private BigDecimal scScore;//市场积分
 	
-	private int ywScore;//业务积分
+	
+	private BigDecimal ywScore;//业务积分
 
-	private int geScore;//感恩积分
+	private BigDecimal geScore;//感恩积分
 	
-	private int bzScore;//补助积分
+	private BigDecimal bzScore;//补助积分
 	
-	private int glScore;//管理积分
+	private BigDecimal glScore;//管理积分
 
-	private int dhScore;//兑换积分
+	private BigDecimal dhScore;//兑换积分
 	
 	private String jsTime;//结算时间
 	
@@ -44,40 +47,40 @@ public class MemberScoreInfoDetail {
 	public void setHyCode(String hyCode) {
 		this.hyCode = hyCode;
 	}
-	public int getScScore() {
+	public BigDecimal getScScore() {
 		return scScore;
 	}
-	public void setScScore(int scScore) {
+	public void setScScore(BigDecimal scScore) {
 		this.scScore = scScore;
 	}
-	public int getYwScore() {
+	public BigDecimal getYwScore() {
 		return ywScore;
 	}
-	public void setYwScore(int ywScore) {
+	public void setYwScore(BigDecimal ywScore) {
 		this.ywScore = ywScore;
 	}
-	public int getGeScore() {
+	public BigDecimal getGeScore() {
 		return geScore;
 	}
-	public void setGeScore(int geScore) {
+	public void setGeScore(BigDecimal geScore) {
 		this.geScore = geScore;
 	}
-	public int getBzScore() {
+	public BigDecimal getBzScore() {
 		return bzScore;
 	}
-	public void setBzScore(int bzScore) {
+	public void setBzScore(BigDecimal bzScore) {
 		this.bzScore = bzScore;
 	}
-	public int getGlScore() {
+	public BigDecimal getGlScore() {
 		return glScore;
 	}
-	public void setGlScore(int glScore) {
+	public void setGlScore(BigDecimal glScore) {
 		this.glScore = glScore;
 	}
-	public int getDhScore() {
+	public BigDecimal getDhScore() {
 		return dhScore;
 	}
-	public void setDhScore(int dhScore) {
+	public void setDhScore(BigDecimal dhScore) {
 		this.dhScore = dhScore;
 	}
 	public String getJsTime() {

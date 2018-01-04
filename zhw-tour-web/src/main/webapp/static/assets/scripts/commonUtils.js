@@ -1,4 +1,5 @@
 (function ($) {
+	//弹出框公共方法
 	window.Ewin = function () {
 		 var html = '<div id="[Id]" class="modal fade" role="dialog" aria-labelledby="modalLabel">' +
 		  '<div class="modal-dialog modal-sm">' +
@@ -148,8 +149,144 @@
 					 $('body').find(target).remove();
 				 });
 			 }
-		}
+		};
 	 }();
+	 
+	 //封装Ajax bootstrapPaginator分页
+	 window.ZHW_Page = function(){
+		 return {
+			 paging:function(options){
+				 var tableId = options.tableId;
+				 var clientPageId = options.clientPageId;
+				 var tableHead = options.tableHead;
+				 var dataIndex = options.dataIndex;
+				 var params = options.params;
+				 
+				 var tHead = "<thead><tr>";
+				 $.each(tableHead,function(index,element){
+					 tHead=tHead+"<td style='text-align:center;'>"+element+"</td>";
+				 });
+				 tHead = tHead + "</tr></thead>";
+				 
+				 var table = $("#"+tableId);
+				 var pageClient = $("#" + clientPageId);
+				 
+				 params.currentPage = 1;
+				 $.ajax({
+					 type:'POST',
+					 dataType:'json',
+					 url:options.url,
+					 async:false,
+					 data:params,
+					 error:function(){
+						 Ewin.alert("系统繁忙，请稍候重试！");
+					 },
+					 success:function(data){
+//						 var dataObj = JSON.parse(data);
+						 var dataObj = data;
+						 if(dataObj.status != 0){
+							 Ewin.alert("系统繁忙，请稍候重试！");
+							 return;
+						 }
+						 
+						 var tBody = "<tbody>";
+						 var arr = dataObj.obj;
+						 if(arr){
+							 for(var i = 0; i<arr.length; i++){
+								 var str = "<tr>";
+								 var element = arr[i];
+								 for(var j=0;j<dataIndex.length;j++){
+									 var property = dataIndex[j];
+									 var tdValue = element[property];
+									 if(tdValue){
+										 str = str + "<td style='text-align:center;'>" + tdValue +"</td>";
+									 }else{
+										 str = str +"<td style='text-align:center;'></td>";
+									 }
+								 }
+								 str = str + "</tr>";
+								 tBody = tBody + str;
+							 }
+						 }
+						 tBody = tBody + "</tbody>";
+						 table.html(tHead+tBody);
+						 
+						 var totalPages = data.totalPages; //获取总页数
+						 var currentPage = data.currentPage; //得到currentPage
+						 var pageSize = data.pageSize; //每页显示多少条
+						 
+						 var pageOptions = {
+								 currentPage:currentPage,
+								 totalPages: totalPages,
+								 size:"normal",
+							     bootstrapMajorVersion: 3,
+							     alignment:"right",
+							     numberOfPages:pageSize,
+							     itemTexts: function (type, page, current) {
+								         switch (type) {
+									         case "first": return "首页";
+									         case "prev": return "上一页";
+											 case "next": return "下一页";
+									         case "last": return "末页";
+									         case "page": return page;
+								         }
+							     },
+							     onPageClicked: function (event, originalEvent, type, page){//给每个页眉绑定一个事件，其实就是ajax请求，其中page变量为当前点击的页上的数字。
+							    	 params.currentPage = page;
+							    	 $.ajax({
+											 type:'POST',
+											 dataType:'json',
+											 url:options.url,
+											 async:false,
+											 data:params,
+											 error:function(){
+												 Ewin.alert("系统繁忙，请稍候重试！");
+											 },
+								             success:function (data) {
+//									            	 var dataObj = JSON.parse(data);
+													 var dataObj = data;
+
+													 if(dataObj.status != 0){
+														 Ewin.alert("系统繁忙，请稍候重试！");
+														 return;
+													 }
+													 
+													 var tBody = "<tbody>";
+													 var arr = dataObj.obj;
+													 if(arr){
+														 for(var i = 0; i<arr.length; i++){
+															 var str = "<tr>";
+															 var element = arr[i];
+															 for(var j=0;j<dataIndex.length;j++){
+																 var property = dataIndex[j];
+																 var tdValue = element[property];
+																 if(tdValue){
+																	 str = str + "<td style='text-align:center;'>" + tdValue +"</td>";
+																 }else{
+																	 str = str +"<td style='text-align:center;'></td>";
+																 }
+															 }
+															 str = str + "</tr>";
+															 tBody = tBody + str;
+														 }
+													 }
+													 tBody = tBody + "</tbody>";
+													 table.html(tHead+tBody);
+								             }
+								        });
+							     }
+						 };
+						 
+						 pageClient.bootstrapPaginator(pageOptions);
+					 }
+					 
+				 });
+                        
+                         
+			 }
+		 };
+	 }();
+	 
 })(jQuery);
 
 
@@ -158,4 +295,7 @@
  * return; } });
  * 
  * Ewin.alert("操作成功！");
+ * 
+ * var options = {tableId:'',clientPageId:'',url:'',tableHead:[],dataIndex:[],params:{}};
+ * 分页调用方式： ZHW_Page.paging(options)
  */
