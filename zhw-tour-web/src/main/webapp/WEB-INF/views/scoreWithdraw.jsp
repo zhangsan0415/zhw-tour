@@ -65,7 +65,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<table class="table table-striped">
-							<thead>
+							<thead> 
 								<tr>
 									<th>会员编号</th>
 									<th>提现金额</th>
