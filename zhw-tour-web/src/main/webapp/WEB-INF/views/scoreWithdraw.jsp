@@ -62,7 +62,6 @@
 </div>
 <%@include file="menuBottom.jsp"%>
 <script>
-
 //提现按钮
 function withdraw(){
 	var type = $("#selected").val();
@@ -74,6 +73,7 @@ function withdraw(){
 		Ewin.alert({message: obj.msg}).on(function(){
 			if(obj.status==0){
 				document.getElementById("defaultForm").reset();
+				queryPage();
 			}
 		});
 	});
