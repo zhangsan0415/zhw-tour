@@ -33,7 +33,6 @@
 								<option value=''>现金金粉</option>  
 							</select>
 						</div>
-						
 						<div class="col-md-2 text-right line-height-30 mt10">已汇款到账户 ：</div>
 						<div class="col-md-10 text-left line-height-30 mt10">6225210265895214</div>
 					

@@ -20,9 +20,7 @@ label{
 .display-none{
     display:  none;
 }  
-.display-inline{
-	display:inline;
-}
+.display-inline{display:inline;}
 .mb20{
 	margin-bottom:20px;
 }

@@ -7,7 +7,6 @@
 		<!-- RIGHT COLUMN -->
 		<div class="container-fluid panel">
 			<div class="alert alert-warning alert-dismissible mt10"  role="alert">
-				
 				<i class="fa fa-warning"></i> 汇款信息：银行帐号：中国光大银行 银行卡号：6226623700288651 开户名：刘小勇 开户地址：甘肃省兰州七里河支行
 			</div>
 			<div class="profile-info ">

@@ -112,7 +112,6 @@
 </div>
 <%@include file="menuBottom.jsp"%>
 <script>
-
 //提现按钮
 function withdraw(){
 	var type = $("#selected").val();
