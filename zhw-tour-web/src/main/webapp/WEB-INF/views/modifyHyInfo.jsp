@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
@@ -43,7 +44,7 @@
 						<input type="text" class="form-control" id="user-name" value="${MemberBankInfo.khName}"/>
 					</div>
 				</div>
-				<div class="form-group">
+  					<div class="form-group">
 					<label class="col-lg-3 control-label">开户省市：</label>
 					<div class="col-lg-2">
 						<input type="text" class="form-control" placeholder="省"
@@ -53,7 +54,28 @@
 						<input type="text" class="form-control" placeholder="市"
 							data-stripe="exp-year" id="city-id" value="${MemberBankInfo.khCity}" />
 					</div>
-				</div>
+				</div> 
+						<%-- <div class="form-group">
+					<label class="col-lg-3 control-label">开户省市：</label>
+					<div class="col-lg-2">
+						<select name="khProvince" class="form-control" onchange="getCities(this)">
+							<c:forEach var="item" items="${requestScope.provinces}">
+								<option value="${item.pkId}">${item.areaName}</option>
+							</c:forEach>
+						</select>
+						<!-- <input type="text" name="khProvince" class="form-control" placeholder="省"
+							data-stripe="exp-month" /> -->
+					</div>
+					<div class="col-lg-2">
+						<select id="sign_in_cities" name="khCity" class="form-control">
+							<c:forEach var="item" items="${requestScope.cities}">
+								<option value="${item.pkId}">${item.areaName}</option>
+							</c:forEach>
+						</select>
+						<input type="text" name="khCity" class="form-control" placeholder="市"
+							data-stripe="exp-year" />
+					</div>
+				</div> --%>
 				<!--  <legend></legend> -->
 				<div class="form-group">
 					<label class="col-lg-3 control-label">身份证号：</label>
@@ -94,7 +116,9 @@
 </div>
 </body>
 <script type="text/javascript">
+
 //点击保存修改
+
 function saveHyInfo() {
 	var cardname = $("#card-name option:selected").text();//开户银行
 	var cardnumber = $("#card-number").val();//银行卡号
@@ -123,10 +147,28 @@ function saveHyInfo() {
 	
 	});
 }
+/* 获取城市列表 */
+function getCities(obj){
+	var citySelector =  $("#sign_in_cities");
+	$("option",citySelector).remove(); //清空原有的选项 
+	var url = "<%=basePath%>hyManager/getCities.do";
+	var params = {"provinceId":obj.value};
+	$.post(url,params,function(result){
+		var obj = JSON.parse(result);
+		if(obj.status != 0)	return;
+		$.each(obj.obj,function(index,item){
+			var option = "<option value='" + item['pkId'] + "'>" + item['areaName'] + "</option>";
+			citySelector.append(option);
+		});
+		
+	});
+}
 function isEmpty(str){
 	if(str == null || str == '') return true;
 	return false;
 }
+
+
 $("#subMarket").prev().addClass('active');/*一级  */
 $("#subMarket").addClass("in");
 $("#toSignIn").addClass('active');/* 二级 */
@@ -137,3 +179,5 @@ $("#toSignIn").addClass('active');/* 二级 */
 
 		
 <%@include file="menuBottom.jsp"%>
+
+

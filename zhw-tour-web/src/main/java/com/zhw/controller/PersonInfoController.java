@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zhw.domain.MemberInfo;
 import com.zhw.response.BaseResult;
+import com.zhw.response.PageResult;
 import com.zhw.service.PersonService;
 import com.zhw.utils.StringUtils;
 
@@ -82,5 +83,23 @@ public class PersonInfoController {
 			return BaseResult.exceptionInstance();
 		}
 		
+	}
+	/**
+	 * 查看界面，根据当前登录人(推荐人)查询推荐的所有人信息
+	 * @param hyCode
+	 * @param currentPage
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/getMemeberList.do",method= RequestMethod.POST)
+	@ResponseBody
+	public BaseResult getMemberInfo(String hyCode,int jhStatus,int currentPage,HttpServletRequest request){
+		try {
+			String tjMan = ControllerUtils.getUserInfo(request).getHyCode();//推荐人
+			return personService.getMemberInfo(tjMan, currentPage, hyCode,jhStatus);
+		} catch (Exception e) {
+			logger.error(StringUtils.putTogether("分页获取推荐会员列表失败，当前会员编号：",ControllerUtils.getUserInfo(request).getHyCode(),",异常信息：",e.getMessage()),e);
+			return BaseResult.exceptionInstance();
+		}
 	}
 }

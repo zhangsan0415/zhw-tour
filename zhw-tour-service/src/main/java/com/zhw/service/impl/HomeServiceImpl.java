@@ -74,7 +74,7 @@ public class HomeServiceImpl implements HomeService {
 			obj.setLevelName(HyLevelEnum.getNameByCode(obj.getHyLevel()));
 		});
 	}
-
+	/*
 	@Override
 	public List<MemberInfo> queryMemberInfoBytjMan(String tjMan) {
 		// TODO Auto-generated method stub
@@ -82,13 +82,13 @@ public class HomeServiceImpl implements HomeService {
 		if(list ==null || list.size()==0)	return null;
 		this.setMoneyAndFlag(list);
 		return list;
-	}
+	}*/
 
-	@Override
+/*	@Override
 	public List<TourRegisterInfo> queryTourInfo(String hyCode) {
 		// TODO Auto-generated method stub
 		return tourMapper.queryTourInfo(hyCode);
-	}
+	}*/
 
 	@Override
 	public List<MemberScoreInfoDetail> queryScoreList(String hyCode) {

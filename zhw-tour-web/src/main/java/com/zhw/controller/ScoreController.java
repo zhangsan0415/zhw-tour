@@ -17,6 +17,7 @@ import com.zhw.domain.MemberScoreChangeInfo;
 import com.zhw.domain.MemberScoreInfo;
 import com.zhw.response.BaseResult;
 import com.zhw.service.ScoreService;
+import com.zhw.type.IfWithdrawEnum;
 import com.zhw.type.JHStatusEnum;
 import com.zhw.utils.StringUtils;
 
@@ -113,6 +114,36 @@ public class ScoreController {
 		
 	
 	}
+	/*
+	 * 积分充值
+	 * @param type 充值类型
+	 * @param money 金额
+	 * @return
+	 */
+	@RequestMapping(value="/rechargeScore",method= RequestMethod.POST)
+	@ResponseBody
+	public BaseResult rechargeScore(String zzType,BigDecimal zzMoney,HttpServletRequest request){
+		try {
+			if(StringUtils.isEmpty(zzType)|| zzMoney == null)return BaseResult.conditionErrorInstance();
+			//验证充值金额大于0
+			if(zzMoney.compareTo(BigDecimal.ZERO)!=1)return BaseResult.failedInstance("充值金额有误，请重新填写！");
+			MemberScoreInfo info = ControllerUtils.getScoreInfo(request);
+			MemberScoreChangeInfo scoreInfo = new MemberScoreChangeInfo();
+			scoreInfo.setZzType(zzType);
+			scoreInfo.setZzMoney(zzMoney);
+			scoreInfo.setHyCode(info.getHyCode());
+			scoreInfo.setZzStatus(2);
+			MemberScoreInfo scoreInfos = scoreService.rechargeScore(info,scoreInfo);
+			//成功后，设置seesion信息
+			ControllerUtils.setScoreInfo(request, scoreInfos);
+			return BaseResult.sucessInstance().setMsg("操作成功！") ;
+		} catch (Exception e) {
+			logger.error("积分提现失败"+e);
+			return BaseResult.exceptionInstance();
+		}
+		
+	
+	}
 	//积分提现记录
 	@RequestMapping(value="/getScoreWithdraw.do")
 	@ResponseBody
@@ -142,6 +173,22 @@ public class ScoreController {
 		}
 		
 	}
+	
+	//积分充值记录
+	@RequestMapping(value="/getScoreRecharge.do")
+	@ResponseBody
+	public BaseResult toScoreRecharge(int currentPage,HttpServletRequest request) {
+		try {
+			String hyCode = ControllerUtils.getUserInfo(request).getHyCode();
+			int status = JHStatusEnum.RECHARGE.getTypeCode();
+			return scoreService.queryInfo(hyCode,status,currentPage);
+		} catch (Exception e) {
+			logger.error(StringUtils.putTogether("分页获取积分提现记录列表失败，当前会员编号：",ControllerUtils.getUserInfo(request).getHyCode(),",异常信息：",e.getMessage()),e);
+			return BaseResult.exceptionInstance();
+		}
+		
+	}
+		
 	private BaseResult checkParams(String dfCode, String type, BigDecimal money) {
 		if(!StringUtils.isEmpty(type)){
 			if("1010".equals(type)){

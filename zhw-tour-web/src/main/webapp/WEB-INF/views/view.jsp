@@ -8,45 +8,22 @@
 
 		<div class="panel panel-headline demo-icons">
 			<div class="panel-heading">
-				<h3 class="panel-title">已开通会员</h3>
+				<h3 class="panel-title">查看</h3>
 			</div>
 			<div class="panel-body">
 				<form action="" class="form-inline">
 
-					会员编号： <input type="text" class="form-control" id="hyCode"/>
-					<button type="button" class="btn btn-info" onclick="query()">查询</button>
+					会员编号： <input type="text" class="form-control" id="hy_Code"/>
+					开通状态：<select name="" id="jh_status" class="form-control">
+							<option value="0">已开通</option>
+							<option value="1">未开通</option>
+						</select>
+					<button type="button" class="btn btn-info" onclick="queryPage()">查询</button>
 				</form>
 			
-				<table id="list" class="table table-striped">
-				
-					 <thead>
-                        <tr>
-                         
-                            <td style="text-align:center;">会员编号</td>
-                            <td style="text-align:center;">联系电话</td>
-                            <td style="text-align:center;">注册时间</td>
-                            <td style="text-align:center;">开通时间</td>
-                            <td style="text-align:center;">投资金额</td>
-                            <td style="text-align:center;">会员级别</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                           <c:forEach items="${tjManList}" var="item" >
-								<tr>
-								    <td style="text-align:center;">${item.hyCode}</td>
-								    <td style="text-align:center;">${item.sjMobile}</td>
-								    <td style="text-align:center;">${item.zcTime}</td>
-								    <td style="text-align:center;">${item.ktTime}</td>
-								    <td style="text-align:center;">${item.money}</td>
-								    <td style="text-align:center;">${item.levelName}</td>
-								</tr>
-							</c:forEach>
-                       </tbody>
+				<table id="view_list" class="table table-striped">
 				</table>
-				<p class="text-center">
-					总条数: <span>2</span> 当前页:<span> 1/1 </span> <a href="">快进</a> <a
-						href="">尾页</a>
-				</p>
+				<div id="example" style="text-align: center"> <ul id="pageLimit"></ul> </div>
 			</div>
 		</div>
 	</div>
@@ -55,20 +32,17 @@
 
 <%@include file="menuBottom.jsp"%>
 <script>
-<%--  var hyCode = $("#hyCode").val();
-var url = "<%=basePath%>hyManager/doModifyPwd.do";
-var params ={"hyCode":hyCode};
-$.post(url,params,function(result){
-	var obj = JSON.parse(result);
-	if(obj.status != 0){
-		alert(obj.msg == null ? "系统繁忙，请稍候重试！":obj.msg);  	return;
-	}else{
-	
-		 //清空数据
-		 document.getElementById("hyCode").reset();
-	}
-	 
-}); --%>
+/* 初始化显示分页 */
+function queryPage(){
+	var pageUrl = '<%=basePath%>person/getMemeberList.do';
+	var tableHead = ['会员编号','联系电话','注册时间','开通状态','投资金额','会员级别'];
+	var dataIndex = ['hyCode','sjMobile','zcTime','flag','money','levelName'];
+	var params = {hyCode:$("#hy_Code").val().trim(),jhStatus:$("#jh_status").val().trim()};
+	var options = {tableId:'view_list',clientPageId:'pageLimit',url:pageUrl,tableHead:tableHead,dataIndex:dataIndex,params:params};
+	ZHW_Page.paging(options);
+}
+
+queryPage();
 $("#subServer").prev().addClass('active');/*一级  */
 $("#subServer").addClass("in");
 $("#toUnActiveHyList").addClass('active');/* 二级 */

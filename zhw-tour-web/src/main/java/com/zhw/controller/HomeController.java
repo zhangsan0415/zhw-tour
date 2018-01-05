@@ -38,6 +38,10 @@ public class HomeController {
 		request.setAttribute("MemberBankInfo",homeService.queryBankInfo(ControllerUtils.getUserInfo(request).getHyCode()) );
 		//向前台输出支持的银行卡列表
 		request.setAttribute("bankList", BankEnum.values());
+		//向前台输出省份信息
+		List<Area> areas = areaComponent.getProvinces();
+		request.setAttribute("provinces",areas );
+		request.setAttribute("cities",areaComponent.getCities(areas.get(0).getPkId()));
 		return "modifyHyInfo";
 	}
 	
@@ -81,8 +85,8 @@ public class HomeController {
 	//跳转到查看页面
 	@RequestMapping(value="/toView.do")
 	public String toView(HttpServletRequest request) {
-		String tjMan = ControllerUtils.getUserInfo(request).getHyCode();
-		request.setAttribute("tjManList",homeService.queryMemberInfoBytjMan(tjMan));
+//		String tjMan = ControllerUtils.getUserInfo(request).getHyCode();
+//		request.setAttribute("tjManList",homeService.queryMemberInfoBytjMan(tjMan));
 		return "view";
 	}
 	
@@ -117,8 +121,8 @@ public class HomeController {
 	//跳转查看旅游报名记录页面
 	@RequestMapping(value="/toViewTourRecord.do")
 	public String toViewTourRecord(HttpServletRequest request) {
-		String hyCode = ControllerUtils.getUserInfo(request).getHyCode();
-		request.setAttribute("tourList", homeService.queryTourInfo(hyCode));
+//		String hyCode = ControllerUtils.getUserInfo(request).getHyCode();
+//		request.setAttribute("tourList", homeService.queryTourInfo(hyCode));
 		return "viewTourRecord";
 	}
 	

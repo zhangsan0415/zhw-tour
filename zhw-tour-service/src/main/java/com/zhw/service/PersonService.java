@@ -1,5 +1,7 @@
 package com.zhw.service;
 
+import com.zhw.response.PageResult;
+
 
 
 public interface PersonService {
@@ -15,4 +17,11 @@ public interface PersonService {
 	  * @return
 	  */
 	 int modifyPwd(String hyCode,String yjPwd,String ejPwd)throws Exception;
+	 /**
+	  * 查询推荐人明细
+	  * @param tjMan 推荐人
+	  * @param currentPage
+	  * @return
+	  */
+	 PageResult getMemberInfo(String tjMan,int currentPage,String hyCode,int jhStatus)throws Exception;
 }

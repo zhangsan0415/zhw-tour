@@ -31,4 +31,12 @@ public interface ScoreService {
 	 * @throws Exception
 	 */
 	MemberScoreInfo withdrawScore(MemberScoreInfo info,MemberScoreChangeInfo scoreInfo)throws Exception;
+	/**
+	 * 积分充值
+	 * @param info
+	 * @param scoreInfo
+	 * @return
+	 * @throws Exception
+	 */
+	MemberScoreInfo rechargeScore(MemberScoreInfo info,MemberScoreChangeInfo scoreInfo)throws Exception;
 }

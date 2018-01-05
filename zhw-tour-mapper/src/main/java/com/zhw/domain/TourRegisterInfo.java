@@ -26,6 +26,16 @@ public class TourRegisterInfo {
 	private BigDecimal bmPrice;//收费
 	
 	private String bmComment;//备注
+	
+	private String hyCode;
+
+	public String getHyCode() {
+		return hyCode;
+	}
+
+	public void setHyCode(String hyCode) {
+		this.hyCode = hyCode;
+	}
 
 	public int getPkId() {
 		return pkId;

@@ -102,6 +102,7 @@ function transfer(){
 		Ewin.alert({message: obj.msg}).on(function(){
 			if(obj.status==0){
 				document.getElementById("defaultForm").reset();
+				queryPage();
 			}
 		});
 	});

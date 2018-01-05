@@ -11,13 +11,14 @@
 		<result property="zzTime" column="ZZ_TIME" />
 		<result property="zzStatus" column="ZZ_STATUS" />
 		<result property="txStatus" column="TX_STATUS" />
+		<result property="czStatus" column="CZ_STATUS" />
 		<result property="khCardCode" column="KH_CARD_CODE" />
 	</resultMap>
 	
 	<sql id="BaseColumn">
-		PK_ID,HY_CODE,DF_CODE,ZZ_TYPE,ZZ_MONEY,ZZ_TIME,ZZ_STATUS,TX_STATUS
+		PK_ID,HY_CODE,DF_CODE,ZZ_TYPE,ZZ_MONEY,ZZ_TIME,ZZ_STATUS,TX_STATUS,CZ_STATUS
 	</sql>
-	<!-- 积分互转记录/积分提现记录 -->
+	<!-- 积分互转记录/积分提现记录/积分充值 -->
 	<select id="queryInfoByHycode" resultMap="BaseMap">
 	select a.*,b.KH_CARD_CODE from ZHW_SCORE_CHANGE a JOIN ZHW_MEM_BANK b ON a.HY_CODE = b.HY_CODE
 	 where( a.HY_CODE=#{hyCode} or a.DF_CODE=#{hyCode}) and a.ZZ_STATUS=#{zzStatus}
@@ -26,7 +27,7 @@
 	<insert id="insertScoreInfo" parameterType="com.zhw.domain.MemberScoreChangeInfo">
 		INSERT INTO ZHW_SCORE_CHANGE(<include refid="BaseColumn"/>)
 		VALUES (#{pkId},#{hyCode,jdbcType=VARCHAR},#{dfCode,jdbcType=VARCHAR},#{zzType,jdbcType=VARCHAR},#{zzMoney,jdbcType=DECIMAL},sysdate()
-		,#{zzStatus,jdbcType=INTEGER},#{txStatus,jdbcType=VARCHAR})
+		,#{zzStatus,jdbcType=INTEGER},#{txStatus,jdbcType=VARCHAR},#{czStatus,jdbcType=VARCHAR})
 	</insert>
 	
 	<select id="selectCount" resultType="Integer">

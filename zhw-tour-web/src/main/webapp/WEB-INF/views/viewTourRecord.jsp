@@ -10,49 +10,15 @@
 			</div>
 			<div class="panel-body">
 				<form action="" class="form-inline">
-					会员编号： <input type="text" class="form-control" />
-					<button class="btn btn-info">查询</button>
+					会员编号： <input type="text" class="form-control" id="hy_Code"/>
+					<button class="btn btn-info" onclick="queryPage()">查询</button>
 				</form>
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<td style="width: 6%;">ID</td>
-							<td style="width: 12%;">会员编号</td>
-							<td style="width: 19%;">行程路线</td>
-							<td style="width: 7%;">报名时间</td>
-							<td style="width: 10%;">确认时间</td>
-							<td style="width: 13%;">查看游客明细</td>
-							<td style="width: 15%;">总人数</td>
-							<td style="width: 5%;">总费用</td>
-							<td style="width: 10%;">状态</td>
-						</tr>
-					</thead>
-					<tbody>
-					  <c:forEach items="${tourList}" var="item" >
-								<tr>
-								    <td style="text-align:center;">${item.bmName}</td>
-								    <td style="text-align:center;">${item.bmName}</td>
-								    <td style="text-align:center;">${item.bmName}</td>
-								    <td style="text-align:center;">${item.bmName}</td>
-								    <td style="text-align:center;">${item.bmName}</td>
-								    <td style="text-align:center;">${item.bmName}</td>
-								      <td style="text-align:center;">${item.bmName}</td>
-								    <td style="text-align:center;">${item.bmName}</td>
-								    <td style="text-align:center;">${item.bmName}</td>
-								</tr>
-							</c:forEach>
-					</tbody>
-				</table>
-				<p class="text-center">
-					总条数: <span>2</span> 当前页:<span> 1/1 </span> <a href="">快进</a> <a
-						href="">尾页</a>
-				</p>
+				<table class="table table-striped" id="score_list">
+						</table>
+						<div id="example" style="text-align: center"> <ul id="pageLimit"></ul> </div>
 			</div>
 
 		</div>
-
-
-
 	</div>
 	<!-- END MAIN -->
 	<div class="clearfix"></div>
@@ -60,6 +26,18 @@
 </div>
 <%@include file="menuBottom.jsp"%>
 <script>
+
+/* 初始化显示分页 */
+function queryPage(){
+	var pageUrl = '<%=basePath%>tour/getTourList.do';
+	var tableHead = ['ID','会员编号','行程路线','报名时间','确认时间','查看有课明细','总人数','总费用','状态'];
+	var dataIndex = ['pkId','hyCode','zzTime','zzType','czStatus'];
+	var params = {hyCode:$("#hy_Code").val().trim()};
+	var options = {tableId:'score_list',clientPageId:'pageLimit',url:pageUrl,tableHead:tableHead,dataIndex:dataIndex,params:params};
+	ZHW_Page.paging(options);
+}
+
+queryPage();
 $("#subEnter").prev().addClass('active');/*一级  */
 $("#subEnter").addClass("in");
 $("#toViewTourRecord").addClass('active');/* 二级 */

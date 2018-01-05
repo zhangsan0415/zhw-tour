@@ -11,16 +11,30 @@
 		<result property="bmPhone" column="BM_PHONE" />
 		<result property="bmPrice" column="BM_PRICE" />
 		<result property="bmComment" column="BM_COMMENT" />
+		<result property="hyCode" column="HY_CODE" />
 	</resultMap>
 
     <sql id="AddColumn">
-		BM_NAME,BM_CARD_CODE,BM_SEX,BM_HJ_ADDRESS,BM_CAR_CODE,BM_PHONE,BM_PRICE,BM_COMMENT
+		BM_NAME,BM_CARD_CODE,BM_SEX,BM_HJ_ADDRESS,BM_CAR_CODE,BM_PHONE,BM_PRICE,BM_COMMENT,HY_CODE
 	</sql>
 	<sql id="BaseColumn">
 		PK_ID,<include refid="AddColumn"/>
 	</sql>
 	<select id="queryTourInfo" resultMap="BaseMap">
 			SELECT <include refid="BaseColumn"/> FROM ZHW_TOUR_REG 
+			WHERE 
+			<if test="HyCode !=null and hyCode !=''">
+				HY_CODE=#{hyCode}
+			</if>
+			<!-- WHERE HY_CODE = #{hyCode} --> 
+	</select>
+	
+		<select id="queryTourCount" resultType="Integer">
+			SELECT COUNT(1) from FROM ZHW_TOUR_REG 
+			WHERE 
+			<if test="HyCode !=null and hyCode !=''">
+				HY_CODE=#{hyCode}
+			</if>
 			<!-- WHERE HY_CODE = #{hyCode} --> 
 	</select>
 </mapper>

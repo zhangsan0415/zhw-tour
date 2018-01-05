@@ -1,7 +1,7 @@
 package com.zhw.type;
 
 public enum JHStatusEnum {
-	ACTIVED(0,"已开通"),UNACTIVED(1,"未开通");
+	ACTIVED(0,"已开通"),UNACTIVED(1,"未开通"),RECHARGE(2,"积分充值");
 	
 	private int typeCode;
 	private String typeName;

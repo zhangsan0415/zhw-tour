@@ -71,7 +71,12 @@
 	</select>
 	
 	<select id="selectMemberInfoBytjMan" parameterType="java.lang.String" resultMap="BaseMap">
-		SELECT <include refid="BaseColumn"/> FROM ZHW_MEM WHERE  JH_STATUS = 0 and TJ_MAN=#{tjMan} 
+		SELECT <include refid="BaseColumn"/> FROM ZHW_MEM WHERE  TJ_MAN=#{tjMan}  
+			and  JH_STATUS = #{jhStatus}
+		<if test="hyCode != null and hyCode != ''">
+			and HY_CODE = #{hyCode}
+		</if>
+		limit #{start},#{pageSize}
 	</select>
 	
 	<select id="selectHyInfoByCode" parameterType="java.lang.String" resultMap="BaseMap">
@@ -100,4 +105,13 @@
 	<delete id="deleteHyByCode" parameterType="java.lang.String">
 		DELETE FROM ZHW_MEM WHERE HY_CODE = #{hyCode}
 	</delete>
+	
+	<select id="selectCountBytjMan" resultType="Integer">
+		SELECT COUNT(1) FROM ZHW_MEM WHERE TJ_MAN = #{tjMan}
+			and  JH_STATUS = #{jhStatus}
+	    <if test="hyCode != null and hyCode != ''">
+			and HY_CODE = #{hyCode}
+		</if>
+		
+	</select>
 </mapper>

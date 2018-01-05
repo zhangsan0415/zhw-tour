@@ -1,14 +1,21 @@
 package com.zhw.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.zhw.domain.MemberBankInfo;
+import com.zhw.domain.MemberInfo;
 import com.zhw.mapper.MemberBankInfoMapper;
 import com.zhw.mapper.MemberInfoMapper;
+import com.zhw.response.PageResult;
 import com.zhw.service.PersonService;
+import com.zhw.type.HyLevelEnum;
+import com.zhw.type.HyLevelScoreEnum;
+import com.zhw.type.JHStatusEnum;
 @Service
 public class PersonServiceImpl implements PersonService {
 
@@ -46,4 +53,22 @@ public class PersonServiceImpl implements PersonService {
 		return memberInfoMapper.modifyPwd(hyCode, yjPwd, ejPwd);
 	}
 
+	@Override
+	public PageResult getMemberInfo(String tjMan, int currentPage,String hyCode,int jhStatus)throws Exception {
+		
+		int count = memberInfoMapper.selectCountBytjMan(tjMan,hyCode,jhStatus);
+		if (count == 0)return 	PageResult.getOkInstance();
+		int start = PageResult.getStartNumber(currentPage);
+		List<MemberInfo> list = memberInfoMapper.selectMemberInfoBytjMan(tjMan,start,PageResult.pageSize,hyCode,jhStatus);
+		if(list ==null || list.size()==0)	return null;
+		this.setMoneyAndFlag(list);
+		return PageResult.getPageInstance(list, currentPage, count);
+	}
+	private void setMoneyAndFlag(List<MemberInfo> list){
+		list.forEach(obj->{
+			obj.setMoney(HyLevelScoreEnum.getValueByCode(obj.getHyLevel()));
+			obj.setFlag(JHStatusEnum.getNameByCode(obj.getJhStatus()));
+			obj.setLevelName(HyLevelEnum.getNameByCode(obj.getHyLevel()));
+		});
+	}
 }

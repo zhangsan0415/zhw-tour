@@ -16,7 +16,9 @@ import java.util.List;
 
 
 
+
 import javax.annotation.Resource;
+
 
 
 
@@ -67,7 +69,12 @@ public class ScoreServiceImpl implements ScoreService {
 				obj.setZzType(IfWithdrawEnum.getNameByCode(obj.getZzType()));
 				obj.setTxStatus(IfWithdrawEnum.getNameByCode(obj.getTxStatus()));
 				obj.setRealMoney(obj.getZzMoney().multiply(new BigDecimal(0.95)));
-			}else{	obj.setZzType(ZZTypeEnum.getNameByCode(obj.getZzType()));}
+			}else if(obj.getCzStatus()!=null){
+				obj.setZzType(IfWithdrawEnum.getNameByCode(obj.getZzType()));
+				obj.setCzStatus(IfWithdrawEnum.getNameByCode(obj.getCzStatus()));
+			}else{	
+				obj.setZzType(ZZTypeEnum.getNameByCode(obj.getZzType()));
+				}
 		});
 		return PageResult.getPageInstance(list, currentPage, count);
 	}
@@ -184,5 +191,23 @@ public class ScoreServiceImpl implements ScoreService {
 		return scoreInfoMapper.selectScoreInfoByCode(info.getHyCode());
 	}
 
+
+	@Override
+	public MemberScoreInfo rechargeScore(MemberScoreInfo info,
+			MemberScoreChangeInfo scoreInfo) throws Exception {
+		scoreInfo.setCzStatus("0");//未确认
+		if (scoreInfo.getZzType().equals("1018")) {
+			//充值报单积分
+			info.setBdScore(info.getBdScore().add(scoreInfo.getZzMoney()));
+			scoreInfoMapper.updateScoreInfo(info);
+		}else if(scoreInfo.getZzType().equals("1019")){
+			//充值现金积分
+			info.setXjScore(info.getXjScore().add(scoreInfo.getZzMoney()));
+			scoreInfoMapper.updateScoreInfo(info);
+		}
+		//插入积分日志
+		changeMapper.insertScoreInfo(scoreInfo);
+		return scoreInfoMapper.selectScoreInfoByCode(info.getHyCode());
+	}
 	
 }

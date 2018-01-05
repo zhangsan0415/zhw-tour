@@ -16,7 +16,7 @@ public class MemberScoreChangeInfo {
 	
 	private BigDecimal zzMoney;//金额
 	
-	private int zzStatus;//操作状态（0提现，1互转）
+	private int zzStatus;//操作状态（0提现，1互转,2充值）
 	
 	/*
 	 * 用于积分提现显示
@@ -27,6 +27,16 @@ public class MemberScoreChangeInfo {
 
 	private String txStatus;//提现状态，0确认，1未确认
 	
+	private String czStatus;//充值状态，0确认，1未确认
+	
+	public String getCzStatus() {
+		return czStatus;
+	}
+
+	public void setCzStatus(String czStatus) {
+		this.czStatus = czStatus;
+	}
+
 	public int getPkId() {
 		return pkId;
 	}

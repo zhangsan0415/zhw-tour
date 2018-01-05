@@ -30,7 +30,7 @@ public interface MemberInfoMapper {
 	String selectJdManCode(String hyCode);
 	
 	//根据推荐人查询会员信息
-	List<MemberInfo> selectMemberInfoBytjMan(String tjMan);
+	List<MemberInfo> selectMemberInfoBytjMan(@Param("tjMan")String tjMan,@Param("start")int start,@Param("pageSize")int pageSize,@Param("hyCode")String hyCode,@Param("jhStatus")int jhStatus);
 	
 	//根据会员编码查询会员信息
 	MemberInfo selectHyInfoByCode(String hyCode);
@@ -50,5 +50,7 @@ public interface MemberInfoMapper {
 	
 	//删除会员时使用
 	int deleteHyByCode(String hyCode);
+	//根据推荐人查询推荐的会员总数
+	int selectCountBytjMan(@Param("tjMan")String tjMan,@Param("hyCode")String hyCode,@Param("jhStatus")int jhStatus);
 	
 }

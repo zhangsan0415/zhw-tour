@@ -36,13 +36,13 @@ public interface HomeService {
      * @return
      */
     
-    List<MemberInfo> queryMemberInfoBytjMan(String tjMan);
+ //   List<MemberInfo> queryMemberInfoBytjMan(String tjMan);
     
     /**
      * 默认查询登录人的报名记录
      * @return
      */
-    List<TourRegisterInfo> queryTourInfo(String hyCode);
+  //  List<TourRegisterInfo> queryTourInfo(String hyCode);
     /**
      * 根据登录人会员编号查询积分明细
      * @param hyCode
