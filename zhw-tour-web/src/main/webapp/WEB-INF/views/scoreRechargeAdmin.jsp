@@ -30,7 +30,7 @@
 							<select name="buy" class="form-control" id="tranfer_id"  style="width: 20%" onchange="hideHycode()">
 								<option value=''>报单积分</option>
 								<option value=''>购物积分</option>
-								<option value=''>现金金粉</option>  
+								<option value=''>现金积分</option>  
 							</select>
 						</div>
 						<div class="col-md-2 text-right line-height-30 mt10">已汇款到账户 ：</div>
