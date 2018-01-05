@@ -76,7 +76,7 @@ public class PersonInfoController {
 				memberInfo.setYjPwd(yjPwd);
 				memberInfo.setEjPwd(ejPwd);
 				ControllerUtils.setUserInfo(request, memberInfo);
-				return BaseResult.sucessInstance();
+				return BaseResult.sucessInstance().setMsg("修改成功！");
 			}else{return BaseResult.exceptionInstance();}
 		} catch (Exception e) {
 			logger.error("用户"+hyCode+"更新密码失败"+e);

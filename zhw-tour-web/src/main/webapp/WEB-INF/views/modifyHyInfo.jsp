@@ -133,18 +133,14 @@ function saveHyInfo() {
 	var url = "<%=basePath%>person/doModifyInfo.do";
 	var params = {"khBankName":cardname,"khCardCode":cardnumber,"khName":username,"khProvince":province,"khCity":city,
 			"sfzCardCode":card,"yxEmail":email,"sjMobile":phone,"hyCode":hyCode};
-	$.post(
-			url,
-			params,
-			function(result){
-				
-				var obj = JSON.parse(result);
-				if(obj.status != 0){ 
-					alert(obj.msg == null ? "系统繁忙，请稍候重试！":obj.msg);
-				}else{
-					 alert("修改成功！");
-				}
-	
+	$.post(url,params,function(data){
+		var obj = JSON.parse(data);
+		Ewin.alert({message: obj.msg}).on(function(){
+			if(obj.status==0){
+		//		document.getElementById("defaultForm").reset();
+			
+			}
+		});
 	});
 }
 /* 获取城市列表 */

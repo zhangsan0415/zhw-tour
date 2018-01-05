@@ -58,16 +58,14 @@ function onSave(){
 		//验证通过
 		var url = "<%=basePath%>person/doModifyPwd.do";
 		var params = {"yjPwd":first,"confimYjPwd":confirmFirst,"ejPwd":second,"confirmEjPwd":confirmSecond,"hyCode":hyCode};
-		$.post(url,params,function(result){
-			var obj = JSON.parse(result);
-			if(obj.status != 0){
-				alert(obj.msg == null ? "系统繁忙，请稍候重试！":obj.msg);  	return;
-			}else{
-				 alert("修改成功！");
-				 //清空表单
-				 document.getElementById("defaultForm").reset();
-			}
-			 
+		$.post(url,params,function(data){
+			var obj = JSON.parse(data);
+			Ewin.alert({message: obj.msg}).on(function(){
+				if(obj.status==0){
+					document.getElementById("defaultForm").reset();
+			
+				}
+			});
 		});
 		
 	
