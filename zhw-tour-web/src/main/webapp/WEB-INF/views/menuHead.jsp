@@ -206,8 +206,8 @@
 									<span class="icon-submenu glyphicon glyphicon-menu-down"></span></a>
 								<div id="subIntegral" class="collapse ">
 									<ul class="nav">
-										<li><a id='toScoreList'
-											href="<%=basePath%>home/toScoreList.do" class="">积分查询</a></li>
+										<%-- <li><a id='toScoreList'
+											href="<%=basePath%>home/toScoreList.do" class="">积分查询</a></li> --%>
 										<li><a id='toScoreDetail'
 											href="<%=basePath%>home/toScoreDetail.do" class="">积分明细</a></li>
 										<li><a id='toScoreTransfer'
