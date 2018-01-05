@@ -8,11 +8,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.zhw.controller.ControllerUtils;
 import com.zhw.domain.MemberInfo;
+import com.zhw.domain.MemberScoreInfo;
+import com.zhw.service.LoginInterceptorService;
 import com.zhw.utils.StringUtils;
 
 public class LoginInterceptor implements HandlerInterceptor{
 
 	private static String[] IGNORE_URIS = {"/login/index.do","/login/checkHyCode.do","/login/createCheckCode.do","/login/doLogin.do"};
+	
+	private LoginInterceptorService loginInterceptorService;
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -29,6 +33,10 @@ public class LoginInterceptor implements HandlerInterceptor{
 			response.sendRedirect(StringUtils.putTogether(basePath,"login/index.do"));
 			return false;
 		}
+		
+		//时时更新积分信息
+		MemberScoreInfo scoreInfo = loginInterceptorService.queryScoreInfo(memberInfo.getHyCode());
+		ControllerUtils.setScoreInfo(request, scoreInfo);
 		return true;
 	}
 
@@ -40,6 +48,14 @@ public class LoginInterceptor implements HandlerInterceptor{
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
+	}
+
+	public LoginInterceptorService getLoginInterceptorService() {
+		return loginInterceptorService;
+	}
+
+	public void setLoginInterceptorService(LoginInterceptorService loginInterceptorService) {
+		this.loginInterceptorService = loginInterceptorService;
 	}
 
 }

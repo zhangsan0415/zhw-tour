@@ -5,9 +5,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.zhw.component.AreaComponent;
 import com.zhw.domain.Area;
+import com.zhw.domain.MemberInfo;
 import com.zhw.service.HomeService;
 import com.zhw.service.ScoreService;
 import com.zhw.type.BankEnum;
+import com.zhw.type.IfBdCenterEnum;
 import com.zhw.type.JHStatusEnum;
 import com.zhw.type.ZZTypeEnum;
 
@@ -49,8 +51,17 @@ public class HomeController {
 	//跳转注册会员页面
 	@RequestMapping(value="/toSignIn.do")
 	public String toSignIn(HttpServletRequest request) {
+		
+		MemberInfo info = ControllerUtils.getUserInfo(request);
+		//计算所属报单中心，如果当前登录人为报单中心，则为当前登录人，如果不是，取当前登录人的开通人
+		if(IfBdCenterEnum.isBdCenter(info.getIfBdCenter()))
+			request.setAttribute("ownedBdCenter", info.getHyCode());
+		else
+			request.setAttribute("ownedBdCenter", info.getKtMan());
+		
 		//向前台推送接点人信息
-		request.setAttribute("tjMan",homeService.getJDManHyCode(ControllerUtils.getUserInfo(request).getHyCode()));
+		request.setAttribute("tjMan",homeService.getJDManHyCode(info.getHyCode()));
+		
 		//向前台输出支持的银行卡列表
 		request.setAttribute("bankList", BankEnum.values());
 		
@@ -117,12 +128,12 @@ public class HomeController {
 		return "newsCenter";
 	}
 	
-	//跳转到积分查询页面
-	@RequestMapping(value="/toScoreList.to")
-	public String toScoreSearch() {
-		return "scoreSearch";
-	}
-	
+//	//跳转到积分查询页面（暂时去掉）
+//	@RequestMapping(value="/toScoreList.to")
+//	public String toScoreSearch() {
+//		return "scoreSearch";
+//	}
+//	
 	//跳转到积分明细页面
 	@RequestMapping(value="/toScoreDetail.do")
 	public String toScoreDetail(HttpServletRequest request) {
@@ -136,9 +147,9 @@ public class HomeController {
 	public String toScoreTransfer(HttpServletRequest request) {
 		//向前台输出支持的转换关系
 		request.setAttribute("zzTypeList", ZZTypeEnum.values());
-		String hyCode = ControllerUtils.getUserInfo(request).getHyCode();
-		int status = JHStatusEnum.UNACTIVED.getTypeCode();
-		request.setAttribute("zzList", scoreService.queryInfo(hyCode,status));
+//		String hyCode = ControllerUtils.getUserInfo(request).getHyCode();
+//		int status = JHStatusEnum.UNACTIVED.getTypeCode();
+//		request.setAttribute("zzList", scoreService.queryInfo(hyCode,status));
 		return "scoreTransfer";
 	}
 	
@@ -151,9 +162,9 @@ public class HomeController {
 	//跳转到积分提现页面
 	@RequestMapping(value="/toScoreWithdraw.do")
 	public String toScoreWithdraw(HttpServletRequest request) {
-		String hyCode = ControllerUtils.getUserInfo(request).getHyCode();
-		int status = JHStatusEnum.ACTIVED.getTypeCode();
-		request.setAttribute("txList", scoreService.queryInfo(hyCode,status));
+		//String hyCode = ControllerUtils.getUserInfo(request).getHyCode();
+		//int status = JHStatusEnum.ACTIVED.getTypeCode();
+		//request.setAttribute("txList", scoreService.queryInfo(hyCode,status));
 		return "scoreWithdraw";
 	}
 	

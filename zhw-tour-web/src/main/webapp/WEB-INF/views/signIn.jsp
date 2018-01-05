@@ -13,7 +13,7 @@
 				<div class="form-group">
 					<label class="col-lg-3 control-label text-danger">所属报单中心：</label>
 					<div class="col-lg-2">
-						<input type="text" class="form-control" name="fwCenter" value="${sessionScope.userInfo.hyCode}"  readonly="readonly"/>
+						<input type="text" class="form-control" name="fwCenter" value="${requestScope.ownedBdCenter}"  readonly="readonly"/>
 					</div>
 				</div>
 				<div class="form-group">

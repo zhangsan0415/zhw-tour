@@ -93,10 +93,11 @@
 		 limit #{start},#{pageSize}
 	</select>
 	
-	<select id="selectCount" resultType="java.lang.Integer">
-		SELECT COUNT(1) FROM ZHW_MEM
-	</select>
-	<select id="selectPageQQ" resultMap="BaseMap">
-		SELECT * FROM ZHW_MEM
-	</select>
+	<update id="updateJhStatus">
+		UPDATE ZHW_MEM SET JH_STATUS=#{jhStatus},KT_TIME=#{ktTime},XG_TIME=#{ktTime} WHERE HY_CODE = #{hyCode}
+	</update>
+	
+	<delete id="deleteHyByCode" parameterType="java.lang.String">
+		DELETE FROM ZHW_MEM WHERE HY_CODE = #{hyCode}
+	</delete>
 </mapper>

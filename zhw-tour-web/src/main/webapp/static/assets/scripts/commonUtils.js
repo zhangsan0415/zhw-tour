@@ -154,6 +154,51 @@
 	 
 	 //封装Ajax bootstrapPaginator分页
 	 window.ZHW_Page = function(){
+		 var getTBody = function(arr,dataIndex){
+			 var tBody = "<tbody>";
+			 
+			 if(arr){
+				 var containOp = false;
+				 var columnLength = dataIndex.length;//数据表格长度
+				 var opArr = dataIndex[columnLength - 1];
+				 if(jQuery.isArray(opArr)){
+					 columnLength = columnLength - 1;
+					 containOp = true;
+				 }
+				 
+				 for(var i = 0; i<arr.length; i++){
+					 var str = "<tr>";
+					 var element = arr[i];
+					 for(var j=0;j<columnLength;j++){
+						 var property = dataIndex[j];
+						 var tdValue = element[property];
+						 if(tdValue){
+							 str = str + "<td style='text-align:center;'>" + tdValue +"</td>";
+						 }else{
+							 str = str +"<td style='text-align:center;'></td>";
+						 }
+					 }
+
+					 if(containOp){
+						 str = str + "<td style='text-align:center;'>";
+						 for(var k = 0;k<opArr.length;k++){
+							 var btnText = opArr[k].text;
+							 var btnFunc = opArr[k].func;
+							 var paramIndex = opArr[k].index;
+							 var param = element[paramIndex];
+							 str = str + "<button class='btn btn-info' onclick="+btnFunc+"('"+param+"')"+">"
+							 	+btnText+"</button>";
+						 }
+						 str = str + "</td>";
+					 }
+					 str = str + "</tr>";
+					 tBody = tBody + str;
+				 }
+			 }
+			 tBody = tBody + "</tbody>";
+			 return tBody;
+		 };
+		 
 		 return {
 			 paging:function(options){
 				 var tableId = options.tableId;
@@ -189,26 +234,7 @@
 							 return;
 						 }
 						 
-						 var tBody = "<tbody>";
-						 var arr = dataObj.obj;
-						 if(arr){
-							 for(var i = 0; i<arr.length; i++){
-								 var str = "<tr>";
-								 var element = arr[i];
-								 for(var j=0;j<dataIndex.length;j++){
-									 var property = dataIndex[j];
-									 var tdValue = element[property];
-									 if(tdValue){
-										 str = str + "<td style='text-align:center;'>" + tdValue +"</td>";
-									 }else{
-										 str = str +"<td style='text-align:center;'></td>";
-									 }
-								 }
-								 str = str + "</tr>";
-								 tBody = tBody + str;
-							 }
-						 }
-						 tBody = tBody + "</tbody>";
+						 var tBody = getTBody(dataObj.obj,dataIndex);
 						 table.html(tHead+tBody);
 						 
 						 var totalPages = data.totalPages; //获取总页数
@@ -251,26 +277,7 @@
 														 return;
 													 }
 													 
-													 var tBody = "<tbody>";
-													 var arr = dataObj.obj;
-													 if(arr){
-														 for(var i = 0; i<arr.length; i++){
-															 var str = "<tr>";
-															 var element = arr[i];
-															 for(var j=0;j<dataIndex.length;j++){
-																 var property = dataIndex[j];
-																 var tdValue = element[property];
-																 if(tdValue){
-																	 str = str + "<td style='text-align:center;'>" + tdValue +"</td>";
-																 }else{
-																	 str = str +"<td style='text-align:center;'></td>";
-																 }
-															 }
-															 str = str + "</tr>";
-															 tBody = tBody + str;
-														 }
-													 }
-													 tBody = tBody + "</tbody>";
+													 var tBody = getTBody(dataObj.obj,dataIndex);
 													 table.html(tHead+tBody);
 								             }
 								        });

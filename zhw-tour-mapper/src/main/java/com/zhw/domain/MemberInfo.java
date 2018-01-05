@@ -56,7 +56,6 @@ public class MemberInfo {
 
 	private String levelName;//会员级别
 	
-
 	public int getPkId() {
 		return pkId;
 	}

@@ -12,7 +12,8 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-	<context:annotation-config />  
+	<context:annotation-config /> 
+	 
 	<!-- 自动将控制器加载到bean -->
     <context:component-scan base-package="com.zhw.controller" />
     
@@ -20,9 +21,13 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
-			<bean class="com.zhw.listener.LoginInterceptor"/>
+			<ref bean="loginInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>
+	
+	<bean id="loginInterceptor" class="com.zhw.listener.LoginInterceptor">
+		<property name="loginInterceptorService" ref="loginInterceptorService"></property>
+	</bean>
 
     <!-- 配置视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

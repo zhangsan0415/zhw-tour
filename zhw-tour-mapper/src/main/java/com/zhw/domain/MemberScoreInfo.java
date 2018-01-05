@@ -41,6 +41,7 @@ public class MemberScoreInfo {
 	//用于计算碰撞积分
 	private String tjMan;
 	
+	private String type;//区分积分互转错误标识
 
 	public String getHyCode() {
 		return hyCode;
@@ -161,5 +162,12 @@ public class MemberScoreInfo {
 	public void setTjMan(String tjMan) {
 		this.tjMan = tjMan;
 	}
-	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 }

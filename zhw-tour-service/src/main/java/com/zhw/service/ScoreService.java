@@ -1,9 +1,8 @@
 package com.zhw.service;
 
-import java.util.List;
-
 import com.zhw.domain.MemberScoreChangeInfo;
 import com.zhw.domain.MemberScoreInfo;
+import com.zhw.response.PageResult;
 
 public interface ScoreService {
 
@@ -12,7 +11,7 @@ public interface ScoreService {
 	 * @param hyCode
 	 * @return
 	 */
-	List<MemberScoreChangeInfo> queryInfo(String hyCode,int status);
+	PageResult queryInfo(String hyCode,int status,int currentPage)throws Exception;
 	
 	/**
 	 * 确认转账（积分互转）

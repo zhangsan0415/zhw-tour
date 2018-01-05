@@ -34,6 +34,30 @@ public class HyManagerController {
 	@Resource
 	private AreaComponent component;
 	
+	@RequestMapping(value="/delHyAction.do",method=RequestMethod.POST)
+	@ResponseBody
+	public BaseResult delHyAction(String hyCode) {
+		try {
+			if(StringUtils.isEmpty(hyCode))	return BaseResult.conditionErrorInstance();
+			return managerService.delHy(hyCode);
+		}catch(Exception e) {
+			logger.error(StringUtils.putTogether("删除会员失败，所删除会员编号：",hyCode,",异常信息：",e.getMessage()),e);
+			return BaseResult.exceptionInstance();
+		}
+	}
+	
+	@RequestMapping(value="/ktHyAction.do",method=RequestMethod.POST)
+	@ResponseBody
+	public BaseResult ktHyAction(String hyCode,HttpServletRequest request) {
+		try {
+			if(StringUtils.isEmpty(hyCode))	return BaseResult.conditionErrorInstance();
+			return managerService.ktHy(hyCode, ControllerUtils.getUserInfo(request).getHyCode());
+		}catch(Exception e) {
+			logger.error(StringUtils.putTogether("开通会员失败，所开通会员编号：",hyCode,",异常信息：",e.getMessage()),e);
+			return BaseResult.exceptionInstance();
+		}
+	}
+	
 	@RequestMapping(value="/getUnActivedList.do",method=RequestMethod.POST)
 	@ResponseBody
 	public BaseResult getUnActivedList(String hyCode,int currentPage,HttpServletRequest request) {
