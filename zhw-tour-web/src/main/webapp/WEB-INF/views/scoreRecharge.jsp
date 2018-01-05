@@ -6,6 +6,9 @@
 	<div class="main-content">
 		<!-- RIGHT COLUMN -->
 		<div class="container-fluid panel">
+		<div class="alert alert-warning alert-dismissible mt10"  role="alert">
+				<i class="fa fa-warning"></i> 汇款信息：银行帐号：中国光大银行 银行卡号：6226623700288651 开户名：刘小勇 开户地址：甘肃省兰州七里河支行
+			</div>
 			<div class="profile-info ">
 				<h4 class="heading">积分充值</h4>
 				<form id="defaultForm" method="post" class="form-horizontal" 
@@ -35,15 +38,6 @@
 						<div class="col-md-10 text-left line-height-30" >
 							<input type="text" class="form-control" name="tjMan" style="width: 20%" value="${sessionScope.userInfo.hyCode}"  readonly="readonly"/>
 						</div>
-					
-				<!-- 		<div class="col-md-2 text-right line-height-30" >汇款时间 ：</div>
-						<div class="col-md-10 text-left line-height-30" >
-							<input type="text" class="form-control input-sm" id="time_id" style="width: 20%"/>
-							<h6 class="text-danger">(请输入汇款时间)</h6>
-						</div> -->
-						<!-- <div class="col-md-10 text-left  padding-bottom-10 text-danger">
-						<h6 class="text-danger">(请输入汇款时间)</h6>
-						</div> -->
 					</div>
          	 </form>
           <div class="col-md-3 text-right margin-top-30  padding-bottom-10">
@@ -60,17 +54,6 @@
 
 			<!-- END RIGHT COLUMN -->
 
-			<!-- END MAIN CONTENT -->
-		</div>
-	</div>
-	<!-- END MAIN -->
-	<div class="clearfix"></div>
-	<footer>
-		<div class="container-fluid">
-			<p class="copyright">&copy; 2017 会员系统</p>
-		</div>
-	</footer>
-</div>
 <%@include file="menuBottom.jsp"%>
 <script>
 
@@ -104,6 +87,8 @@ function queryPage(){
 
 queryPage();
 
+
+queryPage();
 $("#subIntegral").prev().addClass('active');/*一级  */
 $("#subIntegral").addClass("in");
 $("#toScoreWithdraw").addClass('active');/* 二级 */

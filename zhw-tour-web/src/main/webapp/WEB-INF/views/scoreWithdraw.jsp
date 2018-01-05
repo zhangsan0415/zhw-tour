@@ -40,7 +40,8 @@
 			</div>
 				<div class="row">
 					<div class="col-md-12">
-						<table class="table table-striped" id="score_list">
+				<table class="table table-striped" id="score_list">
+
 						</table>
 						<div id="example" style="text-align: center"> <ul id="pageLimit"></ul> </div>
 					</div>

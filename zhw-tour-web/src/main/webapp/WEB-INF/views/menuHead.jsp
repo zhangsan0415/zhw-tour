@@ -162,7 +162,8 @@
 										<c:if test="${sessionScope.userInfo.ifBdCenter!=0}">
 											<li><a id='toView' href="<%=basePath%>home/toView.do"
 												class="">查看</a></li>
-										</c:if>
+										</c:if> 
+										
 									</ul>
 								</div></li>
 							<c:if test="${sessionScope.userInfo.ifBdCenter==0}">
