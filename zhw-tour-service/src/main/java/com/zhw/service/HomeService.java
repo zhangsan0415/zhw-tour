@@ -5,7 +5,6 @@ import java.util.List;
 import com.zhw.domain.MemberBankInfo;
 import com.zhw.domain.MemberInfo;
 import com.zhw.domain.MemberScoreInfoDetail;
-import com.zhw.domain.TourRegisterInfo;
 
 /**
  * 功能描述：

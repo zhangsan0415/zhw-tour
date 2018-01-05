@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zhw.domain.MemberInfo;
 import com.zhw.response.BaseResult;
-import com.zhw.response.PageResult;
 import com.zhw.service.PersonService;
 import com.zhw.utils.StringUtils;
 

@@ -12,12 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.zhw.domain.MemberInfo;
 import com.zhw.domain.MemberScoreChangeInfo;
 import com.zhw.domain.MemberScoreInfo;
 import com.zhw.response.BaseResult;
 import com.zhw.service.ScoreService;
-import com.zhw.type.IfWithdrawEnum;
 import com.zhw.type.JHStatusEnum;
 import com.zhw.utils.StringUtils;
 

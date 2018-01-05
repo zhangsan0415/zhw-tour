@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.zhw.domain.MemberBankInfo;
 import com.zhw.domain.MemberInfo;
 import com.zhw.domain.MemberScoreInfoDetail;
-import com.zhw.domain.TourRegisterInfo;
 import com.zhw.mapper.MemberBankInfoMapper;
 import com.zhw.mapper.MemberInfoMapper;
 import com.zhw.mapper.MemberScoreInfoDetailMapper;
