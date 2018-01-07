@@ -11,67 +11,47 @@
 			<div class="panel-body">
 				<form action="" class="form-inline">
 					行程： <select name="" id="" class="form-control">
-						<option value="">北京+天津4天3晚</option>
-						<option value="">云南6天5晚常规</option>
-						<option value="">海南5天4晚</option>
-					</select> 出团日： <input type="text" class="form-control" />
+						<option value="1">北京+天津4天3晚</option>
+						<option value="2">云南6天5晚常规</option>
+						<option value="3">海南5天4晚</option>
+					</select> 出团日： <input id="chufa_date" type="text" class="form-control" />
 				</form>
-				<table class="table table-striped" id="tab">
+				<table class="table table-striped" id="inner_tab">
 					<thead>
 						<tr>
-							<th style="width: 6%;">序号</th>
+							<!-- <th style="width: 6%;">序号</th> -->
 							<th style="width: 12%;">姓名</th>
 							<th style="width: 19%;">身份证</th>
 							<th style="width: 7%;">性别</th>
 							<th style="width: 10%;">户籍</th>
 							<th style="width: 13%;">航班号/列车号</th>
 							<th style="width: 15%;">电话</th>
-							<th style="width: 5%;">收费</th>
+							<th style="width: 10%;">收费</th>
 							<th style="width: 10%;">备注</th>
+							<th style="width: 10%;">操作</th>
 						</tr>
 					</thead>
 					<tbody>
 					<tr>
-						<td>1</td>
-						<td><input type="text" class="form-control" /></td>
-						<td><input type="text" class="form-control" /></td>
-						<td><select name="" class="form-control">
-								<option value="">男</option>
-								<option value="">女</option>
+						<!-- <td>1</td> -->
+						<td><input type="text" name="bmName" class="form-control" /></td>
+						<td><input type="text" name="bmCardCode" class="form-control" /></td>
+						<td><select name="bmSex" class="form-control">
+								<option value="0">男</option>
+								<option value="1">女</option>
 						</select></td>
-						<td><input type="text" class="form-control" /></td>
-						<td><input type="text" class="form-control" /></td>
-						<td><input type="text" class="form-control" /></td>
-						<td>666</td>
-						<td><input type="text" class="form-control" /></td>
-
+						<td><input type="text" name="bmHjAddress" class="form-control" /></td>
+						<td><input type="text" name="bmCarCode" class="form-control" /></td>
+						<td><input type="text" name="bmPhone" class="form-control" /></td>
+						<td><input type="text" name="bmPrice" class="form-control" /></td>
+						<td><input type="text" name="bmComment" class="form-control" /></td>
+						<td><input type="button"  value="删除" class="form-control"  onclick="deleteOne(this)"/></td>
 					</tr>
 					</tbody>
 				</table>
-				<table id ="tab2" style="display:none">
-					<tbody>
-					<tr>
-						<td>1</td>
-						<td><input type="text" class="form-control" /></td>
-						<td><input type="text" class="form-control" /></td>
-						<td><select name="" class="form-control">
-								<option value="">男</option>
-								<option value="">女</option>
-						</select></td>
-						<td><input type="text" class="form-control" /></td>
-						<td><input type="text" class="form-control" /></td>
-						<td><input type="text" class="form-control" /></td>
-						<td>666</td>
-						<td><input type="text" class="form-control" /></td>
-
-					</tr>
-					</tbody>
-				
-				</table>
-				<button class="btn btn-info" onclick="addPerson()">添加一个乘客</button>
-				<button class="btn btn-info" onclick="onSave()">保存</button>
+				<button class="btn btn-info" onclick="addOne()">添加一个乘客</button>
+				<button class="btn btn-info" onclick="saveTourInfo()">保存</button>
 			</div>
-
 		</div>
 
 
@@ -84,23 +64,69 @@
 <%@include file="menuBottom.jsp" %>
 <script>
 //添加乘客
-function addPerson(){
+function addOne(){
+	var table = $("#inner_tab");
+	var tr = '<tr>'
+		+'<td><input type="text" name="bmName" class="form-control" /></td>'
+		+'<td><input type="text" name="bmCardCode" class="form-control" /></td>'
+		+'<td><select name="bmSex" class="form-control"><option value="0">男</option><option value="1">女</option></select></td>'
+		+'<td><input type="text" name="bmHjAddress" class="form-control" /></td>'
+		+'<td><input type="text" name="bmCarCode" class="form-control" /></td>'
+		+'<td><input type="text" name="bmPhone" class="form-control" /></td>'
+		+'<td><input type="text" name="bmPrice" class="form-control" /></td>'
+		+'<td><input type="text" name="bmComment" class="form-control" /></td>'
+		+'<td><input type="button" value="删除" class="form-control"  onclick="deleteOne(this)"/></td></tr>';
+	table.append(tr);
+}
+
+function getTableData(tableId){
+	var table = $('#'+tableId);
+	var tbody = table.find('tbody');
+	var trs = tbody.find('tr');
+	
 	debugger;
-	  //获取要插入行的表格 
-	  var $tr=$("#"+tab+" tr").eq(row);
-	  var table = document.getElementById("tab");
-	 table.de
-	  var cloneTab = document.getElementById("tab2");
-	  table.firstChild.appendChild(cloneTab.firstChild.cloneNode(true));
-	  var v = table.firstChild.childNodes;
-	  var len = v.length;
-	  for (var i = 2; i < len; i++) {
-		  v[i].childNodes[0].firstChild.id=i;//给第一个单元格id赋值 
+	var data = [];
+	for(var i=0;i<trs.length;i++){
+		var tds = trs.eq(i).find('td'); 
+		var obj = {};
+		for(var j=0;j<tds.length;j++){
+			var td = tds.eq(j);
+			var key = td.find("input").attr("name");
+			var value = td.find("input").val();
+			if(j == 2){
+				key = td.find("select").attr("name");
+				value = td.find("select").val();
+			}
+			if(value == null || value.trim() == '')	{
+				Ewin.alert({msg:"表格中存在空字段！"});
+				return null;
+			}
+			obj[key]=value;
+			/* eval("obj."+key+"=" + value);  */
+		}
+		data.push(obj);
+		/* data[i] = obj; */
 	}
+	return data;
+}
+
+function deleteOne(tdObj){
+	var td = $(tdObj);
+	td.parents("tr").remove();  
 }
 //保存
-function onSave(){
-	
+function saveTourInfo(){
+	var tableData = getTableData("inner_tab");
+	var url = "<%=basePath%>login/doLogin.do";
+	var params = {"hyCode":hyCode.trim(),"password":pwd.trim(),"checkCode":checkCode.trim()};
+	$.post(url,params,function(result){
+		var obj = JSON.parse(result); 
+		if(obj.status != 0){ 
+			Ewin.alert({msg: obj.msg == null ? "系统繁忙，请稍候重试！":obj.msg}); 
+			return;
+		}
+		$(location).attr('href', '<%=basePath%>login/toHome.do');
+	});
 }
 $("#subEnter").prev().addClass('active');/*一级  */
 $("#subEnter").addClass("in");
