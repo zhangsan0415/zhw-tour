@@ -11,6 +11,7 @@ import com.zhw.mapper.TourRegisterInfoMapper;
 import com.zhw.response.BaseResult;
 import com.zhw.response.PageResult;
 import com.zhw.service.TourService;
+import com.zhw.type.ConfirmStatusEnum;
 import com.zhw.utils.DateUtils;
 
 @Service
@@ -23,14 +24,11 @@ public class TourServiceImpl implements TourService {
 	private BatchUpdateService batchComponent;
 	
 	@Override
-	public PageResult queryTourList(String hyCode,int currentPage) {
-		int count = tourMapper.queryTourCount(hyCode);
+	public PageResult queryTourList(String hyCode ,int areaType,int tourType,String cfDate,int currentPage) {
+		int count = tourMapper.selectTourListPageCount(hyCode,areaType,tourType,cfDate);
 		if (count==0) return 	PageResult.getOkInstance();
 		int start = PageResult.getStartNumber(currentPage);
-		List<TourRegisterInfo> list = tourMapper.queryTourInfo(hyCode,start,PageResult.pageSize);
-		if(list ==null || list.size()==0)	return null;
-		
-		
+		List<TourRegisterInfo> list = tourMapper.selectTourListPage(hyCode,areaType,tourType,cfDate,start,	PageResult.pageSize);
 		return PageResult.getPageInstance(list, currentPage, count);
 	}
 	@Override
@@ -42,6 +40,7 @@ public class TourServiceImpl implements TourService {
 			obj.setCfDate(cfDate);
 			obj.setHyCode(userCode);
 			obj.setCjTime(DateUtils.formatCurrentDate());
+			obj.setConfirmStatus(ConfirmStatusEnum.UNCONFIRMED.getTypeCode());
 		}
 		
 		return batchComponent.batchUpdate(dataList, TourRegisterInfoMapper.class, true);

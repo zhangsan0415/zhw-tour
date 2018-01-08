@@ -29,12 +29,10 @@ public class TourController {
 	
 	@RequestMapping(value="/getTourList.do",method= RequestMethod.POST)
 	@ResponseBody
-	public BaseResult getTourList(String hyCode,int currentPage,HttpServletRequest request){
+	public BaseResult getTourList(int areaType,int tourType,String cfDate,int currentPage,HttpServletRequest request){
 		try {
-			if (StringUtils.isEmpty(hyCode)) {
-				hyCode = ControllerUtils.getUserInfo(request).getHyCode();//添加人
-			}
-			return tourService.queryTourList(hyCode,currentPage);
+			String hyCode = ControllerUtils.getUserInfo(request).getHyCode();
+			return tourService.queryTourList(hyCode,areaType,tourType,cfDate,currentPage);
 		} catch (Exception e) {
 			logger.error(StringUtils.putTogether("分页获取报名列表失败，当前会员编号：",ControllerUtils.getUserInfo(request).getHyCode(),",异常信息：",e.getMessage()),e);
 			return BaseResult.exceptionInstance();

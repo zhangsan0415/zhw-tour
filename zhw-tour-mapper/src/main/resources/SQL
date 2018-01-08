@@ -86,6 +86,10 @@ alter table ZHW_TOUR_REG add TOUR_TYPE INT(10) not Null COMMENT '旅游项目';
 alter table ZHW_TOUR_REG add AREA_TYPE INT(10) not Null COMMENT '地域类型';
 alter table ZHW_TOUR_REG add CF_DATE VARCHAR(32) not Null COMMENT '出发日期';
 alter table ZHW_TOUR_REG drop column CJ_CODE ;
+alter table ZHW_TOUR_REG add CONFIRM_STATUS INT(10) not Null COMMENT '确认状态';
+alter table ZHW_TOUR_REG add CONFIRM_TIME VARCHAR(32) COMMENT '确认时间';
+
+
 
 
 

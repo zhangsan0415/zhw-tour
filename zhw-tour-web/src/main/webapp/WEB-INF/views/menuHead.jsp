@@ -33,6 +33,8 @@
 	
 	<link rel="stylesheet" href="<%=basePath%>static/assets/css/bootstrapValidator.css"/>
 	
+	<link href="<%=basePath%>static/assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+	
 	<%-- <script src="<%=basePath%>static/assets/scripts/jquery.min.js"></script> --%>
 	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 	<script src="<%=basePath%>static/assets/scripts/bootstrap.min.js"></script>
@@ -42,6 +44,8 @@
 
 	<script src="<%=basePath%>static/assets/scripts/paginator.js"></script>
 
+<script type="text/javascript" src="<%=basePath%>static/assets/scripts/bootstrap-datetimepicker.min.js"></script>
+	<script type="text/javascript" src="<%=basePath%>static/assets/scripts/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 	
 	<script src="<%=basePath%>static/assets/scripts/commonUtils.js"></script>
 

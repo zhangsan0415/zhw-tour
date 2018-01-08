@@ -10,8 +10,8 @@
 			</div>
 			<div class="panel-body">
 				<form action="#" class="form-inline">
-
-					会员编号： <input type="text" class="form-control" id="hy_Code"/>
+					会员编号：
+					<input type="text" class="form-control" id="hy_Code"/>
 					<button type="button" class="btn btn-info" onclick="queryPage()">查询</button>
 				</form>
 			

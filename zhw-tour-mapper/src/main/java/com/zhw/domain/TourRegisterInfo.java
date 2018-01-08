@@ -37,6 +37,8 @@ public class TourRegisterInfo {
 	
 	private String hyCode;
 	
+	private Integer confirmStatus;//确认状态，0为已确认，1为未确认
+	
 	/**
 	 * 以下为非数据库字段
 	 */
@@ -151,6 +153,14 @@ public class TourRegisterInfo {
 
 	public void setCfDate(String cfDate) {
 		this.cfDate = cfDate;
+	}
+
+	public Integer getConfirmStatus() {
+		return confirmStatus;
+	}
+
+	public void setConfirmStatus(Integer confirmStatus) {
+		this.confirmStatus = confirmStatus;
 	}
 	
 }
