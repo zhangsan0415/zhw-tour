@@ -171,7 +171,7 @@ public class ScoreServiceImpl implements ScoreService {
 		scoreInfo.setTxStatus("0");//未确认
 		if (scoreInfo.getZzType().equals("1016")) {
 			//提取奖金积分
-			if (scoreInfo.getZzMoney().compareTo(info.getLyScore())==1) {
+			if (scoreInfo.getZzMoney().compareTo(info.getJjScore())==1) {
 				info.setType("0");
 				return info;
 			}
