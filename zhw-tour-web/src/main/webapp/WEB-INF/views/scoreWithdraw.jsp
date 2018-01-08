@@ -73,8 +73,7 @@ function withdraw(){
 		var obj = JSON.parse(data);
 		Ewin.alert({message: obj.msg}).on(function(){
 			if(obj.status==0){
-				document.getElementById("defaultForm").reset();
-				queryPage();
+				$(location).attr('href', '<%=basePath%>home/toScoreWithdraw.do');
 			}
 		});
 	});
