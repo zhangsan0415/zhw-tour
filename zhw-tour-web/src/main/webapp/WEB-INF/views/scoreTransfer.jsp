@@ -8,7 +8,7 @@
 		<div class="container-fluid panel">
 			<div class="profile-info ">
 				<h4 class="heading">积分互转</h4>
-				<form id="defaultForm" method="post" class="form-horizontal" 
+				<form id="defaultForm1" method="post" class="form-horizontal" 
 				action="#">
 					<div class="row">
 						<div class="col-md-2 text-right line-height-30">奖金积分 ：</div>
