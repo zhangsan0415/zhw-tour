@@ -9,8 +9,8 @@
 				<h3 class="panel-title">国内旅游报名</h3>
 			</div>
 			<div class="panel-body">
-				<form action="" class="form-inline">
-					行程： <select name="" id="" class="form-control">
+				<form action="#" class="form-inline">
+					行程： <select name="" id="tour_type" class="form-control">
 						<option value="1">北京+天津4天3晚</option>
 						<option value="2">云南6天5晚常规</option>
 						<option value="3">海南5天4晚</option>
@@ -19,16 +19,15 @@
 				<table class="table table-striped" id="inner_tab">
 					<thead>
 						<tr>
-							<!-- <th style="width: 6%;">序号</th> -->
-							<th style="width: 12%;">姓名</th>
-							<th style="width: 19%;">身份证</th>
-							<th style="width: 7%;">性别</th>
-							<th style="width: 10%;">户籍</th>
-							<th style="width: 13%;">航班号/列车号</th>
-							<th style="width: 15%;">电话</th>
-							<th style="width: 10%;">收费</th>
+							<th style="width: 8%;">姓名</th>
+							<th style="width: 15%;">身份证</th>
+							<th style="width: 6%;">性别</th>
+							<th style="width: 15%;">户籍</th>
+							<th style="width: 10%;">航班号/列车号</th>
+							<th style="width: 10%;">电话</th>
+							<th style="width: 8%;">收费</th>
 							<th style="width: 10%;">备注</th>
-							<th style="width: 10%;">操作</th>
+							<th style="width: 8%;">操作</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -84,12 +83,11 @@ function getTableData(tableId){
 	var tbody = table.find('tbody');
 	var trs = tbody.find('tr');
 	
-	debugger;
 	var data = [];
 	for(var i=0;i<trs.length;i++){
 		var tds = trs.eq(i).find('td'); 
 		var obj = {};
-		for(var j=0;j<tds.length;j++){
+		for(var j=0;j<tds.length-1;j++){
 			var td = tds.eq(j);
 			var key = td.find("input").attr("name");
 			var value = td.find("input").val();
@@ -102,10 +100,8 @@ function getTableData(tableId){
 				return null;
 			}
 			obj[key]=value;
-			/* eval("obj."+key+"=" + value);  */
 		}
 		data.push(obj);
-		/* data[i] = obj; */
 	}
 	return data;
 }
@@ -117,15 +113,30 @@ function deleteOne(tdObj){
 //保存
 function saveTourInfo(){
 	var tableData = getTableData("inner_tab");
-	var url = "<%=basePath%>login/doLogin.do";
-	var params = {"hyCode":hyCode.trim(),"password":pwd.trim(),"checkCode":checkCode.trim()};
-	$.post(url,params,function(result){
-		var obj = JSON.parse(result); 
-		if(obj.status != 0){ 
-			Ewin.alert({msg: obj.msg == null ? "系统繁忙，请稍候重试！":obj.msg}); 
-			return;
-		}
-		$(location).attr('href', '<%=basePath%>login/toHome.do');
+	if(!tableData)	return;
+	
+	var url = "<%=basePath%>tour/saveInnerTour.do";
+	
+	var tourType = $("#tour_type").val();
+	var cfDate = $("#chufa_date").val();
+	if(!cfDate) {
+		Ewin.alert({message:"出发日期 不能为空！"});
+		return;
+	}
+	var params = {"tourType":tourType,"cfDate":cfDate,"tourors":JSON.stringify(tableData)};
+	$.ajax({
+		type: 'POST',
+	  	url: url,
+		data: JSON.stringify(params),
+		success: function(result){
+			Ewin.alert({message: result.msg}).on(function(){
+				if(result.status == 0){
+					$(location).attr('href', '<%=basePath%>home/toInnerTourEntry.do');
+				}
+			}); 
+		},
+	  	dataType: "json" ,
+	  	contentType: "application/json;charset=utf-8" 
 	});
 }
 $("#subEnter").prev().addClass('active');/*一级  */

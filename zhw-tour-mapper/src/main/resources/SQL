@@ -80,3 +80,15 @@ CREATE TABLE IF NOT EXISTS `zhw_tour`.`ZHW_TOUR_REG` (
 ENGINE = InnoDB
 COMMENT = '旅游报名表'
 
+alter table ZHW_TOUR_REG add CJ_CODE VARCHAR(32) not Null COMMENT '创建人编码';
+alter table ZHW_TOUR_REG add CJ_TIME VARCHAR(32) not Null COMMENT '创建时间';
+alter table ZHW_TOUR_REG add TOUR_TYPE INT(10) not Null COMMENT '旅游项目';
+alter table ZHW_TOUR_REG add AREA_TYPE INT(10) not Null COMMENT '地域类型';
+alter table ZHW_TOUR_REG add CF_DATE VARCHAR(32) not Null COMMENT '出发日期';
+alter table ZHW_TOUR_REG drop column CJ_CODE ;
+
+
+
+
+
+

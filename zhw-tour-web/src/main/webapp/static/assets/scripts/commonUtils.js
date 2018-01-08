@@ -224,13 +224,13 @@
 					 async:false,
 					 data:params,
 					 error:function(){
-						 Ewin.alert("系统繁忙，请稍候重试！");
+						 Ewin.alert({message:"系统繁忙，请稍候重试！"});
 					 },
 					 success:function(data){
 //						 var dataObj = JSON.parse(data);
 						 var dataObj = data;
 						 if(dataObj.status != 0){
-							 Ewin.alert("系统繁忙，请稍候重试！");
+							 Ewin.alert({message:"系统繁忙，请稍候重试！"});
 							 return;
 						 }
 						 
@@ -266,14 +266,12 @@
 											 async:false,
 											 data:params,
 											 error:function(){
-												 Ewin.alert("系统繁忙，请稍候重试！");
+												 Ewin.alert({message:"系统繁忙，请稍候重试！"});
 											 },
 								             success:function (data) {
-//									            	 var dataObj = JSON.parse(data);
 													 var dataObj = data;
-
 													 if(dataObj.status != 0){
-														 Ewin.alert("系统繁忙，请稍候重试！");
+														 Ewin.alert({message:"系统繁忙，请稍候重试！"});
 														 return;
 													 }
 													 
