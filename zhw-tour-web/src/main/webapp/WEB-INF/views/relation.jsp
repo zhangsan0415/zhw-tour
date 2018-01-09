@@ -6,7 +6,6 @@
         <!-- MAIN CONTENT -->
 
         <div class="main-content">
-
             <div  class="panel panel-headline demo-icons">
                 <div class="panel-heading">
                     <h3 class="panel-title">关系图</h3>
