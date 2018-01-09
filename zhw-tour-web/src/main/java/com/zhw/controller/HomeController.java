@@ -188,7 +188,7 @@ public class HomeController {
 	//跳转到积分提现页面，可审批
 	@RequestMapping(value="/toScoreWithdrawAdmin.do")
 	public String toScoreWithdrawAdmin() {
-		return "scoreRechargeAmdin";
+		return "scoreWithdrawAdmin";
 	}
 	
 	//跳转到注册会员页面，可审批

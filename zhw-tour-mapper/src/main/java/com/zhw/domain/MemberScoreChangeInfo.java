@@ -25,9 +25,11 @@ public class MemberScoreChangeInfo {
 	
 	private BigDecimal realMoney;//实发金额
 
-	private String txStatus;//提现状态，0确认，1未确认
+	private String txStatus;//提现状态，1确认，0未确认
 	
-	private String czStatus;//充值状态，0确认，1未确认
+	private String czStatus;//充值状态，1确认，0未确认
+	
+	private int dr;//作废标识
 	
 	public String getCzStatus() {
 		return czStatus;
@@ -114,5 +116,13 @@ public class MemberScoreChangeInfo {
 
 	public void setTxStatus(String txStatus) {
 		this.txStatus = txStatus;
+	}
+
+	public int getDr() {
+		return dr;
+	}
+
+	public void setDr(int dr) {
+		this.dr = dr;
 	}
 }

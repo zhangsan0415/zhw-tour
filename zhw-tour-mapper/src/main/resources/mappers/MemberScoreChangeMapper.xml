@@ -3,33 +3,81 @@
 <mapper namespace="com.zhw.mapper.MemberScoreChangeMapper">
 	<resultMap type="com.zhw.domain.MemberScoreChangeInfo" id="BaseMap">
 		<id property="pkId" column="PK_ID" />
-		
 		<result property="hyCode" column="HY_CODE" />
 		<result property="dfCode" column="DF_CODE" />
 		<result property="zzType" column="ZZ_TYPE" />
 		<result property="zzMoney" column="ZZ_MONEY" />
 		<result property="zzTime" column="ZZ_TIME" />
 		<result property="zzStatus" column="ZZ_STATUS" />
-		<result property="txStatus" column="TX_STATUS" />
-		<result property="czStatus" column="CZ_STATUS" />
+		<result property="txStatus" column="TX_STATUS" /><!--提现确认状态1确认，0未确认 -->
+		<result property="czStatus" column="CZ_STATUS" /><!-- 充值确认状态1确认，0未确认-->
 		<result property="khCardCode" column="KH_CARD_CODE" />
+		<result property="dr" column="DR"/>
 	</resultMap>
 	
 	<sql id="BaseColumn">
-		PK_ID,HY_CODE,DF_CODE,ZZ_TYPE,ZZ_MONEY,ZZ_TIME,ZZ_STATUS,TX_STATUS,CZ_STATUS
+		PK_ID,HY_CODE,DF_CODE,ZZ_TYPE,ZZ_MONEY,ZZ_TIME,ZZ_STATUS,TX_STATUS,CZ_STATUS,DR
 	</sql>
 	<!-- 积分互转记录/积分提现记录/积分充值 -->
 	<select id="queryInfoByHycode" resultMap="BaseMap">
 	select a.*,b.KH_CARD_CODE from ZHW_SCORE_CHANGE a JOIN ZHW_MEM_BANK b ON a.HY_CODE = b.HY_CODE
-	 where( a.HY_CODE=#{hyCode} or a.DF_CODE=#{hyCode}) and a.ZZ_STATUS=#{zzStatus}
+	 where( a.HY_CODE=#{hyCode} or a.DF_CODE=#{hyCode}) and a.ZZ_STATUS=#{zzStatus} and a.DR=0
+		ORDER BY a.ZZ_TIME DESC
 	 limit #{start},#{pageSize}
 	</select>
 	<insert id="insertScoreInfo" parameterType="com.zhw.domain.MemberScoreChangeInfo">
 		INSERT INTO ZHW_SCORE_CHANGE(<include refid="BaseColumn"/>)
 		VALUES (#{pkId},#{hyCode,jdbcType=VARCHAR},#{dfCode,jdbcType=VARCHAR},#{zzType,jdbcType=VARCHAR},#{zzMoney,jdbcType=DECIMAL},sysdate()
-		,#{zzStatus,jdbcType=INTEGER},#{txStatus,jdbcType=VARCHAR},#{czStatus,jdbcType=VARCHAR})
+		,#{zzStatus,jdbcType=INTEGER},#{txStatus,jdbcType=VARCHAR},#{czStatus,jdbcType=VARCHAR},#{dr,jdbcType=INTEGER})
 	</insert>
 	
 	<select id="selectCount" resultType="Integer">
-	SELECT COUNT(1) from ZHW_SCORE_CHANGE where ( HY_CODE=#{hyCode} or DF_CODE=#{hyCode}) and ZZ_STATUS=#{zzStatus}</select>
+	SELECT COUNT(1) from ZHW_SCORE_CHANGE where ZZ_STATUS=#{zzStatus} and DR = 0
+	  <if test="hyCode !=null and hyCode !=''">
+			AND  ( HY_CODE=#{hyCode} or DF_CODE=#{hyCode})
+		</if>
+	</select>
+	
+		<!--积分提现记录0/积分充值2 -->
+	<select id="queryScoreByAdmin" resultMap="BaseMap">
+	select a.*,b.KH_CARD_CODE from ZHW_SCORE_CHANGE a JOIN ZHW_MEM_BANK b ON a.HY_CODE = b.HY_CODE 
+	 where a.ZZ_STATUS=#{zzStatus} and a.DR=0
+ 		 <if test="hyCode !=null and hyCode !=''">
+			AND a.HY_CODE=#{hyCode}
+		</if>
+	 	 <if test="txStatus !=null and txStatus !=''">
+			AND a.TX_STATUS=#{txStatus}
+		</if>
+		 <if test="czStatus !=null and czStatus !=''">
+			AND a.CZ_STATUS=#{czStatus}
+		</if>
+		ORDER BY a.ZZ_TIME DESC
+	 limit #{start},#{pageSize}
+	</select>
+	<!-- 积分审核删除 -->
+		<update id="delScoreByAnmin" parameterType="String">
+		delete  from ZHW_SCORE_CHANGE 
+		where PK_ID = #{pkId}
+	</update>
+		<!-- 积分提现审核确认 -->
+		<update id="conWithdrawByAnmin" parameterType="String">
+		update  ZHW_SCORE_CHANGE 
+		set 
+		TX_STATUS = '1',
+		ZZ_TIME = sysdate()
+		where PK_ID = #{pkId}
+	</update>
+	<!-- 积分充值审核确认 -->
+		<update id="conRechargeByAnmin" parameterType="String">
+		update  ZHW_SCORE_CHANGE 
+		set 
+		CZ_STATUS = '1',
+		ZZ_TIME = sysdate()
+		where PK_ID = #{pkId}
+	</update>
+	
+	<select id="queryInfo" resultMap="BaseMap">
+		select <include refid="BaseColumn"/> from ZHW_SCORE_CHANGE
+		where  PK_ID = #{pkId}
+	</select>
 </mapper>

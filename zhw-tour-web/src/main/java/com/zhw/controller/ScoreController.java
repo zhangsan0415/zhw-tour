@@ -104,7 +104,7 @@ public class ScoreController {
 				if(scoreInfos.getType().equals("0")) return BaseResult.failedInstance("提现金额有误，请重新填写！");
 			}
 			//成功后，设置seesion信息
-			ControllerUtils.setScoreInfo(request, scoreInfos);
+			//ControllerUtils.setScoreInfo(request, scoreInfos);
 			return BaseResult.sucessInstance().setMsg("操作成功！") ;
 		} catch (Exception e) {
 			logger.error("积分提现失败"+e);
