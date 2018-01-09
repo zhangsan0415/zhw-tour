@@ -11,7 +11,7 @@
 			</div>
 			<div class="profile-info ">
 				<h4 class="heading">积分充值</h4>
-				<form id="defaultForm" method="post" class="form-horizontal" 
+				<form id="defaultForm1" method="post" class="form-horizontal" 
 				action="#">
 				<div class="row">
 						<div class="col-md-2 text-right line-height-30">报单积分 ：</div>
@@ -23,7 +23,7 @@
 						<div class="col-md-2 text-right line-height-30">购买币种：</div>
 					
 						<div class="col-md-10 text-left line-height-30">
-						<select name="" id="selected" class="form-control" style="width: 20%">
+						<select name="" id="selected_id" class="form-control" style="width: 20%">
 							<option value="1018">报单积分</option>
 							<option value="1019">现金积分</option>
 						</select>
@@ -31,7 +31,7 @@
 						
 						<div class="col-md-2 text-right line-height-30" >充值金额 ：</div>
 						<div class="col-md-10 text-left line-height-30" >
-							<input type="text" class="form-control input-sm" id="money" style="width: 20%"/>
+							<input type="text" class="form-control input-sm" id="cz_money" style="width: 20%"/>
 						</div>
 					
 						<div class="col-md-2 text-right line-height-30" >汇款账号 ：</div>
@@ -45,13 +45,15 @@
 			</div>
 				<div class="row">
 					<div class="col-md-12">
-						<table class="table table-striped" id="score_list">
+						<table class="table table-striped" id="czScore_list">
 						</table>
 						<div id="example" style="text-align: center"> <ul id="pageLimit"></ul> </div>
 					</div>
 				</div>
 			</div> 
-
+		</div>
+	</div>
+</div>
 			<!-- END RIGHT COLUMN -->
 
 <%@include file="menuBottom.jsp"%>
@@ -59,8 +61,8 @@
 
 //充值按钮
 function recharge(){
-	var type = $("#selected").val();
-	var money = $("#money").val();
+	var type = $("#selected_id").val();
+	var money = $("#cz_money").val();
 //	var czTime = $("#time_id").val();
 	var url = "<%=basePath%>score/rechargeScore.do";
 	var params = {"zzType":type,"zzMoney":money};
@@ -68,8 +70,7 @@ function recharge(){
 		var obj = JSON.parse(data);
 		Ewin.alert({message: obj.msg}).on(function(){
 			if(obj.status==0){
-				document.getElementById("defaultForm").reset();
-				queryPage();
+				$(location).attr('href', '<%=basePath%>home/toScoreRecharge.do');
 			}
 		});
 	});
@@ -81,7 +82,7 @@ function queryPage(){
 	var dataIndex = ['hyCode','zzMoney','zzTime','zzType','czStatus'];
 	var hyCode = "${sessionScope.scoreInfo.hyCode}";
 	var params ={"hyCode":hyCode}
-	var options = {tableId:'score_list',clientPageId:'pageLimit',url:pageUrl,tableHead:tableHead,dataIndex:dataIndex,params:params};
+	var options = {tableId:'czScore_list',clientPageId:'pageLimit',url:pageUrl,tableHead:tableHead,dataIndex:dataIndex,params:params};
 	ZHW_Page.paging(options);
 }
 
@@ -91,5 +92,5 @@ queryPage();
 queryPage();
 $("#subIntegral").prev().addClass('active');/*一级  */
 $("#subIntegral").addClass("in");
-$("#toScoreWithdraw").addClass('active');/* 二级 */
+$("#toScoreRecharge").addClass('active');/* 二级 */
 </script>

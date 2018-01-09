@@ -15,7 +15,7 @@ public class TourRegisterInfo {
 	
 	private String bmCardCode;//身份证号码
 	
-	private int bmSex;//性别，0表示男，1表示女
+	private Integer bmSex;//性别，0表示男，1表示女
 	
 	private String bmHjAddress;//户藉
 	
@@ -27,8 +27,22 @@ public class TourRegisterInfo {
 	
 	private String bmComment;//备注
 	
+	private String cjTime;//创建时间
+	
+	private Integer tourType;//旅游项目
+	
+	private Integer areaType;//地域类型，1表示国内，2表示国外
+	
+	private String cfDate;//出发日期 
+	
 	private String hyCode;
-
+	
+	private Integer confirmStatus;//确认状态，0为已确认，1为未确认
+	
+	/**
+	 * 以下为非数据库字段
+	 */
+	
 	public String getHyCode() {
 		return hyCode;
 	}
@@ -65,7 +79,7 @@ public class TourRegisterInfo {
 		return bmSex;
 	}
 
-	public void setBmSex(int bmSex) {
+	public void setBmSex(Integer bmSex) {
 		this.bmSex = bmSex;
 	}
 
@@ -107,6 +121,46 @@ public class TourRegisterInfo {
 
 	public void setBmComment(String bmComment) {
 		this.bmComment = bmComment;
+	}
+
+	public String getCjTime() {
+		return cjTime;
+	}
+
+	public void setCjTime(String cjTime) {
+		this.cjTime = cjTime;
+	}
+
+	public int getTourType() {
+		return tourType;
+	}
+
+	public void setTourType(int tourType) {
+		this.tourType = tourType;
+	}
+
+	public int getAreaType() {
+		return areaType;
+	}
+
+	public void setAreaType(int areaType) {
+		this.areaType = areaType;
+	}
+
+	public String getCfDate() {
+		return cfDate;
+	}
+
+	public void setCfDate(String cfDate) {
+		this.cfDate = cfDate;
+	}
+
+	public Integer getConfirmStatus() {
+		return confirmStatus;
+	}
+
+	public void setConfirmStatus(Integer confirmStatus) {
+		this.confirmStatus = confirmStatus;
 	}
 	
 }

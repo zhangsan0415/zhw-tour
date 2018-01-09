@@ -12,29 +12,51 @@
 		<result property="bmPrice" column="BM_PRICE" />
 		<result property="bmComment" column="BM_COMMENT" />
 		<result property="hyCode" column="HY_CODE" />
+		
+		<result property="cjTime" column="CJ_TIME" />
+		<result property="tourType" column="TOUR_TYPE" />
+		<result property="areaType" column="AREA_TYPE" /> 
+		<result property="cfDate" column="CF_DATE" /> 
+		
+		<result property="confirmStatus" column="CONFIRM_STATUS" /> 
+		
 	</resultMap>
 
     <sql id="AddColumn">
-		BM_NAME,BM_CARD_CODE,BM_SEX,BM_HJ_ADDRESS,BM_CAR_CODE,BM_PHONE,BM_PRICE,BM_COMMENT,HY_CODE
+		BM_NAME,BM_CARD_CODE,BM_SEX,BM_HJ_ADDRESS,BM_CAR_CODE,BM_PHONE,BM_PRICE,BM_COMMENT,HY_CODE,CJ_TIME,
+		TOUR_TYPE,AREA_TYPE,CF_DATE,CONFIRM_STATUS
 	</sql>
 	<sql id="BaseColumn">
 		PK_ID,<include refid="AddColumn"/>
 	</sql>
-	<select id="queryTourInfo" resultMap="BaseMap">
-			SELECT <include refid="BaseColumn"/> FROM ZHW_TOUR_REG 
-			WHERE 
-			<if test="HyCode !=null and hyCode !=''">
-				HY_CODE=#{hyCode}
-			</if>
-			<!-- WHERE HY_CODE = #{hyCode} --> 
+	<select id="selectTourListPage" resultMap="BaseMap">
+		SELECT <include refid="BaseColumn"/> FROM ZHW_TOUR_REG 
+		WHERE HY_CODE=#{hyCode} and AREA_TYPE=#{areaType} and TOUR_TYPE=#{tourType}
+		<if test="cfDate !=null and cfDate !=''">
+			AND CF_DATE=#{cfDate}
+		</if>
+		ORDER BY CJ_TIME DESC
+		limit #{start},#{pageSize}
 	</select>
 	
-		<select id="queryTourCount" resultType="Integer">
-			SELECT COUNT(1) from FROM ZHW_TOUR_REG 
-			WHERE 
-			<if test="HyCode !=null and hyCode !=''">
-				HY_CODE=#{hyCode}
-			</if>
-			<!-- WHERE HY_CODE = #{hyCode} --> 
+	<select id="selectTourListPageCount" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM ZHW_TOUR_REG 
+		WHERE HY_CODE=#{hyCode} and AREA_TYPE=#{areaType} and TOUR_TYPE=#{tourType}
+		<if test="cfDate !=null and cfDate !=''">
+			AND CF_DATE=#{cfDate}
+		</if>
+		<!-- WHERE HY_CODE = #{hyCode} --> 
 	</select>
+	
+	<insert id="insertBatch">
+		insert into ZHW_TOUR_REG(<include refid="AddColumn"></include>) values
+		<foreach collection="list" item="item" index="index" separator="," >  
+	        (
+	        #{item.bmName},#{item.bmCardCode},#{item.bmSex},#{item.bmHjAddress},
+	        #{item.bmCarCode},#{item.bmPhone},#{item.bmPrice},#{item.bmComment},
+	        #{item.hyCode},#{item.cjTime},#{item.tourType},#{item.areaType},#{item.cfDate}
+	        ,#{item.confirmStatus}
+	        )  
+    	</foreach>  
+	</insert>
 </mapper>

@@ -98,7 +98,7 @@
 		$.post(url,params,function(result){
 			var obj = JSON.parse(result); 
 			if(obj.status != 0){ 
-				Ewin.alert({msg: obj.msg == null ? "系统繁忙，请稍候重试！":obj.msg}); 
+				Ewin.alert({message: obj.msg == null ? "系统繁忙，请稍候重试！":obj.msg}); 
 				return;
 			}
 			$(location).attr('href', '<%=basePath%>login/toHome.do');

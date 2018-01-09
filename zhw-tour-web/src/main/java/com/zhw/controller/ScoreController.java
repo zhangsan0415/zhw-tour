@@ -44,7 +44,7 @@ public class ScoreController {
 	@ResponseBody
 	public BaseResult traferScore(String zzType,String dfCode,BigDecimal zzMoney,HttpServletRequest request){
 		try {
-//			String hyCode = ControllerUtils.getUserInfo(request).getHyCode();//当前登录人为借方
+		   if(zzMoney.compareTo(BigDecimal.ZERO)!=1)return BaseResult.failedInstance("充值金额有误，请重新填写！");
 			//验证参数
 			BaseResult result =checkParams(dfCode,zzType,zzMoney);
 			if (result.isFailed()) {
@@ -87,6 +87,7 @@ public class ScoreController {
 	@ResponseBody
 	public BaseResult withdrawScore(String zzType,BigDecimal zzMoney,HttpServletRequest request){
 		try {
+			if(zzMoney.compareTo(BigDecimal.ZERO)!=1)return BaseResult.failedInstance("提现金额有误，请重新填写！");
 			if(StringUtils.isEmpty(zzType)|| zzMoney == null)return BaseResult.conditionErrorInstance();
 			//验证提现金额是100的倍数
 			if (zzMoney.divideAndRemainder(new BigDecimal(100))[1].compareTo(new BigDecimal(0))!=0) {

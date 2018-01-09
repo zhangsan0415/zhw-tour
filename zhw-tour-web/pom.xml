@@ -41,12 +41,6 @@
 			<artifactId>spring-context-support</artifactId>
 		</dependency>
 
-		<!-- 添加 jackson 依赖包 -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-		</dependency>
-
 		<!-- 添加 servlet 依赖包 -->
 		<dependency>
 			<groupId>javax.servlet</groupId>

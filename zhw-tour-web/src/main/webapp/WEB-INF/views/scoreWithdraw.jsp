@@ -28,7 +28,7 @@
 						
 						<div class="col-md-2 text-right line-height-30" >提现金额 ：</div>
 						<div class="col-md-10 text-left line-height-30" >
-							<input type="text" class="form-control input-sm" id="money" style="width: 20%"/>
+							<input type="text" class="form-control input-sm" id="tx_money" style="width: 20%"/>
 						</div>
 						<div class="col-md-10 text-left  padding-bottom-10 text-danger">
 						<h6 class="text-danger">提现手续费 5 %，提现金额倍数为 100 。</h6>
@@ -66,15 +66,14 @@
 //提现按钮
 function withdraw(){
 	var type = $("#selected").val();
-	var money = $("#money").val();
+	var money = $("#tx_money").val();
 	var url = "<%=basePath%>score/withdrawScore.do";
 	var params = {"zzType":type,"zzMoney":money};
 	$.post(url,params,function(data){
 		var obj = JSON.parse(data);
 		Ewin.alert({message: obj.msg}).on(function(){
 			if(obj.status==0){
-				document.getElementById("defaultForm").reset();
-				queryPage();
+				$(location).attr('href', '<%=basePath%>home/toScoreWithdraw.do');
 			}
 		});
 	});
