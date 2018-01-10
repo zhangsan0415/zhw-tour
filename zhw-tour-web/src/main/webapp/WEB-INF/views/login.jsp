@@ -65,7 +65,7 @@
 								</div>
 								<button type="button" onclick="doLogin()" class="btn btn-primary btn-lg btn-block">登录</button>
 								<div class="bottom">
-									<span class="helper-text"><i class="fa fa-lock"></i> <a href="#">忘记密码?</a></span>
+									<span class="helper-text"><i class="fa fa-lock"></i> <a href="#" onclick="forgetPwd()">忘记密码?</a></span>
 								</div>
 							</form>
 						</div>
@@ -82,9 +82,60 @@
 			</div>
 		</div>
 	</div>
+	
+ <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+ <form id="forget_form" class="form-auth-small" method="post" action="#">
+ <div class="modal-dialog" role="document">
+ <div class="modal-content">
+ <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+  <h4 class="modal-title" id="myModalLabel">忘记密码</h4>
+ </div>
+ <div class="modal-body">
+ 
+  <div class="form-group">
+  <label for="txt_departmentname">请输入您的账号：</label>
+  <input type="text" name="txt_departmentname" class="form-control" id="hycode" placeholder="会员编号">
+  </div>
+  <div class="form-group">
+  <label for="txt_parentdepartment">请输入您的邮箱地址：</label>
+  <input type="text" name="txt_parentdepartment" class="form-control" id="email_id" placeholder="邮箱地址">
+  </div>
+ 
+ <div class="modal-footer">
+ <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
+  <button type="button" onclick="save()" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>提交</button>
+ </div>
+ </div>
+ </div>
+ </div>
+ </form>
+</div>
+
 </body>
 
 <script type="text/javascript">
+//点击忘记密码
+function forgetPwd(){
+	$('#myModal').modal();
+
+}
+//点击提交
+function save(){
+	var hyCode = $("#hycode").val();
+	var email = $("#email_id").val();
+	var url = "<%=basePath%>login/forgetPwd.do";
+	var params = {"hyCode":hyCode.trim(),"yxEmail":email.trim()};
+	$.post(url,params,function(data){
+		var obj = JSON.parse(data);  
+		Ewin.alert({message: obj.msg}).on(function(){
+			if(obj.status != 0)Ewin.alert({message: obj.msg == null ? "系统繁忙，请稍候重试！":obj.msg}); 
+		});
+		
+		$('#forget_form').reset();
+	});
+}
+
 	//点击登录按钮
 	function doLogin(){
 		var hyCode = $("#hy_code").val();
@@ -95,8 +146,8 @@
 		
 		var url = "<%=basePath%>login/doLogin.do";
 		var params = {"hyCode":hyCode.trim(),"password":pwd.trim(),"checkCode":checkCode.trim()};
-		$.post(url,params,function(result){
-			var obj = JSON.parse(result); 
+		$.post(url,params,function(data){
+			var obj = JSON.parse(data); 
 			if(obj.status != 0){ 
 				Ewin.alert({message: obj.msg == null ? "系统繁忙，请稍候重试！":obj.msg}); 
 				return;
