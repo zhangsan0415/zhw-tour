@@ -75,7 +75,7 @@ public class AdminManagerController {
 		try {
 			return managerService.delWithdraw(pkId);
 		}  catch (Exception e) {
-			logger.error("积分提现审核删除失败"+e);
+			logger.error("积分充值审核删除失败"+e);
 			return BaseResult.exceptionInstance();
 		}
 	}
@@ -87,7 +87,7 @@ public class AdminManagerController {
 		try {
 			return managerService.confirmRecharge(pkId);
 		}  catch (Exception e) {
-			logger.error("积分提现审核确认失败"+e);
+			logger.error("积分充值审核确认失败"+e);
 			return BaseResult.exceptionInstance();
 		}
 	}

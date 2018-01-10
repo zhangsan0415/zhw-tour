@@ -132,10 +132,10 @@ public class ScoreController {
 			scoreInfo.setZzMoney(zzMoney);
 			scoreInfo.setHyCode(info.getHyCode());
 			scoreInfo.setZzStatus(2);
-			MemberScoreInfo scoreInfos = scoreService.rechargeScore(info,scoreInfo);
+//			MemberScoreInfo scoreInfos = scoreService.rechargeScore(info,scoreInfo);
 			//成功后，设置seesion信息
-			ControllerUtils.setScoreInfo(request, scoreInfos);
-			return BaseResult.sucessInstance().setMsg("操作成功！") ;
+//			ControllerUtils.setScoreInfo(request, scoreInfos);
+			return scoreService.rechargeScore(info,scoreInfo);
 		} catch (Exception e) {
 			logger.error("积分提现失败"+e);
 			return BaseResult.exceptionInstance();

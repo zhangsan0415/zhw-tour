@@ -2,6 +2,7 @@ package com.zhw.service;
 
 import com.zhw.domain.MemberScoreChangeInfo;
 import com.zhw.domain.MemberScoreInfo;
+import com.zhw.response.BaseResult;
 import com.zhw.response.PageResult;
 
 public interface ScoreService {
@@ -38,5 +39,5 @@ public interface ScoreService {
 	 * @return
 	 * @throws Exception
 	 */
-	MemberScoreInfo rechargeScore(MemberScoreInfo info,MemberScoreChangeInfo scoreInfo)throws Exception;
+	BaseResult rechargeScore(MemberScoreInfo info,MemberScoreChangeInfo scoreInfo)throws Exception;
 }

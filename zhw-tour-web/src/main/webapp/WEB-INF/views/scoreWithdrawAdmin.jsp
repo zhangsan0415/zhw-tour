@@ -35,25 +35,40 @@
 <script>
 //确认信息
 function confirmInfo(pkId){
-	var url = '<%=basePath%>manager/conScoreWithdraw.do';
-	var params = {pkId:pkId};
-	$.post(url,params,function(result){
-		var obj = JSON.parse(result); 
-		Ewin.alert({message: obj.msg}).on(function(){
-			if(obj.status == 0)	queryPage();
-		});
+	Ewin.confirm({ message: "确认要操作选择的数据吗？" }).on(
+		function (e) { 
+			if (!e) {
+				return; 
+			 }else{
+				var url = '<%=basePath%>manager/conScoreWithdraw.do';
+				var params = {pkId:pkId};
+				$.post(url,params,function(result){
+					var obj = JSON.parse(result); 
+					Ewin.alert({message: obj.msg}).on(function(){
+						if(obj.status == 0)	queryPage();
+				});
+			});
+		 }
 	});
+	
 }
 
 //删除信息
 function delInfo(pkId){
-	var url = '<%=basePath%>manager/delScoreWithdraw.do';
-	var params = {pkId:pkId};
-	$.post(url,params,function(result){
-		var obj = JSON.parse(result); 
-		Ewin.alert({message: obj.msg}).on(function(){
-			if(obj.status == 0)	queryPage();
-		});
+	Ewin.confirm({ message: "确认要删除选择的数据吗？" }).on(
+	function (e) { 
+		if (!e) {
+		  return; 
+		  } else{
+			  var url = '<%=basePath%>manager/delScoreWithdraw.do';
+				var params = {pkId:pkId};
+				$.post(url,params,function(result){
+					var obj = JSON.parse(result); 
+					Ewin.alert({message: obj.msg}).on(function(){
+						if(obj.status == 0)	queryPage();
+					});
+				});
+		  }
 	});
 }
 

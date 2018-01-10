@@ -18,7 +18,9 @@ import java.util.List;
 
 
 
+
 import javax.annotation.Resource;
+
 
 
 
@@ -43,6 +45,7 @@ import com.zhw.domain.MemberScoreChangeInfo;
 import com.zhw.domain.MemberScoreInfo;
 import com.zhw.mapper.MemberScoreChangeMapper;
 import com.zhw.mapper.MemberScoreInfoMapper;
+import com.zhw.response.BaseResult;
 import com.zhw.response.PageResult;
 import com.zhw.service.ScoreService;
 import com.zhw.type.IfWithdrawEnum;
@@ -190,13 +193,13 @@ public class ScoreServiceImpl implements ScoreService {
 		}
 		//插入积分日志
 		changeMapper.insertScoreInfo(scoreInfo);
-		return scoreInfoMapper.selectScoreInfoByCode(info.getHyCode());
+		return info;
 	}
 
 
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
-	public MemberScoreInfo rechargeScore(MemberScoreInfo info,
+	public BaseResult rechargeScore(MemberScoreInfo info,
 			MemberScoreChangeInfo scoreInfo) throws Exception {
 		scoreInfo.setDfCode(info.getHyCode());
 		scoreInfo.setCzStatus("0");//未确认
@@ -211,7 +214,7 @@ public class ScoreServiceImpl implements ScoreService {
 		}*/
 		//插入积分日志
 		changeMapper.insertScoreInfo(scoreInfo);
-		return scoreInfoMapper.selectScoreInfoByCode(info.getHyCode());
+		return BaseResult.sucessInstance().setMsg("操作成功！");
 	}
 	
 }

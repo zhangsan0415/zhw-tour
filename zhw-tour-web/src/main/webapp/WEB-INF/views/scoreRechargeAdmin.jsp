@@ -35,32 +35,43 @@
 <script>
 //确认信息
 function confirmInfo(pkId){
-	 dialog(conInfo,pkId)
-}
-function conInfo(pkId){
-	var url = '<%=basePath%>manager/conScoreRecharge.do';
-	var params = {pkId:pkId};
-	$.post(url,params,function(result){
-		var obj = JSON.parse(result); 
-		Ewin.alert({message: obj.msg}).on(function(){
-			if(obj.status == 0)	queryPage();
-		});
+	Ewin.confirm({ message: "确认要操作选择的数据吗？" }).on(
+		function (e) { 
+			if (!e) {
+				return; 
+			 }else{
+				var url = '<%=basePath%>manager/conScoreRecharge.do';
+				var params = {pkId:pkId};
+				$.post(url,params,function(result){
+					var obj = JSON.parse(result); 
+					Ewin.alert({message: obj.msg}).on(function(){
+						if(obj.status == 0)	queryPage();
+					});
+			});
+		 }
 	});
+	
 }
+
 //删除信息
 function delInfo(pkId){
-	 dialog(deleteInfo,pkId)
-}
-function deleteInfo(pkId){
-	var url = '<%=basePath%>manager/delScoreRecharge.do';
-	var params = {pkId:pkId};
-	$.post(url,params,function(result){
-		var obj = JSON.parse(result); 
-		Ewin.alert({message: obj.msg}).on(function(){
-			if(obj.status == 0)	queryPage();
-		});
+	Ewin.confirm({ message: "确认要删除选择的数据吗？" }).on(
+	function (e) { 
+		if (!e) {
+		  return; 
+		  } else{
+			    var url = '<%=basePath%>manager/delScoreRecharge.do';
+				var params = {pkId:pkId};
+				$.post(url,params,function(result){
+					var obj = JSON.parse(result); 
+					Ewin.alert({message: obj.msg}).on(function(){
+						if(obj.status == 0)	queryPage();
+					});
+				});
+		  }
 	});
 }
+
 /* 初始化显示分页 */
 function queryPage(){
 	var pageUrl = '<%=basePath%>manager/scoreRecharge.do';
@@ -74,7 +85,7 @@ function queryPage(){
 	ZHW_Page.paging(options);
 }
 queryPage();
-//自定义弹窗
+/* //自定义弹窗
 function dialog(fun,params){
 	  if ($("#myConfirm").length > 0) {
 	        $("#myConfirm").remove();
@@ -101,7 +112,7 @@ function dialog(fun,params){
      $("#myConfirm").modal("hide");
      fun(params); // 执行函数 
  });
-}
+} */
 $("#adminIntegral").prev().addClass('active');/*一级  */
 $("#adminIntegral").addClass("in");
 $("#toScoreRechargeAdmin").addClass('active');/* 二级 */
