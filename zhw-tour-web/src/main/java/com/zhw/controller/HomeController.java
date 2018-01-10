@@ -1,22 +1,22 @@
 package com.zhw.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.zhw.component.AreaComponent;
 import com.zhw.domain.Area;
 import com.zhw.domain.MemberInfo;
 import com.zhw.service.HomeService;
 import com.zhw.service.ScoreService;
+import com.zhw.type.AreaTypeEnum;
 import com.zhw.type.BankEnum;
 import com.zhw.type.IfBdCenterEnum;
-import com.zhw.type.JHStatusEnum;
 import com.zhw.type.ZZTypeEnum;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/home")
@@ -85,8 +85,6 @@ public class HomeController {
 	//跳转到查看页面
 	@RequestMapping(value="/toView.do")
 	public String toView(HttpServletRequest request) {
-//		String tjMan = ControllerUtils.getUserInfo(request).getHyCode();
-//		request.setAttribute("tjManList",homeService.queryMemberInfoBytjMan(tjMan));
 		return "view";
 	}
 	
@@ -99,30 +97,27 @@ public class HomeController {
 	//跳转到已开通会员页面
 	@RequestMapping(value="/toActiveHyList.do")
 	public String toActiveHyList(HttpServletRequest request) {
-		//查询已开通会员
-		String hyCode = ControllerUtils.getUserInfo(request).getHyCode();
-		int jhStatus = JHStatusEnum.ACTIVED.getTypeCode();
-		request.setAttribute("openHyList", homeService.queryHyInfoByStatus(hyCode,jhStatus));
 		return "activeHyList";
 	}
 	
 	//跳转到国内旅游报名页面
 	@RequestMapping(value="/toInnerTourEntry.do")
-	public String toInnerTourEntry() {
+	public String toInnerTourEntry(HttpServletRequest request) {
+		request.setAttribute("tourItems", homeService.queryTourItems(AreaTypeEnum.INNER.getTypeCode()));
 		return "innerTourEntry";
 	}
 	
 	//跳转到国外旅游报名页面
 	@RequestMapping(value="/toOuterTourEntry.do")
-	public String toOuterTourEntry() {
+	public String toOuterTourEntry(HttpServletRequest request) {
+		request.setAttribute("tourItems", homeService.queryTourItems(AreaTypeEnum.OUTER.getTypeCode()));
 		return "outerTourEntry";
 	}
 	
 	//跳转查看旅游报名记录页面
 	@RequestMapping(value="/toViewTourRecord.do")
 	public String toViewTourRecord(HttpServletRequest request) {
-//		String hyCode = ControllerUtils.getUserInfo(request).getHyCode();
-//		request.setAttribute("tourList", homeService.queryTourInfo(hyCode));
+		request.setAttribute("tourItems", homeService.queryTourItems(AreaTypeEnum.INNER.getTypeCode()));
 		return "viewTourRecord";
 	}
 	
@@ -207,6 +202,11 @@ public class HomeController {
 	@RequestMapping(value="/tourEntryAdmin.do")
 	public String toTourEntryAdmin() {
 		return "tourEntryAdmin";
+	}
+	
+	@RequestMapping(value="/toTourItemAdmin.do")
+	public String toTourItemAdmin() {
+		return "tourItemAdmin";
 	}
 	
 	//跳转到新闻中心管理员页面
