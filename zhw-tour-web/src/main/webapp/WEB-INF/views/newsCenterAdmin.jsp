@@ -69,4 +69,5 @@ $("#add").bind('click',function (){
 	 $('.cover').hide();
 	 $('.panel-cover').hide();
  })
+ $("#toNewsCenterAdmin").addClass("active");
 </script>

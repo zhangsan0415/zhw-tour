@@ -42,6 +42,9 @@ public class TourRegisterInfo {
 	/**
 	 * 以下为非数据库字段
 	 */
+	private String sexName;//性别
+	
+	private String confirmStatusName;//确认状态
 	
 	public String getHyCode() {
 		return hyCode;
@@ -161,6 +164,22 @@ public class TourRegisterInfo {
 
 	public void setConfirmStatus(Integer confirmStatus) {
 		this.confirmStatus = confirmStatus;
+	}
+
+	public String getSexName() {
+		return sexName;
+	}
+
+	public void setSexName(String sexName) {
+		this.sexName = sexName;
+	}
+
+	public String getConfirmStatusName() {
+		return confirmStatusName;
+	}
+
+	public void setConfirmStatusName(String confirmStatusName) {
+		this.confirmStatusName = confirmStatusName;
 	}
 	
 }

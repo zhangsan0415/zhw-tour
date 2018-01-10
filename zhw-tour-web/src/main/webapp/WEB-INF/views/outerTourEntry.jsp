@@ -10,11 +10,14 @@
 			</div>
 			<div class="panel-body">
 				<form action="" class="form-inline">
-					行程： <select id="tour_type" class="form-control">
+					行程： 
+					<select id="tour_type" class="form-control">
 						<option value="1">港澳5天4晚</option>
 						<option value="2">港澳纯玩豪华游3天2晚</option>
 						
-					</select> 出团日： <input id="chufa_date" type="text" class="form-control" />
+					</select>
+					出团日：
+					<input id="chufa_date" size="16" type="text" readonly>
 				</form>
 				<table class="table table-striped" id="outer_tab">
 					<thead>
@@ -63,6 +66,12 @@
 </div>
 <%@include file="menuBottom.jsp" %>
 <script>
+$("#chufa_date").datetimepicker({
+	format: 'yyyy-mm-dd',
+	autoclose:true,
+	minView:'month',
+	language:  'zh-CN'
+});
 //添加乘客
 function addOne(){
 	var table = $("#outer_tab");

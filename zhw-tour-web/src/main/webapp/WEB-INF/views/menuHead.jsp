@@ -25,6 +25,7 @@
 	<link rel="stylesheet" href="<%=basePath%>static/assets/css/jquery-ui-1.8.16.custom.css">
 
 	<link rel="stylesheet" href="<%=basePath%>static/assets/css/style.css">
+	<link rel="stylesheet" href="<%=basePath%>static/assets/css/zTreeStyle.css">
 	<!-- GOOGLE FONTS -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 	<!-- ICONS -->
@@ -244,8 +245,9 @@
 									</ul>
 								</div>
 							</li>
-							<li><a id='tourEntryAdmin' href="<%=basePath%>home/tourEntryAdmin.do" class=" "><i class="lnr lnr-home"></i> <span>旅游报名管理</span></a></li>
-							<li><a id='toNewsCenterAdmin' href="<%=basePath%>home/toNewsCenterAdmin.do" class=" "><i class="lnr lnr-home"></i> <span>新闻编辑</span></a></li>
+							<li ><a  id='tourEntryAdmin' href="<%=basePath%>home/tourEntryAdmin.do" class=" "><i class="lnr lnr-home"></i> <span>旅游报名管理</span></a></li>
+							
+							<li><a   id='toNewsCenterAdmin' href="<%=basePath%>home/toNewsCenterAdmin.do" class=" "><i class="lnr lnr-home"></i> <span>新闻编辑</span></a></li>
 						</c:if>
 					</ul>
 				</nav>

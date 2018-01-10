@@ -50,8 +50,8 @@ function queryPage(){
 	var cfDate   = $('#chufa_date').val(); 
 	var params = {areaType:areaType,tourType:tourType,cfDate:cfDate==null?'':cfDate.trim()};
 	var pageUrl = '<%=basePath%>tour/getTourList.do';
-	var tableHead = ['姓名','身份证','姓别','户籍','航班号/列车号','电话','收费','备注','状态'];
-	var dataIndex = ['pkId','hyCode','zzTime','zzType','czStatus'];
+	var tableHead = ['姓名','身份证','姓别','户籍','航班号/列车号','电话','收费','出行日期','备注','状态'];
+	var dataIndex = ['bmName','bmCardCode','sexName','bmHjAddress','bmCarCode','bmPhone','bmPrice','cfDate','bmComment','confirmStatusName'];
 	var options = {tableId:'score_list',clientPageId:'pageLimit',url:pageUrl,tableHead:tableHead,dataIndex:dataIndex,params:params};
 	ZHW_Page.paging(options);
 }

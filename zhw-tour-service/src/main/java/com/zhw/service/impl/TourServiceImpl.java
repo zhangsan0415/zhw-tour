@@ -12,6 +12,7 @@ import com.zhw.response.BaseResult;
 import com.zhw.response.PageResult;
 import com.zhw.service.TourService;
 import com.zhw.type.ConfirmStatusEnum;
+import com.zhw.type.SexEnum;
 import com.zhw.utils.DateUtils;
 
 @Service
@@ -29,6 +30,10 @@ public class TourServiceImpl implements TourService {
 		if (count==0) return 	PageResult.getOkInstance();
 		int start = PageResult.getStartNumber(currentPage);
 		List<TourRegisterInfo> list = tourMapper.selectTourListPage(hyCode,areaType,tourType,cfDate,start,	PageResult.pageSize);
+		list.forEach(obj ->{
+			obj.setSexName(SexEnum.getNameByCode(obj.getBmSex()));
+			obj.setConfirmStatusName(ConfirmStatusEnum.getNameByCode(obj.getConfirmStatus()));
+		});
 		return PageResult.getPageInstance(list, currentPage, count);
 	}
 	@Override

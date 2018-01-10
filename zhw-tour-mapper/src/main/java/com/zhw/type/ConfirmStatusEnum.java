@@ -20,7 +20,7 @@ public enum ConfirmStatusEnum {
 		return this.typeName;
 	}
 	
-	public String getNameByCode(int typeCode) {
+	public static String getNameByCode(int typeCode) {
 		for(ConfirmStatusEnum obj:values()) {
 			if(obj.typeCode == typeCode)	return obj.typeName;
 		}
