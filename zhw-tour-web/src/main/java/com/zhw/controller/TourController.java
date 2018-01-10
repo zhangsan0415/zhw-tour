@@ -5,11 +5,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.zhw.pojo.TourRegisterPo;
 import com.zhw.response.BaseResult;
@@ -18,7 +17,7 @@ import com.zhw.type.AreaTypeEnum;
 import com.zhw.utils.StringUtils;
 
 
-@Controller
+@RestController
 @RequestMapping(value="/tour")
 public class TourController {
 	
@@ -27,8 +26,17 @@ public class TourController {
 	@Resource
 	private TourService tourService;
 	
+	@RequestMapping(value="/getTourItems.do",method=RequestMethod.POST)
+	public BaseResult getTourItems(int areaType) {
+		try {
+			return tourService.getTourItemList(areaType);
+		}catch(Exception e) {
+			logger.error(StringUtils.putTogether("获取旅 游行程项目异常，异常信息：",e.getMessage()),e);
+			return BaseResult.exceptionInstance();
+		}
+	}
+	
 	@RequestMapping(value="/getTourList.do",method= RequestMethod.POST)
-	@ResponseBody
 	public BaseResult getTourList(int areaType,int tourType,String cfDate,int currentPage,HttpServletRequest request){
 		try {
 			String hyCode = ControllerUtils.getUserInfo(request).getHyCode();
@@ -40,7 +48,6 @@ public class TourController {
 	}
 	
 	@RequestMapping(value="/saveInnerTour.do",method=RequestMethod.POST)
-	@ResponseBody
 	public BaseResult saveInnerTour(@RequestBody TourRegisterPo infoPo,HttpServletRequest request) {
 		try {
 			
@@ -55,7 +62,6 @@ public class TourController {
 	}
 	
 	@RequestMapping(value="/saveOuterTour.do",method=RequestMethod.POST)
-	@ResponseBody
 	public BaseResult saveOuterTour(@RequestBody TourRegisterPo infoPo,HttpServletRequest request) {
 		try {
 			BaseResult check = this.checkRegisterPo(infoPo);

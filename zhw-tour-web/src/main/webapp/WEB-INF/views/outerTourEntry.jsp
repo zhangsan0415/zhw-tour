@@ -12,9 +12,9 @@
 				<form action="" class="form-inline">
 					行程： 
 					<select id="tour_type" class="form-control">
-						<option value="1">港澳5天4晚</option>
-						<option value="2">港澳纯玩豪华游3天2晚</option>
-						
+						<c:forEach var="item" items="${requestScope.tourItems}">
+								<option value="${item.pkId}">${item.tourItem}</option>
+						</c:forEach>
 					</select>
 					出团日：
 					<input id="chufa_date" size="16" type="text" readonly>

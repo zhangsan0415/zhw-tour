@@ -10,26 +10,24 @@
 			</div>
 			<div class="panel-body">
 				<form action="" class="form-inline">
-					 编号： <input type="text" class="form-control" />
-					 <button class='btn btn-primary'>查询</button>
+					 编号： 
+					<input type="text" class="form-control" />
+					<button class='btn btn-primary'>查询</button>
 				</form>
 				<table class="table table-striped" id="tab">
 					<thead>
 						<tr>
-							<th style="width: 6%;">序号</th>
-							<th style="width: 12%;">姓名</th>
-							<th style="width: 19%;">身份证</th>
-							<th style="width: 7%;">性别</th>
-							<th style="width: 10%;">户籍</th>
-							<th style="width: 13%;">航班号/列车号</th>
-							<th style="width: 15%;">电话</th>
-							<th style="width: 5%;">收费</th>
-							<th style="width: 10%;">备注</th>
+							<th style="width: 12%;">类别</th>
+							<th style="width: 19%;">行程</th>
+							<th style="width: 7%;">出行日期</th>
+							<th style="width: 5%;">发起人</th>
+							<th style="width: 10%;">报名费用</th>
+							<th style="width: 13%;">状态</th>
+							<th style="width: 15%;">操作</th>
 						</tr>
 					</thead>
 					<tbody>
 					<tr>
-						<td>1</td>
 						<td><input type="text" class="form-control" /></td>
 						<td><input type="text" class="form-control" /></td>
 						<td><select name="" class="form-control">

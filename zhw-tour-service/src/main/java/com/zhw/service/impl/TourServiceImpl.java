@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.zhw.component.BatchUpdateService;
 import com.zhw.domain.TourRegisterInfo;
+import com.zhw.mapper.TourItemMapper;
 import com.zhw.mapper.TourRegisterInfoMapper;
 import com.zhw.response.BaseResult;
 import com.zhw.response.PageResult;
@@ -23,6 +24,9 @@ public class TourServiceImpl implements TourService {
 	
 	@Autowired
 	private BatchUpdateService batchComponent;
+	
+	@Autowired
+	private TourItemMapper itemMapper;
 	
 	@Override
 	public PageResult queryTourList(String hyCode ,int areaType,int tourType,String cfDate,int currentPage) {
@@ -49,6 +53,10 @@ public class TourServiceImpl implements TourService {
 		}
 		
 		return batchComponent.batchUpdate(dataList, TourRegisterInfoMapper.class, true);
+	}
+	@Override
+	public BaseResult getTourItemList(int areaType) throws Exception {
+		return BaseResult.sucessInstance().setObj(itemMapper.selectListByAreaType(areaType));
 	}
 
 }

@@ -12,4 +12,7 @@ public interface TourService {
 	
 	//添加旅游注册信息
 	BaseResult saveTourList(int tourType,int areaType,String cfDate,List<TourRegisterInfo> dataList,String userCode)throws Exception;
+	
+	//获取旅游行程项目
+	BaseResult getTourItemList(int areaType)throws Exception;
 }

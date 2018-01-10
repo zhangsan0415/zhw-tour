@@ -12,9 +12,9 @@
 				<form action="#" class="form-inline">
 					行程：
 					<select name="" id="tour_type" class="form-control">
-						<option value="1">北京+天津4天3晚</option>
-						<option value="2">云南6天5晚常规</option>
-						<option value="3">海南5天4晚</option>
+						<c:forEach var="item" items="${requestScope.tourItems}">
+								<option value="${item.pkId}">${item.tourItem}</option>
+						</c:forEach>
 					</select> 
 					出团日： 					
 					<input id="chufa_date" size="16" type="text" readonly>

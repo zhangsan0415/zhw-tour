@@ -45,7 +45,7 @@
 
 	<script src="<%=basePath%>static/assets/scripts/paginator.js"></script>
 
-<script type="text/javascript" src="<%=basePath%>static/assets/scripts/bootstrap-datetimepicker.min.js"></script>
+	<script type="text/javascript" src="<%=basePath%>static/assets/scripts/bootstrap-datetimepicker.min.js"></script>
 	<script type="text/javascript" src="<%=basePath%>static/assets/scripts/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 	
 	<script src="<%=basePath%>static/assets/scripts/commonUtils.js"></script>
@@ -211,8 +211,6 @@
 									<span class="icon-submenu glyphicon glyphicon-menu-down"></span></a>
 								<div id="subIntegral" class="collapse ">
 									<ul class="nav">
-										<%-- <li><a id='toScoreList'
-											href="<%=basePath%>home/toScoreList.do" class="">积分查询</a></li> --%>
 										<li><a id='toScoreDetail'
 											href="<%=basePath%>home/toScoreDetail.do" class="">积分明细</a></li>
 										<li><a id='toScoreTransfer'
@@ -224,7 +222,7 @@
 									</ul>
 								</div></li>
 						</c:if>
-						<c:if test="${sessionScope.userInfo.ifAdmin==0}">
+						<%-- <c:if test="${sessionScope.userInfo.ifAdmin==0}"> --%>
 							<li>
 								<a href="#adminIntegral" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>积分管理</span>
 									<span class="icon-submenu glyphicon glyphicon-menu-down"></span></a>
@@ -245,10 +243,19 @@
 									</ul>
 								</div>
 							</li>
-							<li ><a  id='tourEntryAdmin' href="<%=basePath%>home/tourEntryAdmin.do" class=" "><i class="lnr lnr-home"></i> <span>旅游报名管理</span></a></li>
+							<li >
+								<a href="#tourEntryAdmin" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>旅游管理</span>
+									<span class="icon-submenu glyphicon glyphicon-menu-down"></span></a>
+								<div id="tourEntryAdmin" class="collapse ">
+									<ul class="nav">
+										<li><a id='toTourItemAdmin' href="<%=basePath%>home/toTourItemAdmin.do" class="">旅游行程管理</a></li>
+										<li><a id='toTourConfirmAdmin' href="<%=basePath%>home/tourEntryAdmin.do" class="">旅游报名确认</a></li>
+									</ul>
+								</div>
+							</li>
 							
 							<li><a   id='toNewsCenterAdmin' href="<%=basePath%>home/toNewsCenterAdmin.do" class=" "><i class="lnr lnr-home"></i> <span>新闻编辑</span></a></li>
-						</c:if>
+						<%-- </c:if> --%>
 					</ul>
 				</nav>
 			</div>

@@ -11,15 +11,15 @@
 			<div class="panel-body">
 				<form action="#" class="form-inline">
 					类型：
-					<select id="area_type" class="form-control">
+					<select id="area_type" class="form-control" onchange="changeTourItems(this)">
 						<option value="1">国内</option>
 						<option value="2">国外</option>
 					</select>
 					行程： 
 					<select id="tour_type" class="form-control">
-						<option value="1">北京+天津4天3晚</option>
-						<option value="2">云南6天5晚常规</option>
-						<option value="3">海南5天4晚</option>
+						<c:forEach var="item" items="${requestScope.tourItems}">
+								<option value="${item.pkId}">${item.tourItem}</option>
+						</c:forEach>
 					</select> 
 					出团日： 
 					<input id="chufa_date" size="16" type="text" readonly>
@@ -37,6 +37,21 @@
 </div>
 <%@include file="menuBottom.jsp"%>
 <script>
+function changeTourItems(obj){
+	var tourSelector =  $("#tour_type");
+	$("option",tourSelector).remove(); //清空原有的选项 
+	var url = "<%=basePath%>tour/getTourItems.do";
+	var params = {"areaType":obj.value};
+	$.post(url,params,function(result){
+		var obj = JSON.parse(result);
+		if(obj.status != 0)	return;
+		$.each(obj.obj,function(index,item){
+			var option = "<option value='" + item['pkId'] + "'>" + item['tourItem'] + "</option>";
+			tourSelector.append(option);
+		});
+		
+	});
+}
 $("#chufa_date").datetimepicker({
 	format: 'yyyy-mm-dd',
 	autoclose:true,

@@ -8,17 +8,13 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.zhw.domain.MemberBankInfo;
-import com.zhw.domain.MemberInfo;
 import com.zhw.domain.MemberScoreInfoDetail;
+import com.zhw.domain.TourItem;
 import com.zhw.mapper.MemberBankInfoMapper;
 import com.zhw.mapper.MemberInfoMapper;
 import com.zhw.mapper.MemberScoreInfoDetailMapper;
-import com.zhw.mapper.MemberScoreInfoMapper;
-import com.zhw.mapper.TourRegisterInfoMapper;
+import com.zhw.mapper.TourItemMapper;
 import com.zhw.service.HomeService;
-import com.zhw.type.HyLevelEnum;
-import com.zhw.type.HyLevelScoreEnum;
-import com.zhw.type.JHStatusEnum;
 import com.zhw.utils.StringUtils;
 
 /**
@@ -38,13 +34,10 @@ public class HomeServiceImpl implements HomeService {
 	private MemberInfoMapper memberInfoMapper;
 	
 	@Resource
-	private TourRegisterInfoMapper tourMapper;
-	
-	@Resource
-	private MemberScoreInfoMapper scoreMapper;
-	
-	@Resource
 	private MemberScoreInfoDetailMapper scoreInfoMapper;
+	
+	@Resource
+	private TourItemMapper itemMapper;
 	
     @Override
     public String getJDManHyCode(String hyCode) {
@@ -59,39 +52,12 @@ public class HomeServiceImpl implements HomeService {
 	}
 
 	@Override
-	public List<MemberInfo> queryHyInfoByStatus(String hyCode,int jhStatus) {
-		List<MemberInfo> list = memberInfoMapper.selectMemberInfoByKtManAndStatus(hyCode,jhStatus);
-		if(list ==null || list.size()==0)	return null;
-		this.setMoneyAndFlag(list);
-		return list;
-	}
-
-	private void setMoneyAndFlag(List<MemberInfo> list){
-		list.forEach(obj->{
-			obj.setMoney(HyLevelScoreEnum.getValueByCode(obj.getHyLevel()));
-			obj.setFlag(JHStatusEnum.getNameByCode(obj.getJhStatus()));
-			obj.setLevelName(HyLevelEnum.getNameByCode(obj.getHyLevel()));
-		});
-	}
-	/*
-	@Override
-	public List<MemberInfo> queryMemberInfoBytjMan(String tjMan) {
-		// TODO Auto-generated method stub
-		List<MemberInfo> list = memberInfoMapper.selectMemberInfoBytjMan(tjMan);
-		if(list ==null || list.size()==0)	return null;
-		this.setMoneyAndFlag(list);
-		return list;
-	}*/
-
-/*	@Override
-	public List<TourRegisterInfo> queryTourInfo(String hyCode) {
-		// TODO Auto-generated method stub
-		return tourMapper.queryTourInfo(hyCode);
-	}*/
-
-	@Override
 	public List<MemberScoreInfoDetail> queryScoreList(String hyCode) {
-		// TODO Auto-generated method stub
 		return scoreInfoMapper.queryScoreInfoByHyCode(hyCode);
+	}
+
+	@Override
+	public List<TourItem> queryTourItems(int areaType) {
+		return itemMapper.selectListByAreaType(areaType);
 	}
 }

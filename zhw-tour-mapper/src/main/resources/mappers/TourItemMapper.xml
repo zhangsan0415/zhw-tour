@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhw.mapper.TourItemMapper">
+	<resultMap type="com.zhw.domain.TourItem" id="BaseMap">
+		<id property="pkId" column="PK_ID" />
+		<result property="areaType" column="AREA_TYPE" />
+		<result property="tourItem" column="TOUR_ITEM" />
+		<result property="createMan" column="CREATE_MAN" />
+		<result property="createTime" column="CREATE_TIME" />
+	</resultMap>
+	
+	<sql id="BaseColumn">
+		PK_ID, AREA_TYPE, TOUR_ITEM, CREATE_MAN, CREATE_TIME
+	</sql>
+	
+	<select id="selectListByAreaType" parameterType="java.lang.Integer" resultMap="BaseMap">
+		SELECT <include refid="BaseColumn"/>
+		FROM ZHW_TOUR_ITEM WHERE AREA_TYPE=#{areaType}
+	</select>
+	
+	<insert id="insertOneItem" parameterType="com.zhw.domain.TourItem">
+		INSERT INTO ZHW_TOUR_ITEM (AREA_TYPE, TOUR_ITEM, CREATE_MAN, CREATE_TIME) 
+		VALUES (#{areaType},#{tourItem},#{createMan},#{createTime})
+	</insert>
+	
+	<delete id="deleteOneItem" parameterType="java.lang.Integer">
+		DELETE FROM ZHW_TOUR_ITEM WHERE PK_ID=#{pkId}
+	</delete>
+	
+	<select id="selectTotalCountForPage" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM ZHW_TOUR_ITEM 
+		<if test="_parameter != null">
+			WHERE  AREA_TYPE=#{areaType}
+		</if>
+	</select>
+	
+	<select id="selectListForPage" resultMap="BaseMap">
+		SELECT <include refid="BaseColumn"/> FROM ZHW_TOUR_ITEM
+		<if test="_parameter != null">
+			WHERE  AREA_TYPE=#{areaType}
+		</if>
+		limit #{start},#{pageSize}
+	</select>
+</mapper>
+
