@@ -35,18 +35,18 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
-        <!--添加邮箱驱动  -->
-         <dependency>
-             <groupId>com.sun.mail</groupId>
-             <artifactId>javax.mail</artifactId>
-              <version>1.6.0</version>
-           </dependency>
         <!-- 添加 jackson 依赖包 -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 		</dependency> 
         
+        <!--添加邮箱驱动  -->
+         <dependency>
+             <groupId>com.sun.mail</groupId>
+             <artifactId>javax.mail</artifactId>
+              <version>1.6.0</version>
+           </dependency>
     </dependencies>
     
 </project>
