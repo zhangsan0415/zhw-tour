@@ -14,7 +14,7 @@ import com.zhw.utils.StringUtils;
 
 public class LoginInterceptor implements HandlerInterceptor{
 
-	private static String[] IGNORE_URIS = {"/login/index.do","/login/checkHyCode.do","/login/createCheckCode.do","/login/doLogin.do"};
+	private static String[] IGNORE_URIS = {"/login/index.do","/login/checkHyCode.do","/login/createCheckCode.do"};
 	
 	private LoginInterceptorService loginInterceptorService;
 	

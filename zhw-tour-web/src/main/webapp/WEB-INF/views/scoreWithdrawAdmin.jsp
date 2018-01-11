@@ -1,106 +1,93 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="menuHead.jsp"%>
+<%@include file="menuHead.jsp" %>
 <!-- MAIN -->
 <div class="main">
 	<!-- MAIN CONTENT -->
-	<div class="main-content">
-		<!-- RIGHT COLUMN -->
-		<div class="container-fluid panel">
-			<div class="profile-info ">
-				<h4 class="heading">积分提现</h4>
-				<div class="row">
-					<div class="col-md-2 text-right padding-bottom-10">奖金积分 ：</div>
-					<div class="col-md-10 text-left text-danger padding-bottom-10 ">35.40</div>
-					<div class="col-md-2 text-right padding-bottom-10">旅游积分 ：</div>
-					<div class="col-md-10 text-left  padding-bottom-10 text-danger">
-						0.0.6
-						<h6 class="text-danger">提现手续费 5 %，提现金额倍数为 100 。</h6>
-					</div>
-					<div class="col-md-2 text-right padding-bottom-10">提现类型 ：</div>
-					<div class="col-md-10 text-left padding-bottom-10">
-						<select name="" id="" class="form-control">
-							<option value=""></option>
-							<option value="">提取奖金积分</option>
-							<option value="">提取旅游积分</option>
-						</select>
-					</div>
-					<div class="col-md-2 text-right padding-bottom-10">提现金额 ：</div>
-					<div class="col-md-10 text-left padding-bottom-10">
-						<input type="text" class="form-control input-sm" />
-					</div>
-					<div class="col-md-3 text-right margin-top-30  padding-bottom-10">
-						<input type="button" value="申请提现" class="btn btn-primary" />
-					</div>
-				</div>
 
-				<div class="row">
-					<div class="col-md-12">
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th>借方会员编号</th>
-									<th>贷方会员编号</th>
-									<th>时间</th>
-									<th>交易额</th>
-									<th>类型</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>1</td>
-									<td>2</td>
-									<td>3</td>
-									<td>4</td>
-									<td>5</td>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td>2</td>
-									<td>3</td>
-									<td>4</td>
-									<td>5</td>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td>2</td>
-									<td>3</td>
-									<td>4</td>
-									<td>5</td>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td>2</td>
-									<td>3</td>
-									<td>4</td>
-									<td>5</td>
-								</tr>
+		<!--lock end-->
 
-							</tbody>
-						</table>
-						<p class="text-center">
-							总条数: <span>2</span> 当前页:<span> 1/1 </span> <a href="">快进</a> <a
-								href="">尾页</a>
-						</p>
-					</div>
-				</div>
+		<div class="panel panel-headline demo-icons">
+			<div class="panel-heading">
+				<h3 class="panel-title">积分提现审核</h3>
 			</div>
+			<div class="panel-body">
+				<form action="" class="form-inline">
 
-			<!-- END RIGHT COLUMN -->
-
-			<!-- END MAIN CONTENT -->
+					会员编号： <input type="text" class="form-control" id="hy_Code"/>
+					确认状态：<select name="" id="txstatus" class="form-control">
+							<option value=""></option>
+							<option value="0">未确认</option>
+							<option value="1">已确认</option>
+						</select>
+					<button type="button" class="btn btn-info" onclick="queryPage()">查询</button>
+				</form>
+			
+				<table id="score_list" class="table table-striped">
+				</table>
+				<div id="example" style="text-align: center"> <ul id="pageLimit"></ul> </div>
+			</div>
 		</div>
 	</div>
 	<!-- END MAIN -->
 	<div class="clearfix"></div>
-	<footer>
-		<div class="container-fluid">
-			<p class="copyright">&copy; 2017 会员系统</p>
-		</div>
-	</footer>
-</div>
+
 <%@include file="menuBottom.jsp"%>
 <script>
-$("#subIntegral").prev().addClass('active');/*一级  */
-$("#subIntegral").addClass("in");
-$("#toScoreWithdrawAdmin").addClass('active');/* 二级 */
+//确认信息
+function confirmInfo(pkId){
+	Ewin.confirm({ message: "确认要操作选择的数据吗？" }).on(
+		function (e) { 
+			if (!e) {
+				return; 
+			 }else{
+				var url = '<%=basePath%>manager/conScoreWithdraw.do';
+				var params = {pkId:pkId};
+				$.post(url,params,function(result){
+					var obj = JSON.parse(result); 
+					Ewin.alert({message: obj.msg}).on(function(){
+						if(obj.status == 0)	queryPage();
+				});
+			});
+		 }
+	});
+	
+}
+
+//删除信息
+function delInfo(pkId){
+	Ewin.confirm({ message: "确认要删除选择的数据吗？" }).on(
+	function (e) { 
+		if (!e) {
+		  return; 
+		  } else{
+			  var url = '<%=basePath%>manager/delScoreWithdraw.do';
+				var params = {pkId:pkId};
+				$.post(url,params,function(result){
+					var obj = JSON.parse(result); 
+					Ewin.alert({message: obj.msg}).on(function(){
+						if(obj.status == 0)	queryPage();
+					});
+				});
+		  }
+	});
+}
+
+/* 初始化显示分页 */
+function queryPage(){
+	var pageUrl = '<%=basePath%>manager/scoreWithdraw.do';
+	var tableHead = ['会员编号','提现金额','实发金额','提现时间','提现类型','银行卡号','提现类型','操作'];
+	var op_arr = [{text:"确认",func:"confirmInfo",index:"pkId"},{text:"删除",func:"delInfo",index:"pkId"}];
+	var dataIndex = ['hyCode','zzMoney','realMoney','zzTime','zzType','khCardCode','txStatus',op_arr];
+	var hyCode = $("#hy_Code").val();
+	var status = $("#txstatus").val();
+	var params ={"hyCode":hyCode,"txStatus":status};
+	var options = {tableId:'score_list',clientPageId:'pageLimit',url:pageUrl,tableHead:tableHead,dataIndex:dataIndex,params:params};
+	ZHW_Page.paging(options);
+}
+queryPage();
+
+
+$("#subServer").prev().addClass('active');/*一级  */
+$("#subServer").addClass("in");
+$("#scoreWithdrawAdmin").addClass('active');/* 二级 */
 </script>

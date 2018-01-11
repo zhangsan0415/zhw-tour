@@ -17,7 +17,11 @@ import java.util.List;
 
 
 
+
+
 import javax.annotation.Resource;
+
+
 
 
 
@@ -41,6 +45,7 @@ import com.zhw.domain.MemberScoreChangeInfo;
 import com.zhw.domain.MemberScoreInfo;
 import com.zhw.mapper.MemberScoreChangeMapper;
 import com.zhw.mapper.MemberScoreInfoMapper;
+import com.zhw.response.BaseResult;
 import com.zhw.response.PageResult;
 import com.zhw.service.ScoreService;
 import com.zhw.type.IfWithdrawEnum;
@@ -175,28 +180,30 @@ public class ScoreServiceImpl implements ScoreService {
 				info.setType("0");
 				return info;
 			}
-			info.setJjScore(info.getJjScore().subtract(scoreInfo.getZzMoney()));
-			scoreInfoMapper.updateScoreInfo(info);
+//			info.setJjScore(info.getJjScore().subtract(scoreInfo.getZzMoney()));
+//			scoreInfoMapper.updateScoreInfo(info);
 		}else if(scoreInfo.getZzType().equals("1017")){
 			//提取旅游积分
 			if (scoreInfo.getZzMoney().compareTo(info.getLyScore())==1) {
 				info.setType("0");
 				return info;
 			}
-			info.setLyScore(info.getLyScore().subtract(scoreInfo.getZzMoney()));
-			scoreInfoMapper.updateScoreInfo(info);
+//			info.setLyScore(info.getLyScore().subtract(scoreInfo.getZzMoney()));
+//			scoreInfoMapper.updateScoreInfo(info);
 		}
 		//插入积分日志
 		changeMapper.insertScoreInfo(scoreInfo);
-		return scoreInfoMapper.selectScoreInfoByCode(info.getHyCode());
+		return info;
 	}
 
 
 	@Override
-	public MemberScoreInfo rechargeScore(MemberScoreInfo info,
+	@Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
+	public BaseResult rechargeScore(MemberScoreInfo info,
 			MemberScoreChangeInfo scoreInfo) throws Exception {
+		scoreInfo.setDfCode(info.getHyCode());
 		scoreInfo.setCzStatus("0");//未确认
-		if (scoreInfo.getZzType().equals("1018")) {
+	/*	if (scoreInfo.getZzType().equals("1018")) {
 			//充值报单积分
 			info.setBdScore(info.getBdScore().add(scoreInfo.getZzMoney()));
 			scoreInfoMapper.updateScoreInfo(info);
@@ -204,10 +211,10 @@ public class ScoreServiceImpl implements ScoreService {
 			//充值现金积分
 			info.setXjScore(info.getXjScore().add(scoreInfo.getZzMoney()));
 			scoreInfoMapper.updateScoreInfo(info);
-		}
+		}*/
 		//插入积分日志
 		changeMapper.insertScoreInfo(scoreInfo);
-		return scoreInfoMapper.selectScoreInfoByCode(info.getHyCode());
+		return BaseResult.sucessInstance().setMsg("操作成功！");
 	}
 	
 }
