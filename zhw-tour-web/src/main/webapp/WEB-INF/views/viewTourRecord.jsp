@@ -9,7 +9,7 @@
 				<h3 class="panel-title">报名记录</h3>
 			</div>
 			<div class="panel-body">
-				<form action="#" class="form-inline">
+				<form action="#" class="form-inline" role="form">
 					类型：
 					<select id="area_type" class="form-control" onchange="changeTourItems(this)">
 						<option value="1">国内</option>
@@ -22,7 +22,7 @@
 						</c:forEach>
 					</select> 
 					出团日： 
-					<input id="chufa_date" size="16" type="text" readonly>
+					<input id="chufa_date" class="form-control" size="16" type="text" readonly>
 					<button type="button" class="btn btn-info" onclick="queryPage()">查询</button>
 				</form>
 				<table class="table table-striped" id="score_list"></table>

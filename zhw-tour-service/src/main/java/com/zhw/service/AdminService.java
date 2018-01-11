@@ -11,7 +11,7 @@ public interface AdminService {
 	
 	BaseResult removeTourItem(int pkId)throws Exception;
 	
-	BaseResult addOneTourItem(TourItem obj)throws Exception;
+	BaseResult addOneTourItem(TourItem obj,String hyCode)throws Exception;
 	
 	
 }

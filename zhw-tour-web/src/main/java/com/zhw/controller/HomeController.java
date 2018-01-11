@@ -200,7 +200,8 @@ public class HomeController {
 	
 	//跳转到旅游报名管理员页面
 	@RequestMapping(value="/tourEntryAdmin.do")
-	public String toTourEntryAdmin() {
+	public String toTourEntryAdmin(HttpServletRequest request) {
+		request.setAttribute("tourItems", homeService.queryTourItems(AreaTypeEnum.INNER.getTypeCode()));
 		return "tourEntryAdmin";
 	}
 	

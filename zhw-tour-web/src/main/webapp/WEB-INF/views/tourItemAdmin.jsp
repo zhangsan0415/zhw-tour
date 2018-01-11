@@ -70,12 +70,14 @@ $("#toActiveHyList").addClass('active');/* 二级 */
 
 //点击克定按钮
 function addItemAction(){
+	$("#add_modal").modal('hide');
 	var url = '<%=basePath%>admin/addTourItem.do';
 	var params = $('#add_tour_item_form').serialize();
 	$.post(url,params,function(result){
 		var obj = JSON.parse(result);
 		Ewin.alert({message:obj.msg}).on(function(){
-			if(obj.status == 0)	queryPage();
+			if(obj.status == 0)	
+				$(location).attr('href', '<%=basePath%>home/toTourItemAdmin.do');
 		});
 	});
 }

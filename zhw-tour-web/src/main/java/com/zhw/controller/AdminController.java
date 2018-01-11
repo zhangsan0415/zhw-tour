@@ -1,5 +1,7 @@
 package com.zhw.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,16 +49,18 @@ public class AdminController {
 	
 	//添加旅游行程
 	@RequestMapping(value="/addTourItem.do",method=RequestMethod.POST)
-	public BaseResult addTourItem(TourItem obj) {
+	public BaseResult addTourItem(TourItem obj,HttpServletRequest request) {
 		try {
 			if(obj == null)	return BaseResult.failedInstance("添加数据不能为空！");
-			
-			return adminService.addOneTourItem(obj);
+			return adminService.addOneTourItem(obj,ControllerUtils.getUserInfo(request).getHyCode());
 		}catch(Exception e) {
 			logger.error(StringUtils.putTogether("添加旅游行程异常，异常信息：",e.getMessage()),e);
 			return BaseResult.exceptionInstance();
 		}
 	}
+	
+	//旅游报名查看
+	
 	
 	
 

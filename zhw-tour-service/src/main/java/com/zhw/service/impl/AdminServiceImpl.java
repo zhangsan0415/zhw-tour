@@ -11,6 +11,7 @@ import com.zhw.response.BaseResult;
 import com.zhw.response.PageResult;
 import com.zhw.service.AdminService;
 import com.zhw.type.AreaTypeEnum;
+import com.zhw.utils.DateUtils;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -34,14 +35,20 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public BaseResult removeTourItem(int pkId) throws Exception {
-		int result = itemMapper.deleteOneItem(pkId);
-		return result == 0?BaseResult.failedInstance("行程已不存在！"):BaseResult.sucessInstance().setMsg("删除成功！");
+		//如果存在行程尚未确认，不能删除
+		int count = itemMapper.selectUNConfirmBMNumByPkId(pkId);
+		if(count>0)	return BaseResult.failedInstance("该行程还存在有未确认的报名，尚不能删除！");
+		
+		itemMapper.deleteOneItem(pkId);
+		return BaseResult.sucessInstance().setMsg("删除成功！");
 	}
 
 	@Override
-	public BaseResult addOneTourItem(TourItem obj) throws Exception {
+	public BaseResult addOneTourItem(TourItem obj,String hyCode) throws Exception {
+		obj.setCreateMan(hyCode);
+		obj.setCreateTime(DateUtils.formatCurrentDate());
 		itemMapper.insertOneItem(obj);
-		return BaseResult.failedInstance("添加失功！");
+		return BaseResult.sucessInstance().setMsg("添加失功！");
 	}
 
 }

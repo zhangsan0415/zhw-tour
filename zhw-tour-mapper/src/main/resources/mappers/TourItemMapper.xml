@@ -41,5 +41,9 @@
 		</if>
 		limit #{start},#{pageSize}
 	</select>
+	
+	<select id="selectUNConfirmBMNumByPkId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM ZHW_TOUR_REG WHERE TOUR_TYPE=#{tourType} AND CONFIRM_STATUS=1
+	</select>
 </mapper>
 

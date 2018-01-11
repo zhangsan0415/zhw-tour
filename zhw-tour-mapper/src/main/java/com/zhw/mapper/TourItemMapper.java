@@ -17,4 +17,8 @@ public interface TourItemMapper {
 	int selectTotalCountForPage(Integer areaType);
 	
 	List<TourItem> selectListForPage(@Param("areaType")Integer areaType,@Param("start")int start,@Param("pageSize")int pageSize);
+	
+	//查询行程所对应的报名未确信条数,用于确定是否可以删除
+	int selectUNConfirmBMNumByPkId(int pkId);
+	
 }
