@@ -50,7 +50,8 @@ public class AdminController {
 	public BaseResult addTourItem(TourItem obj) {
 		try {
 			if(obj == null)	return BaseResult.failedInstance("添加数据不能为空！");
-			return BaseResult.sucessInstance().setMsg("添加成功！");
+			
+			return adminService.addOneTourItem(obj);
 		}catch(Exception e) {
 			logger.error(StringUtils.putTogether("添加旅游行程异常，异常信息：",e.getMessage()),e);
 			return BaseResult.exceptionInstance();

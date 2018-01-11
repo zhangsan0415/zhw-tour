@@ -136,47 +136,47 @@ function save(){
 	});
 }
 
-	//点击登录按钮
-	function doLogin(){
-		var hyCode = $("#hy_code").val();
-		var pwd = $("#signin-password").val();
-		var checkCode = $("#signin-code").val();
-		
-		if(isEmpty(hyCode)||isEmpty(pwd)||isEmpty(checkCode)) return;
-		
-		var url = "<%=basePath%>login/doLogin.do";
-		var params = {"hyCode":hyCode.trim(),"password":pwd.trim(),"checkCode":checkCode.trim()};
-		$.post(url,params,function(data){
-			var obj = JSON.parse(data); 
-			if(obj.status != 0){ 
-				Ewin.alert({message: obj.msg == null ? "系统繁忙，请稍候重试！":obj.msg}); 
-				return;
-			}
-			$(location).attr('href', '<%=basePath%>login/toHome.do');
-		});
-	}
+//点击登录按钮
+function doLogin(){
+	var hyCode = $("#hy_code").val();
+	var pwd = $("#signin-password").val();
+	var checkCode = $("#signin-code").val();
 	
-	//验证会员编号是否存在
-	function checkUserCode(input){
-		var value = input.value;
-		if(isEmpty(value))	return;
-		var url="<%=basePath%>login/checkHyCode.do";
-		$.post(url,{"hyCode":value.trim()},function(result){
-			var obj = JSON.parse(result); 
-			if(obj.status != 0) 
-				Ewin.alert({message: obj.msg == null ? "系统繁忙，请稍候重试！":obj.msg}); 
-		});
-	}
+	if(isEmpty(hyCode)||isEmpty(pwd)||isEmpty(checkCode)) return;
 	
-	//点击刷新验证码
-	function imageRefresh(image){
-		image.src="<%=basePath%>login/createCheckCode.do?t="+ Math.random();
-	}
+	var url = "<%=basePath%>login/doLogin.do";
+	var params = {"hyCode":hyCode.trim(),"password":pwd.trim(),"checkCode":checkCode.trim()};
+	$.post(url,params,function(data){
+		var obj = JSON.parse(data);
+		if(obj.status != 0){ 
+			Ewin.alert({message: obj.msg == null ? "系统繁忙，请稍候重试！":obj.msg}); 
+			return;
+		}
+		$(location).attr('href', '<%=basePath%>login/toHome.do');
+	});
+}
 	
-	function isEmpty(str){
-		if(str == null || str == '') return true;
-		return false;
-	}
+//验证会员编号是否存在
+function checkUserCode(input){
+	var value = input.value;
+	if(isEmpty(value))	return;
+	var url="<%=basePath%>login/checkHyCode.do";
+	$.post(url,{"hyCode":value.trim()},function(result){
+		var obj = JSON.parse(result);  
+		if(obj.status != 0) 
+			Ewin.alert({message: obj.msg == null ? "系统繁忙，请稍候重试！":obj.msg}); 
+	});
+}
+	
+//点击刷新验证码
+function imageRefresh(image){
+	image.src="<%=basePath%>login/createCheckCode.do?t="+ Math.random();
+}
+
+function isEmpty(str){
+	if(str == null || str == '') return true;
+	return false;
+}
 	
 	$(document).ready(function() {
 		$('#login_form').bootstrapValidator({

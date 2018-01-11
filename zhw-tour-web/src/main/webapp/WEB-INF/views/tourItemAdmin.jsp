@@ -55,7 +55,7 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">确定</button>
+					<button type="button" class="btn btn-primary" onclick="addItemAction()">确定</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
 				</div>
 			</div>
@@ -68,7 +68,17 @@ $("#subServer").prev().addClass('active');/*一级  */
 $("#subServer").addClass("in");
 $("#toActiveHyList").addClass('active');/* 二级 */
 
-//data-target="#add_modal"
+//点击克定按钮
+function addItemAction(){
+	var url = '<%=basePath%>admin/addTourItem.do';
+	var params = $('#add_tour_item_form').serialize();
+	$.post(url,params,function(result){
+		var obj = JSON.parse(result);
+		Ewin.alert({message:obj.msg}).on(function(){
+			if(obj.status == 0)	queryPage();
+		});
+	});
+}
 
 //添加行程
 function addTourItem(){
