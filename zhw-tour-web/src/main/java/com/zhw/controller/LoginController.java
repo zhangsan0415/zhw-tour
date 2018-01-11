@@ -16,12 +16,14 @@ import javax.servlet.http.HttpServletResponse;
 import com.zhw.domain.MemberInfo;
 import com.zhw.response.BaseResult;
 import com.zhw.utils.StringUtils;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.zhw.service.LoginService;
+
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -179,4 +181,16 @@ public class LoginController {
 		return rands;
 	}
 	
+
+	@RequestMapping(value="/forgetPwd.do",method= RequestMethod.POST)
+	@ResponseBody
+	public BaseResult forgetPwd(String hyCode,String yxEmail){
+		
+		try {
+			return loginService.forgetPwd(hyCode, yxEmail);
+		} catch (Exception e) {
+			logger.error(StringUtils.putTogether("用户",hyCode,"忘记密码失败：",e.getMessage()),e);
+			return BaseResult.exceptionInstance();
+		}
+	}
 }

@@ -2,6 +2,7 @@ package com.zhw.service;
 
 import com.zhw.domain.MemberInfo;
 import com.zhw.domain.MemberScoreInfo;
+import com.zhw.response.BaseResult;
 
 public interface LoginService {
 
@@ -30,5 +31,14 @@ public interface LoginService {
      * @throws Exception
      */
     MemberScoreInfo getScoreInfoByHyCode(String hyCode)throws Exception;
+    
+    /**
+     * 忘记密码
+     * @param hyCode
+     * @param email
+     * @return
+     * @throws Exception
+     */
+    BaseResult forgetPwd(String hyCode,String email)throws Exception;
     
 }
