@@ -40,7 +40,6 @@
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 		</dependency> 
-        
         <!--添加邮箱驱动  -->
          <dependency>
              <groupId>com.sun.mail</groupId>
