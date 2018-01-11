@@ -187,9 +187,9 @@ public class HomeController {
 	}
 	
 	//跳转到注册会员页面，可审批
-	@RequestMapping(value="/toSignInAdmin.do")
-	public String toSignInAdmin() {
-		return "signInAdmin";
+	@RequestMapping(value="/toBdAdmin.do")
+	public String toBdAdmin() {
+		return "bdCenterAdmin";
 	}
 	
 	//跳转到开通会员页面，可审批

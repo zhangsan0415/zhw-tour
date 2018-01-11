@@ -239,7 +239,7 @@
 								<div id="adminMember" class="collapse ">
 									<ul class="nav">
 										<li><a id='toActiveHyAdmin' href="<%=basePath%>home/toActiveHyAdmin.do" class="">开通会员审核</a></li>
-										<li><a id='toSignInAdmin' href="<%=basePath%>home/toSignInAdmin.do" class="">开通报单中心</a></li>
+										<li><a id='toSignInAdmin' href="<%=basePath%>home/toBdAdmin.do" class="">开通报单中心</a></li>
 									</ul>
 								</div>
 							</li>

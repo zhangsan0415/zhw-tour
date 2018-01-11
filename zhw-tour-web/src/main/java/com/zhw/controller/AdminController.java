@@ -89,6 +89,62 @@ public class AdminController {
 			return BaseResult.exceptionInstance();
 		}
 	}
+	
+	
+	/***********************会员管理****************************************/
+	@RequestMapping(value="/auditList.do",method=RequestMethod.POST)
+	public BaseResult auditList(String hyCode,int currentPage ){
+		try {
+			return adminService.getAuditList(hyCode, currentPage);
+		}catch(Exception e) {
+			logger.error(StringUtils.putTogether("分页获取已激活会员列表失败，异常信息：",e.getMessage()),e);
+			return BaseResult.exceptionInstance();
+		}
+	}
+	
+	@RequestMapping(value="/auditHy.do",method=RequestMethod.POST)
+	public BaseResult auditHy(String hyCode) {
+		try {
+			if(StringUtils.isEmpty(hyCode))	return BaseResult.conditionErrorInstance();
+			return adminService.auditHy(hyCode);
+		}catch(Exception e) {
+			logger.error(StringUtils.putTogether("审核会员异常，编号：",hyCode,",异常信息：",e.getMessage()),e);
+			return BaseResult.exceptionInstance();
+		}
+	}
+	
+	@RequestMapping(value="/delHy.do",method=RequestMethod.POST)
+	public BaseResult delHy(String hyCode) {
+		try {
+			if(StringUtils.isEmpty(hyCode))	return BaseResult.conditionErrorInstance();
+			return adminService.delHy(hyCode);
+		}catch(Exception e) {
+			logger.error(StringUtils.putTogether("删除会员异常，编号：",hyCode,",异常信息：",e.getMessage()),e);
+			return BaseResult.exceptionInstance();
+		}
+	}
+	
+	@RequestMapping(value="/notBdList.do",method=RequestMethod.POST)
+	public BaseResult notBdList(String hyCode,int currentPage) {
+		try {
+			return adminService.getNotBdList(hyCode, currentPage);
+		}catch(Exception e) {
+			logger.error(StringUtils.putTogether("分页获取非报单中心列表失败，异常信息：",e.getMessage()),e);
+			return BaseResult.exceptionInstance();
+		}
+	}
+	
+	@RequestMapping(value="/ktBd.do",method=RequestMethod.POST)
+	public BaseResult ktBd(String hyCode) {
+		try {
+			return adminService.ktBdCenter(hyCode);
+		}catch(Exception e) {
+			logger.error(StringUtils.putTogether("开通报单中心失败，异常信息：",e.getMessage()),e);
+			return BaseResult.exceptionInstance();
+		}
+	}
+	
+	
 
 	
 }

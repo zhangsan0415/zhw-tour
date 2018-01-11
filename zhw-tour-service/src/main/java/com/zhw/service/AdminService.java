@@ -20,5 +20,20 @@ public interface AdminService {
 	//查询游客报名记录
 	PageResult queryTourList(String hyCode ,int areaType,int tourType,String cfDate,int currentPage);
 	
+	/*******************************会员管理部分**********************************/
+	
+	PageResult getAuditList(String hyCode,int currentPage)throws Exception;
+	
+	BaseResult auditHy(String hyCode)throws Exception;
+	
+	BaseResult delHy(String hyCode)throws Exception;
+	
+	
+	BaseResult getNotBdList(String hyCode,int currentPage)throws Exception;
+	
+	BaseResult ktBdCenter(String hyCode)throws Exception;
+	
+
+	
 	
 }

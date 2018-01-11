@@ -112,6 +112,42 @@
 	    <if test="hyCode != null and hyCode != ''">
 			and HY_CODE = #{hyCode}
 		</if>
-		
 	</select>
+	
+	
+	<!-- 自此以下为管理员操作 -->
+	
+	<select id="selectUnAuditCount" resultType="Integer">
+		SELECT COUNT(1) FROM ZHW_MEM WHERE JH_STATUS = 3
+	    <if test="hyCode != null and hyCode != ''">
+			and HY_CODE = #{hyCode}
+		</if>
+	</select>
+	
+	<select id="selectUnAuditList" resultMap="BaseMap">
+		SELECT <include refid="BaseColumn"/> FROM ZHW_MEM WHERE  JH_STATUS = 3 
+		<if test="hyCode != null and hyCode != ''">
+			and HY_CODE = #{hyCode}
+		</if>
+		 limit #{start},#{pageSize}
+	</select>
+	
+	<select id="selectNotBdCount" resultType="Integer">
+		SELECT COUNT(1) FROM ZHW_MEM WHERE if_bd_center = 1
+	    <if test="hyCode != null and hyCode != ''">
+			and HY_CODE = #{hyCode}
+		</if>
+	</select>
+	
+	<select id="selectNotBdList" resultMap="BaseMap">
+		SELECT <include refid="BaseColumn"/> FROM ZHW_MEM WHERE if_bd_center = 1
+		<if test="hyCode != null and hyCode != ''">
+			and HY_CODE = #{hyCode}
+		</if>
+		 limit #{start},#{pageSize}
+	</select>
+	
+	<update id="setBdCenter" parameterType="java.lang.String">
+		UPDATE ZHW_MEM SET if_bd_center = 0 WHERE HY_CODE = #{hyCode}
+	</update>
 </mapper>

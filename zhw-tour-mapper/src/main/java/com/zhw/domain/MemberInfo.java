@@ -56,6 +56,8 @@ public class MemberInfo {
 
 	private String levelName;//会员级别
 	
+	private String jhStatusName;//激活状态
+	
 	public int getPkId() {
 		return pkId;
 	}
@@ -231,6 +233,14 @@ public class MemberInfo {
 
 	public void setKtMan(String ktMan) {
 		this.ktMan = ktMan;
+	}
+
+	public String getJhStatusName() {
+		return jhStatusName;
+	}
+
+	public void setJhStatusName(String jhStatusName) {
+		this.jhStatusName = jhStatusName;
 	}
 	
 }

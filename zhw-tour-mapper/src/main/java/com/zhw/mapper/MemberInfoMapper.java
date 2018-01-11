@@ -53,4 +53,22 @@ public interface MemberInfoMapper {
 	//根据推荐人查询推荐的会员总数
 	int selectCountBytjMan(@Param("tjMan")String tjMan,@Param("hyCode")String hyCode,@Param("jhStatus")int jhStatus);
 	
+	
+	
+	/***********************以下为 管理员相关**********************************************/
+	int selectUnAuditCount(@Param("hyCode")String hyCode);
+	
+	List<MemberInfo> selectUnAuditList(@Param("hyCode")String hyCode,@Param("start")int start,@Param("pageSize")int pageSize);
+	
+	int selectNotBdCount(@Param("hyCode")String hyCode);
+	
+	List<MemberInfo> selectNotBdList(@Param("hyCode")String hyCode,@Param("start")int start,@Param("pageSize")int pageSize);
+	
+	int setBdCenter(String hyCode);
+	
+	
+	
+	
+	
+	
 }

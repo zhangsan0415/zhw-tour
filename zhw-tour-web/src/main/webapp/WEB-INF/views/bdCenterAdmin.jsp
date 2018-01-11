@@ -8,7 +8,7 @@
 
 		<div class="panel panel-headline demo-icons">
 			<div class="panel-heading">
-				<h3 class="panel-title">开通会员审核</h3>
+				<h3 class="panel-title">开通报单中心</h3>
 			</div>
 			<div class="panel-body">
 				<form action="" class="form-inline">
@@ -33,7 +33,7 @@
 /* 初始化显示分页 */
 
 function ktHy(hyCode) {
-	var url = '<%=basePath%>admin/auditHy.do';
+	var url = '<%=basePath%>admin/ktBd.do';
 	var params = {hyCode:hyCode};
 	$.post(url,params,function(result){
 		var obj = JSON.parse(result); 
@@ -53,10 +53,10 @@ function delHy(hyCode) {
 	});
 }
 function queryPage() {
-	var pageUrl = '<%=basePath%>admin/auditList.do';
-	var tableHead = ['会员编号','推荐人','开通人','联系电话','注册时间','投资金额','状态','操作'];
+	var pageUrl = '<%=basePath%>admin/notBdList.do';
+	var tableHead = ['会员编号','推荐人','开通人','联系电话','注册时间','投资金额','报单中心','操作'];
 	
-	var op_arr = [{text:"同意",func:"ktHy",index:"hyCode"},{text:"删除",func:"delHy",index:"hyCode"}];
+	var op_arr = [{text:"开通",func:"ktHy",index:"hyCode"},{text:"删除",func:"delHy",index:"hyCode"}];
 	var dataIndex = ['hyCode','tjMan','ktMan','sjMobile','zcTime','money','flag',op_arr];
 	var params = {hyCode:$("#hy_Code").val().trim()};
 	var options = {tableId:'unactived_hy_list',clientPageId:'pageLimit',url:pageUrl,tableHead:tableHead,dataIndex:dataIndex,params:params};
