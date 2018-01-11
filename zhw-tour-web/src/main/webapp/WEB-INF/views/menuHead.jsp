@@ -19,7 +19,7 @@
 	<!-- MAIN CSS -->
 	<link rel="stylesheet" href="<%=basePath%>static/assets/css/main.css">
 	<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
-	<link rel="stylesheet" href="<%=basePath%>static/assets/css/demo.css">
+<%-- 	<link rel="stylesheet" href="<%=basePath%>static/assets/css/demo.css"> --%>
 
 	<link rel="stylesheet" href="<%=basePath%>static/assets/css/ui.jqgrid.css">
 	<link rel="stylesheet" href="<%=basePath%>static/assets/css/jquery-ui-1.8.16.custom.css">

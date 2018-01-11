@@ -87,7 +87,7 @@ function queryPage(){
 queryPage();
 
 
-$("#subServer").prev().addClass('active');/*一级  */
-$("#subServer").addClass("in");
-$("#scoreWithdrawAdmin").addClass('active');/* 二级 */
+$("#adminIntegral").prev().addClass('active');/*一级  */
+$("#adminIntegral").addClass("in");
+$("#toScoreWithdrawAdmin").addClass('active');/* 二级 */
 </script>

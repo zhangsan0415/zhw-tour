@@ -75,7 +75,7 @@ function queryPage(){
 }
 
 queryPage();
-$("#subEnter").prev().addClass('active');/*一级  */
-$("#subEnter").addClass("in");
-$("#toViewTourRecord").addClass('active');/* 二级 */
+$("#tourEntryAdmin").prev().addClass('active');/*一级  */
+$("#tourEntryAdmin").addClass("in");
+$("#toTourConfirmAdmin").addClass('active');/* 二级 */
 </script>

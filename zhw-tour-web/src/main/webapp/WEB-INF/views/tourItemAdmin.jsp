@@ -64,9 +64,9 @@
 
 <%@include file="menuBottom.jsp"%>
 <script>
-$("#subServer").prev().addClass('active');/*一级  */
-$("#subServer").addClass("in");
-$("#toActiveHyList").addClass('active');/* 二级 */
+$("#tourEntryAdmin").prev().addClass('active');/*一级  */
+$("#tourEntryAdmin").addClass("in");
+$("#toTourItemAdmin").addClass('active');/* 二级 */
 
 //点击克定按钮
 function addItemAction(){

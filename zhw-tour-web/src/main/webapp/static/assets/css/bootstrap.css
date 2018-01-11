@@ -270,6 +270,7 @@ th {
   position: relative;
   top: 1px;
   display: inline-block;
+
   font-family: 'Glyphicons Halflings';
   font-style: normal;
   font-weight: normal;
@@ -3202,9 +3203,8 @@ fieldset[disabled] .btn-primary.focus {
 .btn-success:active.focus,
 .btn-success.active.focus,
 .open > .dropdown-toggle.btn-success.focus {
-  color: #fff;
-  background-color: #398439;
-  border-color: #255625;
+     background-color: #5bc0de;
+    border-color: #46b8da;
 }
 .btn-success:active,
 .btn-success.active,
@@ -5955,6 +5955,8 @@ button.close {
 .modal-footer .btn + .btn {
   margin-bottom: 0;
   margin-left: 5px;
+      background-color: #5bc0de;
+    border-color: #46b8da;
 }
 .modal-footer .btn-group .btn + .btn {
   margin-left: -1px;

@@ -15,8 +15,28 @@ ul.activity-timeline > li > p {
 label{
     font-weight: normal;
 }
+.table > thead > tr > th,
+ .table > tbody > tr > th,
+  .table > tfoot > tr > th, 
+  .table > thead > tr > td, 
+  .table > tbody > tr > td, .table > tfoot > tr > td{
+  height: 35px;
+    line-height: 35px;
+  }
+ .table-striped tr td .btn{
+ 	margin-left:3px;
+ }
+ .btn{
+ 	margin-left:3px;
+ }
+ .award-icon{
+ 	display:block;
+ }
 
 /*my defined*/
+.text-center{
+	text-align:center;
+}
 .display-none{
     display:  none;
 }  
