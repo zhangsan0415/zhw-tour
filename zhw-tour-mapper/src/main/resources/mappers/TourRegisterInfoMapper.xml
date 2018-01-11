@@ -31,7 +31,10 @@
 	</sql>
 	<select id="selectTourListPage" resultMap="BaseMap">
 		SELECT <include refid="BaseColumn"/> FROM ZHW_TOUR_REG 
-		WHERE HY_CODE=#{hyCode} and AREA_TYPE=#{areaType} and TOUR_TYPE=#{tourType}
+		WHERE AREA_TYPE=#{areaType} and TOUR_TYPE=#{tourType}
+		<if test="hyCode != null and hyCode !=''">
+		 and HY_CODE=#{hyCode} 
+		</if>
 		<if test="cfDate !=null and cfDate !=''">
 			AND CF_DATE=#{cfDate}
 		</if>
@@ -41,7 +44,10 @@
 	
 	<select id="selectTourListPageCount" resultType="java.lang.Integer">
 		SELECT COUNT(1) FROM ZHW_TOUR_REG 
-		WHERE HY_CODE=#{hyCode} and AREA_TYPE=#{areaType} and TOUR_TYPE=#{tourType}
+		WHERE AREA_TYPE=#{areaType} and TOUR_TYPE=#{tourType}
+		<if test="hyCode != null and hyCode !=''">
+		 and HY_CODE=#{hyCode} 
+		</if>
 		<if test="cfDate !=null and cfDate !=''">
 			AND CF_DATE=#{cfDate}
 		</if>
@@ -59,4 +65,17 @@
 	        )  
     	</foreach>  
 	</insert>
+	
+	<delete id="delTourInfo" parameterType="Integer">
+	delete from ZHW_TOUR_REG where PK_ID =#{pkId}
+	</delete>
+	
+	<update id="ConfirmInfo" parameterType="Integer">
+	update ZHW_TOUR_REG
+	 set 
+	 CONFIRM_STATUS = 0
+	 where PK_ID =#{pkId}
+	
+	
+	</update>
 </mapper>

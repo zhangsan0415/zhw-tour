@@ -106,7 +106,7 @@ function getTableData(tableId){
 				value = td.find("select").val();
 			}
 			if(value == null || value.trim() == '')	{
-				Ewin.alert({msg:"表格中存在空字段！"});
+				Ewin.alert({message:"表格中存在空字段！"});
 				return null;
 			}
 			obj[key]=value;

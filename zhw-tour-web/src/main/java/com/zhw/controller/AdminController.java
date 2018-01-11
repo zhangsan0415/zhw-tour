@@ -60,9 +60,35 @@ public class AdminController {
 	}
 	
 	//旅游报名查看
-	
-	
-	
+	@RequestMapping(value="/queryTourList.do",method= RequestMethod.POST)
+	public BaseResult getTourList(String hyCode,int areaType,int tourType,String cfDate,int currentPage,HttpServletRequest request){
+		try {
+			return adminService.queryTourList(hyCode,areaType,tourType,cfDate,currentPage);
+		} catch (Exception e) {
+			logger.error(StringUtils.putTogether("分页获取报名列表失败，当前会员编号：",ControllerUtils.getUserInfo(request).getHyCode(),",异常信息：",e.getMessage()),e);
+			return BaseResult.exceptionInstance();
+		}
+	}
+	//管理员删除报名记录
+	@RequestMapping(value="/delTourInfo.do",method=RequestMethod.POST)
+	public BaseResult delTourInfo(int pkId) {
+		try {
+			return adminService.delTourInfo(pkId);
+		} catch (Exception e) {
+			logger.error(StringUtils.putTogether("管理员删除报名记录，异常信息：",e.getMessage()),e);
+			return BaseResult.exceptionInstance();
+		}
+	}
+	//管理员确认报名记录
+	@RequestMapping(value="/confirmTourInfo.do",method=RequestMethod.POST)
+	public BaseResult confirmTourInfo(int pkId) {
+		try {
+			return adminService.confirmTourInfo(pkId);
+		} catch (Exception e) {
+			logger.error(StringUtils.putTogether("管理员确认报名记录，异常信息：",e.getMessage()),e);
+			return BaseResult.exceptionInstance();
+		}
+	}
 
 	
 }

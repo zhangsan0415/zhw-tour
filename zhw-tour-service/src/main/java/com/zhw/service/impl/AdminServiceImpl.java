@@ -6,11 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zhw.domain.TourItem;
+import com.zhw.domain.TourRegisterInfo;
 import com.zhw.mapper.TourItemMapper;
+import com.zhw.mapper.TourRegisterInfoMapper;
 import com.zhw.response.BaseResult;
 import com.zhw.response.PageResult;
 import com.zhw.service.AdminService;
 import com.zhw.type.AreaTypeEnum;
+import com.zhw.type.ConfirmStatusEnum;
+import com.zhw.type.SexEnum;
 import com.zhw.utils.DateUtils;
 
 @Service
@@ -18,6 +22,9 @@ public class AdminServiceImpl implements AdminService{
 
 	@Autowired
 	private TourItemMapper itemMapper;
+	
+	@Autowired
+    private TourRegisterInfoMapper tourMapper;
 	
 	@Override
 	public PageResult getTourItems(Integer areaType, int currentPage) throws Exception {
@@ -48,7 +55,35 @@ public class AdminServiceImpl implements AdminService{
 		obj.setCreateMan(hyCode);
 		obj.setCreateTime(DateUtils.formatCurrentDate());
 		itemMapper.insertOneItem(obj);
-		return BaseResult.sucessInstance().setMsg("添加失功！");
+		return BaseResult.sucessInstance().setMsg("添加成功！");
+	}
+
+	@Override
+	public BaseResult delTourInfo(int pkId) throws Exception {
+		int num = tourMapper.delTourInfo(pkId);
+		if(num == 0)return BaseResult.exceptionInstance();
+		return BaseResult.sucessInstance().setMsg("删除成功！");
+	}
+
+	@Override
+	public BaseResult confirmTourInfo(int pkId) throws Exception {
+		int num = tourMapper.ConfirmInfo(pkId);
+		if(num == 0)return BaseResult.exceptionInstance();
+		return BaseResult.sucessInstance().setMsg("确认成功！");
+	}
+
+	@Override
+	public PageResult queryTourList(String hyCode, int areaType, int tourType,
+			String cfDate, int currentPage) {
+		int count = tourMapper.selectTourListPageCount(hyCode,areaType,tourType,cfDate);
+		if (count==0) return 	PageResult.getOkInstance();
+		int start = PageResult.getStartNumber(currentPage);
+		List<TourRegisterInfo> list = tourMapper.selectTourListPage(hyCode,areaType,tourType,cfDate,start,	PageResult.pageSize);
+		list.forEach(obj ->{
+			obj.setSexName(SexEnum.getNameByCode(obj.getBmSex()));
+			obj.setConfirmStatusName(ConfirmStatusEnum.getNameByCode(obj.getConfirmStatus()));
+		});
+		return PageResult.getPageInstance(list, currentPage, count);
 	}
 
 }

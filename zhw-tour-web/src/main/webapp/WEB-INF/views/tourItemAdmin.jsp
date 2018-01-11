@@ -64,8 +64,10 @@
 
 <%@include file="menuBottom.jsp"%>
 <script>
+
 $("#tourEntryAdmin").prev().addClass('active');/*一级  */
 $("#tourEntryAdmin").addClass("in");
+
 $("#toTourItemAdmin").addClass('active');/* 二级 */
 
 //点击克定按钮
