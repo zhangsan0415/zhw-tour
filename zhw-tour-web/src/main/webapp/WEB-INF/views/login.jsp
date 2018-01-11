@@ -95,15 +95,15 @@
  
   <div class="form-group">
   <label for="txt_departmentname">请输入您的账号：</label>
-  <input type="text" name="txt_departmentname" class="form-control" id="hycode" placeholder="会员编号">
+  <input type="text" name="txt_departmentname" class="form-control" id="hycode" placeholder="会员编号" autocomplete="off" >
   </div>
   <div class="form-group">
   <label for="txt_parentdepartment">请输入您的邮箱地址：</label>
-  <input type="text" name="txt_parentdepartment" class="form-control" id="email_id" placeholder="邮箱地址">
+  <input type="text" name="txt_parentdepartment" class="form-control" id="email_id" placeholder="邮箱地址" autocomplete="off" >
   </div>
  
  <div class="modal-footer">
- <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
+ <button type="button" class="btn btn-default" data-dismiss="modal" onclick="closeWin()"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
   <button type="button" onclick="save()" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>提交</button>
  </div>
  </div>
@@ -120,6 +120,11 @@ function forgetPwd(){
 	$('#myModal').modal();
 
 }
+function closeWin(){
+	//清空表单
+	$("#hycode").val("");
+	$("#email_id").val("");
+}
 //点击提交
 function save(){
 	var hyCode = $("#hycode").val();
@@ -129,10 +134,7 @@ function save(){
 	$.post(url,params,function(data){
 		var obj = JSON.parse(data);  
 		Ewin.alert({message: obj.msg}).on(function(){
-			if(obj.status != 0)Ewin.alert({message: obj.msg == null ? "系统繁忙，请稍候重试！":obj.msg}); 
 		});
-		
-		$('#forget_form').reset();
 	});
 }
 

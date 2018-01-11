@@ -35,6 +35,12 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
+        <!--添加邮箱驱动  -->
+         <dependency>
+             <groupId>com.sun.mail</groupId>
+             <artifactId>javax.mail</artifactId>
+              <version>1.6.0</version>
+           </dependency>
     </dependencies>
     
 </project>
