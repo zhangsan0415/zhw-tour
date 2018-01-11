@@ -13,5 +13,12 @@ public interface AdminService {
 	
 	BaseResult addOneTourItem(TourItem obj,String hyCode)throws Exception;
 	
+	BaseResult delTourInfo(int pkId)throws Exception;
+	
+	BaseResult confirmTourInfo(int pkId)throws Exception;
+	
+	//查询游客报名记录
+	PageResult queryTourList(String hyCode ,int areaType,int tourType,String cfDate,int currentPage);
+	
 	
 }

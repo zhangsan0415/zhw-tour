@@ -67,9 +67,10 @@ function queryPage(){
 	var cfDate   = $('#chufa_date').val(); 
 	var hyCode   = $('#hy_code_confirm').val(); 
 	var params = {areaType:areaType,tourType:tourType,cfDate:cfDate==null?'':cfDate.trim(),hyCode:hyCode==null?'':hyCode.trim()};
-	var pageUrl = '<%=basePath%>tour/getTourList.do';
-	var tableHead = ['类型','行程','会员','人数','收费','出行日期','状态','操作'];
-	var dataIndex = ['areaTypeName','tourItem','hyCode','manNum','totalAmount','cfDate','confirmStatusName',];
+	var pageUrl = '<%=basePath%>admin/queryTourList.do';
+	var tableHead = ['所属会员','姓名','身份证','出行日期','航班号/列车号','电话','收费','备注','状态','操作'];
+	var op_arr = [{text:"确认",func:"confirmInfo",index:"pkId"},{text:"删除",func:"delInfo",index:"pkId"}];
+	var dataIndex = ['hyCode','bmName','bmCardCode','cfDate','bmCarCode','bmPhone','bmPrice','bmComment','confirmStatusName',op_arr];
 	var options = {tableId:'score_list',clientPageId:'pageLimit',url:pageUrl,tableHead:tableHead,dataIndex:dataIndex,params:params};
 	ZHW_Page.paging(options);
 }
@@ -77,5 +78,36 @@ function queryPage(){
 queryPage();
 $("#subEnter").prev().addClass('active');/*一级  */
 $("#subEnter").addClass("in");
-$("#toViewTourRecord").addClass('active');/* 二级 */
+$("#tourEntryAdmin").addClass('active');/* 二级 */
+
+//确认
+function confirmInfo(pkId){
+	Ewin.confirm({ message: "确认要操作选择的数据吗？" }).on(
+		function (e) { 
+			if (!e) return; 
+			var url = '<%=basePath%>admin/confirmTourInfo.do';
+			var params = {pkId:pkId};
+			$.post(url,params,function(result){
+				var obj = JSON.parse(result); 
+				Ewin.alert({message: obj.msg}).on(function(){
+					if(obj.status == 0)	queryPage();
+				});
+			});
+		});	
+}
+//删除操作
+function delInfo(pkId){
+	Ewin.confirm({ message: "确认要操作选择的数据吗？" }).on(
+		function (e) { 
+			if (!e) return; 
+			var url = '<%=basePath%>admin/delTourInfo.do';
+			var params = {pkId:pkId};
+			$.post(url,params,function(result){
+				var obj = JSON.parse(result); 
+				Ewin.alert({message: obj.msg}).on(function(){
+					if(obj.status == 0)	queryPage();
+			});
+		});
+	});	
+}
 </script>

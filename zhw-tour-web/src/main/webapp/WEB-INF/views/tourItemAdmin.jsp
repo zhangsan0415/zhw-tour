@@ -66,7 +66,7 @@
 <script>
 $("#subServer").prev().addClass('active');/*一级  */
 $("#subServer").addClass("in");
-$("#toActiveHyList").addClass('active');/* 二级 */
+$("#toTourItemAdmin").addClass('active');/* 二级 */
 
 //点击克定按钮
 function addItemAction(){

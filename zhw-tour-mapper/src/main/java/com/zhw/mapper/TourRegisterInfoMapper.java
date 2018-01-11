@@ -18,4 +18,8 @@ public interface TourRegisterInfoMapper {
 	
 	@Batch
 	int insertBatch(List<TourRegisterInfo> list);
+	
+	int delTourInfo(int pkId);
+	
+	int ConfirmInfo(int pkId);
 }
