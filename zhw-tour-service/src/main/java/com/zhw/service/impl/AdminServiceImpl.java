@@ -2,6 +2,7 @@ package com.zhw.service.impl;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 
@@ -12,10 +13,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.zhw.domain.MemberInfo;
 import com.zhw.domain.MemberScoreInfo;
+import com.zhw.domain.NewsCenterInfo;
 import com.zhw.domain.TourItem;
 import com.zhw.domain.TourRegisterInfo;
 import com.zhw.mapper.MemberInfoMapper;
 import com.zhw.mapper.MemberScoreInfoMapper;
+import com.zhw.mapper.NewsCenterMapper;
 import com.zhw.mapper.TourItemMapper;
 import com.zhw.mapper.TourRegisterInfoMapper;
 import com.zhw.pojo.JJScorePercentPo;
@@ -44,6 +47,9 @@ public class AdminServiceImpl implements AdminService{
 	
 	@Resource
 	private MemberScoreInfoMapper scoreInfoMapper;
+	
+	@Resource
+	private NewsCenterMapper newsCenterMapper;
 	
 	@Override
 	public PageResult getTourItems(Integer areaType, int currentPage) throws Exception {
@@ -231,6 +237,28 @@ public class AdminServiceImpl implements AdminService{
 	public BaseResult ktBdCenter(String hyCode) throws Exception {
 		userInfoMapper.setBdCenter(hyCode);
 		return BaseResult.sucessInstance().setMsg("开通成功！");
+	}
+
+	@Override
+	public PageResult getNewsList(String newsTitle,int currentPage) throws Exception {
+		int count = newsCenterMapper.selectCount(newsTitle);
+		if(count == 0) return PageResult.getOkInstance();
+		int start = PageResult.getStartNumber(currentPage);
+		List<NewsCenterInfo> list = newsCenterMapper.selectList(newsTitle,start,PageResult.pageSize);
+		return PageResult.getPageInstance(list, currentPage, count);
+	}
+
+	@Override
+	public BaseResult delNews(int pkId) throws Exception {
+		return null;
+	}
+
+	@Override
+	public BaseResult addNews(NewsCenterInfo info) throws Exception {
+		//存数据库表
+		int num = newsCenterMapper.insertOneNews(info);
+		if (num==0)return BaseResult.exceptionInstance();
+		return BaseResult.sucessInstance().setMsg("添加成功！");
 	}
 
 }

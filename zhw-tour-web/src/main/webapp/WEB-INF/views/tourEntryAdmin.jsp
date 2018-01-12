@@ -113,5 +113,5 @@ function delInfo(pkId){
 		});
 	});	
 }
->>>>>>> branch 'master' of https://github.com/zhangsan0415/zhw-tour.git
+
 </script>

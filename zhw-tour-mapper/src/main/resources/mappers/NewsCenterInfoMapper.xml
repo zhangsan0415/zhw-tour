@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhw.mapper.NewsCenterMapper">
+	<resultMap type="com.zhw.domain.NewsCenterInfo" id="BaseMap">
+		<id property="pkId" column="PK_ID" />
+		<result property="newsTitle" column="NEWS_TITLE" />
+		<result property="newsName" column="NEWS_NAME" />
+		<result property="newsType" column="NEWS_TYPE" />
+		<result property="newsTime" column="NEWS_TIME" />
+	</resultMap>
+	
+	<sql id="BaseColumn">
+		PK_ID, NEWS_TITLE, NEWS_NAME, NEWS_TYPE, NEWS_TIME
+	</sql>
+	
+	<select id="selectList"  resultMap="BaseMap">
+		SELECT <include refid="BaseColumn"/>
+		FROM ZHW_NEWS 
+		<if test="newsTitle != null and newsTitle !=''">
+		where NEWS_TITLE = #{newsTitle}
+		</if>
+	</select>
+	
+	<insert id="insertOneNews" parameterType="com.zhw.domain.TourItem">
+		INSERT INTO ZHW_NEWS (NEWS_TITLE, NEWS_NAME, NEWS_TYPE, NEWS_TIME) 
+		VALUES (#{newsTitle},#{newsName},#{newsType},SYSDATE())
+	</insert>
+	
+	<delete id="deleteOneNews" parameterType="java.lang.Integer">
+		DELETE FROM ZHW_NEWS WHERE PK_ID=#{pkId}
+	</delete>
+	
+	<select id="selectCount"  resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM ZHW_NEWS 
+		
+		<if test="newsTitle != null and newsTitle !=''">
+		WHERE NEWS_TITLE = #{newsTitle}
+		</if>
+	</select>
+</mapper>
+

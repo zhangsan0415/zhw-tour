@@ -1,5 +1,8 @@
 package com.zhw.controller;
 
+import java.io.File;
+import java.util.UUID;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -8,7 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.sun.tools.internal.ws.processor.model.Request;
+import com.zhw.domain.NewsCenterInfo;
 import com.zhw.domain.TourItem;
 import com.zhw.response.BaseResult;
 import com.zhw.service.AdminService;
@@ -145,6 +151,36 @@ public class AdminController {
 	}
 	
 	
-
+	/***********************新闻编辑****************************************/
+	@RequestMapping(value="/addNews", method=RequestMethod.POST)
+	public BaseResult addNews(String newsTitle,MultipartFile picture){
+		try {
+			if(StringUtils.isEmpty(newsTitle)|| picture == null)return BaseResult.conditionErrorInstance();
+		
+			String fileName = picture.getOriginalFilename();//图片原始名称
+			String pic_path = "F:\\temp\\images\\";//存储路径
+		    String newFileName = UUID.randomUUID().toString().replace("-", "");//新图片名称
+		    String type = fileName.split("\\.")[1];//图片后缀名
+			File file = new File(pic_path+newFileName);
+			picture.transferTo(file);//将内存中的数据写入磁盘
+			NewsCenterInfo info = new NewsCenterInfo();
+			info.setNewsName(newFileName);//图片名称
+			info.setNewsTitle(newsTitle);//主题
+			info.setNewsType(type);//后缀
+			return adminService.addNews(info);
+		} catch (Exception e) {
+			logger.error(StringUtils.putTogether("添加新闻，异常信息：",e.getMessage()),e);
+			return BaseResult.exceptionInstance();
+		}
+	}
 	
+	@RequestMapping(value="/queryNews", method=RequestMethod.POST)
+	public BaseResult queryList(String newsTitle,int currentPage){
+		try {
+			return adminService.getNewsList(newsTitle,currentPage);
+		} catch (Exception e) {
+			logger.error(StringUtils.putTogether("查询新闻列表，异常信息：",e.getMessage()),e);
+			return BaseResult.exceptionInstance();
+		}
+	}
 }
