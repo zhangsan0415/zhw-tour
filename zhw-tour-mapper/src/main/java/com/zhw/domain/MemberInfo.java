@@ -47,6 +47,8 @@ public class MemberInfo {
 
 	private String ktMan;//开通人
 	
+	private String tjInnerCode;//推荐人内码，用于
+	
 	/**
 	 * 如下为用于显示的字段
 	 */
@@ -241,6 +243,14 @@ public class MemberInfo {
 
 	public void setJhStatusName(String jhStatusName) {
 		this.jhStatusName = jhStatusName;
+	}
+
+	public String getTjInnerCode() {
+		return tjInnerCode;
+	}
+
+	public void setTjInnerCode(String tjInnerCode) {
+		this.tjInnerCode = tjInnerCode;
 	}
 	
 }

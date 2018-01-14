@@ -54,7 +54,7 @@ public class PageResult extends BaseResult{
 	}
 	
 	public static PageResult getOkInstance() {
-		return new PageResult(SUCCESS_STATUS);
+		return new PageResult(SUCCESS_STATUS).setTotalPages(1);
 	}
 	
 	public static <T> PageResult getPageInstance(List<T> list,int currentPage,int totalCount) {

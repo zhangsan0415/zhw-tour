@@ -23,9 +23,6 @@ public interface MemberInfoMapper {
 	//修改资料(手机号和邮箱)
 	int modifyInfo(@Param("hyCode")String hyCode,@Param("sjMobile")String phone,@Param("yxEmail")String email,@Param("sfzCardCode")String sfzCardCode);
 
-	//根据开通状态查询会员信息
-	List<MemberInfo> selectMemberInfoByKtManAndStatus(@Param("hyCode")String hyCode,@Param("jhStatus")int jhStatus);
-
 	//查询接点人工号
 	String selectJdManCode(String hyCode);
 	
@@ -34,9 +31,6 @@ public interface MemberInfoMapper {
 	
 	//根据会员编码查询会员信息
 	MemberInfo selectHyInfoByCode(String hyCode);
-
-	//修改是否报单中心状态为已修改
-	int updateIfBdCenter(String hyCode);
 	
 	//分页查询是否激活会员列表的总条数
 	int selectCountForActivedOrNot(@Param("hyCode")String hyCode,@Param("jhStatus")int jhStatus,@Param("currentUser")String currentUser);
@@ -65,6 +59,10 @@ public interface MemberInfoMapper {
 	List<MemberInfo> selectNotBdList(@Param("hyCode")String hyCode,@Param("start")int start,@Param("pageSize")int pageSize);
 	
 	int setBdCenter(String hyCode);
+
+	int selectHyCountAdmin(@Param("hyCode")String hyCode, @Param("jhStatus")Integer jhStatus, @Param("ifBdCenter") Integer ifBdCenter);
+
+	List<MemberInfo> selectHyListAdmin(@Param("hyCode")String hyCode, @Param("jhStatus")Integer jhStatus, @Param("ifBdCenter") Integer ifBdCenter,  @Param("start")int start,  @Param("pagesize")int pagesize);
 	
 	
 	

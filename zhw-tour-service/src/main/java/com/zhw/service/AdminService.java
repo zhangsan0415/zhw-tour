@@ -2,6 +2,7 @@ package com.zhw.service;
 
 import com.zhw.domain.NewsCenterInfo;
 import com.zhw.domain.TourItem;
+import com.zhw.pojo.HyInfoPo;
 import com.zhw.response.BaseResult;
 import com.zhw.response.PageResult;
 
@@ -34,6 +35,10 @@ public interface AdminService {
 	
 	BaseResult ktBdCenter(String hyCode)throws Exception;
 	
+	BaseResult queryHyInfoPage(String hyCode, Integer jhStatus, Integer ifBdCenter, int currentPage) throws Exception;
+
+	BaseResult addHy(HyInfoPo infoPo,String hyCode)throws Exception;
+	
 	/********************************新闻编辑****************************************/
 	
 	PageResult getNewsList(String newsTitle,int currentPage)throws Exception;
@@ -41,5 +46,5 @@ public interface AdminService {
 	BaseResult delNews(int pkId)throws Exception;
 	
 	BaseResult addNews(NewsCenterInfo info) throws Exception;
-	
+
 }

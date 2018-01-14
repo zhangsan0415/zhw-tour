@@ -13,13 +13,13 @@
 
 			<!-- START  -->
  			<div class="panel-body">
- 			<TABLE border=0 height=600px align=left>
+ 			<table border="0" height="600px" align="left">
 				<TR>
 					<TD width=260px align=left valign=top >
 						<ul id="tree" class="ztree" style="width:260px; overflow:auto;"></ul>
 					</TD>
 				</TR>
-			</TABLE>
+			</table>
 				
 				<h5 class="text-danger">代理商（1000） 金卡代理商（5000） 钻石代理商（8000）</h5>
                     <h6 >
@@ -62,8 +62,8 @@ var setting = {
 	data: {
 		simpleData: {
 			enable:true,
-			idKey: "id",
-			pIdKey: "pId",
+			idKey: "hyCode",
+			pIdKey: "tjMan",
 			rootPId: ""
 		}
 	},
@@ -86,13 +86,15 @@ var zNodes =[
 	{id:2, pId:0, name:"[core] 基本功能 演示", open:true},
 	{id:101, pId:1, name:"最简单的树 --  标准 JSON 数据", file:"core/standardData"},
 	{id:102, pId:1, name:"最简单的树 --  简单 JSON 数据", file:"core/simpleData"},
-	{id:122, pId:101, name:"33333333", file:"core/otherMouse"},
-	{id:123, pId:101, name:"33333333", file:"core/otherMouse"},
-	{id:131, pId:123, name:"44444", file:"core/otherMouse"},
+	{id:122, pId:1, name:"33333333", file:"core/otherMouse"},
+	{id:423, pId:1, name:"33333333", file:"core/otherMouse"},
+	{id:131, pId:423, name:"44444", file:"core/otherMouse"},
 	{id:132, pId:131, name:"5555", file:"core/otherMouse"},
 ];
 
 $(document).ready(function(){
+	var url = "<%=basePath%>hyManager/relation.do";
+	$.post(url,params,function(){});
 	var t = $("#tree");
 	t = $.fn.zTree.init(t, setting, zNodes);
 	demoIframe = $("#testIframe");

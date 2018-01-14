@@ -13,8 +13,5 @@ public interface HyManagerService {
 	
 	BaseResult delHy(String hyCode)throws Exception;
 
-	BaseResult ktBdCenter(String hyCode)throws Exception;
-	
-	
 	PageResult getActivedOrNotListPage(String hyCode,int jhStatus,int currentPage,String currentUser )throws Exception;
 }

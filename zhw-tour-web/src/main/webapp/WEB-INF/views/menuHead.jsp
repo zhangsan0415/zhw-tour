@@ -177,10 +177,9 @@
 										<span class="icon-submenu glyphicon glyphicon-menu-down"></span></a>
 									<div id="subServer" class="collapse ">
 										<ul class="nav">
-											<li><a id='toUnActiveHyList'
-												href="<%=basePath%>home/toUnActiveHyList.do" class="">未开通会员</a></li>
-											<li><a id='toActiveHyList'
-												href="<%=basePath%>home/toActiveHyList.do" class="">已开通会员</a></li>
+											<li><a id='toUnActiveHyList' href="<%=basePath%>home/toUnActiveHyList.do" class="">未开通会员</a></li>
+											<li><a id='toActiveHyList' href="<%=basePath%>home/toActiveHyList.do" class="">已开通会员</a></li>
+											<li><a id='toUnConfirmHyList' href="<%=basePath%>home/toUnConfirmHyList.do" class="">已开通未审核会员</a></li>
 										</ul>
 									</div></li>
 							</c:if>
@@ -238,8 +237,10 @@
 									<span class="icon-submenu glyphicon glyphicon-menu-down"></span></a>
 								<div id="adminMember" class="collapse ">
 									<ul class="nav">
+										<li><a id='toAddBdCenter' href="<%=basePath%>home/toSignInAdmin.do" class="">添加报单中心</a></li>
 										<li><a id='toActiveHyAdmin' href="<%=basePath%>home/toActiveHyAdmin.do" class="">开通会员审核</a></li>
 										<li><a id='toSignInAdmin' href="<%=basePath%>home/toBdAdmin.do" class="">开通报单中心</a></li>
+										<li><a id='toHyInfoAdmin' href="<%=basePath%>home/toHyInfoAdmin.do" class="">会员查询</a></li>
 									</ul>
 								</div>
 							</li>

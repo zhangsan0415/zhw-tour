@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zhw.domain.MemberScoreChangeInfo;
 import com.zhw.domain.MemberScoreInfo;
+import com.zhw.pojo.CommonConstants;
 import com.zhw.response.BaseResult;
 import com.zhw.service.ScoreService;
 import com.zhw.type.JHStatusEnum;
@@ -179,7 +180,7 @@ public class ScoreController {
 	public BaseResult toScoreRecharge(int currentPage,HttpServletRequest request) {
 		try {
 			String hyCode = ControllerUtils.getUserInfo(request).getHyCode();
-			int status = JHStatusEnum.RECHARGE.getTypeCode();
+			int status = CommonConstants.RECHARGE;
 			return scoreService.queryInfo(hyCode,status,currentPage);
 		} catch (Exception e) {
 			logger.error(StringUtils.putTogether("分页获取积分提现记录列表失败，当前会员编号：",ControllerUtils.getUserInfo(request).getHyCode(),",异常信息：",e.getMessage()),e);

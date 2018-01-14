@@ -16,6 +16,8 @@ import com.zhw.service.ScoreService;
 import com.zhw.type.AreaTypeEnum;
 import com.zhw.type.BankEnum;
 import com.zhw.type.IfBdCenterEnum;
+import com.zhw.type.JHStatusEnum;
+import com.zhw.type.ZYAreaEnum;
 import com.zhw.type.ZZTypeEnum;
 
 @Controller
@@ -95,6 +97,12 @@ public class HomeController {
 	}
 	
 	//跳转到已开通会员页面
+	@RequestMapping(value="/toUnConfirmHyList.do")
+	public String toUnConfirmHyList(HttpServletRequest request) {
+		return "unConfirmHyList";
+	}
+	
+	//跳转到已开通未审核会员页面
 	@RequestMapping(value="/toActiveHyList.do")
 	public String toActiveHyList(HttpServletRequest request) {
 		return "activeHyList";
@@ -190,6 +198,21 @@ public class HomeController {
 	@RequestMapping(value="/toBdAdmin.do")
 	public String toBdAdmin() {
 		return "bdCenterAdmin";
+	}
+	
+	//跳转到管理员会员查询
+	@RequestMapping(value="/toHyInfoAdmin.do")
+	public String toHyInfoAdmin(HttpServletRequest request) {
+		request.setAttribute("ktStatuses", JHStatusEnum.values());
+		request.setAttribute("bdCenters", IfBdCenterEnum.values());
+		return "hyInfoAdmin";
+	}
+	
+	//跳转到管理员添加会员页面
+	@RequestMapping(value="/toSignInAdmin.do")
+	public String toAddBdCenterAdmin(HttpServletRequest request) {
+		request.setAttribute("zyAreas",ZYAreaEnum.values());
+		return "signInAdmin";
 	}
 	
 	//跳转到开通会员页面，可审批

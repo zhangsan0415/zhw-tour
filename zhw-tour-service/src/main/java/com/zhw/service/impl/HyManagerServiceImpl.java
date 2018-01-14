@@ -58,6 +58,8 @@ public class HyManagerServiceImpl implements HyManagerService {
 		if(IfBdCenterEnum.isBdCenter(sessionUser.getIfBdCenter()))	userInfo.setKtMan(sessionUser.getHyCode());
 		else userInfo.setKtMan(sessionUser.getKtMan());
 		
+		
+		
 		//会员对应很行信息
 		MemberBankInfo bankInfo = new MemberBankInfo();
 		BeanUtils.copyProperties(infoPo, bankInfo);
@@ -119,23 +121,6 @@ public class HyManagerServiceImpl implements HyManagerService {
 				?BaseResult.exceptionInstance():BaseResult.sucessInstance().setMsg("删除会员成功");
 	}
 
-
-	@Override
-	public BaseResult ktBdCenter(String hyCode) throws Exception {
-		MemberInfo hyInfo = infoMapper.selectHyInfoByCode(hyCode);
-
-		if(hyInfo == null)	return BaseResult.failedInstance("会员不存在！");
-		if(!JHStatusEnum.isActived(hyInfo.getJhStatus()))	return BaseResult.failedInstance("未开通的会员不能开通报单中心！");
-
-		String currentTime = DateUtils.formatCurrentDate();
-		hyInfo.setIfBdCenter(IfBdCenterEnum.Y_BD_CENTER.getTypeCode());
-		hyInfo.setXgTime(currentTime);
-
-//		int result = infoMapper
-		return null;
-	}
-
-
 	//判断新添加会员编码是否存在
 	private boolean isExist(String hyCode) {
 		return infoMapper.selectCountByHyCode(hyCode)>0;
@@ -144,12 +129,10 @@ public class HyManagerServiceImpl implements HyManagerService {
 
 	@Override
 	public PageResult getActivedOrNotListPage(String hyCode, int jhStatus, int currentPage,String currentUser) throws Exception {
-//		int totalCount = infoMapper.selectCount();
 		int totalCount = infoMapper.selectCountForActivedOrNot(hyCode, jhStatus,currentUser);
 		if(totalCount == 0)	return PageResult.getOkInstance();
 		
 		int start =  PageResult.getStartNumber(currentPage);
-//		List<MemberInfo> dataList  = infoMapper.selectPageQQ();
 		List<MemberInfo> dataList = infoMapper.selectActivedOrNotPageList(hyCode, jhStatus, start, PageResult.pageSize,currentUser);
 		this.setMoneyAndFlag(dataList);
 		
