@@ -62,7 +62,7 @@ public interface MemberInfoMapper {
 
 	int selectHyCountAdmin(@Param("hyCode")String hyCode, @Param("jhStatus")Integer jhStatus, @Param("ifBdCenter") Integer ifBdCenter);
 
-	List<MemberInfo> selectHyListAdmin(@Param("hyCode")String hyCode, @Param("jhStatus")Integer jhStatus, @Param("ifBdCenter") Integer ifBdCenter,  @Param("start")int start,  @Param("pagesize")int pagesize);
+	List<MemberInfo> selectHyListAdmin(@Param("hyCode")String hyCode, @Param("jhStatus")Integer jhStatus, @Param("ifBdCenter") Integer ifBdCenter,  @Param("start")int start,  @Param("pageSize")int pagesize);
 	
 	
 	

@@ -3,6 +3,7 @@ package com.zhw.service;
 import java.util.List;
 
 import com.zhw.domain.MemberBankInfo;
+import com.zhw.domain.MemberInfo;
 import com.zhw.domain.MemberScoreInfoDetail;
 import com.zhw.domain.TourItem;
 
@@ -37,4 +38,10 @@ public interface HomeService {
     * @return
     */
    List<TourItem> queryTourItems(int areaType);
+//   /**
+//    * 查看左右区注册金额
+//    * @param hyCode
+//    * @return
+//    */
+//   List<MemberInfo> querySyatem(String hyCode);
 }

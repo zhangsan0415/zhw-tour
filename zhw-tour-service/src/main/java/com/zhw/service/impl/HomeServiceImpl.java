@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.zhw.domain.MemberBankInfo;
+import com.zhw.domain.MemberInfo;
 import com.zhw.domain.MemberScoreInfoDetail;
 import com.zhw.domain.TourItem;
 import com.zhw.mapper.MemberBankInfoMapper;
@@ -60,4 +61,5 @@ public class HomeServiceImpl implements HomeService {
 	public List<TourItem> queryTourItems(int areaType) {
 		return itemMapper.selectListByAreaType(areaType);
 	}
+
 }

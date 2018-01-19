@@ -9,11 +9,12 @@
 				<h3 class="panel-title" >新闻中心</h3>
 			</div>
 			<div class='panel-body'> 
-				 
-				 <a class='newsList' href="<%=basePath%>home/toNewsCenterDetails.do"> [公司公告]【漫游神湖】一日游</a>
+				<table class="table table-striped" id="score_list"></table>
+				<div id="example" style="text-align: center"> <ul id="pageLimit"></ul> </div> 
+				<%--  <a class='newsList' href="<%=basePath%>home/toNewsCenterDetails.do"> [公司公告]【漫游神湖】一日游</a>
 				 <a class='newsList' href="<%=basePath%>home/toNewsCenterDetails.do"> [公司公告]【漫游神湖】一日游</a>
 				  <a class='newsList' href="<%=basePath%>home/toNewsCenterDetails.do"> [公司公告]【漫游神湖】一日游</a>
-				   <a class='newsList' href="<%=basePath%>home/toNewsCenterDetails.do"> [公司公告]【漫游神湖】一日游</a> 
+				   <a class='newsList' href="<%=basePath%>home/toNewsCenterDetails.do"> [公司公告]【漫游神湖】一日游</a>  --%>
 				    
 			</div>			
 		</div>
@@ -29,5 +30,42 @@ $("#newsCenter").prev().addClass('active');/*一级  */
 $("#newsCenter").addClass("in");
 $("#toNewsCenter").addClass('active');/* 二级 */
 
-
+function queryDetail(pkId){
+	window.location.href="<%=basePath%>home/toNewsCenterDetails.do?pkId=pkId"
+<%-- 	var url = '<%=basePath%>home/toNewsCenterDetails.do';
+	var params = {pkId:pkId};
+	$.post(url,params,function(result){
+		var obj = JSON.parse(result); 
+		Ewin.alert({message: obj.msg}).on(function(){
+			
+		});
+	}); --%>
+/* 	$.ajax(function(){
+		type:"POST",
+		dataType:"json",
+		url:"default.aspx",//请求页面
+		data:"{id=1}",
+		complete:function(){location.href ="default.aspx"}//跳转页面
+		}); */
+/* 	 $.ajax({  
+         url: 'home/toNewsCenterDetails.do' ,  
+         type: 'POST',  
+		 dataType:'json',
+		 data:{pkId:pkId},
+      	 complete:function(){
+      		 window
+      	 }
+    }); */  
+}
+function query(){
+	var pageUrl = '<%=basePath%>admin/queryNews.do';
+	var tableHead = ['公司公告'];
+	var op_arr = [{text:"查看",func:"queryDetail",index:"pkId"}];
+	var dataIndex = ['newsTitle',op_arr];
+//	var title = $('#news_title').val();
+	var params = {"newsTitle":""};
+	var options = {tableId:'score_list',clientPageId:'pageLimit',url:pageUrl,tableHead:tableHead,dataIndex:dataIndex,params:params};
+	ZHW_Page.paging(options);
+ }
+ query();
 </script>

@@ -36,7 +36,7 @@
 					
 						<div class="col-md-2 text-right line-height-30" >汇款账号 ：</div>
 						<div class="col-md-10 text-left line-height-30" >
-							<input type="text" class="form-control" name="tjMan" style="width: 20%" value="${sessionScope.userInfo.hyCode}"  readonly="readonly"/>
+							<input type="text" class="form-control" style="width: 20%" value="6226623700288651"  readonly="readonly"/>
 						</div>
 					</div>
          	 </form>

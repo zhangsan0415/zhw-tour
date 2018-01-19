@@ -24,10 +24,10 @@
 						class="often-use-link" href="<%=basePath%>home/toRelation.do"><span
 							class="glyphicon glyphicon-picture award-icon"></span> <span
 							class="cssclass">关系图</span></a></li>
-					<li class="col-md-2 col-sm-4 col-xs-6 text-center"><a
+					<%-- <li class="col-md-2 col-sm-4 col-xs-6 text-center"><a
 						class="often-use-link" href="<%=basePath%>home/toScoreList.do"><span
 							class="glyphicon glyphicon-search award-icon"></span> <span
-							class="cssclass">积分查询</span></a></li>
+							class="cssclass">积分查询</span></a></li> --%>
 					<li class="col-md-2 col-sm-4 col-xs-6 text-center"><a
 						class="often-use-link" href="<%=basePath%>home/toScoreTransfer.do"><span
 							class="glyphicon glyphicon-retweet award-icon"></span> <span

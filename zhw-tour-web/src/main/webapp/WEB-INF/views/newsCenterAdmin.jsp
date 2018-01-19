@@ -54,8 +54,6 @@
 			<!--/添加新闻  -->
 		</div>
 
-
-
 	</div>
 	<!-- END MAIN -->
 	<div class="clearfix"></div>
@@ -103,11 +101,18 @@ $("#add").bind('click',function (){
           }  
      });  
 }  
- 
+ //查看明细
+ function queryDetail(pkId){
+	 
+ }
+ function delInfo(pkId){
+	 //删除
+	 
+ }
  function query(){
 	var pageUrl = '<%=basePath%>admin/queryNews.do';
 	var tableHead = ['新闻名称','操作'];
-	var op_arr = [{text:"查看",func:"queryDetail",index:"pkId"},{text:"确认",func:"confirmInfo",index:"pkId"},{text:"删除",func:"delInfo",index:"pkId"}];
+	var op_arr = [{text:"查看",func:"queryDetail",index:"pkId"},{text:"删除",func:"delInfo",index:"pkId"}];
 	var dataIndex = ['newsTitle',op_arr];
 	var title = $('#news_title').val();
 	var params = {"newsTitle":title};

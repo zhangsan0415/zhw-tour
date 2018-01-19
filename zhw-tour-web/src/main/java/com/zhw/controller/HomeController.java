@@ -12,6 +12,7 @@ import com.zhw.component.AreaComponent;
 import com.zhw.domain.Area;
 import com.zhw.domain.MemberInfo;
 import com.zhw.service.HomeService;
+import com.zhw.service.PersonService;
 import com.zhw.service.ScoreService;
 import com.zhw.type.AreaTypeEnum;
 import com.zhw.type.BankEnum;
@@ -32,6 +33,8 @@ public class HomeController {
 	
 	@Resource
 	private ScoreService scoreService;
+	@Resource
+	private PersonService personService;
 
 	//跳转修改资料页面
 	@RequestMapping(value="/toModifyHyInfo.do")
@@ -83,10 +86,16 @@ public class HomeController {
 	public String toRelation() {
 		return "relation";
 	}
-	
+	//跳转系统图
+	@RequestMapping(value="toSystem.do")
+	public String toSystem(HttpServletRequest request){
+		return "system";
+	}
 	//跳转到查看页面
 	@RequestMapping(value="/toView.do")
 	public String toView(HttpServletRequest request) {
+		MemberInfo info = ControllerUtils.getUserInfo(request);
+//		personService.getMemberInfo(tjMan, currentPage, hyCode, jhStatus)
 		return "view";
 	}
 	
