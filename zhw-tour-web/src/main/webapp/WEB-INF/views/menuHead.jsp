@@ -77,7 +77,7 @@
 								会员
 							</a>
 						</li>
-						<c:if test="${sessionScope.userInfo.ifBdCenter==0}">
+			<%-- 			<c:if test="${sessionScope.userInfo.ifBdCenter==0}">
 							<li class="dropdown"><a
 								href="<%=basePath%>home/toUnActiveHyList.do"
 								class="dropdown-toggle icon-menu" data-toggle="dropdown">
@@ -97,7 +97,7 @@
 							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
 								信息反馈
 							</a>
-						</li>
+						</li> --%>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								<span class="glyphicon glyphicon-user"></span>

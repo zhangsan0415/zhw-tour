@@ -1,5 +1,6 @@
 package com.zhw.service;
 
+import com.zhw.response.BaseResult;
 import com.zhw.response.PageResult;
 
 
@@ -24,4 +25,10 @@ public interface PersonService {
 	  * @return
 	  */
 	 PageResult getMemberInfo(String tjMan,int currentPage,String hyCode,int jhStatus)throws Exception;
+	 /**
+	  * 根据会员号查询左右区钱数
+	  * @param hyCode
+	  * @return
+	  */
+	 BaseResult queryNum(String hyCode)throws Exception;
 }

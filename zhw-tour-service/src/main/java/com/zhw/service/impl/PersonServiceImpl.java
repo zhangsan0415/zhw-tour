@@ -1,9 +1,11 @@
 package com.zhw.service.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.hamcrest.core.Is;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,6 +13,7 @@ import com.zhw.domain.MemberBankInfo;
 import com.zhw.domain.MemberInfo;
 import com.zhw.mapper.MemberBankInfoMapper;
 import com.zhw.mapper.MemberInfoMapper;
+import com.zhw.response.BaseResult;
 import com.zhw.response.PageResult;
 import com.zhw.service.PersonService;
 import com.zhw.type.HyLevelEnum;
@@ -70,5 +73,26 @@ public class PersonServiceImpl implements PersonService {
 			obj.setFlag(JHStatusEnum.getNameByCode(obj.getJhStatus()));
 			obj.setLevelName(HyLevelEnum.getNameByCode(obj.getHyLevel()));
 		});
+	}
+
+	@Override
+	public BaseResult queryNum(String hyCode) throws Exception {
+		List<MemberInfo> list = memberInfoMapper.selectBytjMan(hyCode);
+		if(list ==null || list.size()==0)	return null;
+		this.setMoneyAndFlag(list);
+		BigDecimal money = BigDecimal.ZERO;
+		BigDecimal yMoney = BigDecimal.ZERO;
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).getZyArea()==0) {
+				//左区
+				money = money.add(list.get(i).getMoney());
+			}else{
+				yMoney = yMoney.add(list.get(i).getMoney());
+			}
+		}
+		MemberInfo info = new MemberInfo();
+		info.setzMoney(money);
+		info.setyMoney(yMoney);
+		return BaseResult.sucessInstance().setObj(info);
 	}
 }

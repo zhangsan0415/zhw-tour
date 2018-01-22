@@ -60,6 +60,27 @@ public class MemberInfo {
 	
 	private String jhStatusName;//激活状态
 	
+	private BigDecimal zMoney;//左区钱数
+	
+	private BigDecimal yMoney;//右区钱数
+	
+
+	public BigDecimal getzMoney() {
+		return zMoney;
+	}
+
+	public void setzMoney(BigDecimal zMoney) {
+		this.zMoney = zMoney;
+	}
+
+	public BigDecimal getyMoney() {
+		return yMoney;
+	}
+
+	public void setyMoney(BigDecimal yMoney) {
+		this.yMoney = yMoney;
+	}
+
 	public int getPkId() {
 		return pkId;
 	}

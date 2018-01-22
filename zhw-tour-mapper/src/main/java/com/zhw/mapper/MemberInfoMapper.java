@@ -47,7 +47,8 @@ public interface MemberInfoMapper {
 	//根据推荐人查询推荐的会员总数
 	int selectCountBytjMan(@Param("tjMan")String tjMan,@Param("hyCode")String hyCode,@Param("jhStatus")int jhStatus);
 	
-	
+	//根据推荐人查询左右区会员信息
+	List<MemberInfo> selectBytjMan(@Param("tjMan")String tjMan);
 	
 	/***********************以下为 管理员相关**********************************************/
 	int selectUnAuditCount(@Param("hyCode")String hyCode);
