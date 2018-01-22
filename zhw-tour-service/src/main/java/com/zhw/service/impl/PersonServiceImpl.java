@@ -67,6 +67,7 @@ public class PersonServiceImpl implements PersonService {
 		this.setMoneyAndFlag(list);
 		return PageResult.getPageInstance(list, currentPage, count);
 	}
+	
 	private void setMoneyAndFlag(List<MemberInfo> list){
 		list.forEach(obj->{
 			obj.setMoney(HyLevelScoreEnum.getValueByCode(obj.getHyLevel()));
@@ -74,7 +75,7 @@ public class PersonServiceImpl implements PersonService {
 			obj.setLevelName(HyLevelEnum.getNameByCode(obj.getHyLevel()));
 		});
 	}
-
+	
 	@Override
 	public BaseResult queryNum(String hyCode) throws Exception {
 		List<MemberInfo> list = memberInfoMapper.selectBytjMan(hyCode);

@@ -44,6 +44,7 @@ public interface MemberInfoMapper {
 	
 	//删除会员时使用
 	int deleteHyByCode(String hyCode);
+	
 	//根据推荐人查询推荐的会员总数
 	int selectCountBytjMan(@Param("tjMan")String tjMan,@Param("hyCode")String hyCode,@Param("jhStatus")int jhStatus);
 	

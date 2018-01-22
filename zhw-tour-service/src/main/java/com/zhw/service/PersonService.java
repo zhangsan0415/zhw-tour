@@ -31,4 +31,5 @@ public interface PersonService {
 	  * @return
 	  */
 	 BaseResult queryNum(String hyCode)throws Exception;
+	 
 }

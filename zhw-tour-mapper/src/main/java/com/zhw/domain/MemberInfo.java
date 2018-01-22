@@ -64,7 +64,6 @@ public class MemberInfo {
 	
 	private BigDecimal yMoney;//右区钱数
 	
-
 	public BigDecimal getzMoney() {
 		return zMoney;
 	}

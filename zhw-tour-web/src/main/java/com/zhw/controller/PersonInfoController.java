@@ -117,6 +117,5 @@ public class PersonInfoController {
 			logger.error(StringUtils.putTogether("查询系统图数据，当前会员编号：",hyCode,",异常信息：",e.getMessage()),e);
 			return BaseResult.exceptionInstance();
 		}
-		
 	}
 }

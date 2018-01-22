@@ -112,6 +112,7 @@
 			and HY_CODE = #{hyCode}
 		</if>
 	</select>
+	
 	<!-- 查询会员信息 -->
 	<select id="selectBytjMan"  parameterType="java.lang.String" resultMap="BaseMap">
 	SELECT <include refid="BaseColumn"/> FROM ZHW_MEM WHERE  TJ_MAN=#{tjMan}  
