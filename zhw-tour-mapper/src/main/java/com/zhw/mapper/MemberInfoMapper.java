@@ -33,11 +33,11 @@ public interface MemberInfoMapper {
 	MemberInfo selectHyInfoByCode(String hyCode);
 	
 	//分页查询是否激活会员列表的总条数
-	int selectCountForActivedOrNot(@Param("hyCode")String hyCode,@Param("jhStatus")int jhStatus,@Param("currentUser")String currentUser);
+	int selectCountForActivedOrNot(@Param("hyCode")String hyCode,@Param("jhStatus")String jhStatus,@Param("currentUser")String currentUser);
 	
 	//分页查询已激活或者未激活的会员列表
 	List<MemberInfo> selectActivedOrNotPageList(@Param("hyCode")String hyCode
-			,@Param("jhStatus")int jhStatus,@Param("start")int start,@Param("pageSize")int pageSize,@Param("currentUser")String currentUser);
+			,@Param("jhStatus")String jhStatus,@Param("start")int start,@Param("pageSize")int pageSize,@Param("currentUser")String currentUser);
 	
 	//更新会员的激活状态,开通会员时使用
 	int updateJhStatus(@Param("hyCode")String hyCode,@Param("ktTime")String ktTime,@Param("jhStatus")int jhStatus);

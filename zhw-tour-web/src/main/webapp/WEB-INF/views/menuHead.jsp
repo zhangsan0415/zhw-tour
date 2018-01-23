@@ -179,7 +179,7 @@
 										<ul class="nav">
 											<li><a id='toUnActiveHyList' href="<%=basePath%>home/toUnActiveHyList.do" class="">未开通会员</a></li>
 											<li><a id='toActiveHyList' href="<%=basePath%>home/toActiveHyList.do" class="">已开通会员</a></li>
-											<li><a id='toUnConfirmHyList' href="<%=basePath%>home/toUnConfirmHyList.do" class="">已开通未审核会员</a></li>
+											<%-- <li><a id='toUnConfirmHyList' href="<%=basePath%>home/toUnConfirmHyList.do" class="">已开通未审核会员</a></li> --%>
 										</ul>
 									</div></li>
 							</c:if>

@@ -94,8 +94,6 @@ public class HomeController {
 	//跳转到查看页面
 	@RequestMapping(value="/toView.do")
 	public String toView(HttpServletRequest request) {
-		MemberInfo info = ControllerUtils.getUserInfo(request);
-//		personService.getMemberInfo(tjMan, currentPage, hyCode, jhStatus)
 		return "view";
 	}
 	
