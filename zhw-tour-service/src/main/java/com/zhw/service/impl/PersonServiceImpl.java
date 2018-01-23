@@ -4,11 +4,8 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import javax.annotation.Resource;
-
-import org.hamcrest.core.Is;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.zhw.domain.MemberBankInfo;
 import com.zhw.domain.MemberInfo;
 import com.zhw.mapper.MemberBankInfoMapper;
