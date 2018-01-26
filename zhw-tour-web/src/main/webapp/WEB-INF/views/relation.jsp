@@ -13,7 +13,7 @@
 
 			<!-- START  -->
  			<div class="panel-body">
- 			<table border="0" height="600px" align="left">
+ 			<table style="border:0;height:600px;align:left;">
 				<TR>
 					<TD width=260px align=left valign=top >
 						<ul id="tree" class="ztree" style="width:260px; overflow:auto;"></ul>
