@@ -1,6 +1,7 @@
 package com.zhw.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +34,16 @@ public class HyManagerController {
 	@Resource
 	private AreaComponent component;
 	
+	@RequestMapping(value="/relation",method=RequestMethod.POST)
+	public List<Map<String,Object>> relation(HttpServletRequest request){
+		try {
+			return managerService.getRelation(ControllerUtils.getUserInfo(request));
+		}catch(Exception e) {
+			logger.error(StringUtils.putTogether("删除会员失败，所删除会员编号：",ControllerUtils.getUserInfo(request).getHyCode(),",异常信息：",e.getMessage()),e);
+			return null;
+		}
+	}
+	
 	@RequestMapping(value="/delHyAction.do",method=RequestMethod.POST)
 	public BaseResult delHyAction(String hyCode) {
 		try {
@@ -59,7 +70,8 @@ public class HyManagerController {
 	public BaseResult getUnActivedList(String hyCode,int currentPage,HttpServletRequest request) {
 		try {
 			String currentUser  =  ControllerUtils.getUserInfo(request).getHyCode();
-			return managerService.getActivedOrNotListPage(hyCode, JHStatusEnum.UNACTIVED.getTypeCode(), currentPage,currentUser);
+			String jhStatus = StringUtils.putTogether("(",String.valueOf(JHStatusEnum.UNACTIVED.getTypeCode()),")");
+			return managerService.getActivedOrNotListPage(hyCode, jhStatus, currentPage,currentUser);
 		}catch(Exception e) {
 			logger.error(StringUtils.putTogether("分页获取已激活会员列表失败，当前会员编号：",ControllerUtils.getUserInfo(request).getHyCode(),",异常信息：",e.getMessage()),e);
 			return BaseResult.exceptionInstance();
@@ -70,14 +82,16 @@ public class HyManagerController {
 	public BaseResult getActivedList(String hyCode,int currentPage,HttpServletRequest request) {
 		try {
 			String currentUser  =  ControllerUtils.getUserInfo(request).getHyCode();
-			return managerService.getActivedOrNotListPage(hyCode, JHStatusEnum.ACTIVED.getTypeCode(), currentPage,currentUser);
+			String jhStatus = StringUtils.putTogether("(",String.valueOf(JHStatusEnum.ACTIVED.getTypeCode())
+					,",",String.valueOf(String.valueOf(JHStatusEnum.ACTIVED_UNFIRMED.getTypeCode())),")");
+			return managerService.getActivedOrNotListPage(hyCode, jhStatus, currentPage,currentUser);
 		}catch(Exception e) {
 			logger.error(StringUtils.putTogether("分页获取已激活会员列表失败，当前会员编号：",ControllerUtils.getUserInfo(request).getHyCode(),",异常信息：",e.getMessage()),e);
 			return BaseResult.exceptionInstance();
 		}
 	}
 	
-	@RequestMapping(value="/getUnConfirmList.do",method=RequestMethod.POST)
+	/*@RequestMapping(value="/getUnConfirmList.do",method=RequestMethod.POST)
 	public BaseResult getUnConfirmList(String hyCode,int currentPage,HttpServletRequest request) {
 		try {
 			String currentUser  =  ControllerUtils.getUserInfo(request).getHyCode();
@@ -86,7 +100,7 @@ public class HyManagerController {
 			logger.error(StringUtils.putTogether("分页获取已激活会员列表失败，当前会员编号：",ControllerUtils.getUserInfo(request).getHyCode(),",异常信息：",e.getMessage()),e);
 			return BaseResult.exceptionInstance();
 		}
-	}
+	}*/
 	
 	//开通会员
 	@RequestMapping(value="/ktHy.do",method=RequestMethod.POST)

@@ -1,7 +1,10 @@
 package com.zhw.service.impl;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -28,6 +31,7 @@ import com.zhw.type.IfDisabledEnum;
 import com.zhw.type.JHStatusEnum;
 import com.zhw.type.ZYAreaEnum;
 import com.zhw.utils.DateUtils;
+import com.zhw.utils.StringUtils;
 
 @Service
 public class HyManagerServiceImpl implements HyManagerService {
@@ -128,7 +132,7 @@ public class HyManagerServiceImpl implements HyManagerService {
 	
 
 	@Override
-	public PageResult getActivedOrNotListPage(String hyCode, int jhStatus, int currentPage,String currentUser) throws Exception {
+	public PageResult getActivedOrNotListPage(String hyCode, String jhStatus, int currentPage,String currentUser) throws Exception {
 		int totalCount = infoMapper.selectCountForActivedOrNot(hyCode, jhStatus,currentUser);
 		if(totalCount == 0)	return PageResult.getOkInstance();
 		
@@ -145,6 +149,38 @@ public class HyManagerServiceImpl implements HyManagerService {
 			obj.setFlag(JHStatusEnum.getNameByCode(obj.getJhStatus()));
 			obj.setLevelName(HyLevelEnum.getNameByCode(obj.getHyLevel()));
 		});
+	}
+
+	@Override
+	public List<Map<String,Object>> getRelation(MemberInfo currentUser) throws Exception {
+		List<MemberInfo> data = new LinkedList<MemberInfo>();
+		data.add(currentUser);
+		
+		List<MemberInfo> one = infoMapper.selectBytjMan(currentUser.getHyCode());
+		if(one != null){ 	
+			data.addAll(one);
+			
+			for(MemberInfo oneObj:one) {
+				List<MemberInfo> two = infoMapper.selectBytjMan(oneObj.getHyCode());
+				if(two == null)	continue;
+				data.addAll(two);
+				for(MemberInfo twoObj:two) {
+					List<MemberInfo> three = infoMapper.selectBytjMan(twoObj.getHyCode());
+					if(three == null) continue;
+					data.addAll(three);
+				}
+			}
+		}
+		
+		List<Map<String,Object>> dataList = new LinkedList<Map<String,Object>>();
+		for(MemberInfo obj:data) {
+			Map<String,Object> temp = new HashMap<String,Object>();
+			temp.put("id", obj.getHyCode());
+			temp.put("pId", obj.getTjMan());
+			temp.put("name", StringUtils.putTogether("[",obj.getHyCode(),"]",HyLevelEnum.getNameByCode(obj.getHyLevel())));
+			dataList.add(temp);
+		}
+		return dataList;
 	}
 
 

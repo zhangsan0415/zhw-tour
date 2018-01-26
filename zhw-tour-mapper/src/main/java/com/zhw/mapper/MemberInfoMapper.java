@@ -33,21 +33,23 @@ public interface MemberInfoMapper {
 	MemberInfo selectHyInfoByCode(String hyCode);
 	
 	//分页查询是否激活会员列表的总条数
-	int selectCountForActivedOrNot(@Param("hyCode")String hyCode,@Param("jhStatus")int jhStatus,@Param("currentUser")String currentUser);
+	int selectCountForActivedOrNot(@Param("hyCode")String hyCode,@Param("jhStatus")String jhStatus,@Param("currentUser")String currentUser);
 	
 	//分页查询已激活或者未激活的会员列表
 	List<MemberInfo> selectActivedOrNotPageList(@Param("hyCode")String hyCode
-			,@Param("jhStatus")int jhStatus,@Param("start")int start,@Param("pageSize")int pageSize,@Param("currentUser")String currentUser);
+			,@Param("jhStatus")String jhStatus,@Param("start")int start,@Param("pageSize")int pageSize,@Param("currentUser")String currentUser);
 	
 	//更新会员的激活状态,开通会员时使用
 	int updateJhStatus(@Param("hyCode")String hyCode,@Param("ktTime")String ktTime,@Param("jhStatus")int jhStatus);
 	
 	//删除会员时使用
 	int deleteHyByCode(String hyCode);
+	
 	//根据推荐人查询推荐的会员总数
 	int selectCountBytjMan(@Param("tjMan")String tjMan,@Param("hyCode")String hyCode,@Param("jhStatus")int jhStatus);
 	
-	
+	//根据推荐人查询左右区会员信息
+	List<MemberInfo> selectBytjMan(@Param("tjMan")String tjMan);
 	
 	/***********************以下为 管理员相关**********************************************/
 	int selectUnAuditCount(@Param("hyCode")String hyCode);
@@ -62,7 +64,7 @@ public interface MemberInfoMapper {
 
 	int selectHyCountAdmin(@Param("hyCode")String hyCode, @Param("jhStatus")Integer jhStatus, @Param("ifBdCenter") Integer ifBdCenter);
 
-	List<MemberInfo> selectHyListAdmin(@Param("hyCode")String hyCode, @Param("jhStatus")Integer jhStatus, @Param("ifBdCenter") Integer ifBdCenter,  @Param("start")int start,  @Param("pagesize")int pagesize);
+	List<MemberInfo> selectHyListAdmin(@Param("hyCode")String hyCode, @Param("jhStatus")Integer jhStatus, @Param("ifBdCenter") Integer ifBdCenter,  @Param("start")int start,  @Param("pageSize")int pagesize);
 	
 	
 	

@@ -46,12 +46,18 @@ public class ScoreController {
 	public BaseResult traferScore(String zzType,String dfCode,BigDecimal zzMoney,HttpServletRequest request){
 		try {
 		   if(zzMoney.compareTo(BigDecimal.ZERO)!=1)return BaseResult.failedInstance("充值金额有误，请重新填写！");
+
 			//验证参数
 			BaseResult result =checkParams(dfCode,zzType,zzMoney);
 			if (result.isFailed()) {
 				return BaseResult.conditionErrorInstance();
 			}
 			MemberScoreInfo info = ControllerUtils.getScoreInfo(request);
+			   //积分互转，不能转给自己
+			String hyCode = info.getHyCode();
+			if (hyCode.equals(dfCode)) {
+				return BaseResult.failedInstance("积分互转只能转给其他会员");
+			}
 			MemberScoreChangeInfo scoreInfo = new MemberScoreChangeInfo();
 			if(!dfCode.equals("")&&dfCode!=null)
 			{

@@ -89,7 +89,7 @@
 	</select>
 	
 	<select id="selectActivedOrNotPageList" resultMap="BaseMap">
-		SELECT <include refid="BaseColumn"/> FROM ZHW_MEM WHERE  JH_STATUS = #{jhStatus,jdbcType=INTEGER} and KT_MAN=#{currentUser}
+		SELECT <include refid="BaseColumn"/> FROM ZHW_MEM WHERE  JH_STATUS in ${jhStatus} and KT_MAN=#{currentUser}
 		<if test="hyCode != null and hyCode != ''">
 			and HY_CODE = #{hyCode}
 		</if>
@@ -113,6 +113,11 @@
 		</if>
 	</select>
 	
+	<!-- 查询会员信息 -->
+	<select id="selectBytjMan"  parameterType="java.lang.String" resultMap="BaseMap">
+	SELECT <include refid="BaseColumn"/> FROM ZHW_MEM WHERE  TJ_MAN=#{tjMan}  
+			and  JH_STATUS = 0
+	</select>
 	
 	<!-- 自此以下为管理员操作 -->
 	

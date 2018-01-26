@@ -35,7 +35,7 @@ public interface AdminService {
 	
 	BaseResult ktBdCenter(String hyCode)throws Exception;
 	
-	BaseResult queryHyInfoPage(String hyCode, Integer jhStatus, Integer ifBdCenter, int currentPage) throws Exception;
+	PageResult queryHyInfoPage(String hyCode, Integer jhStatus, Integer ifBdCenter, int currentPage) throws Exception;
 
 	BaseResult addHy(HyInfoPo infoPo,String hyCode)throws Exception;
 	

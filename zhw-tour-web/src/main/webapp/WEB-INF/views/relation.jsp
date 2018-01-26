@@ -62,8 +62,8 @@ var setting = {
 	data: {
 		simpleData: {
 			enable:true,
-			idKey: "hyCode",
-			pIdKey: "tjMan",
+			idKey: "id",
+			pIdKey: "pId",
 			rootPId: ""
 		}
 	},
@@ -94,10 +94,12 @@ var zNodes =[
 
 $(document).ready(function(){
 	var url = "<%=basePath%>hyManager/relation.do";
-	$.post(url,params,function(){});
-	var t = $("#tree");
-	t = $.fn.zTree.init(t, setting, zNodes);
-	demoIframe = $("#testIframe");
+	$.post(url,null,function(data){
+		var t = $("#tree");
+		t = $.fn.zTree.init(t, setting, JSON.parse(data));
+		//t = $.fn.zTree.init(t, setting, zNodes);
+		demoIframe = $("#testIframe");
+	});
 
 });
 

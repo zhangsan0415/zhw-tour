@@ -311,7 +311,7 @@ public class AdminServiceImpl implements AdminService{
 	}
 	
 	@Override
-	public BaseResult queryHyInfoPage(String hyCode, Integer jhStatus, Integer ifBdCenter, int currentPage)
+	public PageResult queryHyInfoPage(String hyCode, Integer jhStatus, Integer ifBdCenter, int currentPage)
 			throws Exception {
 		int total = userInfoMapper.selectHyCountAdmin(hyCode,jhStatus,ifBdCenter);
 		if(total ==0)	return PageResult.getOkInstance();

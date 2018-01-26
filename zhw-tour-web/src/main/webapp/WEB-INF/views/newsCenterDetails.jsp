@@ -10,7 +10,7 @@
 			</div>
 			<div class='panel-body'> 
 				
-				 <img src='<%=basePath%>static/assets/img/news1.jpg'>
+				 <img src='<%=basePath%><%=basePath%>admin/queryDetail.do'>
 			</div>	
 		 
 
