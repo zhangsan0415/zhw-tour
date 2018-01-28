@@ -81,7 +81,7 @@ $("#tourEntryAdmin").prev().addClass('active');/*一级  */
 $("#tourEntryAdmin").addClass("in");
 
 
-$("#tourEntryAdmin").addClass('active');/* 二级 */
+$("#toTourConfirmAdmin").addClass('active');/* 二级 */
 
 //确认
 function confirmInfo(pkId){

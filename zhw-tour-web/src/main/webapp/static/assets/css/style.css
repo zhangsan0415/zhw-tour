@@ -32,7 +32,9 @@ label{
  .award-icon{
  	display:block;
  }
-
+.pagination > li > a, .pagination > li > span{
+	cursor: pointer;
+}
 /*my defined*/
 .text-center{
 	text-align:center;

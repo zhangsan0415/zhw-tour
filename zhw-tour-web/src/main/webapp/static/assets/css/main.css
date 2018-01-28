@@ -10,7 +10,9 @@ body {
   background-color: #F3F5F8;
   font-family: "Source Sans Pro", sans-serif;
   font-size: 15px;
-  color: #676a6d; }
+  color: #676a6d; 
+  overflow:hidden;
+  }
 
 a {
   color: #3287B2; }
@@ -52,11 +54,12 @@ footer {
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   width: 260px;
-  height: 100%;
+  min-height: 100%;
   float: left;
   background-color: #2B333E;
-  position: fixed;
-  left: 0; }
+  position: absolute;
+  left: 0; 
+  }
 
 #wrapper .main {
   -webkit-transition: all 0.3s ease-in-out;

@@ -14,6 +14,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	
 	<!-- VENDOR CSS -->
 	<link rel="stylesheet" href="<%=basePath%>static/assets/css/bootstrap.css">
 	<!-- MAIN CSS -->
@@ -72,7 +73,7 @@
 				</div>
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
-						<li  class="dropdown">
+						<%-- <li  class="dropdown">
 							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
 								会员
 							</a>
@@ -97,7 +98,7 @@
 							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
 								信息反馈
 							</a>
-						</li>
+						</li> --%>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								<span class="glyphicon glyphicon-user"></span>
