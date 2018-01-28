@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.sun.tools.internal.ws.processor.model.Request;
+//import com.sun.tools.internal.ws.processor.model.Request;
 import com.zhw.domain.NewsCenterInfo;
 import com.zhw.domain.TourItem;
 import com.zhw.response.BaseResult;
