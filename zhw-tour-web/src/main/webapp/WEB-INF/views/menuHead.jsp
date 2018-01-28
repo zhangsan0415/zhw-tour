@@ -76,7 +76,7 @@
 						<%-- <li  class="dropdown">
 							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
 								会员
-							</a>
+							</a>   
 						</li>
 						<c:if test="${sessionScope.userInfo.ifBdCenter==0}">
 							<li class="dropdown"><a
