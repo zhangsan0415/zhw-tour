@@ -1,5 +1,8 @@
 package com.zhw.service;
 
+import java.util.List;
+import java.util.Map;
+
 import com.zhw.domain.MemberInfo;
 import com.zhw.pojo.HyInfoPo;
 import com.zhw.response.BaseResult;
@@ -13,8 +16,7 @@ public interface HyManagerService {
 	
 	BaseResult delHy(String hyCode)throws Exception;
 
-	BaseResult ktBdCenter(String hyCode)throws Exception;
+	PageResult getActivedOrNotListPage(String hyCode,String jhStatus,int currentPage,String currentUser )throws Exception;
 	
-	
-	PageResult getActivedOrNotListPage(String hyCode,int jhStatus,int currentPage,String currentUser )throws Exception;
+	List<Map<String,Object>> getRelation(MemberInfo currentUser)throws Exception;
 }

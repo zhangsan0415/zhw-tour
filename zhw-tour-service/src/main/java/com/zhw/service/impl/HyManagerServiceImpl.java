@@ -1,7 +1,10 @@
 package com.zhw.service.impl;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -28,6 +31,7 @@ import com.zhw.type.IfDisabledEnum;
 import com.zhw.type.JHStatusEnum;
 import com.zhw.type.ZYAreaEnum;
 import com.zhw.utils.DateUtils;
+import com.zhw.utils.StringUtils;
 
 @Service
 public class HyManagerServiceImpl implements HyManagerService {
@@ -57,6 +61,8 @@ public class HyManagerServiceImpl implements HyManagerService {
 		//给注册用户添加开通人
 		if(IfBdCenterEnum.isBdCenter(sessionUser.getIfBdCenter()))	userInfo.setKtMan(sessionUser.getHyCode());
 		else userInfo.setKtMan(sessionUser.getKtMan());
+		
+		
 		
 		//会员对应很行信息
 		MemberBankInfo bankInfo = new MemberBankInfo();
@@ -119,23 +125,6 @@ public class HyManagerServiceImpl implements HyManagerService {
 				?BaseResult.exceptionInstance():BaseResult.sucessInstance().setMsg("删除会员成功");
 	}
 
-
-	@Override
-	public BaseResult ktBdCenter(String hyCode) throws Exception {
-		MemberInfo hyInfo = infoMapper.selectHyInfoByCode(hyCode);
-
-		if(hyInfo == null)	return BaseResult.failedInstance("会员不存在！");
-		if(!JHStatusEnum.isActived(hyInfo.getJhStatus()))	return BaseResult.failedInstance("未开通的会员不能开通报单中心！");
-
-		String currentTime = DateUtils.formatCurrentDate();
-		hyInfo.setIfBdCenter(IfBdCenterEnum.Y_BD_CENTER.getTypeCode());
-		hyInfo.setXgTime(currentTime);
-
-//		int result = infoMapper
-		return null;
-	}
-
-
 	//判断新添加会员编码是否存在
 	private boolean isExist(String hyCode) {
 		return infoMapper.selectCountByHyCode(hyCode)>0;
@@ -143,13 +132,11 @@ public class HyManagerServiceImpl implements HyManagerService {
 	
 
 	@Override
-	public PageResult getActivedOrNotListPage(String hyCode, int jhStatus, int currentPage,String currentUser) throws Exception {
-//		int totalCount = infoMapper.selectCount();
+	public PageResult getActivedOrNotListPage(String hyCode, String jhStatus, int currentPage,String currentUser) throws Exception {
 		int totalCount = infoMapper.selectCountForActivedOrNot(hyCode, jhStatus,currentUser);
 		if(totalCount == 0)	return PageResult.getOkInstance();
 		
 		int start =  PageResult.getStartNumber(currentPage);
-//		List<MemberInfo> dataList  = infoMapper.selectPageQQ();
 		List<MemberInfo> dataList = infoMapper.selectActivedOrNotPageList(hyCode, jhStatus, start, PageResult.pageSize,currentUser);
 		this.setMoneyAndFlag(dataList);
 		
@@ -162,6 +149,38 @@ public class HyManagerServiceImpl implements HyManagerService {
 			obj.setFlag(JHStatusEnum.getNameByCode(obj.getJhStatus()));
 			obj.setLevelName(HyLevelEnum.getNameByCode(obj.getHyLevel()));
 		});
+	}
+
+	@Override
+	public List<Map<String,Object>> getRelation(MemberInfo currentUser) throws Exception {
+		List<MemberInfo> data = new LinkedList<MemberInfo>();
+		data.add(currentUser);
+		
+		List<MemberInfo> one = infoMapper.selectBytjMan(currentUser.getHyCode());
+		if(one != null){ 	
+			data.addAll(one);
+			
+			for(MemberInfo oneObj:one) {
+				List<MemberInfo> two = infoMapper.selectBytjMan(oneObj.getHyCode());
+				if(two == null)	continue;
+				data.addAll(two);
+				for(MemberInfo twoObj:two) {
+					List<MemberInfo> three = infoMapper.selectBytjMan(twoObj.getHyCode());
+					if(three == null) continue;
+					data.addAll(three);
+				}
+			}
+		}
+		
+		List<Map<String,Object>> dataList = new LinkedList<Map<String,Object>>();
+		for(MemberInfo obj:data) {
+			Map<String,Object> temp = new HashMap<String,Object>();
+			temp.put("id", obj.getHyCode());
+			temp.put("pId", obj.getTjMan());
+			temp.put("name", StringUtils.putTogether("[",obj.getHyCode(),"]",HyLevelEnum.getNameByCode(obj.getHyLevel())));
+			dataList.add(temp);
+		}
+		return dataList;
 	}
 
 

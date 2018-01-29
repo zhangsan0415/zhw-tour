@@ -101,4 +101,21 @@ public class PersonInfoController {
 			return BaseResult.exceptionInstance();
 		}
 	}
+	/**
+	 * 系统图
+	 * @param hyCode
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/toSystem.do",method=RequestMethod.POST)
+	@ResponseBody
+	public BaseResult systemInfo(String hyCode,HttpServletRequest request){
+		try {
+		    String tJin = ControllerUtils.getUserInfo(request).getHyCode();//推荐人,当前登录人
+			return 	personService.queryNum(tJin);
+		} catch (Exception e) {
+			logger.error(StringUtils.putTogether("查询系统图数据，当前会员编号：",hyCode,",异常信息：",e.getMessage()),e);
+			return BaseResult.exceptionInstance();
+		}
+	}
 }

@@ -7,7 +7,7 @@ import java.math.BigDecimal;
  * @author zsl
  *
  */
-public class JJScorePercentPo {
+public class CommonConstants {
 	
 	//直推时奖励比率，相对新注册会员报单积分
 	public static final BigDecimal DIRECT_TJ_PERCENT = new BigDecimal("0.1"); 
@@ -26,4 +26,6 @@ public class JJScorePercentPo {
 	
 	//碰对时直接推荐人第三级上级所拿到的奖励比率，相对直接推荐人所拿到的奖励积分
 	public static final BigDecimal HIT_THREE_PERCENT = new BigDecimal("0.1");
+	
+	public static final int RECHARGE = 2;//积分充值 
 }

@@ -2,35 +2,41 @@ package com.zhw.service.impl;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.UUID;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.zhw.domain.MemberBankInfo;
 import com.zhw.domain.MemberInfo;
 import com.zhw.domain.MemberScoreInfo;
 import com.zhw.domain.NewsCenterInfo;
 import com.zhw.domain.TourItem;
 import com.zhw.domain.TourRegisterInfo;
+import com.zhw.mapper.MemberBankInfoMapper;
 import com.zhw.mapper.MemberInfoMapper;
 import com.zhw.mapper.MemberScoreInfoMapper;
 import com.zhw.mapper.NewsCenterMapper;
 import com.zhw.mapper.TourItemMapper;
 import com.zhw.mapper.TourRegisterInfoMapper;
-import com.zhw.pojo.JJScorePercentPo;
+import com.zhw.pojo.CommonConstants;
+import com.zhw.pojo.HyInfoPo;
 import com.zhw.response.BaseResult;
 import com.zhw.response.PageResult;
 import com.zhw.service.AdminService;
 import com.zhw.type.AreaTypeEnum;
 import com.zhw.type.ConfirmStatusEnum;
 import com.zhw.type.HyLevelScoreEnum;
+import com.zhw.type.IfAdminEnum;
 import com.zhw.type.IfBdCenterEnum;
+import com.zhw.type.IfDisabledEnum;
 import com.zhw.type.JHStatusEnum;
 import com.zhw.type.SexEnum;
+import com.zhw.type.ZYAreaEnum;
 import com.zhw.utils.DateUtils;
 
 @Service
@@ -50,6 +56,9 @@ public class AdminServiceImpl implements AdminService{
 	
 	@Resource
 	private NewsCenterMapper newsCenterMapper;
+	
+	@Resource 
+	private MemberBankInfoMapper bankInfoMapper;
 	
 	@Override
 	public PageResult getTourItems(Integer areaType, int currentPage) throws Exception {
@@ -128,6 +137,68 @@ public class AdminServiceImpl implements AdminService{
 		}
 		return PageResult.getPageInstance(list, currentPage, total);
 	}
+	
+	@Override
+	public BaseResult addHy(HyInfoPo infoPo,String currentUser) throws Exception {
+		String currentDate = DateUtils.formatCurrentDate();
+		
+		//会员信息
+		MemberInfo userInfo = new MemberInfo();
+		BeanUtils.copyProperties(infoPo, userInfo);
+		userInfo.setZcTime(currentDate);
+		userInfo.setXgTime(currentDate);
+		userInfo.setJhStatus(JHStatusEnum.ACTIVED.getTypeCode());
+		userInfo.setIfAdmin(IfAdminEnum.N_ADMIN.getTypeCode());
+		userInfo.setIfBdCenter(IfBdCenterEnum.Y_BD_CENTER.getTypeCode());
+
+		//给注册用户添加开通人
+		userInfo.setKtMan(currentUser);
+		userInfo.setTjMan(currentUser);
+		userInfo.setJdMan(currentUser);
+		
+		//会员对应很行信息
+		MemberBankInfo bankInfo = new MemberBankInfo();
+		BeanUtils.copyProperties(infoPo, bankInfo);
+		bankInfo.setCjTime(currentDate);
+		bankInfo.setXgTime(currentDate);
+		bankInfo.setIfDisabled(IfDisabledEnum.UNDISABLED.getTypeCode());
+		
+		//对应积分信息
+		MemberScoreInfo scoreInfo = new MemberScoreInfo();
+		scoreInfo.setHyCode(infoPo.getHyCode());
+		scoreInfo.setHyLevel(infoPo.getHyLevel());
+		scoreInfo.setTjCount(0);
+		scoreInfo.setIfAdmin(IfAdminEnum.N_ADMIN.getTypeCode());
+		scoreInfo.setLjTotalScore(BigDecimal.ZERO);
+		scoreInfo.setJjScore(BigDecimal.ZERO);
+		scoreInfo.setXjScore(BigDecimal.ZERO);
+		scoreInfo.setLyScore(BigDecimal.ZERO);
+		scoreInfo.setGwScore(BigDecimal.ZERO);
+		scoreInfo.setBdScore(BigDecimal.ZERO);
+		scoreInfo.setPdBalance(BigDecimal.ZERO);
+		scoreInfo.setPdOverArea(ZYAreaEnum.LEFT_AREA.getTypeCode());
+		scoreInfo.setGxTime(currentDate);
+		
+		return this.registerHyInfo(userInfo,bankInfo,scoreInfo);
+	}
+	
+	@Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
+	public BaseResult registerHyInfo(MemberInfo userInfo,MemberBankInfo bankInfo,MemberScoreInfo scoreInfo) throws Exception{
+		//判断是否已存在会员编号，如果存在，保存失败
+		if(this.isExist(userInfo.getHyCode()))	return BaseResult.failedInstance("会员编号已存在，请重新输入！");
+		
+		//插入会员表、会员银行信息表、积分表
+		userInfoMapper.insertNewHyInfo(userInfo);
+		bankInfoMapper.insertNewBankInfo(bankInfo);
+		scoreInfoMapper.insertNewScoreInfo(scoreInfo);
+		return BaseResult.sucessInstance().setMsg("注册会员成功！");
+		
+	}
+	
+	//判断新添加会员编码是否存在
+	private boolean isExist(String hyCode) {
+		return userInfoMapper.selectCountByHyCode(hyCode)>0;
+	}
 
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
@@ -147,12 +218,12 @@ public class AdminServiceImpl implements AdminService{
 		MemberScoreInfo tjManScoreInfo = scoreInfoMapper.selectScoreInfoByCode(hyInfo.getTjMan());
 		tjManScoreInfo.setTjCount(tjManScoreInfo.getTjCount()+1);
 		tjManScoreInfo.setGxTime(currentDate);
-		this.addJJScore(tjManScoreInfo, bdScore.multiply(JJScorePercentPo.DIRECT_TJ_PERCENT));
+		this.addJJScore(tjManScoreInfo, bdScore.multiply(CommonConstants.DIRECT_TJ_PERCENT));
 		
 		//开通者自身得5%奖励
 		MemberScoreInfo ktScoreInfo = scoreInfoMapper.selectScoreInfoByCode(ktMan);
 		ktScoreInfo.setGxTime(currentDate);
-		this.addJJScore(ktScoreInfo, bdScore.multiply(JJScorePercentPo.ACTIVE_HY_PERCENT));
+		this.addJJScore(ktScoreInfo, bdScore.multiply(CommonConstants.ACTIVE_HY_PERCENT));
 		
 		// 获取此次注册会员的报单积分和所注册区域和推荐人上次碰撞剩余的积分
 		BigDecimal pdBalance = tjManScoreInfo.getPdBalance();
@@ -168,7 +239,7 @@ public class AdminServiceImpl implements AdminService{
 					bdScore.compareTo(pdBalance) > 0 ? bdScore.subtract(pdBalance) : pdBalance.subtract(bdScore));
 
 			BigDecimal hitJjScore = (bdScore.compareTo(pdBalance) > 0 ? pdBalance : bdScore)
-					.multiply(JJScorePercentPo.HIT_AREA_PERCENT);// 发生碰撞的积分
+					.multiply(CommonConstants.HIT_AREA_PERCENT);// 发生碰撞的积分
 			this.addJJScore(tjManScoreInfo, hitJjScore);// 给直接推荐人添加碰撞奖金积分
 			scoreInfoMapper.updateScoreInfo(tjManScoreInfo);
 
@@ -177,7 +248,7 @@ public class AdminServiceImpl implements AdminService{
 			if (oneScoreInfo == null)
 				BaseResult.sucessInstance().setMsg("操作成功！");
 
-			this.addJJScore(oneScoreInfo, hitJjScore.multiply(JJScorePercentPo.HIT_ONE_PERCENT));
+			this.addJJScore(oneScoreInfo, hitJjScore.multiply(CommonConstants.HIT_ONE_PERCENT));
 			scoreInfoMapper.updateScoreInfo(oneScoreInfo);
 
 			// 给再上线级添加碰撞奖金积分
@@ -185,7 +256,7 @@ public class AdminServiceImpl implements AdminService{
 			if (twoScoreInfo == null)
 				BaseResult.sucessInstance().setMsg("操作成功！");
 
-			this.addJJScore(twoScoreInfo, hitJjScore.multiply(JJScorePercentPo.HIT_TWO_PERCENT));
+			this.addJJScore(twoScoreInfo, hitJjScore.multiply(CommonConstants.HIT_TWO_PERCENT));
 			scoreInfoMapper.updateScoreInfo(twoScoreInfo);
 
 			// 给再再上线级添加碰撞奖金积分
@@ -193,7 +264,7 @@ public class AdminServiceImpl implements AdminService{
 			if (threeScoreInfo == null)
 				BaseResult.sucessInstance().setMsg("操作成功！");
 
-			this.addJJScore(threeScoreInfo, hitJjScore.multiply(JJScorePercentPo.HIT_THREE_PERCENT));
+			this.addJJScore(threeScoreInfo, hitJjScore.multiply(CommonConstants.HIT_THREE_PERCENT));
 			scoreInfoMapper.updateScoreInfo(threeScoreInfo);
 		}
 		return BaseResult.sucessInstance().setMsg("操作成功！");
@@ -237,6 +308,21 @@ public class AdminServiceImpl implements AdminService{
 	public BaseResult ktBdCenter(String hyCode) throws Exception {
 		userInfoMapper.setBdCenter(hyCode);
 		return BaseResult.sucessInstance().setMsg("开通成功！");
+	}
+	
+	@Override
+	public PageResult queryHyInfoPage(String hyCode, Integer jhStatus, Integer ifBdCenter, int currentPage)
+			throws Exception {
+		int total = userInfoMapper.selectHyCountAdmin(hyCode,jhStatus,ifBdCenter);
+		if(total ==0)	return PageResult.getOkInstance();
+		
+		int start = PageResult.getStartNumber(currentPage);
+		List<MemberInfo> list = userInfoMapper.selectHyListAdmin(hyCode,jhStatus,ifBdCenter,start,PageResult.pageSize);
+		for(MemberInfo obj:list) {
+			obj.setJhStatusName(JHStatusEnum.getNameByCode(obj.getJhStatus()));
+			obj.setFlag(IfBdCenterEnum.getNameByCode(obj.getIfBdCenter()));
+		}
+		return PageResult.getPageInstance(list, currentPage, total);
 	}
 
 	@Override

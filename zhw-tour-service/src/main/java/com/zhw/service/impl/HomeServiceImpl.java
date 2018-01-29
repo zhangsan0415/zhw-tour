@@ -60,4 +60,5 @@ public class HomeServiceImpl implements HomeService {
 	public List<TourItem> queryTourItems(int areaType) {
 		return itemMapper.selectListByAreaType(areaType);
 	}
+
 }

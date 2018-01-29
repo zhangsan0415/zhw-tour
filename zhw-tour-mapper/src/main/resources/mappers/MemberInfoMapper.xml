@@ -20,12 +20,13 @@
 		<result property="xgTime" column="XG_TIME" />
 		<result property="ifAdmin" column="IF_ADMIN" />
 		<result property="ifBdCenter" column="if_bd_center" />
-		<result property="ktMan" column="KT_MAN" />
+		<result property="ktMan" column="KT_MAN" /> 
+		<result property="tjInnerCode" column="TJ_INNERCODE" />
 		
 	</resultMap>
 	
 	<sql id="AddColumn">FW_CENTER,TJ_MAN,JD_MAN,HY_CODE,ZY_AREA,YJ_PWD,EJ_PWD,SFZ_CARD_CODE,YX_EMAIL,SJ_MOBILE,JB_LEVEL,ZC_TIME,JH_STATUS,KT_TIME,XG_TIME,IF_ADMIN,
-	if_bd_center,KT_MAN</sql>
+	if_bd_center,KT_MAN,TJ_INNERCODE</sql>
 	<sql id="BaseColumn">
 		PK_ID,<include refid="AddColumn"/>
 	</sql>
@@ -41,7 +42,7 @@
 	<insert id="insertNewHyInfo" parameterType="com.zhw.domain.MemberInfo">
 		INSERT INTO ZHW_MEM(<include refid="AddColumn"/>) VALUES(#{fwCenter},#{tjMan},#{jdMan},#{hyCode},#{zyArea,jdbcType=INTEGER}
 			,#{yjPwd},#{ejPwd},#{sfzCardCode},#{yxEmail},#{sjMobile},#{hyLevel,jdbcType=INTEGER},#{zcTime},#{jhStatus,jdbcType=INTEGER}
-			,#{ktTime},#{xgTime},#{ifAdmin,jdbcType=INTEGER},#{ifBdCenter,jdbcType=INTEGER},#{ktMan})
+			,#{ktTime},#{xgTime},#{ifAdmin,jdbcType=INTEGER},#{ifBdCenter,jdbcType=INTEGER},#{ktMan},#{tjInnerCode})
 	</insert>
 	<update id="modifyPwd" parameterType="String">
 	update  ZHW_MEM 
@@ -62,10 +63,6 @@
 	where HY_CODE = #{hyCode} and JH_STATUS = 0
 	</update>
 	
-	<select id="selectMemberInfoByKtManAndStatus" resultMap="BaseMap">
-		SELECT <include refid="BaseColumn"/> FROM ZHW_MEM WHERE  JH_STATUS = #{jhStatus,jdbcType=INTEGER} and KT_MAN=#{hyCode} 
-	</select>
-
 	<select id="selectJdManCode" parameterType="java.lang.String" resultType="java.lang.String">
 		SELECT HY_CODE FROM ZHW_MEM WHERE TJ_MAN=#{hyCode} and JH_STATUS = 0 ORDER BY KT_TIME DESC  LIMIT 1
 	</select>
@@ -76,6 +73,7 @@
 		<if test="hyCode != null and hyCode != ''">
 			and HY_CODE = #{hyCode}
 		</if>
+		order by XG_TIME DESC
 		limit #{start},#{pageSize}
 	</select>
 	
@@ -91,10 +89,11 @@
 	</select>
 	
 	<select id="selectActivedOrNotPageList" resultMap="BaseMap">
-		SELECT <include refid="BaseColumn"/> FROM ZHW_MEM WHERE  JH_STATUS = #{jhStatus,jdbcType=INTEGER} and KT_MAN=#{currentUser}
+		SELECT <include refid="BaseColumn"/> FROM ZHW_MEM WHERE  JH_STATUS in ${jhStatus} and KT_MAN=#{currentUser}
 		<if test="hyCode != null and hyCode != ''">
 			and HY_CODE = #{hyCode}
 		</if>
+		order by XG_TIME DESC
 		 limit #{start},#{pageSize}
 	</select>
 	
@@ -114,6 +113,11 @@
 		</if>
 	</select>
 	
+	<!-- 查询会员信息 -->
+	<select id="selectBytjMan"  parameterType="java.lang.String" resultMap="BaseMap">
+	SELECT <include refid="BaseColumn"/> FROM ZHW_MEM WHERE  TJ_MAN=#{tjMan}  
+			and  JH_STATUS = 0
+	</select>
 	
 	<!-- 自此以下为管理员操作 -->
 	
@@ -129,6 +133,7 @@
 		<if test="hyCode != null and hyCode != ''">
 			and HY_CODE = #{hyCode}
 		</if>
+		order by XG_TIME DESC
 		 limit #{start},#{pageSize}
 	</select>
 	
@@ -144,10 +149,43 @@
 		<if test="hyCode != null and hyCode != ''">
 			and HY_CODE = #{hyCode}
 		</if>
-		 limit #{start},#{pageSize}
+		order by XG_TIME DESC
+		limit #{start},#{pageSize}
 	</select>
 	
 	<update id="setBdCenter" parameterType="java.lang.String">
 		UPDATE ZHW_MEM SET if_bd_center = 0 WHERE HY_CODE = #{hyCode}
 	</update>
+	
+	<select id="selectHyCountAdmin" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM ZHW_MEM
+		<where>
+			<if test="hyCode != null and hyCode != ''">
+				and HY_CODE = #{hyCode}
+			</if>
+			<if test="jhStatus != null">
+				and JH_STATUS = #{jhStatus}
+			</if>
+			<if test="ifBdCenter != null">
+				and if_bd_center = #{ifBdCenter}
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectHyListAdmin" resultMap="BaseMap">
+		SELECT <include refid="BaseColumn"/> FROM ZHW_MEM
+		<where>
+			<if test="hyCode != null and hyCode != ''">
+				and HY_CODE = #{hyCode}
+			</if>
+			<if test="jhStatus != null">
+				and JH_STATUS = #{jhStatus}
+			</if>
+			<if test="ifBdCenter != null">
+				and if_bd_center = #{ifBdCenter}
+			</if>
+		</where>
+		order by XG_TIME DESC
+		limit #{start},#{pageSize}
+	</select>
 </mapper>

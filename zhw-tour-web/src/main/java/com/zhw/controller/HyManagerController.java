@@ -1,16 +1,16 @@
 package com.zhw.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.zhw.component.AreaComponent;
 import com.zhw.domain.Area;
@@ -22,7 +22,7 @@ import com.zhw.type.JHStatusEnum;
 import com.zhw.type.ZYAreaEnum;
 import com.zhw.utils.StringUtils;
 
-@Controller
+@RestController
 @RequestMapping("/hyManager")
 public class HyManagerController {
 
@@ -34,8 +34,17 @@ public class HyManagerController {
 	@Resource
 	private AreaComponent component;
 	
+	@RequestMapping(value="/relation",method=RequestMethod.POST)
+	public List<Map<String,Object>> relation(HttpServletRequest request){
+		try {
+			return managerService.getRelation(ControllerUtils.getUserInfo(request));
+		}catch(Exception e) {
+			logger.error(StringUtils.putTogether("删除会员失败，所删除会员编号：",ControllerUtils.getUserInfo(request).getHyCode(),",异常信息：",e.getMessage()),e);
+			return null;
+		}
+	}
+	
 	@RequestMapping(value="/delHyAction.do",method=RequestMethod.POST)
-	@ResponseBody
 	public BaseResult delHyAction(String hyCode) {
 		try {
 			if(StringUtils.isEmpty(hyCode))	return BaseResult.conditionErrorInstance();
@@ -47,7 +56,6 @@ public class HyManagerController {
 	}
 	
 	@RequestMapping(value="/ktHyAction.do",method=RequestMethod.POST)
-	@ResponseBody
 	public BaseResult ktHyAction(String hyCode,HttpServletRequest request) {
 		try {
 			if(StringUtils.isEmpty(hyCode))	return BaseResult.conditionErrorInstance();
@@ -59,11 +67,11 @@ public class HyManagerController {
 	}
 	
 	@RequestMapping(value="/getUnActivedList.do",method=RequestMethod.POST)
-	@ResponseBody
 	public BaseResult getUnActivedList(String hyCode,int currentPage,HttpServletRequest request) {
 		try {
 			String currentUser  =  ControllerUtils.getUserInfo(request).getHyCode();
-			return managerService.getActivedOrNotListPage(hyCode, JHStatusEnum.UNACTIVED.getTypeCode(), currentPage,currentUser);
+			String jhStatus = StringUtils.putTogether("(",String.valueOf(JHStatusEnum.UNACTIVED.getTypeCode()),")");
+			return managerService.getActivedOrNotListPage(hyCode, jhStatus, currentPage,currentUser);
 		}catch(Exception e) {
 			logger.error(StringUtils.putTogether("分页获取已激活会员列表失败，当前会员编号：",ControllerUtils.getUserInfo(request).getHyCode(),",异常信息：",e.getMessage()),e);
 			return BaseResult.exceptionInstance();
@@ -71,32 +79,31 @@ public class HyManagerController {
 	}
 
 	@RequestMapping(value="/getActivedList.do",method=RequestMethod.POST)
-	@ResponseBody
 	public BaseResult getActivedList(String hyCode,int currentPage,HttpServletRequest request) {
 		try {
 			String currentUser  =  ControllerUtils.getUserInfo(request).getHyCode();
-			return managerService.getActivedOrNotListPage(hyCode, JHStatusEnum.ACTIVED.getTypeCode(), currentPage,currentUser);
+			String jhStatus = StringUtils.putTogether("(",String.valueOf(JHStatusEnum.ACTIVED.getTypeCode())
+					,",",String.valueOf(String.valueOf(JHStatusEnum.ACTIVED_UNFIRMED.getTypeCode())),")");
+			return managerService.getActivedOrNotListPage(hyCode, jhStatus, currentPage,currentUser);
 		}catch(Exception e) {
 			logger.error(StringUtils.putTogether("分页获取已激活会员列表失败，当前会员编号：",ControllerUtils.getUserInfo(request).getHyCode(),",异常信息：",e.getMessage()),e);
 			return BaseResult.exceptionInstance();
 		}
 	}
 	
-	@RequestMapping(value="/ktBdCenter.do",method=RequestMethod.POST)
-	@ResponseBody
-	public BaseResult ktBdCenter(String hyCode){
-		try{
-			if(StringUtils.isEmpty(hyCode))	return BaseResult.failedInstance("会员编码为空！");
-			return managerService.ktBdCenter(hyCode);
-		}catch(Exception e){
-			logger.error(StringUtils.putTogether("开通报单中心异常，会员编号：",hyCode,",异常信息：",e.getMessage()),e);
+	/*@RequestMapping(value="/getUnConfirmList.do",method=RequestMethod.POST)
+	public BaseResult getUnConfirmList(String hyCode,int currentPage,HttpServletRequest request) {
+		try {
+			String currentUser  =  ControllerUtils.getUserInfo(request).getHyCode();
+			return managerService.getActivedOrNotListPage(hyCode, JHStatusEnum.ACTIVED_UNFIRMED.getTypeCode(), currentPage,currentUser);
+		}catch(Exception e) {
+			logger.error(StringUtils.putTogether("分页获取已激活会员列表失败，当前会员编号：",ControllerUtils.getUserInfo(request).getHyCode(),",异常信息：",e.getMessage()),e);
 			return BaseResult.exceptionInstance();
 		}
-	}
-
+	}*/
+	
 	//开通会员
 	@RequestMapping(value="/ktHy.do",method=RequestMethod.POST)
-	@ResponseBody
 	public BaseResult ktHy(String hyCode,HttpServletRequest request) {
 		try {
 			if(StringUtils.isEmpty(hyCode))	return BaseResult.failedInstance("会员编码为空！");
@@ -109,7 +116,6 @@ public class HyManagerController {
 	
 	//获取省对应的城市
 	@RequestMapping(value="/getCities.do",method=RequestMethod.POST)
-	@ResponseBody
 	public BaseResult getCities(String provinceId) {
 		try {
 			if(StringUtils.isEmpty(provinceId))	return BaseResult.failedInstance("省编码不能为空！");
@@ -124,7 +130,6 @@ public class HyManagerController {
 	
 	//添加会员
 	@RequestMapping(value="/addHy.do",method=RequestMethod.POST)
-	@ResponseBody
 	public BaseResult addHy(HyInfoPo infoPo,HttpServletRequest request) {
 		try {
 			BaseResult check = this.checkHyInfoPo(infoPo);

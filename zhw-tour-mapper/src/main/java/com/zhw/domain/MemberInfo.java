@@ -47,6 +47,8 @@ public class MemberInfo {
 
 	private String ktMan;//开通人
 	
+	private String tjInnerCode;//推荐人内码，用于
+	
 	/**
 	 * 如下为用于显示的字段
 	 */
@@ -58,6 +60,26 @@ public class MemberInfo {
 	
 	private String jhStatusName;//激活状态
 	
+	private BigDecimal zMoney;//左区钱数
+	
+	private BigDecimal yMoney;//右区钱数
+	
+	public BigDecimal getzMoney() {
+		return zMoney;
+	}
+
+	public void setzMoney(BigDecimal zMoney) {
+		this.zMoney = zMoney;
+	}
+
+	public BigDecimal getyMoney() {
+		return yMoney;
+	}
+
+	public void setyMoney(BigDecimal yMoney) {
+		this.yMoney = yMoney;
+	}
+
 	public int getPkId() {
 		return pkId;
 	}
@@ -241,6 +263,14 @@ public class MemberInfo {
 
 	public void setJhStatusName(String jhStatusName) {
 		this.jhStatusName = jhStatusName;
+	}
+
+	public String getTjInnerCode() {
+		return tjInnerCode;
+	}
+
+	public void setTjInnerCode(String tjInnerCode) {
+		this.tjInnerCode = tjInnerCode;
 	}
 	
 }

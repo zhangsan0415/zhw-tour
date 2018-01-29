@@ -36,6 +36,8 @@ public class HyInfoPo {
 	private String sjMobile;//手机号
 
 	private int hyLevel;//申请级别，1为普通会员，2为金卡代理，3为钻石代理
+	
+	private int ifBdCenter;//是滞为报单中心
 
 	public String getFwCenter() {
 		return fwCenter;
@@ -179,6 +181,14 @@ public class HyInfoPo {
 
 	public void setHyLevel(int hyLevel) {
 		this.hyLevel = hyLevel;
+	}
+
+	public int getIfBdCenter() {
+		return ifBdCenter;
+	}
+
+	public void setIfBdCenter(int ifBdCenter) {
+		this.ifBdCenter = ifBdCenter;
 	}
 	
 	
