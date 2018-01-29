@@ -141,7 +141,8 @@
 				<nav>
 					<ul class="nav">
 						<c:if test="${sessionScope.userInfo.ifAdmin!=0}">
-							<li id='toHome'><a href="<%=basePath%>login/toHome.do" class=""><i class="lnr lnr-home"></i> <span>系统首页</span></a></li>
+							<li id='toHome'><a href="<%=basePath%>login/toHome.do" class="">
+							<i class="lnr lnr-home"></i> <span>系统首页</span></a></li>
 							<li><a href="#subManage" data-toggle="collapse"
 								class="collapsed "> <span>个人信息管理</span> <span
 									class="icon-submenu glyphicon glyphicon-menu-down"></span></a>

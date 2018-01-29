@@ -61,5 +61,5 @@ function queryPage() {
 queryPage();
 $("#adminMember").prev().addClass('active');/*一级  */
 $("#adminMember").addClass("in");
-$("#toActiveHyAdmin").addClass('active');/* 二级 */
+$("#toHyInfoAdmin").addClass('active');/* 二级 */
 </script>

@@ -216,7 +216,7 @@ $('#defaultForm').bootstrapValidator({
 	}
 });
 
-$("#subMarket").prev().addClass('active');/*一级  */
-$("#subMarket").addClass("in");
-$("#toSignIn").addClass('active');/* 二级 */
+$("#adminMember").prev().addClass('active');/*一级  */
+$("#adminMember").addClass("in");
+$("#toAddBdCenter").addClass('active');/* 二级 */
 </script>
