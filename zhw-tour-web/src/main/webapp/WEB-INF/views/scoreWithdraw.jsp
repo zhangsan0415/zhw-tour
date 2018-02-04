@@ -88,7 +88,6 @@ function queryPage(){
 	var options = {tableId:'score_list',clientPageId:'pageLimit',url:pageUrl,tableHead:tableHead,dataIndex:dataIndex,params:params};
 	ZHW_Page.paging(options);
 }
-
 queryPage();
 
 $("#subIntegral").prev().addClass('active');/*一级  */

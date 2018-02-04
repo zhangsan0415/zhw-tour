@@ -29,7 +29,6 @@
 $("#subServer").prev().addClass('active');/*一级  */
 $("#subServer").addClass("in");
 $("#toActiveHyList").addClass('active');/* 二级 */
-
 /* 初始化显示分页 */
 function queryPage(){
 	var pageUrl = '<%=basePath%>hyManager/getUnConfirmList.do';

@@ -25,7 +25,6 @@
 				</div>
 			</div>
 
-
 		</div>
 		<!-- END RIGHT COLUMN -->
 

@@ -7,7 +7,6 @@
 			<div class="panel-heading">
 				<h3 class="panel-title">新闻编辑</h3>
 			</div>
-			
 		 	<div class='panel-body'> 
 				<form action="" class="form-inline mb20">
 

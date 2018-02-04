@@ -31,7 +31,6 @@
 <script>
 
 /* 初始化显示分页 */
-
 function ktHy(hyCode) {
 	var url = '<%=basePath%>admin/auditHy.do';
 	var params = {hyCode:hyCode};
@@ -62,7 +61,6 @@ function queryPage() {
 	var options = {tableId:'unactived_hy_list',clientPageId:'pageLimit',url:pageUrl,tableHead:tableHead,dataIndex:dataIndex,params:params};
 	ZHW_Page.paging(options);
 }
-
 queryPage();
 $("#adminMember").prev().addClass('active');/*一级  */
 $("#adminMember").addClass("in");

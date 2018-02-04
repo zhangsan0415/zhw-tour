@@ -263,5 +263,4 @@
 				</nav>
 			</div>
 		</div>
-		
 		<!-- END LEFT SIDEBAR -->

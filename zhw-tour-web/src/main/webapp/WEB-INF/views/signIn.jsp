@@ -8,7 +8,6 @@
 			<div class="panel-heading">
 				<h3 class="panel-title">会员</h3>
 			</div>
-
 			<form id="add_hy_form" role="form" action="#" class="form-horizontal" action="#">
 				<div class="form-group">
 					<label class="col-lg-3 control-label text-danger">所属报单中心：</label>

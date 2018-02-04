@@ -35,7 +35,6 @@
 	</div>
 	<!-- END MAIN -->
 	<div class="clearfix"></div>
-
 </div>
 <%@include file="menuBottom.jsp"%>
 <script>

@@ -16,4 +16,5 @@ $("#checkErPwd").bind('click',function (){
 	$("#panel2").show();
 	pageInit();//新页面内方法
 })
+
 </script>

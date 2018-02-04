@@ -39,6 +39,5 @@ function queryPage(){
 	var options = {tableId:'actived_hy_list',clientPageId:'pageLimit',url:pageUrl,tableHead:tableHead,dataIndex:dataIndex,params:params};
 	ZHW_Page.paging(options);
 }
-
 queryPage();
 </script>

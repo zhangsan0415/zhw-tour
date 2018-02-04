@@ -109,6 +109,5 @@ function queryPage(){
 	var options = {tableId:'tour_item_list',clientPageId:'pageLimit',url:pageUrl,tableHead:tableHead,dataIndex:dataIndex,params:params};
 	ZHW_Page.paging(options);
 }
-
 queryPage();
 </script>

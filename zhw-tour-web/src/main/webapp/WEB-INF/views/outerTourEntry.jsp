@@ -115,7 +115,6 @@ function getTableData(tableId){
 	}
 	return data;
 }
-
 function deleteOne(tdObj){
 	var td = $(tdObj);
 	td.parents("tr").remove();  

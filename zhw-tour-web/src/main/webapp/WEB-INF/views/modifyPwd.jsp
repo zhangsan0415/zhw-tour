@@ -4,7 +4,6 @@
 
 <html lang="en" class="fullscreen-bg">
 <body>
-
 <div class="main">
 	<!-- MAIN CONTENT -->
 	<div class="main-content">

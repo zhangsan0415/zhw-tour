@@ -5,7 +5,6 @@
 <%@include file="menuHead.jsp" %>
 <!-- MAIN -->
 <html lang="en" class="fullscreen-bg">
-
 <body>
 <div class="main">
 	<!-- MAIN CONTENT -->

@@ -58,7 +58,6 @@
 
 <%@include file="menuBottom.jsp"%>
 <script>
-
 //充值按钮
 function recharge(){
 	var type = $("#selected_id").val();

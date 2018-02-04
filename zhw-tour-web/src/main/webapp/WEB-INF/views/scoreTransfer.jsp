@@ -60,7 +60,6 @@
 
 	</div>
 	<!-- END RIGHT COLUMN -->
-
 	<!-- END MAIN CONTENT -->
 
 	<!-- END MAIN -->

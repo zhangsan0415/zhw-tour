@@ -1,4 +1,11 @@
+
 /*rewrite*/
+body{
+	overflow:auto;
+}
+.main{
+	overflow:auto;
+}
 ul.activity-timeline > li {
     margin-bottom: 31px;
 }

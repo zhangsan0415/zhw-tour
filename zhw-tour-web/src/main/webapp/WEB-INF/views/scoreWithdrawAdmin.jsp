@@ -3,7 +3,6 @@
 <!-- MAIN -->
 <div class="main">
 	<!-- MAIN CONTENT -->
-
 		<!--lock end-->
 
 		<div class="panel panel-headline demo-icons">

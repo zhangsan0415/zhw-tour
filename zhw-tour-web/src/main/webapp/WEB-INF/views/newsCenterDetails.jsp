@@ -12,7 +12,6 @@
 				
 				 <img src='<%=basePath%><%=basePath%>admin/queryDetail.do'>
 			</div>	
-		 
 
 		</div>
 

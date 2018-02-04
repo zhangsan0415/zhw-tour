@@ -40,22 +40,7 @@ function queryDetail(pkId){
 			
 		});
 	}); --%>
-/* 	$.ajax(function(){
-		type:"POST",
-		dataType:"json",
-		url:"default.aspx",//请求页面
-		data:"{id=1}",
-		complete:function(){location.href ="default.aspx"}//跳转页面
-		}); */
-/* 	 $.ajax({  
-         url: 'home/toNewsCenterDetails.do' ,  
-         type: 'POST',  
-		 dataType:'json',
-		 data:{pkId:pkId},
-      	 complete:function(){
-      		 window
-      	 }
-    }); */  
+
 }
 function query(){
 	var pageUrl = '<%=basePath%>admin/queryNews.do';
