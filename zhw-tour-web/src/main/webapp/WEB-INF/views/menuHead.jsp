@@ -93,7 +93,7 @@
 							<a href="<%=basePath%>home/toScoreWithdraw.do" class="dropdown-toggle icon-menu" data-toggle="dropdown">
 								提现申请
 							</a>
-						</li>
+						</li>    
 						<li  class="dropdown">
 							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
 								信息反馈
