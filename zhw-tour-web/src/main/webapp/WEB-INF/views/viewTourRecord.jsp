@@ -24,6 +24,7 @@
 					出团日： 
 					<input id="chufa_date" class="form-control" size="16" type="text" readonly>
 					<button type="button" class="btn btn-info" onclick="queryPage()">查询</button>
+					<button type="button" class="btn btn-info" onclick="clearDate()">日期清空</button>
 				</form>
 				<table class="table table-striped" id="score_list"></table>
 				<div id="example" style="text-align: center"> <ul id="pageLimit"></ul> </div>
@@ -36,6 +37,9 @@
 </div>
 <%@include file="menuBottom.jsp"%>
 <script>
+function clearDate(){
+	$('#chufa_date').val('');
+}
 function changeTourItems(obj){
 	var tourSelector =  $("#tour_type");
 	$("option",tourSelector).remove(); //清空原有的选项 

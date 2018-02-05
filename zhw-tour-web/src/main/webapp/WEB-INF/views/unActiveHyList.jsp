@@ -28,8 +28,6 @@
 <%@include file="menuBottom.jsp"%>
 <script>
 
-/* 初始化显示分页 */
-
 function ktHy(hyCode) {
 	var url = '<%=basePath%>hyManager/ktHyAction.do';
 	var params = {hyCode:hyCode};
@@ -50,6 +48,7 @@ function delHy(hyCode) {
 		});
 	});
 };
+/* 初始化显示分页 */
 function queryPage() {
 	var pageUrl = '<%=basePath%>hyManager/getUnActivedList.do';
 	var tableHead = ['会员编号','联系电话','注册时间','投资金额','状态','操作'];

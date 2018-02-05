@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.zhw.domain.MemberInfo;
+import com.zhw.domain.MemberScoreInfo;
 import com.zhw.response.BaseResult;
 import com.zhw.utils.StringUtils;
 
@@ -23,6 +24,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.zhw.service.LoginService;
+import com.zhw.type.HyLevelEnum;
+import com.zhw.type.IfBdCenterEnum;
 
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,7 +40,6 @@ public class LoginController {
 	
 	@Resource
 	private LoginService loginService;
-	
 	
 	@RequestMapping("/index.do")
 	public String index() {
@@ -62,7 +64,12 @@ public class LoginController {
 			MemberInfo check = loginService.checkLogin(hyCode,password);
 			if(check == null) return BaseResult.failedInstance("密码错误！");
 			
+			MemberScoreInfo scoreInfo = loginService.getScoreInfoByHyCode(check.getHyCode());
+			scoreInfo.setHyLevelName(HyLevelEnum.getNameByCode(check.getHyLevel()));
+			ControllerUtils.setScoreInfo(request,scoreInfo );
+			
 			//设置session信息
+			check.setIfBdCenterName(IfBdCenterEnum.getNameByCode(check.getIfBdCenter()));
 			ControllerUtils.setUserInfo(request, check);
 			return BaseResult.sucessInstance().setMsg("登录成功！");
 		} catch (Exception e) {
@@ -100,9 +107,6 @@ public class LoginController {
 	 */
 	@RequestMapping(value="/toHome.do")
 	public String toHomePage(HttpServletRequest request) throws Exception {
-		MemberInfo info = ControllerUtils.getUserInfo(request);
-		if(info == null)	return "login";
-		ControllerUtils.setScoreInfo(request, loginService.getScoreInfoByHyCode(info.getHyCode()));
 		return "home";
 	}
 	
