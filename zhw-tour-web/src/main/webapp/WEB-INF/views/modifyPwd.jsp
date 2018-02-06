@@ -5,9 +5,11 @@
 <html lang="en" class="fullscreen-bg">
 <body>
 <div class="main">
+
 	<!-- MAIN CONTENT -->
 	<div class="main-content">
-		<div class="panel panel-headline demo-icons">
+		<%@include file="erPwd.jsp" %>
+		<div  id='panel2' style='display:none' class="panel panel-headline demo-icons">
 			<div class="panel-heading">
 				<h3 class="lead">修改密码</h3>
 			</div>
