@@ -79,7 +79,7 @@ $.post(url,params,function(result){
 	}
 	 
 }); --%>
-$("#subServer").prev().addClass('active');/*一级  */
-$("#subServer").addClass("in");
-$("#toUnActiveHyList").addClass('active');/* 二级 */
+$("#subIntegral").prev().addClass('active');/*一级  */
+$("#subIntegral").addClass("in");
+$("#toScoreDetail").addClass('active');/* 二级 */
 </script>

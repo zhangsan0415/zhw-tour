@@ -69,9 +69,9 @@ function onSave(){
 		
 	
 }
-$("#subMarket").prev().addClass('active');/*一级  */
-$("#subMarket").addClass("in");
-$("#toSignIn").addClass('active');/* 二级 */
+$("#subManage").prev().addClass('active');/*一级  */
+$("#subManage").addClass("in");
+$("#toModifyPwd").addClass('active');/* 二级 */
 </script>
 </html>
 <%@include file="menuBottom.jsp" %>

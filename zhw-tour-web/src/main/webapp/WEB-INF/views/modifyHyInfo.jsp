@@ -107,11 +107,7 @@
 	</div>
 	<!-- END MAIN -->
 	<div class="clearfix"></div>
-	<footer>
-		<div class="container-fluid">
-			<p class="copyright">&copy; 2017 会员系统</p>
-		</div>
-	</footer>
+	
 </div>
 </body>
 <script type="text/javascript">

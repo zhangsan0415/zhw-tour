@@ -1,5 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="menuHead.jsp" %>
+<style>
+	 body {
+	background-color: white;
+	margin:0; padding:0;
+	text-align: center;
+	}
+	div, p, table, th, td {
+		list-style:none;
+		margin:0; padding:0;
+		color:#333; font-size:12px;
+		font-family:dotum, Verdana, Arial, Helvetica, AppleGothic, sans-serif;
+	}
+	#testIframe {margin-left: 10px;} 
+  </style>
     <!-- MAIN -->
     <div class="main">
         <!-- MAIN CONTENT -->
@@ -81,14 +95,14 @@ var setting = {
 };
 /*数据*/
 var zNodes =[
-	{id:1, pId:0, name:"[core] 基本功能 演示", open:true},
-	{id:2, pId:0, name:"[core] 基本功能 演示", open:true},
-	{id:101, pId:1, name:"最简单的树 --  标准 JSON 数据", file:"core/standardData"},
-	{id:102, pId:1, name:"最简单的树 --  简单 JSON 数据", file:"core/simpleData"},
-	{id:122, pId:1, name:"33333333", file:"core/otherMouse"},
-	{id:423, pId:1, name:"33333333", file:"core/otherMouse"},
-	{id:131, pId:423, name:"44444", file:"core/otherMouse"},
-	{id:132, pId:131, name:"5555", file:"core/otherMouse"},
+	{id:1, pId:0, name:"[core] 基本功能 演示", icon:"/zhw-tour/static/assets/css/img/red.png", open:true},
+	{id:2, pId:0, name:"[core] 基本功能 演示", icon:"/zhw-tour/static/assets/css/img/blue.png", open:true},
+	{id:101, pId:1, name:"最简单的树 --  标准 JSON 数据", icon:"/zhw-tour/static/assets/css/img/yellow.png", file:"core/standardData"},
+	{id:102, pId:1, name:"最简单的树 --  简单 JSON 数据", icon:"/zhw-tour/static/assets/css/img/blue.png", file:"core/simpleData"},
+	{id:122, pId:1, name:"33333333", icon:"/zhw-tour/static/assets/css/img/blue.png", file:"core/otherMouse"},
+	{id:423, pId:1, name:"33333333", icon:"/zhw-tour/static./assets/css/img/blue.png", file:"core/otherMouse"},
+	{id:131, pId:423, name:"44444",  icon:"/zhw-tour/static/assets/css/img/blue.png",file:"core/otherMouse"},
+	{id:132, pId:131, name:"5555",  icon:"/zhw-tour/static/assets/css/img/blue.png",file:"core/otherMouse"},
 ];
 
 $(document).ready(function(){
@@ -96,10 +110,17 @@ $(document).ready(function(){
 	$.post(url,null,function(data){
 		var t = $("#tree");
 		t = $.fn.zTree.init(t, setting, JSON.parse(data));
-		//t = $.fn.zTree.init(t, setting, zNodes);
+	//	t = $.fn.zTree.init(t, setting, zNodes);
 		demoIframe = $("#testIframe");
-	});
+	}); 
+}); 	
+	
+	
+	/* $(document).ready(function(){
+		var t = $("#tree");
+		t = $.fn.zTree.init(t, setting, zNodes);
+		demoIframe = $("#testIframe");
 
-});
+	}); */
 
 </script>

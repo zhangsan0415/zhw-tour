@@ -30,7 +30,7 @@
 	
 	<script src="<%=basePath%>static/assets/scripts/commonUtils.js"></script>
 	</head>
-	<body>
+	<body onkeydown="on_return()">
 
 	<!-- WRAPPER -->
 	<div id="wrapper">
@@ -131,9 +131,10 @@ function save(){
 	var url = "<%=basePath%>login/forgetPwd.do";
 	var params = {"hyCode":hyCode.trim(),"yxEmail":email.trim()};
 	$.post(url,params,function(data){
-		var obj = JSON.parse(data);  
+		var obj = JSON.parse(data); 
 		Ewin.alert({message: obj.msg}).on(function(){
 		});
+		
 	});
 }
 
@@ -148,15 +149,29 @@ function doLogin(){
 	var url = "<%=basePath%>login/doLogin.do";
 	var params = {"hyCode":hyCode.trim(),"password":pwd.trim(),"checkCode":checkCode.trim()};
 	$.post(url,params,function(data){
+		
 		var obj = JSON.parse(data);
+		 
 		if(obj.status != 0){ 
+			$(".codePng").attr('src',"<%=basePath%>login/createCheckCode.do?t="+ Math.random());
 			Ewin.alert({message: obj.msg == null ? "系统繁忙，请稍候重试！":obj.msg}); 
 			return;
 		}
-		$(location).attr('href', '<%=basePath%>login/toHome.do');
+			$(location).attr('href', '<%=basePath%>login/toHome.do');
+		
+		
 	});
 }
 	
+//回车登录
+function on_return(){
+	 if(window.event.keyCode == 13){
+		 event.returnValue=false;
+		    event.cancel = true;
+		 doLogin()
+	 }
+}
+
 //验证会员编号是否存在
 function checkUserCode(input){
 	var value = input.value;
