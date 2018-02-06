@@ -43,7 +43,7 @@
 								<!--<div class="logo text-center"><img src="assets/img/logo-dark.png" alt="Klorofil Logo"></div>-->
 								<p class="lead">欢迎登陆</p>
 							</div>
-							<form id="login_form" class="form-auth-small" method="post" action="#">
+							<form id="login_form" class="form-auth-small" method="post" action="#" onsubmit="return false">
 								<div class="form-group">
 									<label for="signin-email" class="control-label sr-only">会员编号</label>
 
@@ -58,9 +58,8 @@
 								 
 								<div class="form-group ">
 									<label for="signin-password" class="control-label sr-only">验证码</label>
-									<input type="text" name="checkCode" class="form-control code-input" id="signin-code" value="" placeholder="验证码">
-									
-					<img src="<%=basePath%>login/createCheckCode.do?t=Math.random()" alt="" class="codePng" alt="验证码" title="点击刷新" onclick="imageRefresh(this)"/>			
+									<input type="text" onkeydown="keyDown(event)" name="checkCode" class="form-control code-input" id="signin-code" value="" placeholder="验证码">
+									<img id="check_code" src="<%=basePath%>login/createCheckCode.do?t=Math.random()" class="codePng" alt="验证码" title="点击刷新" onclick="imageRefresh('check_code')"/>			
 								</div>
 								<button type="button" onclick="doLogin()" class="btn btn-primary btn-lg btn-block">登录</button>
 								<div class="bottom">
@@ -138,6 +137,12 @@ function save(){
 	});
 }
 
+//点击刷新验证码
+function imageRefresh(imageId){
+	var image = document.getElementById(imageId);
+	image.src="<%=basePath%>login/createCheckCode.do?t="+ Math.random();
+}
+
 //点击登录按钮
 function doLogin(){
 	var hyCode = $("#hy_code").val();
@@ -153,7 +158,10 @@ function doLogin(){
 		var obj = JSON.parse(data);
 		 
 		if(obj.status != 0){ 
-			$(".codePng").attr('src',"<%=basePath%>login/createCheckCode.do?t="+ Math.random());
+ 
+ 
+			imageRefresh('check_code');
+ 
 			Ewin.alert({message: obj.msg == null ? "系统繁忙，请稍候重试！":obj.msg}); 
 			return;
 		}
@@ -161,6 +169,14 @@ function doLogin(){
 		
 		
 	});
+}
+
+//验证码处回车
+function keyDown(event){
+	var ev= window.event||e;
+	if(ev.keyCode == 13){
+		doLogin();
+	}
 }
 	
 //回车登录
@@ -184,11 +200,6 @@ function checkUserCode(input){
 	});
 }
 	
-//点击刷新验证码
-function imageRefresh(image){
-	image.src="<%=basePath%>login/createCheckCode.do?t="+ Math.random();
-}
-
 function isEmpty(str){
 	if(str == null || str == '') return true;
 	return false;

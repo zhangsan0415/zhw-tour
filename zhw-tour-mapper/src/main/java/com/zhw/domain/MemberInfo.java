@@ -64,6 +64,8 @@ public class MemberInfo {
 	
 	private BigDecimal yMoney;//右区钱数
 	
+	private String ifBdCenterName;
+	
 	public BigDecimal getzMoney() {
 		return zMoney;
 	}
@@ -271,6 +273,14 @@ public class MemberInfo {
 
 	public void setTjInnerCode(String tjInnerCode) {
 		this.tjInnerCode = tjInnerCode;
+	}
+
+	public String getIfBdCenterName() {
+		return ifBdCenterName;
+	}
+
+	public void setIfBdCenterName(String ifBdCenterName) {
+		this.ifBdCenterName = ifBdCenterName;
 	}
 	
 }

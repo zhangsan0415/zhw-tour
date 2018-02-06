@@ -10,6 +10,7 @@ import com.zhw.controller.ControllerUtils;
 import com.zhw.domain.MemberInfo;
 import com.zhw.domain.MemberScoreInfo;
 import com.zhw.service.LoginInterceptorService;
+import com.zhw.type.HyLevelEnum;
 import com.zhw.utils.StringUtils;
 
 public class LoginInterceptor implements HandlerInterceptor{
@@ -36,6 +37,7 @@ public class LoginInterceptor implements HandlerInterceptor{
 		
 		//时时更新积分信息
 		MemberScoreInfo scoreInfo = loginInterceptorService.queryScoreInfo(memberInfo.getHyCode());
+		scoreInfo.setHyLevelName(HyLevelEnum.getNameByCode(scoreInfo.getHyLevel()));
 		ControllerUtils.setScoreInfo(request, scoreInfo);
 		return true;
 	}
