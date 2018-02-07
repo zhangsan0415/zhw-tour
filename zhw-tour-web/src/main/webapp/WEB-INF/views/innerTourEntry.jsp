@@ -87,7 +87,6 @@ function addOne(){
 		+'<td><input type="button" value="删除" class="form-control"  onclick="deleteOne(this)"/></td></tr>';
 	table.append(tr);
 }
-
 function getTableData(tableId){
 	var table = $('#'+tableId);
 	var tbody = table.find('tbody');

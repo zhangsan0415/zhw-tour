@@ -58,7 +58,6 @@
 		</div>
 
 
-
 	</div>
 	<!-- END MAIN -->
 	<div class="clearfix"></div>
