@@ -17,7 +17,7 @@
 						</c:forEach>
 					</select>
 					出团日：
-					<input id="chufa_date" size="16" type="text" readonly>
+					<input id="chufa_date" class="form-control" size="16" type="text" readonly style='background:#fff;'>
 				</form>
 				<table class="table table-striped" id="outer_tab">
 					<thead>
@@ -37,14 +37,14 @@
 					<tr>
 						<!-- <td>1</td> -->
 						<td><input type="text" name="bmName" class="form-control" /></td>
-						<td><input type="text" name="bmCardCode" class="form-control" /></td>
+						<td><input type="text" name="bmCardCode" class="form-control " onblur="cardCode(this)" /></td>
 						<td><select name="bmSex" class="form-control">
 								<option value="0">男</option>
 								<option value="1">女</option>
 						</select></td>
 						<td><input type="text" name="bmHjAddress" class="form-control" /></td>
-						<td><input type="text" name="bmCarCode" class="form-control" /></td>
-						<td><input type="text" name="bmPhone" class="form-control" /></td>
+						<td><input type="text" name="bmCarCode" class="form-control " /></td>
+						<td><input type="text" name="bmPhone" maxlength="11" class="form-control" /></td>
 						<td><input type="text" name="bmPrice" class="form-control" /></td>
 						<td><input type="text" name="bmComment" class="form-control" /></td>
 						<td><input type="button"  value="删除" class="form-control"  onclick="deleteOne(this)"/></td>
@@ -77,11 +77,11 @@ function addOne(){
 	var table = $("#outer_tab");
 	var tr = '<tr>'
 		+'<td><input type="text" name="bmName" class="form-control" /></td>'
-		+'<td><input type="text" name="bmCardCode" class="form-control" /></td>'
+		+'<td><input type="text" name="bmCardCode" class="form-control" onblur="cardCode(this)" /></td>'
 		+'<td><select name="bmSex" class="form-control"><option value="0">男</option><option value="1">女</option></select></td>'
 		+'<td><input type="text" name="bmHjAddress" class="form-control" /></td>'
 		+'<td><input type="text" name="bmCarCode" class="form-control" /></td>'
-		+'<td><input type="text" name="bmPhone" class="form-control" /></td>'
+		+'<td><input type="text" name="bmPhone" maxlength="11" class="form-control" /></td>'
 		+'<td><input type="text" name="bmPrice" class="form-control" /></td>'
 		+'<td><input type="text" name="bmComment" class="form-control" /></td>'
 		+'<td><input type="button" value="删除" class="form-control"  onclick="deleteOne(this)"/></td></tr>';
@@ -105,6 +105,7 @@ function getTableData(tableId){
 				key = td.find("select").attr("name");
 				value = td.find("select").val();
 			}
+			
 			if(value == null || value.trim() == '')	{
 				Ewin.alert({msg:"表格中存在空字段！"});
 				return null;
@@ -119,6 +120,17 @@ function deleteOne(tdObj){
 	var td = $(tdObj);
 	td.parents("tr").remove();  
 }
+//身份证验证
+function cardCode(a){
+	var _this=a.value;
+	var re = new RegExp(/^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X|x)$/);
+	var res=re.test(_this)
+	if(res==false){
+		Ewin.alert({message:"身份证号不正确"});
+		return;
+	}
+}
+ 
 //保存
 function saveTourInfo(){
 	var tableData = getTableData("outer_tab");
