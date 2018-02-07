@@ -1,221 +1,112 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="menuHead.jsp" %>
+<%@include file="menuHead.jsp"%>
 <!-- MAIN -->
 <div class="main">
 	<!-- MAIN CONTENT -->
 	<div class="main-content">
-		<div class="panel ">
-			<div class="panel-heading">
-				<h3 class="panel-title">会员</h3>
+		<!-- RIGHT COLUMN -->
+		<div class="container-fluid panel">
+			<div class="alert alert-warning alert-dismissible mt10"  role="alert">
+					<i class="fa fa-warning"></i> 汇款信息：银行帐号：中国光大银行 银行卡号：6226623700288651 开户名：刘小勇 开户地址：甘肃省兰州七里河支行
 			</div>
-			<form id="add_hy_form" role="form" action="#" class="form-horizontal" action="#">
-				<div class="form-group">
-					<label class="col-lg-3 control-label text-danger">推荐人：</label>
-					<div class="col-lg-2">
-						<input type="text" class="form-control" name="tjMan" value="${sessionScope.userInfo.hyCode}"  readonly="readonly"/>
+			<p style="color:red">申请报单中心需缴纳 3000 元，公司补贴 0 元 购物积分（购物积分可用于系统商城购物）</p>
+			<div class="profile-info ">
+				<h4 class="heading">申请报单中心</h4>
+				<form id="defaultForm1" method="post" class="form-horizontal" action="#" onsubmit="return false">
+					<div class="row">
+							<div class="col-md-2 text-right line-height-30">会员编号：</div>
+							<div class="col-md-10 text-left line-height-30">${sessionScope.userInfo.hyCode}</div>
+							
+					        <div class="col-md-2 text-right line-height-30">申请服务中心状态：</div>
+					        <c:if test="${sessionScope.userInfo.ifBdCenter == 1 }">
+							<div class="col-md-10 text-left line-height-30"><p style="color:red">未申请报单中心</p></div>
+							</c:if>
+							<c:if test="${sessionScope.userInfo.ifBdCenter == 0 }">
+							<div class="col-md-10 text-left line-height-30"><p style="color:red">已为报单中心</p></div>
+							</c:if>
+							<c:if test="${sessionScope.userInfo.ifBdCenter == 2 }">
+							<div class="col-md-10 text-left line-height-30"><p style="color:red">申请中</p></div>
+							</c:if>
+							
+							<div class="col-md-2 text-right line-height-30">申请报单中心时间：</div>
+							<div class="col-md-10 text-left line-height-30"></div>
+							
+							<div class="col-md-2 text-right line-height-30">开通报单中心时间：</div>
+							<div class="col-md-10 text-left line-height-30"></div>
+							
+							<div class="col-md-2 text-right line-height-30">已汇款金额：</div>
+							<c:if test="${sessionScope.userInfo.ifBdCenter == 1 }">
+							<div class="col-md-10 text-left line-height-30"><input type="text"></div>
+							</c:if>
+							<c:if test="${sessionScope.userInfo.ifBdCenter != 1 }">
+							<div class="col-md-10 text-left line-height-30">${requestScope.info.hyCode}</div>
+							</c:if>
+							
+							<div class="col-md-2 text-right line-height-30">已汇款到帐号：</div>
+							<div class="col-md-10 text-left line-height-30">6226 6237 0028 8651</div>
+							
+							<c:if test="${sessionScope.userInfo.ifBdCenter == 1 }">
+							<div class="col-md-2 text-right line-height-30">请选择汇款时间：</div>
+							<div class="col-md-10 text-left line-height-30"></div>
+							</c:if>
+							
+							<c:if test="${sessionScope.userInfo.ifBdCenter != 1 }">
+							<div class="col-md-2 text-right line-height-30">汇款时间：</div>
+							<div class="col-md-10 text-left line-height-30">${requestScope.info.hyCode}</div>
+							</c:if>
+							
+							<div class="col-md-2 text-right line-height-30">备注：</div>
+							<c:if test="${sessionScope.userInfo.ifBdCenter == 1}">
+							<div class="col-md-10 text-left line-height-30"><textarea>${requestScope.info.hyCode}</textarea></div>
+							</c:if>
+							<c:if test="${sessionScope.userInfo.ifBdCenter != 1}">
+							<div class="col-md-10 text-left line-height-30"><textarea readOnly="readOnly">${requestScope.info.hyCode}</textarea></div>
+							</c:if>
 					</div>
+	        	</form>
+	         	<div class="col-md-3 text-right margin-top-30  padding-bottom-10">
+						<input type="button" value="申请" class="btn btn-primary" onclick="recharge()"/>
 				</div>
-				<div class="form-group">
-					<label class="col-lg-3 control-label text-danger">会员编号：</label>
-					<div class="col-lg-2">
-						<input type="text" class="form-control" name="hyCode" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-3 control-label">所在区域：</label>
-					<div class="col-lg-2">
-						<select name="zyArea" class="form-control">
-							<c:forEach var="item" items="${requestScope.zyAreas}">
-								<option value="${item.typeCode}">${item.typeName}</option>
-							</c:forEach>
-						</select>
-					</div>
-				</div>
-				<!-- <legend></legend> -->
-				<div class="form-group">
-					<label class="col-lg-3 control-label text-danger">一级密码：</label>
-					<div class="col-lg-2">
-						<input type="password" name="yjPwd" class="form-control" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-3 control-label text-danger">确认一级密码：</label>
-					<div class="col-lg-2">
-						<input type="password" class="form-control" name="confimYjPwd" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-3 control-label text-danger">二级密码：</label>
-					<div class="col-lg-2">
-						<input type="password" class="form-control" name="ejPwd" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-3 control-label text-danger">确认二级密码：</label>
-					<div class="col-lg-2">
-						<input type="password" class="form-control" name="confirmEjPwd" />
-					</div>
-				</div>
-				<!-- <legend></legend> -->
-				<div class="form-group">
-					<label class="col-lg-3 control-label">开户银行：</label>
-					<div class="col-lg-2">
-						<select name="khBankName" class="form-control">
-							<c:forEach var="item" items="${requestScope.bankList}">
-								<option value="${item.typeCode}">${item.typeName}</option>
-							</c:forEach>
-						</select>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-3 control-label">银行卡号：</label>
-					<div class="col-lg-2">
-						<input type="text" class="form-control" name="khCardCode" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-3 control-label">开户姓名：</label>
-					<div class="col-lg-2">
-						<input type="text" class="form-control" name="khName" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-3 control-label">开户省市：</label>
-					<div class="col-lg-2">
-						<select name="khProvince" class="form-control" onchange="getCities(this)">
-							<c:forEach var="item" items="${requestScope.provinces}">
-								<option value="${item.pkId}">${item.areaName}</option>
-							</c:forEach>
-						</select>
-						<!-- <input type="text" name="khProvince" class="form-control" placeholder="省"
-							data-stripe="exp-month" /> -->
-					</div>
-					<div class="col-lg-2">
-						<select id="sign_in_cities" name="khCity" class="form-control">
-							<c:forEach var="item" items="${requestScope.cities}">
-								<option value="${item.pkId}">${item.areaName}</option>
-							</c:forEach>
-						</select>
-						<%--<input type="text" name="khCity" class="form-control" placeholder="市"
-							data-stripe="exp-year" />--%>
-					</div>
-				</div>
-				<!--  <legend></legend> -->
-				<div class="form-group">
-					<label class="col-lg-3 control-label">身份证号：</label>
-					<div class="col-lg-2">
-						<input type="text" class="form-control" name="sfzCardCode" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-3 control-label">E-Mail：</label>
-					<div class="col-lg-2">
-						<input type="text" class="form-control" name="yxEmail" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-3 control-label">手机号码：</label>
-					<div class="col-lg-2">
-						<input type="text" class="form-control" name="sjMobile" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-3 control-label">申请级别：</label>
-					<div class="col-lg-5">
-						<div class="radio">
-							<label> <input type="radio" name="hyLevel" value="2" />
-								5000元
-							</label> <label> <input type="radio" name="hyLevel" value="3" />
-								8000元
-							</label>
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-4 control-label">
-						<input type="button" class="btn btn-primary" onclick="registerHyCode(this)" value="添加" data-toggle="popover"/>
-						<!-- <button id="hy_mem_register" >注册</button>  -->
-						<input type="reset" class="btn btn-primary" value="重置" />
-					</label>
-				</div>
-
-			</form>
-
+			</div> 
 		</div>
 	</div>
-	<!-- END MAIN -->
-	<div class="clearfix"></div>
 </div>
+			<!-- END RIGHT COLUMN -->
 
-<%@include file="menuBottom.jsp" %>
-
-<script type="text/javascript">
-/* 点击注册按钮 */
-function registerHyCode(btn){
-	var url = "<%=basePath%>admin/addHy.do";
-	var params = $("#add_hy_form").serialize();
+<%@include file="menuBottom.jsp"%>
+<script>
+//充值按钮
+function recharge(){
+	var type = $("#selected_id").val();
+	var money = $("#cz_money").val();
+//	var czTime = $("#time_id").val();
+	var url = "<%=basePath%>score/rechargeScore.do";
+	var params = {"zzType":type,"zzMoney":money};
 	$.post(url,params,function(data){
 		var obj = JSON.parse(data);
 		Ewin.alert({message: obj.msg}).on(function(){
-						
-		});; 
-	});
-}
-/* 获取城市列表 */
-function getCities(obj){
-	var citySelector =  $("#sign_in_cities");
-	$("option",citySelector).remove(); //清空原有的选项 
-	var url = "<%=basePath%>hyManager/getCities.do";
-	var params = {"provinceId":obj.value};
-	$.post(url,params,function(result){
-		var obj = JSON.parse(result);
-		if(obj.status != 0)	return;
-		$.each(obj.obj,function(index,item){
-			var option = "<option value='" + item['pkId'] + "'>" + item['areaName'] + "</option>";
-			citySelector.append(option);
+			if(obj.status==0){
+				$(location).attr('href', '<%=basePath%>home/toScoreRecharge.do');
+			}
 		});
-		
 	});
 }
-$('#defaultForm').bootstrapValidator({
-	message: '填写不正确',
-	feedbackIcons: {
-		valid: 'glyphicon glyphicon-ok',
-		invalid: 'glyphicon glyphicon-remove',
-		validating: 'glyphicon glyphicon-refresh'
-	},
-	fields: {
-	memberCode: {
-		message: '无效会员编号',
-		validators: {
-			notEmpty: {
-				message: '会员编号不能为空'
-			},
-		<%--stringLength: {--%>
-			<%--min: 6,--%>
-			<%--max: 30,--%>
-			<%--message: '用户名长度在6-30之间'--%>
-			<%--}--%>
-		}
-		},
-		password: {
-			validators: {
-			notEmpty: {
-				message: '密码不能为空'
-				}
-			}
-		},
-		code:{
-			validators:{
-				notEmpty:{
-					messsage:'验证码不能为空'
-				}
-			}
-		}
-	}
-});
+/* 初始化显示分页 */
+function queryPage(){
+	var pageUrl = '<%=basePath%>score/getScoreRecharge.do';
+	var tableHead = ['会员编号','充值金额','充值时间','充值类型','充值状态'];
+	var dataIndex = ['hyCode','zzMoney','zzTime','zzType','czStatus'];
+	var hyCode = "${sessionScope.scoreInfo.hyCode}";
+	var params ={"hyCode":hyCode}
+	var options = {tableId:'czScore_list',clientPageId:'pageLimit',url:pageUrl,tableHead:tableHead,dataIndex:dataIndex,params:params};
+	ZHW_Page.paging(options);
+}
 
-$("#adminMember").prev().addClass('active');/*一级  */
-$("#adminMember").addClass("in");
-$("#toAddBdCenter").addClass('active');/* 二级 */
+queryPage();
+
+
+queryPage();
+$("#subIntegral").prev().addClass('active');/*一级  */
+$("#subIntegral").addClass("in");
+$("#toScoreRecharge").addClass('active');/* 二级 */
 </script>

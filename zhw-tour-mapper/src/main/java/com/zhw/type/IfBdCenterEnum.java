@@ -6,7 +6,7 @@ package com.zhw.type;
  *
  */
 public enum IfBdCenterEnum {
-	Y_BD_CENTER(0,"是"),N_BD_CENTER(1,"否");
+	Y_BD_CENTER(0,"是"),N_BD_CENTER(1,"否"),WILL_BD_CENTER(2,"申请中");
 	
 	private int typeCode;
 	
