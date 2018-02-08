@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.zhw.component.AreaComponent;
 import com.zhw.domain.Area;
+import com.zhw.domain.BdApply;
 import com.zhw.domain.MemberInfo;
+import com.zhw.service.BdApplyService;
 import com.zhw.service.HomeService;
 import com.zhw.service.PersonService;
 import com.zhw.service.ScoreService;
@@ -18,7 +20,6 @@ import com.zhw.type.AreaTypeEnum;
 import com.zhw.type.BankEnum;
 import com.zhw.type.IfBdCenterEnum;
 import com.zhw.type.JHStatusEnum;
-import com.zhw.type.ZYAreaEnum;
 import com.zhw.type.ZZTypeEnum;
 
 @Controller
@@ -35,6 +36,9 @@ public class HomeController {
 	private ScoreService scoreService;
 	@Resource
 	private PersonService personService;
+	
+	@Resource
+	private BdApplyService bdService;
 
 	//跳转修改资料页面
 	@RequestMapping(value="/toModifyHyInfo.do")
@@ -216,10 +220,18 @@ public class HomeController {
 	}
 	
 	//跳转到管理员添加会员页面
-	@RequestMapping(value="/toSignInAdmin.do")
-	public String toAddBdCenterAdmin(HttpServletRequest request) {
-		request.setAttribute("zyAreas",ZYAreaEnum.values());
-		return "signInAdmin";
+	@RequestMapping(value="/addBodanCenter.do")
+	public String toAddBdCenterAdmin(HttpServletRequest request) throws Exception {
+		MemberInfo info = ControllerUtils.getUserInfo(request);
+		BdApply data = bdService.queryBdApplyByCode(info.getHyCode());
+		if(data == null) {
+			data = new BdApply();
+			data.setHyCode(info.getHyCode());
+			data.setIfBdCenter(info.getIfBdCenter());
+		}	
+		
+		request.setAttribute("data", data);
+		return "addBodanCenter";
 	}
 	
 	//跳转到开通会员页面，可审批

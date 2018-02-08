@@ -15,29 +15,54 @@
 				action="#">
 				<div class='row text-red'>申请服务中心需缴纳 3000 元，公司补贴 0 元 购物积分（购物积分可以用于系统商城购物）</div>
 				<div class="row">
-						<div class="col-md-2 text-right line-height-30">会员编号 ：</div>
-						<div class="col-md-10 text-left line-height-30">${sessionScope.scoreInfo.bdScore}</div>
-						
+						<div class="col-md-2 text-right line-height-30">会员编号：</div>
+						<div class="col-md-10 text-left line-height-30">${sessionScope.userInfo.hyCode}</div>
+				        
 				        <div class="col-md-2 text-right line-height-30">申请服务中心状态：</div>
-						<div class="col-md-10 text-left line-height-30">${sessionScope.scoreInfo.xjScore}</div>
-						<div class="col-md-2 text-right line-height-30">申请服务中心时间：</div>
-						<div class="col-md-10 text-left line-height-30">${sessionScope.scoreInfo.xjScore}</div>
-						<div class="col-md-2 text-right line-height-30">开通服务中心状态：</div>
-						<div class="col-md-10 text-left line-height-30">${sessionScope.scoreInfo.xjScore}</div>
-						 
+				        <c:if test="${requestScope.data.ifBdCenter == 1 }">
+						<div class="col-md-10 text-left line-height-30"><p style="color:red">未申请报单中心</p></div>
+						</c:if>
+						<c:if test="${requestScope.data.ifBdCenter == 0 }">
+						<div class="col-md-10 text-left line-height-30"><p style="color:red">已为报单中心</p></div>
+						</c:if>
+						<c:if test="${requestScope.data.ifBdCenter == 2 }">
+						<div class="col-md-10 text-left line-height-30"><p style="color:red">申请中</p></div>
+						</c:if>
 						
-						<div class="col-md-2 text-right line-height-30" >已汇款金额 ：</div>
-						<div class="col-md-10 text-left line-height-30" >
-							<input type="text" class="form-control input-sm" id="cz_money" style="width: 20%"/>
-						</div>
-					<div class="col-md-2 text-right line-height-30" >已汇款到账号 ：</div>
-						<div class="col-md-10 text-left line-height-30" >
-							<input type="text" class="form-control input-sm" disabled id="cz_account" style="width: 20%"/>
-						</div>
-						<div class="col-md-2 text-right line-height-30" >汇款时间 ：</div>
-						<div class="col-md-10 text-left line-height-30" >
-							<input type="text" class="form-control" style="width: 20%" value="6226623700288651"  readonly="readonly"/>
-						</div>
+						<div class="col-md-2 text-right line-height-30">申请报单中心时间：</div>
+						<div class="col-md-10 text-left line-height-30">${requestScope.data.sqTime}</div>
+						
+						<div class="col-md-2 text-right line-height-30">开通报单中心时间：</div>
+						<div class="col-md-10 text-left line-height-30">${requestScope.data.ktTime}</div>
+						
+						<div class="col-md-2 text-right line-height-30">已汇款金额：</div>
+						<c:if test="${requestScope.data.ifBdCenter == 1 }">
+						<div class="col-md-10 text-left line-height-30"><input type="text"></div>
+						</c:if>
+						<c:if test="${requestScope.data.ifBdCenter != 1 }">
+						<div class="col-md-10 text-left line-height-30">${requestScope.data.hkAmount}</div>
+						</c:if>
+						
+						<div class="col-md-2 text-right line-height-30">已汇款到帐号：</div>
+						<div class="col-md-10 text-left line-height-30">6226 6237 0028 8651</div>
+						
+						<c:if test="${requestScope.data.ifBdCenter == 1 }">
+						<div class="col-md-2 text-right line-height-30">请选择汇款时间：</div>
+						<div class="col-md-10 text-left line-height-30"></div>
+						</c:if>
+						
+						<c:if test="${requestScope.data.ifBdCenter != 1 }">
+						<div class="col-md-2 text-right line-height-30">汇款时间：</div>
+						<div class="col-md-10 text-left line-height-30">${requestScope.data.hkTime}</div>
+						</c:if>
+						
+						<div class="col-md-2 text-right line-height-30">备注：</div>
+						<c:if test="${requestScope.data.ifBdCenter == 1}">
+						<div class="col-md-10 text-left line-height-30"><textarea></textarea></div>
+						</c:if>
+						<c:if test="${requestScope.data.ifBdCenter != 1}">
+						<div class="col-md-10 text-left line-height-30"><textarea readOnly="readOnly">${requestScope.data.comment}</textarea></div>
+						</c:if>
 					</div>
          	 </form>
           <div class="col-md-3 text-right margin-top-30  padding-bottom-10">

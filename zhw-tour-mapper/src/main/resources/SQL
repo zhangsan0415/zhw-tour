@@ -103,6 +103,20 @@ ENGINE = InnoDB
 COMMENT = '旅游行程选项表'
 
 
+CREATE TABLE IF NOT EXISTS `zhw_tour`.`ZHW_BD_APPLY` (
+  `HY_CODE` VARCHAR(45) ,
+  `SQ_TIME` VARCHAR(45) NULL COMMENT '申请时间',
+  `KT_TIME` VARCHAR(45) NULL COMMENT '开通时间',
+  `HK_AMOUNT` VARCHAR(45) NULL COMMENT '汇款金额',
+  `HK_ACCOUNT` VARCHAR(45) NULL COMMENT '汇款帐号',
+  `HK_TIME` VARCHAR(45) NULL COMMENT '汇款时间',
+  `COMMENT` VARCHAR(500) CHARACTER SET 'utf8' COLLATE 'utf8_bin' NULL COMMENT '备注',
+  PRIMARY KEY (`HY_CODE`))
+ENGINE = InnoDB
+COMMENT = '报单中心申请表'
+alter table ZHW_BD_APPLY add if_bd_center INT not Null COMMENT '是否为报单中心，0为是，1为否';
+
+
 
 
 

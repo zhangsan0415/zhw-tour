@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhw.mapper.BdApplyMapper">
+	<resultMap type="com.zhw.domain.BdApply" id="BaseMap">
+		<id property="hyCode" column="HY_CODE" />
+		<result property="sqTime" column="SQ_TIME" />
+		<result property="ktTime" column="KT_TIME" />
+		<result property="hkAmount" column="HK_AMOUNT" />
+		<result property="hkAccount" column="HK_ACCOUNT" />
+		<result property="hkTime" column="HK_TIME" />
+		<result property="comment" column="COMMENT" />
+		<result property="ifBdCenter" column="IF_BD_CENTER" />
+	</resultMap>
+	
+	<sql id="BaseColumn">
+		HY_CODE,SQ_TIME,KT_TIME,HK_AMOUNT,HK_ACCOUNT,HK_TIME,COMMENT,IF_BD_CENTER
+	</sql>
+	
+	<insert id="insert" parameterType="com.zhw.domain.BdApply">
+		INSERT INTO ZHW_BD_APPLY(<include refid="BaseColumn"/>)
+		VALUES (#{hyCode},#{sqTime},#{ktTime},#{hkAmount},#{hkAccount},#{hkTime}
+		,#{comment},#{ifBdCenter,jdbcType=INTEGER}
+	</insert>
+	
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseMap">
+		SELECT <include refid="BaseColumn"></include> FROM ZHW_BD_APPLY
+		WHERE HY_CODE = #{hyCode}
+	</select>
+</mapper>

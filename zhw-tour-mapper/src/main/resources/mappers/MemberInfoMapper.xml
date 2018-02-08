@@ -188,4 +188,9 @@
 		order by XG_TIME DESC
 		limit #{start},#{pageSize}
 	</select>
+	
+	<update id="updateIfBdByCode">
+		UPDATE ZHW_MEM SET if_bd_center = #{ifBdCenter} 
+		WHERE HY_CODE = #{hyCode}
+	</update>
 </mapper>
