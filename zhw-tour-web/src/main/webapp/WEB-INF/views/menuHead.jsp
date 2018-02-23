@@ -157,7 +157,7 @@
 										<li><a id='toActiveHyList' href="<%=basePath%>home/toActiveHyList.do" class="">已开通会员</a></li>
 									</c:if>
 									<%-- <c:if test="${sessionScope.userInfo.ifBdCenter !=0 }"> --%>
-										<li><a id='applyBdCenter' href="<%=basePath%>home/addBodanCenter.do" class="">开通报单中心</a></li> 
+										<li><a id='applyBdCenter' href="<%=basePath%>home/addBodanCenter.do" class="">添加报单中心</a></li> 
 									<%-- </c:if> --%>
 									</ul>
 								</div></li>

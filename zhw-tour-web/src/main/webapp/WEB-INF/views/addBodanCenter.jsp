@@ -37,7 +37,7 @@
 						
 						<div class="col-md-2 text-right line-height-30">已汇款金额：</div>
 						<c:if test="${requestScope.data.ifBdCenter == 1 }">
-						<div class="col-md-10 text-left line-height-30"><input type="text"></div>
+						<div class="col-md-10 text-left line-height-30">${requestScope.data.hkAmount}</div>
 						</c:if>
 						<c:if test="${requestScope.data.ifBdCenter != 1 }">
 						<div class="col-md-10 text-left line-height-30">${requestScope.data.hkAmount}</div>
@@ -46,23 +46,33 @@
 						<div class="col-md-2 text-right line-height-30">已汇款到帐号：</div>
 						<div class="col-md-10 text-left line-height-30">6226 6237 0028 8651</div>
 						
-						<c:if test="${requestScope.data.ifBdCenter == 1 }">
-						<div class="col-md-2 text-right line-height-30">请选择汇款时间：</div>
-						<div class="col-md-10 text-left line-height-30"></div>
-						</c:if>
+						<%-- <c:if test="${requestScope.data.ifBdCenter == 1 }"> --%>
+						<div class="col-md-2 text-right line-height-30">输入汇款时间：</div>
+						<div class="col-md-10 text-left line-height-30"> 
+						<input type='text' id='year' class='time-input'>年
+						<input type='text' id='month' class='time-input'>月
+						<input type='text' id='day' class='time-input'>日
+						<input type='text' id='hours' class='time-input'>时
+						<input type='text' id='min' class='time-input'>分
+						<input type='text' id='seconds' class='time-input'>秒
+						 <span class='text-red'>(请输入汇款时间)</span>
+					
 						
-						<c:if test="${requestScope.data.ifBdCenter != 1 }">
+						</div>
+						<%-- </c:if> --%>
+						
+						<%-- <c:if test="${requestScope.data.ifBdCenter != 1 }">
 						<div class="col-md-2 text-right line-height-30">汇款时间：</div>
 						<div class="col-md-10 text-left line-height-30">${requestScope.data.hkTime}</div>
-						</c:if>
+						</c:if> --%>
 						
 						<div class="col-md-2 text-right line-height-30">备注：</div>
-						<c:if test="${requestScope.data.ifBdCenter == 1}">
+						<%-- <c:if test="${requestScope.data.ifBdCenter == 1}"> --%>
 						<div class="col-md-10 text-left line-height-30"><textarea></textarea></div>
-						</c:if>
-						<c:if test="${requestScope.data.ifBdCenter != 1}">
-						<div class="col-md-10 text-left line-height-30"><textarea readOnly="readOnly">${requestScope.data.comment}</textarea></div>
-						</c:if>
+						<%-- </c:if> --%>
+						<%-- <c:if test="${requestScope.data.ifBdCenter != 1}">
+						<div class="col-md-10 text-left line-height-30"><textarea >${requestScope.data.comment}</textarea></div>
+						</c:if> --%>
 					</div>
          	 </form>
           <div class="col-md-3 text-right margin-top-30  padding-bottom-10">
@@ -83,6 +93,15 @@
 
 <%@include file="menuBottom.jsp"%>
 <script>
+
+var d=new Date()
+$("#year").val(d.getFullYear());
+$('#month').val(1+d.getMonth());
+$('#day').val(d.getDate());
+$('#hours').val(d.getHours());
+$('#min').val(d.getMinutes());
+$('#seconds').val(d.getSeconds())
+
 //充值按钮
 function recharge(){
 	var type = $("#selected_id").val();
@@ -114,7 +133,7 @@ queryPage();
 
 
 queryPage();
-$("#subIntegral").prev().addClass('active');/*一级  */
-$("#subIntegral").addClass("in");
-$("#toScoreRecharge").addClass('active');/* 二级 */
+$("#subServer").prev().addClass('active');/*一级  */
+$("#subServer").addClass("in");
+$("#applyBdCenter").addClass('active');/* 二级 */
 </script>
