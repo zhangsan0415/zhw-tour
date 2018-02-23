@@ -2028,8 +2028,8 @@ if (typeof jQuery === 'undefined') {
 }(window.jQuery));
 ;(function($) {
     $.fn.bootstrapValidator.i18n.between = $.extend($.fn.bootstrapValidator.i18n.between || {}, {
-        'default': 'Please enter a value between %s and %s',
-        notInclusive: 'Please enter a value between %s and %s strictly'
+        'default': '请输入值 between %s and %s',
+        notInclusive: '请输入值 between %s and %s strictly'
     });
 
     $.fn.bootstrapValidator.validators.between = {
@@ -5627,7 +5627,7 @@ if (typeof jQuery === 'undefined') {
 }(window.jQuery));
 ;(function($) {
     $.fn.bootstrapValidator.i18n.notEmpty = $.extend($.fn.bootstrapValidator.i18n.notEmpty || {}, {
-        'default': 'Please enter a value'
+        'default': '请输入值'
     });
 
     $.fn.bootstrapValidator.validators.notEmpty = {
