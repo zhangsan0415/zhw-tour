@@ -11,12 +11,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.zhw.domain.BdApply;
 import com.zhw.domain.MemberBankInfo;
 import com.zhw.domain.MemberInfo;
 import com.zhw.domain.MemberScoreInfo;
 import com.zhw.domain.NewsCenterInfo;
 import com.zhw.domain.TourItem;
 import com.zhw.domain.TourRegisterInfo;
+import com.zhw.mapper.BdApplyMapper;
 import com.zhw.mapper.MemberBankInfoMapper;
 import com.zhw.mapper.MemberInfoMapper;
 import com.zhw.mapper.MemberScoreInfoMapper;
@@ -30,6 +32,7 @@ import com.zhw.response.PageResult;
 import com.zhw.service.AdminService;
 import com.zhw.type.AreaTypeEnum;
 import com.zhw.type.ConfirmStatusEnum;
+import com.zhw.type.HyLevelEnum;
 import com.zhw.type.HyLevelScoreEnum;
 import com.zhw.type.IfAdminEnum;
 import com.zhw.type.IfBdCenterEnum;
@@ -59,6 +62,9 @@ public class AdminServiceImpl implements AdminService{
 	
 	@Resource 
 	private MemberBankInfoMapper bankInfoMapper;
+	
+	@Resource
+	private BdApplyMapper bdMapper;
 	
 	@Override
 	public PageResult getTourItems(Integer areaType, int currentPage) throws Exception {
@@ -290,18 +296,20 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public BaseResult getNotBdList(String hyCode, int currentPage) throws Exception {
-		int total = userInfoMapper.selectNotBdCount(hyCode);
+		int total = bdMapper.selectTotalCountByStatus(IfBdCenterEnum.WILL_BD_CENTER.getTypeCode());
+//		int total = userInfoMapper.selectNotBdCount(hyCode);
 		if(total == 0)	return PageResult.getOkInstance();
 		
 		int start = PageResult.getStartNumber(currentPage);
-		List<MemberInfo> list = userInfoMapper.selectNotBdList(hyCode,start,PageResult.pageSize);
-		if(list != null) {
-			for(MemberInfo obj:list) {
-				obj.setFlag(IfBdCenterEnum.getNameByCode(obj.getJhStatus()));
-				obj.setMoney(HyLevelScoreEnum.getValueByCode(obj.getHyLevel()));
+		List<BdApply> bdApplys = bdMapper.selectNotBdPageList(start,PageResult.pageSize,IfBdCenterEnum.WILL_BD_CENTER.getTypeCode());
+		if(bdApplys != null) {
+			for(BdApply obj:bdApplys) {
+				obj.setIfBdCenterName(IfBdCenterEnum.getNameByCode(obj.getIfBdCenter()));
+				obj.setHyAmount(HyLevelScoreEnum.getValueByCode(obj.getHyLevel()));
+				obj.setLevelName(HyLevelEnum.getNameByCode(obj.getHyLevel()));
 			}
 		}
-		return PageResult.getPageInstance(list, currentPage, total);
+		return PageResult.getPageInstance(bdApplys, currentPage, total);
 	}
 
 	@Override

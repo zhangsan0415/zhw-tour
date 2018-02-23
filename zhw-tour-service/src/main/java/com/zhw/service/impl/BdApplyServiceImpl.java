@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zhw.domain.BdApply;
+import com.zhw.domain.MemberInfo;
 import com.zhw.mapper.BdApplyMapper;
 import com.zhw.mapper.MemberInfoMapper;
 import com.zhw.response.BaseResult;
@@ -21,10 +22,11 @@ public class BdApplyServiceImpl implements BdApplyService{
 	private MemberInfoMapper infoMapper;
 	
 	@Override
-	public BaseResult addBdApply(BdApply obj) throws Exception {
+	public BaseResult addBdApply(BdApply obj,MemberInfo info) throws Exception {
 		obj.setSqTime(DateUtils.formatCurrentDate());
 		obj.setIfBdCenter(IfBdCenterEnum.WILL_BD_CENTER.getTypeCode());
 		obj.setHkAccount("6226 6237 0028 8651");
+		obj.setHyLevel(info.getHyLevel());
 		bdMapper.insert(obj);
 		infoMapper.updateIfBdByCode(obj.getHyCode(),IfBdCenterEnum.WILL_BD_CENTER.getTypeCode());
 		return BaseResult.sucessInstance().setMsg("申请成功！");

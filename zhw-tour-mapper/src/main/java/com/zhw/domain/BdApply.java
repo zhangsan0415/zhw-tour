@@ -1,5 +1,7 @@
 package com.zhw.domain;
 
+import java.math.BigDecimal;
+
 public class BdApply {
 	
 	private String hyCode;
@@ -17,6 +19,22 @@ public class BdApply {
 	private String comment;//备注
 	
 	private Integer ifBdCenter;//是否报单中心
+	
+	private Integer hyLevel;//会员级别
+	
+	private String ifBdCenterName;
+	
+	private BigDecimal hyAmount;
+	
+	private String levelName;
+
+	public String getIfBdCenterName() {
+		return ifBdCenterName;
+	}
+
+	public void setIfBdCenterName(String ifBdCenterName) {
+		this.ifBdCenterName = ifBdCenterName;
+	}
 
 	public String getHyCode() {
 		return hyCode;
@@ -80,6 +98,30 @@ public class BdApply {
 
 	public void setIfBdCenter(Integer ifBdCenter) {
 		this.ifBdCenter = ifBdCenter;
+	}
+
+	public Integer getHyLevel() {
+		return hyLevel;
+	}
+
+	public void setHyLevel(Integer hyLevel) {
+		this.hyLevel = hyLevel;
+	}
+
+	public BigDecimal getHyAmount() {
+		return hyAmount;
+	}
+
+	public void setHyAmount(BigDecimal hyAmount) {
+		this.hyAmount = hyAmount;
+	}
+
+	public String getLevelName() {
+		return levelName;
+	}
+
+	public void setLevelName(String levelName) {
+		this.levelName = levelName;
 	}
 	
 	

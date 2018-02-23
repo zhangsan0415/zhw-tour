@@ -230,6 +230,7 @@ public class HomeController {
 			data.setIfBdCenter(info.getIfBdCenter());
 		}	
 		
+		data.setIfBdCenterName(IfBdCenterEnum.getTagByCode(info.getIfBdCenter()));
 		request.setAttribute("data", data);
 		return "addBodanCenter";
 	}

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhw.mapper.BdApplyMapper">
-	<resultMap type="com.zhw.domain.BdApply" id="BaseMap">
+	<resultMap type="com.zhw.domain.BdApply" id="ResultMap">
 		<id property="hyCode" column="HY_CODE" />
 		<result property="sqTime" column="SQ_TIME" />
 		<result property="ktTime" column="KT_TIME" />
@@ -10,19 +10,30 @@
 		<result property="hkTime" column="HK_TIME" />
 		<result property="comment" column="COMMENT" />
 		<result property="ifBdCenter" column="IF_BD_CENTER" />
+		<result property="hyLevel" column="hy_level" />
 	</resultMap>
 	
 	<sql id="BaseColumn">
-		HY_CODE,SQ_TIME,KT_TIME,HK_AMOUNT,HK_ACCOUNT,HK_TIME,COMMENT,IF_BD_CENTER
+		HY_CODE,SQ_TIME,KT_TIME,HK_AMOUNT,HK_ACCOUNT,HK_TIME,COMMENT,IF_BD_CENTER,hy_level
 	</sql>
+	
+	<select id="selectTotalCountByStatus" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM ZHW_BD_APPLY WHERE IF_BD_CENTER = #{ifBdCenter}
+	</select>
+	
+	<select id="selectNotBdPageList" resultMap="ResultMap">
+		SELECT <include refid="BaseColumn"/> FROM ZHW_BD_APPLY WHERE if_bd_center = #{ifBdCenter}
+		order by SQ_TIME DESC
+		limit #{start},#{pageSize}
+	</select>
 	
 	<insert id="insert" parameterType="com.zhw.domain.BdApply">
 		INSERT INTO ZHW_BD_APPLY(<include refid="BaseColumn"/>)
 		VALUES (#{hyCode},#{sqTime},#{ktTime},#{hkAmount},#{hkAccount},#{hkTime}
-		,#{comment},#{ifBdCenter,jdbcType=INTEGER}
+		,#{comment},#{ifBdCenter,jdbcType=INTEGER},#{hyLevel,jdbcType=INTEGER}
 	</insert>
 	
-	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseMap">
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMap">
 		SELECT <include refid="BaseColumn"></include> FROM ZHW_BD_APPLY
 		WHERE HY_CODE = #{hyCode}
 	</select>
