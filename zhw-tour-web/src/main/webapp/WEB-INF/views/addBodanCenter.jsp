@@ -122,7 +122,7 @@ function recharge(){
 function queryPage(){
 	var pageUrl = '<%=basePath%>score/getScoreRecharge.do';
 	var tableHead = ['会员编号','汇款金额','汇款类型','汇款时间','汇款账号','状态'];
-	var dataIndex = ['hyCode','zzMoney','zzTime','zzType','czStatus'];
+	var dataIndex = ['hyCode','zzMoney','zzType','zzTime','khCardCode','czStatus'];
 	var hyCode = "${sessionScope.scoreInfo.hyCode}";
 	var params ={"hyCode":hyCode}
 	var options = {tableId:'czScore_list',clientPageId:'pageLimit',url:pageUrl,tableHead:tableHead,dataIndex:dataIndex,params:params};
